@@ -1,1 +1,5 @@
-export const TestComponent = () => <div>Hello</div>;
+import React from "react";
+
+export const TestComponent = () => {
+  return <div>UI package working</div>;
+};
