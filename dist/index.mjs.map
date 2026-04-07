@@ -1,1 +1,0 @@
-{"version":3,"sources":["../src/index.tsx"],"sourcesContent":["export const TestComponent = () => <div>Hello</div>;"],"mappings":";AAAmC;AAA5B,IAAM,gBAAgB,MAAM,oBAAC,SAAI,mBAAK;","names":[]}
