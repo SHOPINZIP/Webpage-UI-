@@ -1,5 +1,5 @@
 {
-  "name": "@areakart/ui",
+  "name": "@shopinzip/webpage-ui",
   "version": "1.0.0",
   "description": "Shared UI library for Areakart admin and website",
   "main": "dist/index.js",
