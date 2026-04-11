@@ -1,0 +1,222 @@
+.ak-mst-apple {
+  --ak-mst-apple-text: #1d1d1f;
+  --ak-mst-apple-muted: rgba(0, 0, 0, 0.48);
+  --ak-mst-apple-quote: rgba(0, 0, 0, 0.78);
+
+  width: 100%;
+  overflow: hidden;
+  color: var(--ak-mst-apple-text);
+}
+
+.ak-mst-apple__inner {
+  max-width: 88rem;
+  margin: 0 auto;
+  padding: 0 1rem;
+
+  @media (min-width: 640px) {
+    padding: 0 1.5rem;
+  }
+
+  @media (min-width: 1024px) {
+    padding: 0 2rem;
+  }
+}
+
+.ak-mst-apple__intro {
+  text-align: center;
+  max-width: 40rem;
+  margin: 0 auto;
+}
+
+.ak-mst-apple__title {
+  margin: 0;
+  font-size: clamp(2rem, 4.2vw, 3.25rem);
+  font-weight: 600;
+  letter-spacing: -0.038em;
+  line-height: 1.08;
+  color: #000;
+}
+
+.ak-mst-apple__sub {
+  margin: 1rem 0 0;
+  font-size: clamp(0.95rem, 1.6vw, 1.125rem);
+  line-height: 1.55;
+  color: var(--ak-mst-apple-muted);
+  font-weight: 400;
+}
+
+.ak-mst-apple__empty {
+  margin: 3rem 0 0;
+  text-align: center;
+  font-size: 0.95rem;
+  color: var(--ak-mst-apple-muted);
+}
+
+.ak-mst-apple__static-grid {
+  margin-top: 2.75rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 1.25rem;
+  justify-content: center;
+}
+
+.ak-mst-apple__marquee {
+  margin-top: 2.75rem;
+  overflow: hidden;
+  mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    #000 6%,
+    #000 94%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    #000 6%,
+    #000 94%,
+    transparent 100%
+  );
+}
+
+.ak-mst-apple__marquee--second {
+  margin-top: 1.25rem;
+}
+
+.ak-mst-apple__track {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  width: max-content;
+  will-change: transform;
+}
+
+.ak-mst-apple__track--1 {
+  animation: ak-mst-apple-marquee var(--ak-mst-apple-dur, 34s) linear infinite;
+}
+
+.ak-mst-apple__track--2 {
+  animation: ak-mst-apple-marquee var(--ak-mst-apple-dur, 38s) linear infinite;
+  animation-direction: reverse;
+}
+
+@keyframes ak-mst-apple-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.ak-mst-apple--pause-hover .ak-mst-apple__marquee:hover .ak-mst-apple__track {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ak-mst-apple__track--1,
+  .ak-mst-apple__track--2 {
+    animation: none;
+  }
+}
+
+.ak-mst-apple__card-wrap {
+  flex-shrink: 0;
+  width: min(300px, 78vw);
+
+  @media (min-width: 640px) {
+    width: min(340px, 42vw);
+  }
+
+  @media (min-width: 1024px) {
+    width: 360px;
+  }
+}
+
+.ak-mst-apple__card {
+  position: relative;
+  border-radius: 22px;
+  padding: 1.35rem 1.5rem 1.5rem;
+  background: linear-gradient(
+    165deg,
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(250, 250, 252, 0.98) 55%,
+    rgba(245, 245, 247, 0.99) 100%
+  );
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.8) inset,
+    0 12px 40px rgba(0, 0, 0, 0.07),
+    0 4px 12px rgba(0, 0, 0, 0.04);
+  transition:
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.45s ease;
+}
+
+.ak-mst-apple__card:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.85) inset,
+    0 20px 50px rgba(0, 0, 0, 0.09),
+    0 8px 20px rgba(0, 0, 0, 0.05);
+}
+
+.ak-mst-apple__stars {
+  display: flex;
+  gap: 2px;
+  margin-bottom: 0.85rem;
+  letter-spacing: 0.02em;
+}
+
+.ak-mst-apple__star {
+  font-size: 13px;
+  line-height: 1;
+  color: rgba(0, 0, 0, 0.12);
+}
+
+.ak-mst-apple__star--on {
+  color: #ffb800;
+  text-shadow: 0 1px 2px rgba(255, 184, 0, 0.25);
+}
+
+.ak-mst-apple__quote {
+  margin: 0;
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: var(--ak-mst-apple-quote);
+
+  @media (min-width: 640px) {
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+}
+
+.ak-mst-apple__q {
+  font-weight: 400;
+  opacity: 0.45;
+}
+
+.ak-mst-apple__placeholder {
+  color: var(--ak-mst-apple-muted);
+  font-style: italic;
+}
+
+.ak-mst-apple__footer {
+  margin-top: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.ak-mst-apple__name {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.82);
+  letter-spacing: -0.01em;
+}
+
+.ak-mst-apple__role {
+  font-size: 0.75rem;
+  color: var(--ak-mst-apple-muted);
+  font-weight: 500;
+}

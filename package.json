@@ -4,6 +4,13 @@
   "description": "Shared UI library for Areakart admin and website",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./styles.css": "./dist/styles.css"
+  },
   "files": [
     "dist"
   ],
@@ -11,30 +18,27 @@
     "**/*.css"
   ],
   "scripts": {
-    "dev": "tsup",
-    "build": "tsup",
-    "prepare": "npm run build",
-    "clean": "rimraf dist",
-    "lint": "eslint .",
-    "format": "prettier --write ."
+    "dev": "concurrently \"tsup --watch\" \"sass --watch src/styles/index.scss:dist/styles.css --no-source-map --style=compressed\"",
+    "build": "npm run clean && tsup && sass src/styles/index.scss:dist/styles.css --no-source-map --style=compressed",
+    "clean": "rimraf dist"
   },
   "peerDependencies": {
     "react": "^17.0.0 || ^18.0.0 || ^19.0.0",
     "react-dom": "^17.0.0 || ^18.0.0 || ^19.0.0"
   },
   "dependencies": {
-    "clsx": "^2.1.1",
-    "tailwind-merge": "^2.6.1"
+    "clsx": "^2.1.1"
   },
   "devDependencies": {
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "autoprefixer": "^10.4.27",
+    "concurrently": "^9.2.1",
     "eslint": "^9.39.4",
     "postcss": "^8.5.8",
     "prettier": "^3.8.1",
     "rimraf": "^6.0.1",
-    "tailwindcss": "^3.4.19",
+    "sass": "^1.93.2",
     "tsup": "^8.5.1",
     "typescript": "^5.9.3"
   }
