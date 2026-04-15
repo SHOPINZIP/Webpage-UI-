@@ -6,4 +6,9 @@ export type {
   MessageStyleTestimonialBlock,
   MessageStyleTestimonialItemProps,
 } from "./types";
-export { STYLE_MESSAGE_BUBBLE, STYLE_APPLE_MARQUEE } from "./shared";
+export {
+  STYLE_MESSAGE_BUBBLE,
+  STYLE_APPLE_MARQUEE,
+  STYLE_STACKED_TESTIMONIALS,
+  STYLE_PORTRAIT_TESTIMONIALS,
+} from "./shared";

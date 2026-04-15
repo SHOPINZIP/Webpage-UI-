@@ -30,11 +30,18 @@ var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: tru
 // src/index.tsx
 var index_exports = {};
 __export(index_exports, {
+  CreativeCategoryMarquee: () => CreativeCategoryMarquee,
   HeroScrollableSlide: () => HeroScrollableSlide,
   HeroSlider: () => HeroSlider,
   MessageStyleTestimonials: () => MessageStyleTestimonials,
+  PortraitTestimonials: () => PortraitTestimonials,
+  ProductCardMarquee: () => ProductCardMarquee,
+  ProductMarquee: () => ProductMarquee,
   STYLE_APPLE_MARQUEE: () => STYLE_APPLE_MARQUEE,
   STYLE_MESSAGE_BUBBLE: () => STYLE_MESSAGE_BUBBLE,
+  STYLE_PORTRAIT_TESTIMONIALS: () => STYLE_PORTRAIT_TESTIMONIALS,
+  STYLE_STACKED_TESTIMONIALS: () => STYLE_STACKED_TESTIMONIALS,
+  StackedTestimonials: () => StackedTestimonials,
   normalizeImageUrl: () => normalizeImageUrl
 });
 module.exports = __toCommonJS(index_exports);
@@ -609,7 +616,7 @@ function HeroScrollableSlide({ section }) {
 }
 
 // src/components/MessageStyleTestimonialsSection/MessageStyleTestimonials.tsx
-var import_react6 = __toESM(require("react"));
+var import_react8 = __toESM(require("react"));
 
 // src/components/MessageStyleTestimonialsSection/variants/AppleMessageMarquee.tsx
 var import_react4 = __toESM(require("react"));
@@ -632,6 +639,8 @@ function usePrefersReducedMotion() {
 // src/components/MessageStyleTestimonialsSection/shared.ts
 var STYLE_MESSAGE_BUBBLE = "message_bubble";
 var STYLE_APPLE_MARQUEE = "apple_message_marquee";
+var STYLE_STACKED_TESTIMONIALS = "stacked_testimonials";
+var STYLE_PORTRAIT_TESTIMONIALS = "portrait_testimonials";
 function getVisibleTestimonialItems(blocks) {
   if (!Array.isArray(blocks)) return [];
   const out = [];
@@ -826,22 +835,589 @@ function MessageBubbleMarquee({
   ))));
 }
 
+// src/components/StackedTestimonialsSection/StackedTestimonials.tsx
+var import_react6 = __toESM(require("react"));
+function clampStars(raw) {
+  const n = Number.parseInt(String(raw != null ? raw : "5"), 10);
+  if (!Number.isFinite(n)) return 5;
+  return Math.min(5, Math.max(1, n));
+}
+function StarRow({ count }) {
+  const n = Math.min(5, Math.max(0, count));
+  return /* @__PURE__ */ import_react6.default.createElement("div", { className: "ak-stacked-t__stars", "aria-hidden": true }, Array.from({ length: n }).map((_, i) => /* @__PURE__ */ import_react6.default.createElement(
+    "svg",
+    {
+      key: i,
+      className: "ak-stacked-t__star",
+      viewBox: "0 0 24 24",
+      width: "16",
+      height: "16",
+      role: "presentation"
+    },
+    /* @__PURE__ */ import_react6.default.createElement(
+      "path",
+      {
+        fill: "currentColor",
+        d: "M12 2.5l2.9 6.1 6.8.6-5.1 4.5 1.5 6.7L12 17.9 5.9 20.4l1.5-6.7-5.1-4.5 6.8-.6L12 2.5z"
+      }
+    )
+  )));
+}
+var DESKTOP_OFFSETS = [
+  "ak-stacked-t__card-pos--d0",
+  "ak-stacked-t__card-pos--d1",
+  "ak-stacked-t__card-pos--d2",
+  "ak-stacked-t__card-pos--d3",
+  "ak-stacked-t__card-pos--d4"
+];
+var MOBILE_OFFSETS = [
+  "ak-stacked-t__card-pos--m0",
+  "ak-stacked-t__card-pos--m1",
+  "ak-stacked-t__card-pos--m2",
+  "ak-stacked-t__card-pos--m3",
+  "ak-stacked-t__card-pos--m4"
+];
+function StackedCard({
+  item,
+  index,
+  reduceMotion
+}) {
+  var _a, _b, _c;
+  const name = String((_a = item == null ? void 0 : item.name) != null ? _a : "").trim();
+  const role = String((_b = item == null ? void 0 : item.role) != null ? _b : "").trim();
+  const quote = String((_c = item == null ? void 0 : item.quote) != null ? _c : "").trim();
+  const stars = clampStars(item == null ? void 0 : item.stars);
+  const posClass = `${MOBILE_OFFSETS[index % MOBILE_OFFSETS.length]} ${DESKTOP_OFFSETS[index % DESKTOP_OFFSETS.length]}`;
+  return /* @__PURE__ */ import_react6.default.createElement(
+    "div",
+    {
+      className: `ak-stacked-t__card-wrap ${posClass} ${reduceMotion ? "ak-stacked-t__card-wrap--static" : ""}`,
+      style: { zIndex: 10 + index }
+    },
+    /* @__PURE__ */ import_react6.default.createElement("div", { className: "ak-stacked-t__card" }, /* @__PURE__ */ import_react6.default.createElement("div", { className: "ak-stacked-t__card-shine", "aria-hidden": true }), /* @__PURE__ */ import_react6.default.createElement("div", { className: "ak-stacked-t__card-inner" }, /* @__PURE__ */ import_react6.default.createElement(StarRow, { count: stars }), /* @__PURE__ */ import_react6.default.createElement("p", { className: "ak-stacked-t__quote" }, quote ? /* @__PURE__ */ import_react6.default.createElement(import_react6.default.Fragment, null, /* @__PURE__ */ import_react6.default.createElement("span", { className: "ak-stacked-t__quote-mark" }, "\u201C"), quote, /* @__PURE__ */ import_react6.default.createElement("span", { className: "ak-stacked-t__quote-mark" }, "\u201D")) : /* @__PURE__ */ import_react6.default.createElement("span", { className: "ak-stacked-t__placeholder" }, "Add a quote")), /* @__PURE__ */ import_react6.default.createElement("div", { className: "ak-stacked-t__footer" }, /* @__PURE__ */ import_react6.default.createElement("div", { className: "ak-stacked-t__name" }, name || /* @__PURE__ */ import_react6.default.createElement("span", { className: "ak-stacked-t__placeholder" }, "Name")), /* @__PURE__ */ import_react6.default.createElement("div", { className: "ak-stacked-t__role" }, role || /* @__PURE__ */ import_react6.default.createElement("span", { className: "ak-stacked-t__placeholder" }, "Role")))))
+  );
+}
+function StackedTestimonials({ section }) {
+  var _a, _b, _c, _d;
+  const reduceMotion = usePrefersReducedMotion();
+  const props = (_b = (_a = section == null ? void 0 : section.settings) == null ? void 0 : _a.props) != null ? _b : {};
+  const headingWord = String((_c = props.backgroundWord) != null ? _c : "Testimonial").trim() || "Testimonial";
+  const showWord = props.showBackgroundWord !== false;
+  const blocks = (0, import_react6.useMemo)(
+    () => {
+      var _a2;
+      return Array.isArray((_a2 = section == null ? void 0 : section.settings) == null ? void 0 : _a2.blocks) ? section.settings.blocks.filter((b) => b && typeof b === "object") : [];
+    },
+    [(_d = section == null ? void 0 : section.settings) == null ? void 0 : _d.blocks]
+  );
+  const hasContent = blocks.some((b) => {
+    var _a2, _b2, _c2;
+    const p = b == null ? void 0 : b.props;
+    if (!p || typeof p !== "object") return false;
+    return String((_a2 = p.quote) != null ? _a2 : "").trim() !== "" || String((_b2 = p.name) != null ? _b2 : "").trim() !== "" || String((_c2 = p.role) != null ? _c2 : "").trim() !== "";
+  });
+  return /* @__PURE__ */ import_react6.default.createElement("section", { className: "ak-stacked-t", "aria-label": headingWord }, /* @__PURE__ */ import_react6.default.createElement("div", { className: "ak-stacked-t__bg", "aria-hidden": true }), /* @__PURE__ */ import_react6.default.createElement("div", { className: "ak-stacked-t__container" }, showWord ? /* @__PURE__ */ import_react6.default.createElement("div", { className: "ak-stacked-t__wordmark-wrap" }, /* @__PURE__ */ import_react6.default.createElement("div", { className: "ak-stacked-t__wordmark ak-stacked-t__wordmark--sm" }, headingWord), /* @__PURE__ */ import_react6.default.createElement("div", { className: "ak-stacked-t__wordmark ak-stacked-t__wordmark--lg" }, headingWord)) : null, /* @__PURE__ */ import_react6.default.createElement("div", { className: "ak-stacked-t__stage" }, !hasContent ? /* @__PURE__ */ import_react6.default.createElement("p", { className: "ak-stacked-t__empty" }, "No testimonials yet.") : blocks.map((block, index) => {
+    var _a2, _b2;
+    return /* @__PURE__ */ import_react6.default.createElement(
+      StackedCard,
+      {
+        key: String((_a2 = block.id) != null ? _a2 : index),
+        item: (_b2 = block.props) != null ? _b2 : {},
+        index,
+        reduceMotion
+      }
+    );
+  }))));
+}
+
+// src/components/PortraitTestimonialsSection/PortraitTestimonials.tsx
+var import_react7 = __toESM(require("react"));
+var DESKTOP_POS = [
+  { posClass: "ak-pt__p0", rotate: -5, delayMs: 0 },
+  { posClass: "ak-pt__p1", rotate: 2, delayMs: 100 },
+  { posClass: "ak-pt__p2", rotate: -3, delayMs: 220 },
+  { posClass: "ak-pt__p3", rotate: 3, delayMs: 320 },
+  { posClass: "ak-pt__p4", rotate: -2, delayMs: 420 },
+  { posClass: "ak-pt__p5", rotate: 5, delayMs: 520 },
+  { posClass: "ak-pt__p6", rotate: 4, delayMs: 620 },
+  { posClass: "ak-pt__p7", rotate: -4, delayMs: 720 }
+];
+function safeText(v) {
+  return String(v != null ? v : "").trim();
+}
+function computeMagneticOffset(pointerX, pointerY, centerX, centerY, radius = 220, maxPull = 14) {
+  const dx = pointerX - centerX;
+  const dy = pointerY - centerY;
+  const distance = Math.hypot(dx, dy) || 1;
+  if (distance > radius) return { x: 0, y: 0 };
+  const strength = (1 - distance / radius) * maxPull;
+  return { x: dx / distance * strength, y: dy / distance * strength };
+}
+function easeOffset(offset, factor = 0.84) {
+  const x = Math.abs(offset.x) < 0.12 ? 0 : offset.x * factor;
+  const y = Math.abs(offset.y) < 0.12 ? 0 : offset.y * factor;
+  return { x, y };
+}
+function PortraitTestimonials({
+  section
+}) {
+  var _a, _b, _c;
+  const reduceMotion = usePrefersReducedMotion();
+  const props = (_b = (_a = section == null ? void 0 : section.settings) == null ? void 0 : _a.props) != null ? _b : {};
+  const eyebrow = safeText(props.eyebrow) || "TESTIMONIALS";
+  const heading = safeText(props.heading) || "Trusted by leaders";
+  const highlightText = safeText(props.highlightText) || "from various industries";
+  const description = safeText(props.description) || "Learn why professionals trust thoughtful digital experiences to elevate customer journeys.";
+  const showButton = props.showButton !== false;
+  const buttonText = safeText(props.buttonText) || "Read Success Stories";
+  const buttonLink = safeText(props.buttonLink);
+  const enableMagnetic = props.enableMagneticEffect !== false;
+  const blocks = (0, import_react7.useMemo)(() => {
+    var _a2;
+    const raw = (_a2 = section == null ? void 0 : section.settings) == null ? void 0 : _a2.blocks;
+    if (!Array.isArray(raw)) return [];
+    return raw.slice(0, 8);
+  }, [(_c = section == null ? void 0 : section.settings) == null ? void 0 : _c.blocks]);
+  const [loaded, setLoaded] = (0, import_react7.useState)(false);
+  const [offsets, setOffsets] = (0, import_react7.useState)(
+    () => Object.fromEntries(DESKTOP_POS.map((_, i) => [i, { x: 0, y: 0 }]))
+  );
+  const sectionRef = (0, import_react7.useRef)(null);
+  const cardRefs = (0, import_react7.useRef)({});
+  const restFrameRef = (0, import_react7.useRef)(null);
+  (0, import_react7.useEffect)(() => {
+    const t = window.setTimeout(() => setLoaded(true), 80);
+    return () => window.clearTimeout(t);
+  }, []);
+  (0, import_react7.useEffect)(() => {
+    if (reduceMotion) return void 0;
+    const sectionEl = sectionRef.current;
+    if (!sectionEl) return void 0;
+    if (!enableMagnetic) return void 0;
+    const stopRest = () => {
+      if (restFrameRef.current !== null) {
+        window.cancelAnimationFrame(restFrameRef.current);
+        restFrameRef.current = null;
+      }
+    };
+    const animateBack = () => {
+      setOffsets((prev) => {
+        var _a2;
+        const next = {};
+        let moving = false;
+        for (let i = 0; i < DESKTOP_POS.length; i += 1) {
+          const eased = easeOffset((_a2 = prev[i]) != null ? _a2 : { x: 0, y: 0 });
+          next[i] = eased;
+          if (eased.x !== 0 || eased.y !== 0) moving = true;
+        }
+        if (moving) {
+          restFrameRef.current = window.requestAnimationFrame(animateBack);
+        } else {
+          restFrameRef.current = null;
+        }
+        return next;
+      });
+    };
+    const updateFromPointer = (clientX, clientY) => {
+      setOffsets(() => {
+        const next = {};
+        for (let i = 0; i < DESKTOP_POS.length; i += 1) {
+          const el = cardRefs.current[i];
+          if (!el) {
+            next[i] = { x: 0, y: 0 };
+            continue;
+          }
+          const rect = el.getBoundingClientRect();
+          const cx = rect.left + rect.width / 2;
+          const cy = rect.top + rect.height / 2;
+          next[i] = computeMagneticOffset(clientX, clientY, cx, cy);
+        }
+        return next;
+      });
+    };
+    const onMove = (e) => {
+      stopRest();
+      updateFromPointer(e.clientX, e.clientY);
+    };
+    const onLeave = () => {
+      stopRest();
+      restFrameRef.current = window.requestAnimationFrame(animateBack);
+    };
+    sectionEl.addEventListener("pointermove", onMove);
+    sectionEl.addEventListener("pointerleave", onLeave);
+    return () => {
+      sectionEl.removeEventListener("pointermove", onMove);
+      sectionEl.removeEventListener("pointerleave", onLeave);
+      stopRest();
+    };
+  }, [enableMagnetic, reduceMotion]);
+  return /* @__PURE__ */ import_react7.default.createElement("section", { ref: sectionRef, className: "ak-pt", "aria-label": heading }, /* @__PURE__ */ import_react7.default.createElement("div", { className: "ak-pt__container" }, /* @__PURE__ */ import_react7.default.createElement("div", { className: "ak-pt__desktop" }, DESKTOP_POS.map((pos, index) => {
+    var _a2, _b2, _c2;
+    const p = (_b2 = (_a2 = blocks[index]) == null ? void 0 : _a2.props) != null ? _b2 : {};
+    const img = safeText(p.image);
+    const alt = safeText(p.alt) || "Testimonial portrait";
+    const magnetic = (_c2 = offsets[index]) != null ? _c2 : { x: 0, y: 0 };
+    return /* @__PURE__ */ import_react7.default.createElement(
+      "div",
+      {
+        key: index,
+        className: `ak-pt__portrait ${pos.posClass}`,
+        style: {
+          transition: "transform 1400ms cubic-bezier(0.22,1,0.36,1), opacity 1200ms cubic-bezier(0.22,1,0.36,1), filter 1400ms cubic-bezier(0.22,1,0.36,1)",
+          transitionDelay: `${pos.delayMs}ms`,
+          opacity: loaded ? 1 : 0,
+          filter: loaded ? "blur(0px)" : "blur(10px)",
+          transform: loaded ? "translate3d(0px, 0px, 0px) scale(1)" : "translate3d(0px, 48px, 0px) scale(0.9)"
+        }
+      },
+      /* @__PURE__ */ import_react7.default.createElement(
+        "div",
+        {
+          ref: (node) => {
+            cardRefs.current[index] = node;
+          },
+          className: "ak-pt__card",
+          style: {
+            transform: `translate3d(${magnetic.x}px, ${magnetic.y}px, 0) rotate(${pos.rotate}deg)`,
+            transition: "transform 320ms cubic-bezier(0.22,1,0.36,1), box-shadow 320ms cubic-bezier(0.22,1,0.36,1)",
+            boxShadow: magnetic.x !== 0 || magnetic.y !== 0 ? "0 34px 84px rgba(0,0,0,0.16)" : "0 26px 70px rgba(0,0,0,0.14)",
+            willChange: "transform"
+          }
+        },
+        img ? /* @__PURE__ */ import_react7.default.createElement(
+          "img",
+          {
+            src: img,
+            alt,
+            className: "ak-pt__img",
+            style: {
+              transform: loaded ? "scale(1)" : "scale(1.08)",
+              transitionDelay: `${pos.delayMs + 60}ms`
+            },
+            loading: "lazy"
+          }
+        ) : /* @__PURE__ */ import_react7.default.createElement("div", { className: "ak-pt__img ak-pt__img--fallback", "aria-hidden": true })
+      )
+    );
+  })), /* @__PURE__ */ import_react7.default.createElement("div", { className: "ak-pt__mobile" }, blocks.slice(0, 8).map((b, index) => {
+    var _a2, _b2, _c2, _d, _e;
+    const p = (_a2 = b == null ? void 0 : b.props) != null ? _a2 : {};
+    const img = safeText(p.image);
+    const alt = safeText(p.alt) || "Testimonial portrait";
+    const settledY = index % 2 === 0 ? 16 : -4;
+    const startY = index % 2 === 0 ? 36 : 12;
+    return /* @__PURE__ */ import_react7.default.createElement(
+      "div",
+      {
+        key: `m-${index}`,
+        className: `ak-pt__mcard ${index % 2 === 0 ? "ak-pt__mcard--down" : "ak-pt__mcard--up"}`,
+        style: {
+          transitionDelay: `${(_c2 = (_b2 = DESKTOP_POS[index]) == null ? void 0 : _b2.delayMs) != null ? _c2 : 0}ms`,
+          transform: loaded ? `translateY(${settledY}px) scale(1)` : `translateY(${startY}px) scale(0.92)`,
+          opacity: loaded ? 1 : 0,
+          filter: loaded ? "blur(0px)" : "blur(4px)"
+        }
+      },
+      img ? /* @__PURE__ */ import_react7.default.createElement(
+        "img",
+        {
+          src: img,
+          alt,
+          className: "ak-pt__mimg",
+          style: {
+            transform: loaded ? "scale(1)" : "scale(1.06)",
+            transitionDelay: `${((_e = (_d = DESKTOP_POS[index]) == null ? void 0 : _d.delayMs) != null ? _e : 0) + 60}ms`
+          },
+          loading: "lazy"
+        }
+      ) : /* @__PURE__ */ import_react7.default.createElement("div", { className: "ak-pt__mimg ak-pt__mimg--fallback", "aria-hidden": true })
+    );
+  })), /* @__PURE__ */ import_react7.default.createElement("div", { className: "ak-pt__center" }, /* @__PURE__ */ import_react7.default.createElement(
+    "div",
+    {
+      className: "ak-pt__eyebrow",
+      style: {
+        opacity: loaded ? 1 : 0,
+        transform: loaded ? "translateY(0)" : "translateY(16px)"
+      }
+    },
+    eyebrow
+  ), /* @__PURE__ */ import_react7.default.createElement(
+    "h2",
+    {
+      className: "ak-pt__heading",
+      style: {
+        opacity: loaded ? 1 : 0,
+        transform: loaded ? "translateY(0)" : "translateY(24px)"
+      }
+    },
+    heading,
+    /* @__PURE__ */ import_react7.default.createElement("br", null),
+    /* @__PURE__ */ import_react7.default.createElement("span", { className: "ak-pt__highlight" }, highlightText)
+  ), /* @__PURE__ */ import_react7.default.createElement(
+    "p",
+    {
+      className: "ak-pt__desc",
+      style: {
+        opacity: loaded ? 1 : 0,
+        transform: loaded ? "translateY(0)" : "translateY(24px)"
+      }
+    },
+    description
+  ), showButton ? buttonLink ? /* @__PURE__ */ import_react7.default.createElement(
+    "a",
+    {
+      className: "ak-pt__btn",
+      href: buttonLink,
+      style: {
+        opacity: loaded ? 1 : 0,
+        transform: loaded ? "translateY(0)" : "translateY(24px)"
+      }
+    },
+    buttonText,
+    " ",
+    /* @__PURE__ */ import_react7.default.createElement("span", { "aria-hidden": true }, "\u2192")
+  ) : /* @__PURE__ */ import_react7.default.createElement(
+    "button",
+    {
+      className: "ak-pt__btn",
+      type: "button",
+      style: {
+        opacity: loaded ? 1 : 0,
+        transform: loaded ? "translateY(0)" : "translateY(24px)"
+      }
+    },
+    buttonText,
+    " ",
+    /* @__PURE__ */ import_react7.default.createElement("span", { "aria-hidden": true }, "\u2192")
+  ) : null)));
+}
+
 // src/components/MessageStyleTestimonialsSection/MessageStyleTestimonials.tsx
 function MessageStyleTestimonials(props) {
   var _a, _b, _c, _d;
   const style = (_d = (_c = (_b = (_a = props.section) == null ? void 0 : _a.settings) == null ? void 0 : _b.props) == null ? void 0 : _c.testimonialStyle) != null ? _d : STYLE_MESSAGE_BUBBLE;
-  if (style === STYLE_APPLE_MARQUEE) {
-    return /* @__PURE__ */ import_react6.default.createElement(AppleMessageMarquee, { ...props });
+  if (style === STYLE_STACKED_TESTIMONIALS) {
+    return /* @__PURE__ */ import_react8.default.createElement(StackedTestimonials, { section: props.section });
   }
-  return /* @__PURE__ */ import_react6.default.createElement(MessageBubbleMarquee, { ...props });
+  if (style === STYLE_PORTRAIT_TESTIMONIALS) {
+    return /* @__PURE__ */ import_react8.default.createElement(PortraitTestimonials, { section: props.section });
+  }
+  if (style === STYLE_APPLE_MARQUEE) {
+    return /* @__PURE__ */ import_react8.default.createElement(AppleMessageMarquee, { ...props });
+  }
+  return /* @__PURE__ */ import_react8.default.createElement(MessageBubbleMarquee, { ...props });
+}
+
+// src/components/ProductMarqueeSection/ProductMarquee.tsx
+var import_react9 = __toESM(require("react"));
+function rotate(items, by) {
+  if (items.length === 0) return [];
+  const n = (by % items.length + items.length) % items.length;
+  return [...items.slice(n), ...items.slice(0, n)];
+}
+function distributeRows(items) {
+  const row1 = items;
+  const row2 = rotate(items, 2);
+  const row3 = rotate(items, 1).reverse();
+  return { row1, row2, row3 };
+}
+function safeText2(v) {
+  return String(v != null ? v : "").trim();
+}
+function ProductPill({ item }) {
+  const title = safeText2(item == null ? void 0 : item.title);
+  const subtitle = safeText2(item == null ? void 0 : item.subtitle);
+  const image = safeText2(item == null ? void 0 : item.image);
+  return /* @__PURE__ */ import_react9.default.createElement("div", { className: "ak-pm__pill" }, /* @__PURE__ */ import_react9.default.createElement("div", { className: "ak-pm__pill-imgWrap", "aria-hidden": !image }, image ? /* @__PURE__ */ import_react9.default.createElement(
+    "img",
+    {
+      className: "ak-pm__pill-img",
+      src: image,
+      alt: title,
+      loading: "lazy"
+    }
+  ) : /* @__PURE__ */ import_react9.default.createElement("div", { className: "ak-pm__pill-img ak-pm__pill-img--fallback", "aria-hidden": true })), /* @__PURE__ */ import_react9.default.createElement("div", { className: "ak-pm__pill-text" }, /* @__PURE__ */ import_react9.default.createElement("span", { className: "ak-pm__pill-title" }, title || /* @__PURE__ */ import_react9.default.createElement("span", { className: "ak-pm__placeholder" }, "Title")), /* @__PURE__ */ import_react9.default.createElement("span", { className: "ak-pm__pill-subtitle" }, subtitle || /* @__PURE__ */ import_react9.default.createElement("span", { className: "ak-pm__placeholder" }, "Subtitle"))));
+}
+function MarqueeRow({
+  items,
+  reverse = false,
+  durationSec = 34,
+  reduceMotion
+}) {
+  const loopItems = items.length > 0 ? [...items, ...items] : [];
+  const animClass = reverse ? "ak-pm__track--rev" : "ak-pm__track";
+  if (reduceMotion) {
+    return /* @__PURE__ */ import_react9.default.createElement("div", { className: "ak-pm__row" }, /* @__PURE__ */ import_react9.default.createElement("div", { className: "ak-pm__track ak-pm__track--static" }, items.map((item, index) => /* @__PURE__ */ import_react9.default.createElement(ProductPill, { key: `${safeText2(item.title)}-${index}`, item }))));
+  }
+  return /* @__PURE__ */ import_react9.default.createElement("div", { className: "ak-pm__row" }, /* @__PURE__ */ import_react9.default.createElement("div", { className: animClass, style: { animationDuration: `${durationSec}s` } }, loopItems.map((item, index) => /* @__PURE__ */ import_react9.default.createElement(ProductPill, { key: `${safeText2(item.title)}-${index}`, item }))));
+}
+function ProductMarquee({ section }) {
+  var _a, _b, _c;
+  const reduceMotion = usePrefersReducedMotion();
+  const props = (_b = (_a = section == null ? void 0 : section.settings) == null ? void 0 : _a.props) != null ? _b : {};
+  const eyebrow = safeText2(props.eyebrow);
+  const heading = safeText2(props.heading);
+  const description = safeText2(props.description);
+  const showButton = props.showButton !== false;
+  const buttonText = safeText2(props.buttonText);
+  const buttonLink = safeText2(props.buttonLink);
+  const items = (0, import_react9.useMemo)(() => {
+    var _a2;
+    const blocks = (_a2 = section == null ? void 0 : section.settings) == null ? void 0 : _a2.blocks;
+    if (!Array.isArray(blocks)) return [];
+    return blocks.filter((b) => b && typeof b === "object").map((b) => (b == null ? void 0 : b.props) && typeof b.props === "object" ? b.props : {});
+  }, [(_c = section == null ? void 0 : section.settings) == null ? void 0 : _c.blocks]);
+  const hasContent = items.some(
+    (it) => safeText2(it.title) || safeText2(it.subtitle) || safeText2(it.image)
+  );
+  const { row1, row2, row3 } = (0, import_react9.useMemo)(() => distributeRows(items), [items]);
+  return /* @__PURE__ */ import_react9.default.createElement("section", { className: "ak-pm", "aria-label": heading || "Products" }, /* @__PURE__ */ import_react9.default.createElement("div", { className: "ak-pm__bg", "aria-hidden": true }), /* @__PURE__ */ import_react9.default.createElement("div", { className: "ak-pm__glow", "aria-hidden": true }), /* @__PURE__ */ import_react9.default.createElement("div", { className: "ak-pm__container" }, /* @__PURE__ */ import_react9.default.createElement("div", { className: "ak-pm__header" }, eyebrow ? /* @__PURE__ */ import_react9.default.createElement("div", { className: "ak-pm__eyebrow" }, eyebrow) : null, /* @__PURE__ */ import_react9.default.createElement("h2", { className: "ak-pm__heading" }, heading || "Explore handpicked products."), description ? /* @__PURE__ */ import_react9.default.createElement("p", { className: "ak-pm__desc" }, description) : null), /* @__PURE__ */ import_react9.default.createElement("div", { className: "ak-pm__rows" }, /* @__PURE__ */ import_react9.default.createElement("div", { className: "ak-pm__fade ak-pm__fade--l", "aria-hidden": true }), /* @__PURE__ */ import_react9.default.createElement("div", { className: "ak-pm__fade ak-pm__fade--r", "aria-hidden": true }), !hasContent ? /* @__PURE__ */ import_react9.default.createElement("p", { className: "ak-pm__empty" }, "No items yet.") : /* @__PURE__ */ import_react9.default.createElement(import_react9.default.Fragment, null, /* @__PURE__ */ import_react9.default.createElement(MarqueeRow, { items: row1, durationSec: 34, reduceMotion }), /* @__PURE__ */ import_react9.default.createElement(
+    MarqueeRow,
+    {
+      items: row2,
+      reverse: true,
+      durationSec: 38,
+      reduceMotion
+    }
+  ), /* @__PURE__ */ import_react9.default.createElement(MarqueeRow, { items: row3, durationSec: 36, reduceMotion }))), showButton ? /* @__PURE__ */ import_react9.default.createElement("div", { className: "ak-pm__cta" }, buttonLink ? /* @__PURE__ */ import_react9.default.createElement("a", { className: "ak-pm__btn", href: buttonLink }, buttonText || "Buy Now", " ", /* @__PURE__ */ import_react9.default.createElement("span", { "aria-hidden": true }, "\u2192")) : /* @__PURE__ */ import_react9.default.createElement("button", { className: "ak-pm__btn", type: "button" }, buttonText || "Buy Now", " ", /* @__PURE__ */ import_react9.default.createElement("span", { "aria-hidden": true }, "\u2192"))) : null));
+}
+
+// src/components/ProductMarqueeSection/ProductCardMarquee.tsx
+var import_react10 = __toESM(require("react"));
+function rotate2(items, by) {
+  if (items.length === 0) return [];
+  const n = (by % items.length + items.length) % items.length;
+  return [...items.slice(n), ...items.slice(0, n)];
+}
+function distributeRows2(items) {
+  const row1 = items;
+  const row2 = rotate2(items, 2);
+  const row3 = rotate2(items, 1).reverse();
+  return { row1, row2, row3 };
+}
+function safeText3(v) {
+  return String(v != null ? v : "").trim();
+}
+function ProductCard({ item }) {
+  const title = safeText3(item == null ? void 0 : item.title);
+  const subtitle = safeText3(item == null ? void 0 : item.subtitle);
+  const image = safeText3(item == null ? void 0 : item.image);
+  return /* @__PURE__ */ import_react10.default.createElement("div", { className: "ak-pmc__card" }, /* @__PURE__ */ import_react10.default.createElement("div", { className: "ak-pmc__imgWrap", "aria-hidden": !image }, image ? /* @__PURE__ */ import_react10.default.createElement("img", { className: "ak-pmc__img", src: image, alt: title, loading: "lazy" }) : /* @__PURE__ */ import_react10.default.createElement("div", { className: "ak-pmc__img ak-pmc__img--fallback", "aria-hidden": true })), /* @__PURE__ */ import_react10.default.createElement("div", { className: "ak-pmc__meta" }, /* @__PURE__ */ import_react10.default.createElement("div", { className: "ak-pmc__title" }, title || /* @__PURE__ */ import_react10.default.createElement("span", { className: "ak-pmc__placeholder" }, "Title")), /* @__PURE__ */ import_react10.default.createElement("div", { className: "ak-pmc__subtitle" }, subtitle || /* @__PURE__ */ import_react10.default.createElement("span", { className: "ak-pmc__placeholder" }, "Subtitle"))));
+}
+function MarqueeRow2({
+  items,
+  reverse = false,
+  durationSec = 34,
+  reduceMotion
+}) {
+  const loopItems = items.length > 0 ? [...items, ...items] : [];
+  const animClass = reverse ? "ak-pmc__track--rev" : "ak-pmc__track";
+  if (reduceMotion) {
+    return /* @__PURE__ */ import_react10.default.createElement("div", { className: "ak-pmc__row" }, /* @__PURE__ */ import_react10.default.createElement("div", { className: "ak-pmc__track ak-pmc__track--static" }, items.map((item, index) => /* @__PURE__ */ import_react10.default.createElement(ProductCard, { key: `${safeText3(item.title)}-${index}`, item }))));
+  }
+  return /* @__PURE__ */ import_react10.default.createElement("div", { className: "ak-pmc__row" }, /* @__PURE__ */ import_react10.default.createElement("div", { className: animClass, style: { animationDuration: `${durationSec}s` } }, loopItems.map((item, index) => /* @__PURE__ */ import_react10.default.createElement(ProductCard, { key: `${safeText3(item.title)}-${index}`, item }))));
+}
+function ProductCardMarquee({ section }) {
+  var _a, _b, _c;
+  const reduceMotion = usePrefersReducedMotion();
+  const props = (_b = (_a = section == null ? void 0 : section.settings) == null ? void 0 : _a.props) != null ? _b : {};
+  const eyebrow = safeText3(props.eyebrow) || "Bestsellers";
+  const heading = safeText3(props.heading) || "Browse products the way modern commerce feels effortless.";
+  const description = safeText3(props.description) || "A quicker-commerce inspired layout with the name neatly placed below the square image and one clean section action.";
+  const showButton = props.showButton !== false;
+  const buttonText = safeText3(props.buttonText) || "Buy Now";
+  const buttonLink = safeText3(props.buttonLink);
+  const items = (0, import_react10.useMemo)(() => {
+    var _a2;
+    const blocks = (_a2 = section == null ? void 0 : section.settings) == null ? void 0 : _a2.blocks;
+    if (!Array.isArray(blocks)) return [];
+    return blocks.filter((b) => b && typeof b === "object").map((b) => (b == null ? void 0 : b.props) && typeof b.props === "object" ? b.props : {});
+  }, [(_c = section == null ? void 0 : section.settings) == null ? void 0 : _c.blocks]);
+  const hasContent = items.some(
+    (it) => safeText3(it.title) || safeText3(it.subtitle) || safeText3(it.image)
+  );
+  const { row1, row2, row3 } = (0, import_react10.useMemo)(() => distributeRows2(items), [items]);
+  return /* @__PURE__ */ import_react10.default.createElement("section", { className: "ak-pmc", "aria-label": heading }, /* @__PURE__ */ import_react10.default.createElement("div", { className: "ak-pmc__bg", "aria-hidden": true }), /* @__PURE__ */ import_react10.default.createElement("div", { className: "ak-pmc__glow", "aria-hidden": true }), /* @__PURE__ */ import_react10.default.createElement("div", { className: "ak-pmc__container" }, /* @__PURE__ */ import_react10.default.createElement("div", { className: "ak-pmc__header" }, eyebrow ? /* @__PURE__ */ import_react10.default.createElement("div", { className: "ak-pmc__eyebrow" }, eyebrow) : null, /* @__PURE__ */ import_react10.default.createElement("h2", { className: "ak-pmc__heading" }, heading), description ? /* @__PURE__ */ import_react10.default.createElement("p", { className: "ak-pmc__desc" }, description) : null), /* @__PURE__ */ import_react10.default.createElement("div", { className: "ak-pmc__rows" }, /* @__PURE__ */ import_react10.default.createElement("div", { className: "ak-pmc__fade ak-pmc__fade--l", "aria-hidden": true }), /* @__PURE__ */ import_react10.default.createElement("div", { className: "ak-pmc__fade ak-pmc__fade--r", "aria-hidden": true }), !hasContent ? /* @__PURE__ */ import_react10.default.createElement("p", { className: "ak-pmc__empty" }, "No items yet.") : /* @__PURE__ */ import_react10.default.createElement(import_react10.default.Fragment, null, /* @__PURE__ */ import_react10.default.createElement(MarqueeRow2, { items: row1, durationSec: 34, reduceMotion }), /* @__PURE__ */ import_react10.default.createElement(
+    MarqueeRow2,
+    {
+      items: row2,
+      reverse: true,
+      durationSec: 38,
+      reduceMotion
+    }
+  ), /* @__PURE__ */ import_react10.default.createElement(MarqueeRow2, { items: row3, durationSec: 36, reduceMotion }))), showButton ? /* @__PURE__ */ import_react10.default.createElement("div", { className: "ak-pmc__cta" }, buttonLink ? /* @__PURE__ */ import_react10.default.createElement("a", { className: "ak-pmc__btn", href: buttonLink }, buttonText, " ", /* @__PURE__ */ import_react10.default.createElement("span", { "aria-hidden": true }, "\u2192")) : /* @__PURE__ */ import_react10.default.createElement("button", { className: "ak-pmc__btn", type: "button" }, buttonText, " ", /* @__PURE__ */ import_react10.default.createElement("span", { "aria-hidden": true }, "\u2192"))) : null));
+}
+
+// src/components/ProductMarqueeSection/CreativeCategoryMarquee.tsx
+var import_react11 = __toESM(require("react"));
+function rotate3(items, by) {
+  if (items.length === 0) return [];
+  const n = (by % items.length + items.length) % items.length;
+  return [...items.slice(n), ...items.slice(0, n)];
+}
+function safeText4(v) {
+  return String(v != null ? v : "").trim();
+}
+function distributeTwoRows(items) {
+  const row1 = items;
+  const row2 = rotate3(items, 3);
+  return { row1, row2 };
+}
+function CategoryCard({ item }) {
+  const name = safeText4(item == null ? void 0 : item.title);
+  const image = safeText4(item == null ? void 0 : item.image);
+  return /* @__PURE__ */ import_react11.default.createElement("div", { className: "ak-ccm__card" }, /* @__PURE__ */ import_react11.default.createElement("div", { className: "ak-ccm__imgOuter" }, /* @__PURE__ */ import_react11.default.createElement("div", { className: "ak-ccm__imgInner", "aria-hidden": !image }, image ? /* @__PURE__ */ import_react11.default.createElement("img", { className: "ak-ccm__img", src: image, alt: name, loading: "lazy" }) : /* @__PURE__ */ import_react11.default.createElement("div", { className: "ak-ccm__img ak-ccm__img--fallback", "aria-hidden": true }), /* @__PURE__ */ import_react11.default.createElement("div", { className: "ak-ccm__imgOverlay", "aria-hidden": true }))), /* @__PURE__ */ import_react11.default.createElement("p", { className: "ak-ccm__name" }, name || /* @__PURE__ */ import_react11.default.createElement("span", { className: "ak-ccm__placeholder" }, "Category")));
+}
+function Row({
+  items,
+  reverse = false,
+  durationSec = 30,
+  reduceMotion
+}) {
+  const loop = items.length > 0 ? [...items, ...items, ...items] : [];
+  if (reduceMotion) {
+    return /* @__PURE__ */ import_react11.default.createElement("div", { className: "ak-ccm__row" }, /* @__PURE__ */ import_react11.default.createElement("div", { className: "ak-ccm__track ak-ccm__track--static" }, items.map((item, i) => /* @__PURE__ */ import_react11.default.createElement(CategoryCard, { key: `${safeText4(item.title)}-${i}`, item }))));
+  }
+  return /* @__PURE__ */ import_react11.default.createElement("div", { className: "ak-ccm__row" }, /* @__PURE__ */ import_react11.default.createElement(
+    "div",
+    {
+      className: reverse ? "ak-ccm__track--rev" : "ak-ccm__track",
+      style: { animationDuration: `${durationSec}s` }
+    },
+    loop.map((item, i) => /* @__PURE__ */ import_react11.default.createElement(CategoryCard, { key: `${safeText4(item.title)}-${i}`, item }))
+  ));
+}
+function CreativeCategoryMarquee({ section }) {
+  var _a, _b, _c;
+  const reduceMotion = usePrefersReducedMotion();
+  const props = (_b = (_a = section == null ? void 0 : section.settings) == null ? void 0 : _a.props) != null ? _b : {};
+  const heading = safeText4(props.heading) || "Explore by Category";
+  const description = safeText4(props.description) || "Smooth, scrollable categories designed for quick discovery.";
+  const items = (0, import_react11.useMemo)(() => {
+    var _a2;
+    const blocks = (_a2 = section == null ? void 0 : section.settings) == null ? void 0 : _a2.blocks;
+    if (!Array.isArray(blocks)) return [];
+    return blocks.filter((b) => b && typeof b === "object").map((b) => (b == null ? void 0 : b.props) && typeof b.props === "object" ? b.props : {});
+  }, [(_c = section == null ? void 0 : section.settings) == null ? void 0 : _c.blocks]);
+  const hasContent = items.some((it) => safeText4(it.title) || safeText4(it.image));
+  const { row1, row2 } = (0, import_react11.useMemo)(() => distributeTwoRows(items), [items]);
+  return /* @__PURE__ */ import_react11.default.createElement("section", { className: "ak-ccm", "aria-label": heading }, /* @__PURE__ */ import_react11.default.createElement("div", { className: "ak-ccm__container" }, /* @__PURE__ */ import_react11.default.createElement("div", { className: "ak-ccm__header" }, /* @__PURE__ */ import_react11.default.createElement("h2", { className: "ak-ccm__heading" }, heading), /* @__PURE__ */ import_react11.default.createElement("p", { className: "ak-ccm__desc" }, description)), /* @__PURE__ */ import_react11.default.createElement("div", { className: "ak-ccm__rows" }, /* @__PURE__ */ import_react11.default.createElement("div", { className: "ak-ccm__fade ak-ccm__fade--l", "aria-hidden": true }), /* @__PURE__ */ import_react11.default.createElement("div", { className: "ak-ccm__fade ak-ccm__fade--r", "aria-hidden": true }), !hasContent ? /* @__PURE__ */ import_react11.default.createElement("p", { className: "ak-ccm__empty" }, "No categories yet.") : /* @__PURE__ */ import_react11.default.createElement(import_react11.default.Fragment, null, /* @__PURE__ */ import_react11.default.createElement(Row, { items: row1, durationSec: 30, reduceMotion }), /* @__PURE__ */ import_react11.default.createElement(Row, { items: row2, reverse: true, durationSec: 34, reduceMotion })))));
 }
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
+  CreativeCategoryMarquee,
   HeroScrollableSlide,
   HeroSlider,
   MessageStyleTestimonials,
+  PortraitTestimonials,
+  ProductCardMarquee,
+  ProductMarquee,
   STYLE_APPLE_MARQUEE,
   STYLE_MESSAGE_BUBBLE,
+  STYLE_PORTRAIT_TESTIMONIALS,
+  STYLE_STACKED_TESTIMONIALS,
+  StackedTestimonials,
   normalizeImageUrl
 });
 //# sourceMappingURL=index.js.map

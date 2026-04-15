@@ -106,10 +106,91 @@ declare function MessageStyleTestimonials(props: MessageStyleTestimonialsProps):
 
 declare const STYLE_MESSAGE_BUBBLE = "message_bubble";
 declare const STYLE_APPLE_MARQUEE = "apple_message_marquee";
+declare const STYLE_STACKED_TESTIMONIALS = "stacked_testimonials";
+declare const STYLE_PORTRAIT_TESTIMONIALS = "portrait_testimonials";
+
+type StackedTestimonialItemProps = {
+    /** "1"–"5" */
+    stars?: string;
+    quote?: string;
+    name?: string;
+    role?: string;
+};
+type StackedTestimonialBlock = {
+    id: string;
+    type?: string;
+    props: StackedTestimonialItemProps;
+};
+type StackedTestimonialsSectionProps = {
+    backgroundWord?: string;
+    showBackgroundWord?: boolean;
+};
+type StackedTestimonialsSettings = {
+    props?: StackedTestimonialsSectionProps;
+    blocks?: StackedTestimonialBlock[];
+};
+/** Same section `type` as marquee testimonials; `variant` selects stacked on the storefront. */
+type StackedTestimonialsSectionDoc = {
+    id: string;
+    type: "messageStyleTestimonials";
+    variant?: string;
+    enabled?: boolean;
+    settings: StackedTestimonialsSettings;
+};
+type StackedTestimonialsProps = {
+    section: StackedTestimonialsSectionDoc;
+};
+
+declare function StackedTestimonials({ section }: StackedTestimonialsProps): React.JSX.Element;
+
+type ProductMarqueeItemProps = {
+    title?: string;
+    subtitle?: string;
+    image?: string;
+};
+type ProductMarqueeBlock = {
+    id: string;
+    type?: string;
+    props: ProductMarqueeItemProps;
+};
+type ProductMarqueeSectionProps = {
+    eyebrow?: string;
+    heading?: string;
+    description?: string;
+    buttonText?: string;
+    buttonLink?: string;
+    showButton?: boolean;
+};
+type ProductMarqueeSettings = {
+    props?: ProductMarqueeSectionProps;
+    blocks?: ProductMarqueeBlock[];
+};
+type ProductMarqueeSectionDoc = {
+    id: string;
+    type: "productMarquee";
+    variant?: string;
+    enabled?: boolean;
+    settings: ProductMarqueeSettings;
+};
+type ProductMarqueeProps = {
+    section: ProductMarqueeSectionDoc;
+};
+
+declare function ProductMarquee({ section }: ProductMarqueeProps): React.JSX.Element;
+
+declare function ProductCardMarquee({ section }: ProductMarqueeProps): React.JSX.Element;
+
+declare function CreativeCategoryMarquee({ section }: ProductMarqueeProps): React.JSX.Element;
+
+declare function PortraitTestimonials({ section, }: {
+    section: {
+        settings?: any;
+    };
+}): React.JSX.Element;
 
 /**
  * Shared helpers for hero layouts (slider + scrollable).
  */
 declare function normalizeImageUrl(raw: unknown): string;
 
-export { HeroScrollableSlide, type HeroScrollableSlideProps, type HeroSection, type HeroSectionControls, type HeroSectionSettings, type HeroSlideAlignmentOverride, type HeroSlideBlock, type HeroSlideBlockProps, HeroSlider, type HeroSliderProps, type MessageStyleTestimonialBlock, type MessageStyleTestimonialItemProps, MessageStyleTestimonials, type MessageStyleTestimonialsProps, type MessageStyleTestimonialsSectionDoc, type MessageStyleTestimonialsSettings, STYLE_APPLE_MARQUEE, STYLE_MESSAGE_BUBBLE, normalizeImageUrl };
+export { CreativeCategoryMarquee, HeroScrollableSlide, type HeroScrollableSlideProps, type HeroSection, type HeroSectionControls, type HeroSectionSettings, type HeroSlideAlignmentOverride, type HeroSlideBlock, type HeroSlideBlockProps, HeroSlider, type HeroSliderProps, type MessageStyleTestimonialBlock, type MessageStyleTestimonialItemProps, MessageStyleTestimonials, type MessageStyleTestimonialsProps, type MessageStyleTestimonialsSectionDoc, type MessageStyleTestimonialsSettings, PortraitTestimonials, ProductCardMarquee, ProductMarquee, type ProductMarqueeBlock, type ProductMarqueeItemProps, type ProductMarqueeProps, type ProductMarqueeSectionDoc, type ProductMarqueeSettings, STYLE_APPLE_MARQUEE, STYLE_MESSAGE_BUBBLE, STYLE_PORTRAIT_TESTIMONIALS, STYLE_STACKED_TESTIMONIALS, type StackedTestimonialBlock, type StackedTestimonialItemProps, StackedTestimonials, type StackedTestimonialsProps, type StackedTestimonialsSectionDoc, type StackedTestimonialsSettings, normalizeImageUrl };

@@ -2,6 +2,8 @@ import type { MessageStyleTestimonialItemProps } from "./types";
 
 export const STYLE_MESSAGE_BUBBLE = "message_bubble";
 export const STYLE_APPLE_MARQUEE = "apple_message_marquee";
+export const STYLE_STACKED_TESTIMONIALS = "stacked_testimonials";
+export const STYLE_PORTRAIT_TESTIMONIALS = "portrait_testimonials";
 
 /** Visible blocks with merged props; skips isVisible === false. */
 export function getVisibleTestimonialItems(
