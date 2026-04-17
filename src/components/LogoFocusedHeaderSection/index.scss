@@ -1,0 +1,210 @@
+/* Logo-focused header (Web 1) */
+
+.ak-lfh {
+  --ak-lfh-bg: rgba(255, 255, 255, 0.85);
+  --ak-lfh-border: rgba(0, 0, 0, 0.05);
+  --ak-lfh-muted: rgba(0, 0, 0, 0.4);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: #0a0a0a;
+}
+
+.ak-lfh__bar {
+  width: 100%;
+  background: var(--ak-lfh-bg);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-bottom: 1px solid var(--ak-lfh-border);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03);
+}
+
+.ak-lfh__bar--sticky {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.ak-lfh__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+}
+
+.ak-lfh__brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-width: 0;
+}
+
+.ak-lfh__logoBadge {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+  background: #0a0a0a;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+
+.ak-lfh__logoImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.ak-lfh__logoText {
+  padding: 0 4px;
+  text-align: center;
+  line-height: 1.15;
+}
+
+.ak-lfh__brandText {
+  display: none;
+  min-width: 0;
+}
+
+@media (min-width: 640px) {
+  .ak-lfh__brandText {
+    display: block;
+  }
+}
+
+.ak-lfh__brandName {
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.ak-lfh__brandSub {
+  font-size: 11px;
+  color: var(--ak-lfh-muted);
+  margin-top: 2px;
+}
+
+.ak-lfh__center {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  min-width: 0;
+}
+
+.ak-lfh__navToggle {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  background: rgba(255, 255, 255, 0.9);
+  padding: 4px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+  gap: 2px;
+  max-width: 100%;
+}
+
+@media (max-width: 767px) {
+  .ak-lfh__navToggle {
+    padding: 2px;
+  }
+
+  .ak-lfh__navPill {
+    padding: 0.35rem 0.55rem;
+    font-size: 11px;
+  }
+}
+
+.ak-lfh__navPill {
+  border: 0;
+  border-radius: 999px;
+  padding: 0.5rem 1rem;
+  font-size: 13px;
+  font-weight: 500;
+  font-family: inherit;
+  line-height: 1.2;
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.6);
+  background: transparent;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.ak-lfh__navPill:hover {
+  background: rgba(0, 0, 0, 0.06);
+  color: rgba(0, 0, 0, 0.85);
+}
+
+.ak-lfh__navPill--active {
+  background: #0a0a0a;
+  color: #fff;
+}
+
+.ak-lfh__navPill--active:hover {
+  background: #0a0a0a;
+  color: #fff;
+}
+
+.ak-lfh__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.ak-lfh__iconBtn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border-radius: 999px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  background: #fff;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+  color: #0a0a0a;
+  cursor: pointer;
+}
+
+.ak-lfh__iconBtn:active {
+  transform: scale(0.96);
+}
+
+.ak-lfh__iconBtn--profileDesktop {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .ak-lfh__iconBtn--profileDesktop {
+    display: inline-flex;
+  }
+}
+
+.ak-lfh__icon {
+  display: block;
+}
+
+.ak-lfh__badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 4px;
+  border-radius: 999px;
+  background: #0a0a0a;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
