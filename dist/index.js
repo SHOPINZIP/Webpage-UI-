@@ -664,7 +664,19 @@ function NavToggle({ items, active, onSelect }) {
   if (items.length === 0) return null;
   return /* @__PURE__ */ import_react3.default.createElement("div", { className: "ak-lfh__navToggle", role: "tablist", "aria-label": "Primary navigation" }, items.map((item, idx) => {
     const isActive = active === item.label;
-    return /* @__PURE__ */ import_react3.default.createElement(
+    const href = safeText(item.link);
+    return href ? /* @__PURE__ */ import_react3.default.createElement(
+      "a",
+      {
+        key: `${item.label}-${idx}`,
+        href,
+        role: "tab",
+        "aria-selected": isActive,
+        className: isActive ? "ak-lfh__navPill ak-lfh__navPill--active" : "ak-lfh__navPill",
+        onClick: () => onSelect(item.label)
+      },
+      item.label
+    ) : /* @__PURE__ */ import_react3.default.createElement(
       "button",
       {
         key: `${item.label}-${idx}`,
@@ -688,7 +700,7 @@ function LogoFocusedHeader({ section }) {
       var _a2, _b2;
       return {
         label: safeText((_a2 = b == null ? void 0 : b.props) == null ? void 0 : _a2.label) || (i === 0 ? "Home" : "Shop"),
-        link: safeText((_b2 = b == null ? void 0 : b.props) == null ? void 0 : _b2.link) || (i === 0 ? "/" : "/shop")
+        link: safeText((_b2 = b == null ? void 0 : b.props) == null ? void 0 : _b2.link)
       };
     });
   }, [rawBlocks]);

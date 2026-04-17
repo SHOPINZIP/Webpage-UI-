@@ -88,7 +88,7 @@ function IconBag() {
 }
 
 type NavToggleProps = {
-  items: { label: string; link: string }[];
+  items: { label: string; link?: string }[];
   active: string;
   onSelect: (label: string) => void;
 };
@@ -100,21 +100,39 @@ function NavToggle({ items, active, onSelect }: NavToggleProps) {
     <div className="ak-lfh__navToggle" role="tablist" aria-label="Primary navigation">
       {items.map((item, idx) => {
         const isActive = active === item.label;
+        const href = safeText(item.link);
         return (
-          <button
-            key={`${item.label}-${idx}`}
-            type="button"
-            role="tab"
-            aria-selected={isActive}
-            className={
-              isActive
-                ? "ak-lfh__navPill ak-lfh__navPill--active"
-                : "ak-lfh__navPill"
-            }
-            onClick={() => onSelect(item.label)}
-          >
-            {item.label}
-          </button>
+          href ? (
+            <a
+              key={`${item.label}-${idx}`}
+              href={href}
+              role="tab"
+              aria-selected={isActive}
+              className={
+                isActive
+                  ? "ak-lfh__navPill ak-lfh__navPill--active"
+                  : "ak-lfh__navPill"
+              }
+              onClick={() => onSelect(item.label)}
+            >
+              {item.label}
+            </a>
+          ) : (
+            <button
+              key={`${item.label}-${idx}`}
+              type="button"
+              role="tab"
+              aria-selected={isActive}
+              className={
+                isActive
+                  ? "ak-lfh__navPill ak-lfh__navPill--active"
+                  : "ak-lfh__navPill"
+              }
+              onClick={() => onSelect(item.label)}
+            >
+              {item.label}
+            </button>
+          )
         );
       })}
     </div>
@@ -129,7 +147,7 @@ export default function LogoFocusedHeader({ section }: LogoFocusedHeaderProps) {
     const blocks = Array.isArray(rawBlocks) ? rawBlocks : [];
     return blocks.slice(0, 2).map((b, i) => ({
       label: safeText(b?.props?.label) || (i === 0 ? "Home" : "Shop"),
-      link: safeText(b?.props?.link) || (i === 0 ? "/" : "/shop"),
+      link: safeText(b?.props?.link),
     }));
   }, [rawBlocks]);
 
