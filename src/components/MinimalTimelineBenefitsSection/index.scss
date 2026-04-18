@@ -1,0 +1,280 @@
+/* Minimal timeline benefits (MinimalTimelineBenefits) */
+
+.ak-mt-benefits {
+  position: relative;
+  overflow: hidden;
+  background: #F8F3E8;
+  color: #2B2B2B;
+  padding: 5rem 1.25rem;
+  width: 100%;
+}
+
+@media (min-width: 640px) {
+  .ak-mt-benefits {
+    padding: 6rem 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .ak-mt-benefits {
+    padding: 7rem 1.5rem;
+  }
+}
+
+.ak-mt-benefits__glow {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+}
+
+.ak-mt-benefits__glow::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 26rem;
+  height: 26rem;
+  transform: translateX(-50%);
+  border-radius: 9999px;
+  background: #f5f5f7;
+  filter: blur(48px);
+}
+
+.ak-mt-benefits__container {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 64rem;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.ak-mt-benefits__header {
+  max-width: 42rem;
+}
+
+.ak-mt-benefits__eyebrow {
+  font-size: 10px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: rgba(0, 0, 0, 0.3);
+}
+
+.ak-mt-benefits__heading {
+  margin-top: 0.5rem;
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 1.02;
+  letter-spacing: -0.06em;
+  color: #111;
+}
+
+@media (min-width: 640px) {
+  .ak-mt-benefits__heading {
+    font-size: 2.8rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .ak-mt-benefits__heading {
+    font-size: 3.1rem;
+  }
+}
+
+.ak-mt-benefits__sub {
+  margin-top: 0.75rem;
+  max-width: 40rem;
+  font-size: 14px;
+  line-height: 1.7;
+  color: rgba(0, 0, 0, 0.55);
+}
+
+@media (min-width: 640px) {
+  .ak-mt-benefits__sub {
+    font-size: 15px;
+  }
+}
+
+.ak-mt-benefits__timeline {
+  margin-top: 3rem;
+}
+
+@media (min-width: 640px) {
+  .ak-mt-benefits__timeline {
+    margin-top: 3.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .ak-mt-benefits__timeline {
+    margin-top: 4rem;
+  }
+}
+
+.ak-mt-benefits__row {
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr);
+  gap: 1rem;
+}
+
+@media (min-width: 640px) {
+  .ak-mt-benefits__row {
+    grid-template-columns: 36px minmax(0, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+.ak-mt-benefits__rail-wrap {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.ak-mt-benefits__rail-base {
+  position: absolute;
+  top: 0.5rem;
+  bottom: -2.25rem;
+  width: 1px;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+@media (min-width: 640px) {
+  .ak-mt-benefits__rail-base {
+    bottom: -2.5rem;
+  }
+}
+
+.ak-mt-benefits__rail-fill {
+  position: absolute;
+  top: 0.5rem;
+  bottom: -2.25rem;
+  width: 1px;
+  transform-origin: top;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.ak-mt-benefits__rail-fill--static {
+  transform: scaleY(1);
+}
+
+@media (min-width: 640px) {
+  .ak-mt-benefits__rail-fill {
+    bottom: -2.5rem;
+  }
+}
+
+.ak-mt-benefits__dot {
+  position: relative;
+  z-index: 2;
+  margin-top: 2px;
+  display: inline-flex;
+  height: 12px;
+  width: 12px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  background: #000;
+}
+
+@media (min-width: 640px) {
+  .ak-mt-benefits__dot {
+    height: 14px;
+    width: 14px;
+  }
+}
+
+.ak-mt-benefits__dot-inner {
+  height: 4px;
+  width: 4px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.ak-mt-benefits__row-body {
+  padding-bottom: 2rem;
+}
+
+@media (min-width: 640px) {
+  .ak-mt-benefits__row-body {
+    padding-bottom: 2.5rem;
+  }
+}
+
+.ak-mt-benefits__row-inner {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  padding-top: 0.875rem;
+}
+
+.ak-mt-benefits__item-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  line-height: 1.06;
+  letter-spacing: -0.04em;
+  color: #111;
+}
+
+@media (min-width: 640px) {
+  .ak-mt-benefits__item-title {
+    font-size: 1.35rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .ak-mt-benefits__item-title {
+    font-size: 1.45rem;
+  }
+}
+
+.ak-mt-benefits__item-desc {
+  margin-top: 0.5rem;
+  max-width: 40rem;
+  font-size: 13.5px;
+  line-height: 1.65;
+  color: rgba(0, 0, 0, 0.55);
+}
+
+@media (min-width: 640px) {
+  .ak-mt-benefits__item-desc {
+    font-size: 14.5px;
+  }
+}
+
+.ak-mt-benefits__points {
+  margin-top: 0.875rem;
+  display: grid;
+  gap: 0.5rem;
+}
+
+@media (min-width: 640px) {
+  .ak-mt-benefits__points {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.ak-mt-benefits__point {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.ak-mt-benefits__point-bullet {
+  margin-top: 7px;
+  height: 3px;
+  width: 3px;
+  flex-shrink: 0;
+  border-radius: 9999px;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.ak-mt-benefits__point-text {
+  font-size: 13px;
+  line-height: 1.6;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+@media (min-width: 640px) {
+  .ak-mt-benefits__point-text {
+    font-size: 13.5px;
+  }
+}

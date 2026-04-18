@@ -1,5 +1,6 @@
 export { default as HeroSlider } from "./components/HeroSection/HeroSlider";
 export { default as HeroScrollableSlide } from "./components/HeroSection/HeroScrollableSlide";
+export { default as SubHeroImageLoop } from "./components/HeroSection/SubHeroImageLoop";
 export { default as LogoFocusedHeader } from "./components/LogoFocusedHeaderSection";
 export { default as TransparentHeroHeader } from "./components/TransparentHeroHeaderSection";
 export { default as MessageStyleTestimonials } from "./components/MessageStyleTestimonialsSection";
@@ -7,8 +8,25 @@ export { default as StackedTestimonials } from "./components/StackedTestimonials
 export { default as ProductMarquee } from "./components/ProductMarqueeSection";
 export { ProductCardMarquee } from "./components/ProductMarqueeSection";
 export { CreativeCategoryMarquee } from "./components/ProductMarqueeSection";
+export { LiquidFocusCategories } from "./components/ProductMarqueeSection";
 export { default as PortraitTestimonials } from "./components/PortraitTestimonialsSection";
+export { ScrollParallaxSignatureHero, FullImageTypingHero } from "./components/NspSignatureHeroSection";
+export { default as MinimalTimelineBenefits } from "./components/MinimalTimelineBenefitsSection";
+export { default as MerchantFooterReveal } from "./components/MerchantFooterRevealSection";
 export type { HeroScrollableSlideProps } from "./components/HeroSection/HeroScrollableSlide";
+export type {
+  SubHeroImageLoopProps,
+  SubHeroImageLoopSectionDoc,
+} from "./components/HeroSection/SubHeroImageLoop";
+
+export type {
+  ScrollParallaxSignatureHeroProps,
+  NspSignatureHeroSectionDoc,
+  NspSignatureHeroBlock,
+  FullImageTypingHeroProps,
+  FullImageTypingHeroSectionDoc,
+  FullImageTypingWordBlock,
+} from "./components/NspSignatureHeroSection";
 
 export type {
   HeroSection,
@@ -61,6 +79,25 @@ export type {
   ProductMarqueeBlock,
   ProductMarqueeItemProps,
 } from "./components/ProductMarqueeSection";
+
+export type {
+  MinimalTimelineBenefitsProps,
+  MinimalTimelineBenefitsSectionDoc,
+  MinimalTimelineBenefitsSettings,
+  MinimalTimelineBenefitsControls,
+  MinimalTimelineBenefitBlock,
+  MinimalTimelineBenefitBlockProps,
+} from "./components/MinimalTimelineBenefitsSection";
+
+export type {
+  MerchantFooterRevealProps,
+  MerchantFooterRevealPropsComponent,
+  MerchantFooterRevealSectionDoc,
+  MerchantFooterRevealSettings,
+  MerchantFooterRevealBlock,
+  MerchantFooterRevealPolicyBlockProps,
+  MerchantFooterRevealSocialPlatform,
+} from "./components/MerchantFooterRevealSection";
 
 export {
   STYLE_MESSAGE_BUBBLE,

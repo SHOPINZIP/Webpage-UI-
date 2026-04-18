@@ -1,0 +1,288 @@
+/* Sub-hero image loop (SubHeroImageLoop) — matches Framer + layered overlay UI */
+
+.ak-sub-hero-loop {
+  width: 100%;
+  position: relative;
+  background: #fff;
+}
+
+.ak-sub-hero-loop__inner {
+  position: relative;
+  width: 100%;
+}
+
+.ak-sub-hero-loop__viewport {
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  overflow: hidden;
+  background: #0a0a0a;
+}
+
+/* Height presets (aligned with design-system vh + min/max; full = viewport) */
+.ak-sub-hero-loop--h-xs .ak-sub-hero-loop__viewport {
+  height: 32vh;
+  min-height: 220px;
+  max-height: 360px;
+}
+
+@media (min-width: 768px) {
+  .ak-sub-hero-loop--h-xs .ak-sub-hero-loop__viewport {
+    height: 36vh;
+  }
+}
+
+.ak-sub-hero-loop--h-sm .ak-sub-hero-loop__viewport {
+  height: 40vh;
+  min-height: 260px;
+  max-height: 420px;
+}
+
+@media (min-width: 768px) {
+  .ak-sub-hero-loop--h-sm .ak-sub-hero-loop__viewport {
+    height: 46vh;
+  }
+}
+
+.ak-sub-hero-loop--h-md .ak-sub-hero-loop__viewport {
+  height: 49vh;
+  min-height: 315px;
+  max-height: 540px;
+}
+
+@media (min-width: 768px) {
+  .ak-sub-hero-loop--h-md .ak-sub-hero-loop__viewport {
+    height: 56vh;
+  }
+}
+
+.ak-sub-hero-loop--h-lg .ak-sub-hero-loop__viewport {
+  height: 60vh;
+  min-height: 380px;
+  max-height: 680px;
+}
+
+@media (min-width: 768px) {
+  .ak-sub-hero-loop--h-lg .ak-sub-hero-loop__viewport {
+    height: 66vh;
+  }
+}
+
+.ak-sub-hero-loop--h-xl .ak-sub-hero-loop__viewport {
+  height: 72vh;
+  min-height: 460px;
+  max-height: 820px;
+}
+
+@media (min-width: 768px) {
+  .ak-sub-hero-loop--h-xl .ak-sub-hero-loop__viewport {
+    height: 78vh;
+  }
+}
+
+.ak-sub-hero-loop--h-full .ak-sub-hero-loop__viewport {
+  height: 100vh;
+  min-height: 100vh;
+  max-height: none;
+}
+
+/* Motion layer: one slide at a time */
+.ak-sub-hero-loop__motionFill {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.ak-sub-hero-loop__motionFill picture,
+.ak-sub-hero-loop__motionFill img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.ak-sub-hero-loop__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  user-select: none;
+  transform: translateZ(0);
+}
+
+/* --- Tonal overlays (fade vs slide: subtle opacity tweaks) --- */
+
+.ak-sub-hero-loop__tonal {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.ak-sub-hero-loop__viewport--fade-ui .ak-sub-hero-loop__tonalBase {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.15);
+}
+
+.ak-sub-hero-loop__viewport--slide-ui .ak-sub-hero-loop__tonalBase {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.16);
+}
+
+.ak-sub-hero-loop__viewport--fade-ui .ak-sub-hero-loop__tonalGradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.34) 0%,
+    rgba(0, 0, 0, 0.08) 50%,
+    rgba(0, 0, 0, 0.1) 100%
+  );
+}
+
+.ak-sub-hero-loop__viewport--slide-ui .ak-sub-hero-loop__tonalGradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.34) 0%,
+    rgba(0, 0, 0, 0.1) 50%,
+    rgba(0, 0, 0, 0.1) 100%
+  );
+}
+
+.ak-sub-hero-loop__viewport--fade-ui .ak-sub-hero-loop__tonalRadial {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at center,
+    transparent 34%,
+    rgba(0, 0, 0, 0.16) 100%
+  );
+}
+
+.ak-sub-hero-loop__viewport--slide-ui .ak-sub-hero-loop__tonalRadial {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at center,
+    transparent 36%,
+    rgba(0, 0, 0, 0.14) 100%
+  );
+}
+
+.ak-sub-hero-loop__tonalTop {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 5rem;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.16), transparent);
+}
+
+.ak-sub-hero-loop__tonalBottom {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 6rem;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.24), transparent);
+}
+
+/* Soft glass polish */
+.ak-sub-hero-loop__polish {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.ak-sub-hero-loop__viewport--fade-ui .ak-sub-hero-loop__polishWash {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.ak-sub-hero-loop__viewport--slide-ui .ak-sub-hero-loop__polishWash {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.ak-sub-hero-loop__viewport--fade-ui .ak-sub-hero-loop__polishLeft {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 18%;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.06), transparent);
+}
+
+.ak-sub-hero-loop__viewport--slide-ui .ak-sub-hero-loop__polishLeft {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 18%;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.07), transparent);
+}
+
+/* Quiet premium indicators (inside frame, bottom center) */
+.ak-sub-hero-loop__indicatorsBar {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  z-index: 10;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+@media (min-width: 768px) {
+  .ak-sub-hero-loop__indicatorsBar {
+    bottom: 1.25rem;
+  }
+}
+
+.ak-sub-hero-loop__indicatorBtn {
+  position: relative;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.ak-sub-hero-loop__indicatorDot {
+  display: block;
+  height: 0.5rem;
+  border-radius: 9999px;
+  transition:
+    width 0.5s ease,
+    background 0.5s ease,
+    box-shadow 0.5s ease;
+  width: 0.5rem;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.ak-sub-hero-loop__indicatorBtn:hover .ak-sub-hero-loop__indicatorDot:not(.ak-sub-hero-loop__indicatorDot--active) {
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.ak-sub-hero-loop__indicatorDot--active {
+  width: 1.75rem;
+  background: #fff;
+  box-shadow: 0 0 14px rgba(255, 255, 255, 0.42);
+}
+
+.ak-sub-hero-loop__viewport--fade-ui .ak-sub-hero-loop__indicatorDot--active {
+  box-shadow: 0 0 14px rgba(255, 255, 255, 0.38);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ak-sub-hero-loop__indicatorDot {
+    transition-duration: 0.01ms;
+  }
+}
