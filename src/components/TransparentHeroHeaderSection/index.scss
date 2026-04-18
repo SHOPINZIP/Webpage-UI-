@@ -1,0 +1,193 @@
+/* Transparent hero header (Web 1) — glass overlay over hero; header only */
+
+.ak-thh {
+  width: 100%;
+  color: #fff;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.ak-thh__bar--sticky {
+  position: sticky;
+  left: 0;
+  top: 0;
+  z-index: 50;
+}
+
+.ak-thh__bar--static {
+  position: relative;
+  z-index: 50;
+}
+
+.ak-thh__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+}
+
+.ak-thh__logo {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.ak-thh__logoBadge {
+  display: flex;
+  height: 42px;
+  width: 42px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  transition: background-color 0.3s ease, color 0.3s ease, backdrop-filter 0.3s ease;
+}
+
+.ak-thh__logoBadge--top {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.ak-thh__logoBadge--scrolled {
+  background: rgba(255, 255, 255, 0.7);
+  color: #0a0a0a;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.ak-thh__logoImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 12px;
+}
+
+.ak-thh__logoText {
+  padding: 0 4px;
+  text-align: center;
+  line-height: 1.15;
+}
+
+.ak-thh__center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  min-width: 0;
+}
+
+.ak-thh__navShell {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 9999px;
+  padding: 4px;
+  transition: background-color 0.3s ease, backdrop-filter 0.3s ease;
+}
+
+.ak-thh__navShell--top {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.ak-thh__navShell--scrolled {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.ak-thh__navPill {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  border-radius: 9999px;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.ak-thh__navPill--top {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.ak-thh__navPill--top:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.ak-thh__navPill--scrolled {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.ak-thh__navPill--scrolled:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.ak-thh__navPill--active {
+  background: #fff;
+  color: #0a0a0a;
+}
+
+.ak-thh__navPill--active:hover {
+  background: #fff;
+}
+
+.ak-thh__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.ak-thh__iconBtn {
+  position: relative;
+  display: flex;
+  height: 2.5rem;
+  width: 2.5rem;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 9999px;
+  cursor: pointer;
+  color: #fff;
+  transition: background-color 0.3s ease, backdrop-filter 0.3s ease;
+}
+
+.ak-thh__iconBtn--top {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.ak-thh__iconBtn--scrolled {
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.ak-thh__badge {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  min-width: 1.1rem;
+  height: 1.1rem;
+  padding: 0 4px;
+  border-radius: 9999px;
+  background: #fff;
+  color: #0a0a0a;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1.1rem;
+  text-align: center;
+}
+
+.ak-thh__icon {
+  display: block;
+}

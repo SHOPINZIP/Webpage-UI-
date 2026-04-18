@@ -1,0 +1,155 @@
+/* FullImageTypingHero — NSP signature hero variant (Web 1) */
+
+.ak-nsp-typing-hero {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+  box-sizing: border-box;
+  background: #000;
+  color: #fff;
+}
+
+.ak-nsp-typing-hero__bg {
+  position: absolute;
+  inset: 0;
+}
+
+.ak-nsp-typing-hero__bg-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.ak-nsp-typing-hero__overlay-solid {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  pointer-events: none;
+}
+
+.ak-nsp-typing-hero__overlay-gradient {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.3) 0%,
+    rgba(0, 0, 0, 0.3) 40%,
+    rgba(0, 0, 0, 0.6) 100%
+  );
+}
+
+.ak-nsp-typing-hero__inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.ak-nsp-typing-hero__content {
+  width: 100%;
+  max-width: 72rem;
+  text-align: center;
+}
+
+.ak-nsp-typing-hero__line {
+  margin-left: auto;
+  margin-right: auto;
+  white-space: nowrap;
+  font-weight: 600;
+  letter-spacing: -0.05em;
+  line-height: 1.1;
+}
+
+.ak-nsp-typing-hero__line--dynamic {
+  margin-top: 0.35rem;
+}
+
+.ak-nsp-typing-hero__cursor {
+  display: inline-block;
+  margin-left: 0.25rem;
+  width: 2px;
+  height: 0.9em;
+  vertical-align: -0.05em;
+  background: #fff;
+  animation: ak-nsp-typing-cursor-pulse 1s ease-in-out infinite;
+}
+
+@keyframes ak-nsp-typing-cursor-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.2;
+  }
+}
+
+.ak-nsp-typing-hero__desc {
+  margin-top: 1.5rem;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 42rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.875rem;
+  line-height: 1.75;
+}
+
+@media (min-width: 640px) {
+  .ak-nsp-typing-hero__desc {
+    font-size: 1rem;
+  }
+}
+
+.ak-nsp-typing-hero__actions {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (min-width: 640px) {
+  .ak-nsp-typing-hero__actions {
+    flex-direction: row;
+  }
+}
+
+.ak-nsp-typing-hero__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: opacity 0.2s ease, background-color 0.2s ease;
+}
+
+.ak-nsp-typing-hero__btn:hover {
+  opacity: 0.9;
+}
+
+.ak-nsp-typing-hero__btn--primary {
+  background: #fff;
+  color: #000;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
+}
+
+.ak-nsp-typing-hero__btn--secondary {
+  background: transparent;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.ak-nsp-typing-hero__btn--secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+  opacity: 1;
+}

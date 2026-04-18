@@ -1,7 +1,13 @@
 @use "../components/HeroSection/HeroSlider";
 @use "../components/HeroSection/HeroScrollableSlide";
+@use "../components/HeroSection/SubHeroImageLoop";
 @use "../components/LogoFocusedHeaderSection/index" as logo_focused_header;
+@use "../components/TransparentHeroHeaderSection/index" as transparent_hero_header;
 @use "../components/MessageStyleTestimonialsSection/index";
 @use "../components/StackedTestimonialsSection/index" as stacked_testimonials;
 @use "../components/ProductMarqueeSection/index" as product_marquee;
 @use "../components/PortraitTestimonialsSection/index" as portrait_testimonials;
+@use "../components/NspSignatureHeroSection/ScrollParallaxSignatureHero" as nsp_signature_hero;
+@use "../components/NspSignatureHeroSection/FullImageTypingHero" as nsp_full_image_typing_hero;
+@use "../components/MinimalTimelineBenefitsSection/index" as minimal_timeline_benefits;
+@use "../components/MerchantFooterRevealSection/index" as merchant_footer_reveal;

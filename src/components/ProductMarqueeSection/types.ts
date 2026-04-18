@@ -2,6 +2,9 @@ export type ProductMarqueeItemProps = {
   title?: string;
   subtitle?: string;
   image?: string;
+  alt?: string;
+  /** Card body copy (e.g. LiquidFocusCategories per-card text) */
+  description?: string;
 };
 
 export type ProductMarqueeBlock = {
@@ -17,6 +20,8 @@ export type ProductMarqueeSectionProps = {
   buttonText?: string;
   buttonLink?: string;
   showButton?: boolean;
+  defaultActiveIndex?: string;
+  resetToDefaultOnLeave?: boolean;
 };
 
 export type ProductMarqueeSettings = {
