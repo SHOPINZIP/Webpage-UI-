@@ -1,6 +1,7 @@
 export { default as HeroSlider } from "./components/HeroSection/HeroSlider";
 export { default as HeroScrollableSlide } from "./components/HeroSection/HeroScrollableSlide";
 export { default as LogoFocusedHeader } from "./components/LogoFocusedHeaderSection";
+export { default as TransparentHeroHeader } from "./components/TransparentHeroHeaderSection";
 export { default as MessageStyleTestimonials } from "./components/MessageStyleTestimonialsSection";
 export { default as StackedTestimonials } from "./components/StackedTestimonialsSection";
 export { default as ProductMarquee } from "./components/ProductMarqueeSection";
@@ -27,6 +28,15 @@ export type {
   LogoFocusedHeaderNavBlock,
   LogoFocusedHeaderNavBlockProps,
 } from "./components/LogoFocusedHeaderSection";
+
+export type {
+  TransparentHeroHeaderProps,
+  TransparentHeroHeaderSectionDoc,
+  TransparentHeroHeaderSettings,
+  TransparentHeroHeaderControls,
+  TransparentHeroHeaderNavBlock,
+  TransparentHeroHeaderNavBlockProps,
+} from "./components/TransparentHeroHeaderSection";
 
 export type {
   MessageStyleTestimonialsProps,

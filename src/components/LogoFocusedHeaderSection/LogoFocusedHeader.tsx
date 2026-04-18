@@ -161,8 +161,8 @@ export default function LogoFocusedHeader({ section }: LogoFocusedHeaderProps) {
   }, [navItems]);
 
   const logoText = safeText(props.logoText) || "Logo";
-  const brandName = safeText(props.brandName) || "Brand Name";
-  const brandSubtitle = safeText(props.brandSubtitle) || "Premium Store";
+  const brandName = safeText(props.brandName) || "";
+  const brandSubtitle = safeText(props.brandSubtitle) || "";
   const logoSrc = normalizeImageUrl(props.logoImage);
   const showSubtitle = props.showBrandSubtitle !== false;
   const showProfile = props.showProfileIcon !== false;
@@ -170,13 +170,9 @@ export default function LogoFocusedHeader({ section }: LogoFocusedHeaderProps) {
   const cartBadge = safeText(props.cartCount);
   const sticky = props.stickyHeader !== false;
 
-  const headerClass = sticky
-    ? "ak-lfh__bar ak-lfh__bar--sticky"
-    : "ak-lfh__bar";
-
   return (
-    <header className="ak-lfh">
-      <div className={headerClass}>
+    <header className={`ak-lfh ${sticky ? "ak-lfh__bar--sticky" : ""}`}>
+      <div className="ak-lfh__bar">
         <div className="ak-lfh__row">
           <div className="ak-lfh__brand">
             <div className="ak-lfh__logoBadge" aria-hidden={Boolean(logoSrc)}>

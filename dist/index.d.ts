@@ -96,6 +96,42 @@ type LogoFocusedHeaderProps = {
 };
 declare function LogoFocusedHeader({ section }: LogoFocusedHeaderProps): React.JSX.Element;
 
+type TransparentHeroHeaderNavBlockProps = {
+    label?: string;
+    link?: string;
+};
+type TransparentHeroHeaderNavBlock = {
+    id: string;
+    type: "navItem";
+    props: TransparentHeroHeaderNavBlockProps;
+};
+type TransparentHeroHeaderControls = {
+    logoText?: string;
+    logoImage?: string;
+    showProfileIcon?: boolean;
+    showCartIcon?: boolean;
+    cartCount?: string;
+    stickyHeader?: boolean;
+    enableScrollTransition?: boolean;
+    initialTransparency?: string;
+    maxTransparency?: string;
+    maxBlur?: string;
+};
+type TransparentHeroHeaderSettings = {
+    props?: TransparentHeroHeaderControls;
+    blocks?: TransparentHeroHeaderNavBlock[];
+};
+type TransparentHeroHeaderSectionDoc = {
+    id: string;
+    type: "header";
+    enabled?: boolean;
+    settings: TransparentHeroHeaderSettings;
+};
+type TransparentHeroHeaderProps = {
+    section: TransparentHeroHeaderSectionDoc;
+};
+declare function TransparentHeroHeader({ section }: TransparentHeroHeaderProps): React.JSX.Element;
+
 type MessageStyleTestimonialItemProps = {
     name?: string;
     role?: string;
@@ -229,4 +265,4 @@ declare function PortraitTestimonials({ section, }: {
  */
 declare function normalizeImageUrl(raw: unknown): string;
 
-export { CreativeCategoryMarquee, HeroScrollableSlide, type HeroScrollableSlideProps, type HeroSection, type HeroSectionControls, type HeroSectionSettings, type HeroSlideAlignmentOverride, type HeroSlideBlock, type HeroSlideBlockProps, HeroSlider, type HeroSliderProps, LogoFocusedHeader, type LogoFocusedHeaderControls, type LogoFocusedHeaderNavBlock, type LogoFocusedHeaderNavBlockProps, type LogoFocusedHeaderProps, type LogoFocusedHeaderSectionDoc, type LogoFocusedHeaderSettings, type MessageStyleTestimonialBlock, type MessageStyleTestimonialItemProps, MessageStyleTestimonials, type MessageStyleTestimonialsProps, type MessageStyleTestimonialsSectionDoc, type MessageStyleTestimonialsSettings, PortraitTestimonials, ProductCardMarquee, ProductMarquee, type ProductMarqueeBlock, type ProductMarqueeItemProps, type ProductMarqueeProps, type ProductMarqueeSectionDoc, type ProductMarqueeSettings, STYLE_APPLE_MARQUEE, STYLE_MESSAGE_BUBBLE, STYLE_PORTRAIT_TESTIMONIALS, STYLE_STACKED_TESTIMONIALS, type StackedTestimonialBlock, type StackedTestimonialItemProps, StackedTestimonials, type StackedTestimonialsProps, type StackedTestimonialsSectionDoc, type StackedTestimonialsSettings, normalizeImageUrl };
+export { CreativeCategoryMarquee, HeroScrollableSlide, type HeroScrollableSlideProps, type HeroSection, type HeroSectionControls, type HeroSectionSettings, type HeroSlideAlignmentOverride, type HeroSlideBlock, type HeroSlideBlockProps, HeroSlider, type HeroSliderProps, LogoFocusedHeader, type LogoFocusedHeaderControls, type LogoFocusedHeaderNavBlock, type LogoFocusedHeaderNavBlockProps, type LogoFocusedHeaderProps, type LogoFocusedHeaderSectionDoc, type LogoFocusedHeaderSettings, type MessageStyleTestimonialBlock, type MessageStyleTestimonialItemProps, MessageStyleTestimonials, type MessageStyleTestimonialsProps, type MessageStyleTestimonialsSectionDoc, type MessageStyleTestimonialsSettings, PortraitTestimonials, ProductCardMarquee, ProductMarquee, type ProductMarqueeBlock, type ProductMarqueeItemProps, type ProductMarqueeProps, type ProductMarqueeSectionDoc, type ProductMarqueeSettings, STYLE_APPLE_MARQUEE, STYLE_MESSAGE_BUBBLE, STYLE_PORTRAIT_TESTIMONIALS, STYLE_STACKED_TESTIMONIALS, type StackedTestimonialBlock, type StackedTestimonialItemProps, StackedTestimonials, type StackedTestimonialsProps, type StackedTestimonialsSectionDoc, type StackedTestimonialsSettings, TransparentHeroHeader, type TransparentHeroHeaderControls, type TransparentHeroHeaderNavBlock, type TransparentHeroHeaderNavBlockProps, type TransparentHeroHeaderProps, type TransparentHeroHeaderSectionDoc, type TransparentHeroHeaderSettings, normalizeImageUrl };
