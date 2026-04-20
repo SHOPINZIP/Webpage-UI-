@@ -3,9 +3,10 @@
 .ak-pm {
   position: relative;
   overflow: hidden;
-  background: #F8F3E8;
+  background: #FAF9F5;
   padding: 3.5rem 1rem;
-  color: #2B2B2B;
+  color: #141413;
+  width: 100%;
 }
 
 @media (min-width: 640px) {
@@ -43,6 +44,7 @@
 .ak-pm__container {
   position: relative;
   margin: 0 auto;
+  max-width: 80rem;
 }
 
 .ak-pm__header {
@@ -335,9 +337,10 @@
 .ak-pmc {
   position: relative;
   overflow: hidden;
-  background: #f7f7f4;
+  background: #FAF9F5;
   padding: 3.5rem 1rem;
-  color: #0a0a0a;
+  color: #141413;
+  width: 100%;
 }
 
 @media (min-width: 640px) {
@@ -375,7 +378,6 @@
 .ak-pmc__container {
   position: relative;
   margin: 0 auto;
-  max-width: 80rem;
 }
 
 .ak-pmc__header {
@@ -651,8 +653,9 @@
 .ak-ccm {
   position: relative;
   overflow: hidden;
-  background: #f7f7f3;
+  background: #FAF9F5;
   padding: 3.5rem 1rem;
+  width: 100%;
 }
 
 @media (min-width: 640px) {
@@ -670,7 +673,6 @@
 .ak-ccm__container {
   position: relative;
   margin: 0 auto;
-  max-width: 80rem;
 }
 
 .ak-ccm__header {
@@ -906,9 +908,9 @@
 
 .ak-lfc {
   width: 100%;
-  background: #F8F3E8;
+  background: #FAF9F5;
   padding: 4rem 1rem;
-  color: #0a0a0a;
+  color: #141413;
 }
 
 @media (min-width: 640px) {

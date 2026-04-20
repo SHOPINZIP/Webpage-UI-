@@ -187,8 +187,8 @@ export default function PortraitTestimonials({
                       "transform 320ms cubic-bezier(0.22,1,0.36,1), box-shadow 320ms cubic-bezier(0.22,1,0.36,1)",
                     boxShadow:
                       magnetic.x !== 0 || magnetic.y !== 0
-                        ? "0 34px 84px rgba(0,0,0,0.16)"
-                        : "0 26px 70px rgba(0,0,0,0.14)",
+                        ? "0 34px 84px rgba(0,0,0,0.1)"
+                        : "0 26px 70px rgba(0,0,0,0.08)",
                     willChange: "transform",
                   }}
                 >

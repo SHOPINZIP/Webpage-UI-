@@ -1646,7 +1646,7 @@ function PortraitTestimonials({
           style: {
             transform: `translate3d(${magnetic.x}px, ${magnetic.y}px, 0) rotate(${pos.rotate}deg)`,
             transition: "transform 320ms cubic-bezier(0.22,1,0.36,1), box-shadow 320ms cubic-bezier(0.22,1,0.36,1)",
-            boxShadow: magnetic.x !== 0 || magnetic.y !== 0 ? "0 34px 84px rgba(0,0,0,0.16)" : "0 26px 70px rgba(0,0,0,0.14)",
+            boxShadow: magnetic.x !== 0 || magnetic.y !== 0 ? "0 34px 84px rgba(0,0,0,0.1)" : "0 26px 70px rgba(0,0,0,0.08)",
             willChange: "transform"
           }
         },
@@ -2096,6 +2096,13 @@ var POSITIONS = [
   "bottom-right"
 ];
 var SCROLL_OFFSET = ["start start", "0.75 end"];
+var SCROLLABLE_OVERFLOW_VALUES = /* @__PURE__ */ new Set(["auto", "scroll", "overlay"]);
+function isScrollableOverflowValue(value) {
+  return SCROLLABLE_OVERFLOW_VALUES.has(value.toLowerCase());
+}
+function isActuallyScrollable(el) {
+  return el.clientHeight > 0 && el.scrollHeight - el.clientHeight > 1;
+}
 function findScrollContainer(el) {
   var _a;
   let parent = (_a = el == null ? void 0 : el.parentElement) != null ? _a : null;
@@ -2103,7 +2110,8 @@ function findScrollContainer(el) {
     const style = window.getComputedStyle(parent);
     const ox = style.overflow.toLowerCase();
     const oy = style.overflowY.toLowerCase();
-    if (ox === "auto" || ox === "scroll" || oy === "auto" || oy === "scroll" || oy === "overlay") {
+    const canScrollByStyle = isScrollableOverflowValue(ox) || isScrollableOverflowValue(oy);
+    if (canScrollByStyle && isActuallyScrollable(parent)) {
       return parent;
     }
     if (parent === document.body) break;
@@ -2288,14 +2296,41 @@ function ScrollParallaxSignatureHeroInner({
   const secondaryButtonText = String((_j = p.secondaryButtonText) != null ? _j : "").trim();
   const secondaryButtonLink = String((_k = p.secondaryButtonLink) != null ? _k : "").trim() || "#";
   const showSecondaryButton = p.showSecondaryButton !== false;
-  const enablePointerGlow = p.enablePointerGlow !== false;
   const enableScrollMotion = p.enableScrollMotion !== false;
   const backgroundTone = String((_l = p.backgroundTone) != null ? _l : "light");
   const isMobile = useIsMobile();
   const prefersReducedMotion = usePrefersReducedMotion2();
+  const progressLogBucketRef = (0, import_react16.useRef)(-1);
   (0, import_react16.useEffect)(() => {
     console.log("Floating enabled:", p.enableFloatingImages);
   }, [p.enableFloatingImages]);
+  (0, import_react16.useEffect)(() => {
+    const reducedMotionFromMq = typeof window !== "undefined" ? window.matchMedia("(prefers-reduced-motion: reduce)").matches : false;
+    if (scrollRoot === window) {
+      console.log("[NSP Signature Hero] scroll root: window");
+    } else {
+      const scrollElement = scrollRoot;
+      const cls = scrollElement.className.trim().split(/\s+/).filter(Boolean).join(".");
+      console.log(
+        "[NSP Signature Hero] scroll root element:",
+        `<${scrollElement.tagName.toLowerCase()}${cls ? `.${cls}` : ""}>`
+      );
+    }
+    console.log("[NSP Signature Hero] enableScrollMotion:", enableScrollMotion);
+    console.log(
+      "[NSP Signature Hero] prefers-reduced-motion:",
+      reducedMotionFromMq
+    );
+  }, [scrollRoot, enableScrollMotion]);
+  (0, import_react16.useEffect)(() => {
+    const unsubscribe = scrollYProgress.onChange((latest) => {
+      const bucket = Math.round(latest * 20) / 20;
+      if (bucket === progressLogBucketRef.current) return;
+      progressLogBucketRef.current = bucket;
+      console.log("[NSP Signature Hero] scrollYProgress:", Number(latest.toFixed(3)));
+    });
+    return () => unsubscribe();
+  }, [scrollYProgress]);
   const animProgress = (0, import_framer_motion2.useTransform)(scrollYProgress, (latest) => {
     if (!enableScrollMotion || prefersReducedMotion) return 0;
     return latest;
@@ -2328,15 +2363,6 @@ function ScrollParallaxSignatureHeroInner({
   const textShadowOpacity = (0, import_framer_motion2.useTransform)(animProgress, [0, 0.35, 0.75], [0.08, 0.12, 0.04]);
   const pointerX = (0, import_framer_motion2.useMotionValue)(0.5);
   const pointerY = (0, import_framer_motion2.useMotionValue)(0.5);
-  (0, import_react16.useEffect)(() => {
-    if (!enablePointerGlow) return;
-    const handleMove = (event) => {
-      pointerX.set(event.clientX / window.innerWidth);
-      pointerY.set(event.clientY / window.innerHeight);
-    };
-    window.addEventListener("pointermove", handleMove);
-    return () => window.removeEventListener("pointermove", handleMove);
-  }, [enablePointerGlow, pointerX, pointerY]);
   const lightX = (0, import_framer_motion2.useSpring)((0, import_framer_motion2.useTransform)(pointerX, [0, 1], [38, 62]), {
     stiffness: 80,
     damping: 18,
@@ -2377,13 +2403,7 @@ function ScrollParallaxSignatureHeroInner({
     });
   }, [blocks]);
   const rootMods = backgroundTone === "soft-neutral" ? "ak-nsp-sig-hero--tone-soft" : "ak-nsp-sig-hero--tone-light";
-  return /* @__PURE__ */ import_react16.default.createElement(import_react16.default.Fragment, null, /* @__PURE__ */ import_react16.default.createElement("div", { className: "ak-nsp-sig-hero__bg", "aria-hidden": true }, /* @__PURE__ */ import_react16.default.createElement(import_framer_motion2.motion.div, { style: { scale: haloScale }, className: "ak-nsp-sig-hero__haloBlob" }), /* @__PURE__ */ import_react16.default.createElement("div", { className: "ak-nsp-sig-hero__haloBlob ak-nsp-sig-hero__haloBlob--muted" }), /* @__PURE__ */ import_react16.default.createElement("div", { className: "ak-nsp-sig-hero__haloBlob ak-nsp-sig-hero__haloBlob--corner" }), /* @__PURE__ */ import_react16.default.createElement("div", { className: "ak-nsp-sig-hero__bgWash" })), enablePointerGlow ? /* @__PURE__ */ import_react16.default.createElement(
-    import_framer_motion2.motion.div,
-    {
-      style: glowStyle,
-      className: "ak-nsp-sig-hero__pointerGlow ak-nsp-sig-hero__pointerGlow--motion"
-    }
-  ) : null, /* @__PURE__ */ import_react16.default.createElement("div", { className: "ak-nsp-sig-hero__halo", "aria-hidden": true }), /* @__PURE__ */ import_react16.default.createElement("div", { className: "ak-nsp-sig-hero__cards" }, cards.map((c, index) => /* @__PURE__ */ import_react16.default.createElement(
+  return /* @__PURE__ */ import_react16.default.createElement(import_react16.default.Fragment, null, /* @__PURE__ */ import_react16.default.createElement("div", { className: "ak-nsp-sig-hero__halo", "aria-hidden": true }), /* @__PURE__ */ import_react16.default.createElement("div", { className: "ak-nsp-sig-hero__cards" }, cards.map((c, index) => /* @__PURE__ */ import_react16.default.createElement(
     FloatingImageCard,
     {
       key: c.key,
@@ -2418,14 +2438,6 @@ function ScrollParallaxSignatureHeroInner({
         },
         className: "ak-nsp-sig-hero__headingShell"
       },
-      enablePointerGlow ? /* @__PURE__ */ import_react16.default.createElement(
-        import_framer_motion2.motion.div,
-        {
-          style: glowStyle,
-          className: "ak-nsp-sig-hero__headingGlow",
-          "aria-hidden": true
-        }
-      ) : null,
       /* @__PURE__ */ import_react16.default.createElement("h2", { className: "ak-nsp-sig-hero__heading" }, heading)
     ) : null,
     description ? /* @__PURE__ */ import_react16.default.createElement(
@@ -2704,7 +2716,7 @@ function MinimalTimelineBenefits({ section }) {
     viewport: { once: true },
     transition: { duration: 0.6, ease: easing }
   };
-  return /* @__PURE__ */ import_react18.default.createElement("section", { className: "ak-mt-benefits" }, /* @__PURE__ */ import_react18.default.createElement("div", { className: "ak-mt-benefits__glow", "aria-hidden": true }), /* @__PURE__ */ import_react18.default.createElement("div", { className: "ak-mt-benefits__container" }, /* @__PURE__ */ import_react18.default.createElement(import_framer_motion3.motion.div, { ...headerMotion, className: "ak-mt-benefits__header" }, eyebrow ? /* @__PURE__ */ import_react18.default.createElement("div", { className: "ak-mt-benefits__eyebrow" }, eyebrow) : null, heading ? /* @__PURE__ */ import_react18.default.createElement("h2", { className: "ak-mt-benefits__heading", style: { whiteSpace: "pre-line" } }, heading) : null, description ? /* @__PURE__ */ import_react18.default.createElement("p", { className: "ak-mt-benefits__sub", style: { whiteSpace: "pre-line" } }, description) : null), /* @__PURE__ */ import_react18.default.createElement("div", { className: "ak-mt-benefits__timeline" }, blocks.map((b, i) => {
+  return /* @__PURE__ */ import_react18.default.createElement("section", { className: "ak-mt-benefits" }, /* @__PURE__ */ import_react18.default.createElement("div", { className: "ak-mt-benefits__container" }, /* @__PURE__ */ import_react18.default.createElement(import_framer_motion3.motion.div, { ...headerMotion, className: "ak-mt-benefits__header" }, eyebrow ? /* @__PURE__ */ import_react18.default.createElement("div", { className: "ak-mt-benefits__eyebrow" }, eyebrow) : null, heading ? /* @__PURE__ */ import_react18.default.createElement("h2", { className: "ak-mt-benefits__heading", style: { whiteSpace: "pre-line" } }, heading) : null, description ? /* @__PURE__ */ import_react18.default.createElement("p", { className: "ak-mt-benefits__sub", style: { whiteSpace: "pre-line" } }, description) : null), /* @__PURE__ */ import_react18.default.createElement("div", { className: "ak-mt-benefits__timeline" }, blocks.map((b, i) => {
     var _a2;
     return /* @__PURE__ */ import_react18.default.createElement(
       Row2,

@@ -143,7 +143,6 @@ export default function MinimalTimelineBenefits({ section }: MinimalTimelineBene
 
   return (
     <section className="ak-mt-benefits">
-      <div className="ak-mt-benefits__glow" aria-hidden />
 
       <div className="ak-mt-benefits__container">
         <motion.div {...headerMotion} className="ak-mt-benefits__header">
