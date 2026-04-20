@@ -47,11 +47,19 @@ const POSITIONS: PositionKey[] = [
 
 /** Matches `useScroll` offset tuple (framer-motion v6). */
 const SCROLL_OFFSET: [string, string] = ["start start", "0.75 end"];
+const SCROLLABLE_OVERFLOW_VALUES = new Set(["auto", "scroll", "overlay"]);
+
+function isScrollableOverflowValue(value: string) {
+  return SCROLLABLE_OVERFLOW_VALUES.has(value.toLowerCase());
+}
+
+function isActuallyScrollable(el: HTMLElement) {
+  return el.clientHeight > 0 && el.scrollHeight - el.clientHeight > 1;
+}
 
 /**
- * Finds the nearest scrollable ancestor (e.g. admin preview `overflow-auto` panel).
- * Does not require `scrollHeight > clientHeight` so the preview container is found
- * even before children have finished layout.
+ * Finds the nearest *actually scrollable* ancestor (e.g. admin preview panel).
+ * If an ancestor has overflow styles but cannot scroll, it is ignored.
  */
 function findScrollContainer(el: HTMLElement | null): HTMLElement | null {
   let parent: HTMLElement | null = el?.parentElement ?? null;
@@ -59,13 +67,9 @@ function findScrollContainer(el: HTMLElement | null): HTMLElement | null {
     const style = window.getComputedStyle(parent);
     const ox = style.overflow.toLowerCase();
     const oy = style.overflowY.toLowerCase();
-    if (
-      ox === "auto" ||
-      ox === "scroll" ||
-      oy === "auto" ||
-      oy === "scroll" ||
-      oy === "overlay"
-    ) {
+    const canScrollByStyle =
+      isScrollableOverflowValue(ox) || isScrollableOverflowValue(oy);
+    if (canScrollByStyle && isActuallyScrollable(parent)) {
       return parent;
     }
     if (parent === document.body) break;
@@ -298,16 +302,48 @@ function ScrollParallaxSignatureHeroInner({
   const secondaryButtonText = String(p.secondaryButtonText ?? "").trim();
   const secondaryButtonLink = String(p.secondaryButtonLink ?? "").trim() || "#";
   const showSecondaryButton = p.showSecondaryButton !== false;
-  const enablePointerGlow = p.enablePointerGlow !== false;
   const enableScrollMotion = p.enableScrollMotion !== false;
   const backgroundTone = String(p.backgroundTone ?? "light");
 
   const isMobile = useIsMobile();
   const prefersReducedMotion = usePrefersReducedMotion();
+  const progressLogBucketRef = useRef<number>(-1);
 
   useEffect(() => {
     console.log("Floating enabled:", p.enableFloatingImages);
   }, [p.enableFloatingImages]);
+
+  useEffect(() => {
+    const reducedMotionFromMq =
+      typeof window !== "undefined"
+        ? window.matchMedia("(prefers-reduced-motion: reduce)").matches
+        : false;
+    if (scrollRoot === window) {
+      console.log("[NSP Signature Hero] scroll root: window");
+    } else {
+      const scrollElement = scrollRoot as HTMLElement;
+      const cls = scrollElement.className.trim().split(/\s+/).filter(Boolean).join(".");
+      console.log(
+        "[NSP Signature Hero] scroll root element:",
+        `<${scrollElement.tagName.toLowerCase()}${cls ? `.${cls}` : ""}>`
+      );
+    }
+    console.log("[NSP Signature Hero] enableScrollMotion:", enableScrollMotion);
+    console.log(
+      "[NSP Signature Hero] prefers-reduced-motion:",
+      reducedMotionFromMq
+    );
+  }, [scrollRoot, enableScrollMotion]);
+
+  useEffect(() => {
+    const unsubscribe = scrollYProgress.onChange((latest: number) => {
+      const bucket = Math.round(latest * 20) / 20;
+      if (bucket === progressLogBucketRef.current) return;
+      progressLogBucketRef.current = bucket;
+      console.log("[NSP Signature Hero] scrollYProgress:", Number(latest.toFixed(3)));
+    });
+    return () => unsubscribe();
+  }, [scrollYProgress]);
 
   const animProgress = useTransform(scrollYProgress, (latest) => {
     if (!enableScrollMotion || prefersReducedMotion) return 0;
@@ -345,16 +381,6 @@ function ScrollParallaxSignatureHeroInner({
 
   const pointerX = useMotionValue(0.5);
   const pointerY = useMotionValue(0.5);
-
-  useEffect(() => {
-    if (!enablePointerGlow) return;
-    const handleMove = (event: PointerEvent) => {
-      pointerX.set(event.clientX / window.innerWidth);
-      pointerY.set(event.clientY / window.innerHeight);
-    };
-    window.addEventListener("pointermove", handleMove);
-    return () => window.removeEventListener("pointermove", handleMove);
-  }, [enablePointerGlow, pointerX, pointerY]);
 
   const lightX = useSpring(useTransform(pointerX, [0, 1], [38, 62]), {
     stiffness: 80,
@@ -407,19 +433,6 @@ function ScrollParallaxSignatureHeroInner({
 
   return (
     <>
-      <div className="ak-nsp-sig-hero__bg" aria-hidden>
-        <motion.div style={{ scale: haloScale }} className="ak-nsp-sig-hero__haloBlob" />
-        <div className="ak-nsp-sig-hero__haloBlob ak-nsp-sig-hero__haloBlob--muted" />
-        <div className="ak-nsp-sig-hero__haloBlob ak-nsp-sig-hero__haloBlob--corner" />
-        <div className="ak-nsp-sig-hero__bgWash" />
-      </div>
-
-      {enablePointerGlow ? (
-        <motion.div
-          style={glowStyle}
-          className="ak-nsp-sig-hero__pointerGlow ak-nsp-sig-hero__pointerGlow--motion"
-        />
-      ) : null}
 
       <div className="ak-nsp-sig-hero__halo" aria-hidden />
 
@@ -462,13 +475,6 @@ function ScrollParallaxSignatureHeroInner({
               }}
               className="ak-nsp-sig-hero__headingShell"
             >
-              {enablePointerGlow ? (
-                <motion.div
-                  style={glowStyle}
-                  className="ak-nsp-sig-hero__headingGlow"
-                  aria-hidden
-                />
-              ) : null}
               <h2 className="ak-nsp-sig-hero__heading">{heading}</h2>
             </motion.div>
           ) : null}
