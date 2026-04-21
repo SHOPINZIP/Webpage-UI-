@@ -1,0 +1,279 @@
+/* PokerRowRevealHero — NSP signature hero variant (Web 1) */
+
+.ak-nsp-poker-hero {
+  position: relative;
+  background: #FAF9F5;
+  width: 100%;
+}
+
+.ak-nsp-poker-hero__sticky {
+  position: sticky;
+  top: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.ak-nsp-poker-hero__inner {
+  position: relative;
+  width: 100%;
+  max-width: 80rem;
+  margin: 0 auto;
+  text-align: center;
+  padding: 1.25rem;
+}
+
+.ak-nsp-poker-hero__copy {
+  max-width: 64rem;
+  margin: 0 auto;
+}
+
+.ak-nsp-poker-hero__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 999px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: rgba(255, 255, 255, 0.8);
+  padding: 0.5rem 1rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  color: rgba(17, 17, 17, 0.72);
+  text-transform: uppercase;
+}
+
+.ak-nsp-poker-hero__eyebrowIcon {
+  display: inline-block;
+  font-size: 0.8rem;
+  line-height: 1;
+}
+
+.ak-nsp-poker-hero__heading {
+  margin-top: 1.5rem;
+  color: #141413;
+  font-size: clamp(2rem, 5vw, 3.75rem);
+  line-height: 1.03;
+  font-weight: 600;
+  letter-spacing: -0.06em;
+}
+
+.ak-nsp-poker-hero__description {
+  margin: 1.25rem auto 0;
+  max-width: 42rem;
+  color: rgba(17, 17, 17, 0.62);
+  font-size: clamp(0.95rem, 2vw, 1.125rem);
+  line-height: 1.7;
+}
+
+.ak-nsp-poker-hero__cardsWrap {
+  margin-top: 2.5rem;
+  display: flex;
+  justify-content: center;
+}
+
+.ak-nsp-poker-hero__cardStack {
+  position: relative;
+  width: 9.375rem;
+  height: 13.75rem;
+}
+
+.ak-nsp-poker-hero__spreadCardWrap {
+  position: absolute;
+  inset: 0;
+}
+
+.ak-nsp-poker-hero__spreadCard {
+  position: absolute;
+  inset: 0;
+}
+
+.ak-nsp-poker-hero__cardSurface {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 1.25rem;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  background: #ffffff;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.1);
+}
+
+.ak-nsp-poker-hero__cardImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ak-nsp-poker-hero__cardPlaceholder {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  background:
+    linear-gradient(135deg, #f3ece0 0%, #ece5da 100%);
+  color: rgba(0, 0, 0, 0.45);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.ak-nsp-poker-hero__singleFlip {
+  position: absolute;
+  inset: 0;
+  z-index: 40;
+  transform-style: preserve-3d;
+}
+
+.ak-nsp-poker-hero__singleFace {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: 1.25rem;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  backface-visibility: hidden;
+}
+
+.ak-nsp-poker-hero__singleFace--front {
+  background: #ffffff;
+  box-shadow: 0 22px 56px rgba(0, 0, 0, 0.14);
+}
+
+.ak-nsp-poker-hero__singleFace--back {
+  background: #fbf8f3;
+  box-shadow: 0 22px 56px rgba(0, 0, 0, 0.12);
+  transform: rotateY(180deg);
+}
+
+.ak-nsp-poker-hero__frontShade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.08) 45%, rgba(0, 0, 0, 0));
+}
+
+.ak-nsp-poker-hero__frontMeta {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  padding: 0.75rem;
+  text-align: left;
+}
+
+.ak-nsp-poker-hero__frontMeta p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.56rem;
+  letter-spacing: 0.2em;
+  font-weight: 600;
+}
+
+.ak-nsp-poker-hero__frontMeta h3 {
+  margin: 0.5rem 0 0;
+  color: #ffffff;
+  font-size: 0.95rem;
+  line-height: 1.24;
+  letter-spacing: -0.04em;
+  font-weight: 600;
+}
+
+.ak-nsp-poker-hero__backInner {
+  height: 100%;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 1rem;
+}
+
+.ak-nsp-poker-hero__backInner p:first-child {
+  margin: 0;
+  color: rgba(0, 0, 0, 0.4);
+  font-size: 0.56rem;
+  letter-spacing: 0.22em;
+  font-weight: 600;
+}
+
+.ak-nsp-poker-hero__backInner p:last-child {
+  margin: 0.55rem 0 0;
+  color: rgba(0, 0, 0, 0.58);
+  font-size: 0.82rem;
+  line-height: 1.4;
+}
+
+@media (min-width: 640px) {
+  .ak-nsp-poker-hero__inner {
+    padding: 1.5rem;
+  }
+
+  .ak-nsp-poker-hero__cardStack {
+    width: 13.75rem;
+    height: 20rem;
+  }
+
+  .ak-nsp-poker-hero__cardsWrap {
+    margin-top: 3rem;
+  }
+
+  .ak-nsp-poker-hero__cardSurface,
+  .ak-nsp-poker-hero__singleFace {
+    border-radius: 1.8rem;
+  }
+
+  .ak-nsp-poker-hero__cardSurface {
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.13);
+  }
+
+  .ak-nsp-poker-hero__singleFace--front {
+    box-shadow: 0 30px 90px rgba(0, 0, 0, 0.18);
+  }
+
+  .ak-nsp-poker-hero__singleFace--back {
+    box-shadow: 0 30px 90px rgba(0, 0, 0, 0.16);
+  }
+
+  .ak-nsp-poker-hero__frontMeta {
+    padding: 1.25rem;
+  }
+
+  .ak-nsp-poker-hero__frontMeta p {
+    font-size: 0.68rem;
+  }
+
+  .ak-nsp-poker-hero__frontMeta h3 {
+    margin-top: 0.65rem;
+    font-size: 1.2rem;
+  }
+
+  .ak-nsp-poker-hero__backInner p:first-child {
+    font-size: 0.68rem;
+  }
+
+  .ak-nsp-poker-hero__backInner p:last-child {
+    margin-top: 0.75rem;
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+}
+
+@media (min-width: 1024px) {
+  .ak-nsp-poker-hero__inner {
+    padding: 2rem;
+  }
+
+  .ak-nsp-poker-hero__cardsWrap {
+    margin-top: 3.5rem;
+  }
+
+  .ak-nsp-poker-hero__cardStack {
+    width: 18.75rem;
+    height: 26.25rem;
+  }
+
+  .ak-nsp-poker-hero__frontMeta {
+    padding: 1.5rem;
+  }
+
+  .ak-nsp-poker-hero__frontMeta h3 {
+    font-size: 1.45rem;
+  }
+}

@@ -1,0 +1,386 @@
+﻿.ak-nsp-marquee-hero {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  background: #FAF9F5;
+  padding: 5rem 0 2.5rem;
+}
+
+.ak-nsp-marquee-hero__inner {
+  position: relative;
+  width: min(100%, 86rem);
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.ak-nsp-marquee-hero__copy {
+  width: min(100%, 52rem);
+  margin: 0 auto;
+  text-align: center;
+}
+
+.ak-nsp-marquee-hero__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  justify-content: center;
+  margin: 0;
+  padding: 0.55rem 1rem;
+  border-radius: 999px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: rgba(255, 255, 255, 0.72);
+  color: rgba(17, 17, 17, 0.68);
+  font-size: 0.68rem;
+  letter-spacing: 0.2em;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.ak-nsp-marquee-hero__sparklesIcon {
+  width: 0.9rem;
+  height: 0.9rem;
+  flex: 0 0 auto;
+}
+
+.ak-nsp-marquee-hero__heading {
+  margin: 1.3rem 0 0;
+  color: #141413;
+  font-size: clamp(2.1rem, 6.2vw, 3.75rem);
+  line-height: 1.04;
+  letter-spacing: -0.06em;
+  font-weight: 600;
+}
+
+.ak-nsp-marquee-hero__subheading {
+  margin: 1rem auto 0;
+  max-width: 44rem;
+  color: rgba(17, 17, 17, 0.62);
+  font-size: clamp(0.95rem, 2.4vw, 1.1rem);
+  line-height: 1.68;
+}
+
+.ak-nsp-marquee-hero__heroMedia {
+  position: relative;
+  margin: 2.25rem 0 0;
+  border-radius: 1.6rem;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.1);
+}
+
+.ak-nsp-marquee-hero__heroImage,
+.ak-nsp-marquee-hero__heroImagePlaceholder {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+}
+
+.ak-nsp-marquee-hero__heroImagePlaceholder {
+  background: linear-gradient(135deg, #efe9dd, #e5ded1);
+}
+
+.ak-nsp-marquee-hero__heroImageOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.88), rgba(0, 0, 0, 0.16), rgba(0, 0, 0, 0));
+}
+
+.ak-nsp-marquee-hero__heroMediaBadge {
+  position: absolute;
+  left: 1rem;
+  bottom: 1rem;
+  z-index: 2;
+  margin: 0;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.26);
+  background: rgba(0, 0, 0, 0.36);
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 0.45rem 0.8rem;
+  backdrop-filter: blur(4px);
+}
+
+.ak-nsp-marquee-hero__marqueeViewport {
+  margin-top: 1.4rem;
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
+}
+
+.ak-nsp-marquee-hero__marqueeTrack {
+  display: flex;
+  width: max-content;
+  gap: 0.75rem;
+  animation: ak-nsp-marquee-scroll 34s linear infinite;
+}
+
+.ak-nsp-marquee-hero__marqueeCardLink {
+  text-decoration: none;
+}
+
+.ak-nsp-marquee-hero__marqueeCard {
+  width: 14rem;
+  flex-shrink: 0;
+  overflow: hidden;
+  border-radius: 1.25rem;
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  background: #ffffff;
+  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.06);
+}
+
+.ak-nsp-marquee-hero__marqueeMediaWrap {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+}
+
+.ak-nsp-marquee-hero__marqueeImage,
+.ak-nsp-marquee-hero__marqueeImagePlaceholder {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 600ms ease;
+}
+
+.ak-nsp-marquee-hero__marqueeImagePlaceholder {
+  background: linear-gradient(140deg, #efe8da 0%, #e7dfd0 100%);
+}
+
+.ak-nsp-marquee-hero__marqueeCard:hover .ak-nsp-marquee-hero__marqueeImage {
+  transform: scale(1.04);
+}
+
+.ak-nsp-marquee-hero__marqueeGradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.04), rgba(0, 0, 0, 0));
+}
+
+.ak-nsp-marquee-hero__marqueeMeta {
+  padding: 0.75rem 0.8rem 0.85rem;
+}
+
+.ak-nsp-marquee-hero__marqueeMeta h3 {
+  margin: 0;
+  color: #111111;
+  font-size: 1rem;
+  line-height: 1.3;
+  letter-spacing: -0.03em;
+  font-weight: 600;
+}
+
+.ak-nsp-marquee-hero__marqueeMeta p {
+  margin: 0.36rem 0 0;
+  color: rgba(0, 0, 0, 0.58);
+  font-size: 0.78rem;
+  line-height: 1.5;
+}
+
+.ak-nsp-marquee-hero__bottomStrip {
+  margin-top: 1.5rem;
+  border-radius: 1.8rem;
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow: 0 10px 36px rgba(0, 0, 0, 0.05);
+  padding: 1rem 1.1rem;
+}
+
+.ak-nsp-marquee-hero__bottomStripLeft {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7rem;
+}
+
+.ak-nsp-marquee-hero__bottomStripIconWrap {
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 999px;
+  background: #121212;
+  color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+}
+
+.ak-nsp-marquee-hero__badgeCheckIcon {
+  width: 1rem;
+  height: 1rem;
+}
+
+.ak-nsp-marquee-hero__bottomStripContent {
+  min-width: 0;
+}
+
+.ak-nsp-marquee-hero__bottomStripContent p {
+  margin: 0;
+  color: rgba(0, 0, 0, 0.46);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.ak-nsp-marquee-hero__bottomStripContent h3 {
+  margin: 0.35rem 0 0;
+  color: rgba(0, 0, 0, 0.73);
+  font-size: 1.05rem;
+  line-height: 1.45;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.ak-nsp-marquee-hero__bottomStripItems {
+  margin-top: 0.8rem;
+  color: rgba(0, 0, 0, 0.78);
+  font-size: 0.95rem;
+  line-height: 1.45;
+}
+
+@keyframes ak-nsp-marquee-scroll {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ak-nsp-marquee-hero__marqueeTrack {
+    animation: none;
+  }
+}
+
+@media (min-width: 640px) {
+  .ak-nsp-marquee-hero {
+    padding: 5.8rem 0 3rem;
+  }
+
+  .ak-nsp-marquee-hero__inner {
+    padding: 0 1.5rem;
+  }
+
+  .ak-nsp-marquee-hero__heroMedia {
+    margin-top: 2.8rem;
+    border-radius: 2rem;
+  }
+
+  .ak-nsp-marquee-hero__heroImage,
+  .ak-nsp-marquee-hero__heroImagePlaceholder {
+    aspect-ratio: 16 / 7;
+  }
+
+  .ak-nsp-marquee-hero__heroMediaBadge {
+    left: 1.3rem;
+    bottom: 1.3rem;
+    font-size: 0.66rem;
+    padding: 0.5rem 0.95rem;
+  }
+
+  .ak-nsp-marquee-hero__marqueeViewport {
+    margin-top: 1.8rem;
+  }
+
+  .ak-nsp-marquee-hero__marqueeTrack {
+    gap: 0.95rem;
+  }
+
+  .ak-nsp-marquee-hero__marqueeCard {
+    width: 15.2rem;
+    border-radius: 1.45rem;
+  }
+
+  .ak-nsp-marquee-hero__marqueeMeta {
+    padding: 0.9rem 0.95rem 1rem;
+  }
+
+  .ak-nsp-marquee-hero__marqueeMeta h3 {
+    font-size: 1.04rem;
+  }
+
+  .ak-nsp-marquee-hero__marqueeMeta p {
+    font-size: 0.81rem;
+  }
+
+  .ak-nsp-marquee-hero__bottomStrip {
+    margin-top: 1.7rem;
+    padding: 1.1rem 1.25rem;
+    border-radius: 1.55rem;
+  }
+
+  .ak-nsp-marquee-hero__bottomStripContent h3 {
+    font-size: 1.18rem;
+  }
+
+  .ak-nsp-marquee-hero__bottomStripItems {
+    margin-top: 0.2rem;
+    font-size: 1.03rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .ak-nsp-marquee-hero {
+    padding: 6.6rem 0 3.5rem;
+  }
+
+  .ak-nsp-marquee-hero__inner {
+    padding: 0 2rem;
+  }
+
+  .ak-nsp-marquee-hero__heading {
+    font-size: clamp(2.5rem, 5.2vw, 4.35rem);
+  }
+
+  .ak-nsp-marquee-hero__heroMedia {
+    margin-top: 3.25rem;
+    border-radius: 2.3rem;
+  }
+
+  .ak-nsp-marquee-hero__marqueeTrack {
+    gap: 1.15rem;
+  }
+
+  .ak-nsp-marquee-hero__marqueeCard {
+    width: 16.2rem;
+    border-radius: 1.6rem;
+  }
+
+  .ak-nsp-marquee-hero__marqueeMeta h3 {
+    font-size: 1.12rem;
+  }
+
+  .ak-nsp-marquee-hero__marqueeMeta p {
+    font-size: 0.84rem;
+  }
+
+  .ak-nsp-marquee-hero__bottomStrip {
+    margin-top: 1.95rem;
+    padding: 1.2rem 1.45rem;
+    border-radius: 1.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.6rem;
+  }
+
+  .ak-nsp-marquee-hero__bottomStripLeft {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .ak-nsp-marquee-hero__bottomStripItems {
+    flex: 0 0 auto;
+    white-space: nowrap;
+    font-size: 1.02rem;
+    letter-spacing: -0.01em;
+  }
+
+  .ak-nsp-marquee-hero__bottomStripContent h3 {
+    max-width: 48rem;
+  }
+}
