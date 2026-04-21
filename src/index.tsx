@@ -10,9 +10,15 @@ export { ProductCardMarquee } from "./components/ProductMarqueeSection";
 export { CreativeCategoryMarquee } from "./components/ProductMarqueeSection";
 export { LiquidFocusCategories } from "./components/ProductMarqueeSection";
 export { default as PortraitTestimonials } from "./components/PortraitTestimonialsSection";
-export { ScrollParallaxSignatureHero, FullImageTypingHero } from "./components/NspSignatureHeroSection";
+export {
+  ScrollParallaxSignatureHero,
+  FullImageTypingHero,
+  PokerRowRevealHero,
+  NSPSignatureHeroMarquee,
+} from "./components/NspSignatureHeroSection";
 export { default as MinimalTimelineBenefits } from "./components/MinimalTimelineBenefitsSection";
 export { default as MerchantFooterReveal } from "./components/MerchantFooterRevealSection";
+export { CouponTickerMinimal } from "./components/CouponStripsSection";
 export type { HeroScrollableSlideProps } from "./components/HeroSection/HeroScrollableSlide";
 export type {
   SubHeroImageLoopProps,
@@ -26,6 +32,12 @@ export type {
   FullImageTypingHeroProps,
   FullImageTypingHeroSectionDoc,
   FullImageTypingWordBlock,
+  PokerRowRevealHeroProps,
+  PokerRowRevealHeroSectionDoc,
+  PokerRowRevealHeroBlock,
+  NSPSignatureHeroMarqueeProps,
+  NSPSignatureHeroMarqueeSectionDoc,
+  NSPSignatureHeroMarqueeBlock,
 } from "./components/NspSignatureHeroSection";
 
 export type {
@@ -98,6 +110,15 @@ export type {
   MerchantFooterRevealPolicyBlockProps,
   MerchantFooterRevealSocialPlatform,
 } from "./components/MerchantFooterRevealSection";
+
+export type {
+  CouponTickerMinimalProps,
+  CouponStripsSectionDoc,
+  CouponStripsSettings,
+  CouponStripsControls,
+  CouponStripBlock,
+  CouponStripBlockProps,
+} from "./components/CouponStripsSection";
 
 export {
   STYLE_MESSAGE_BUBBLE,
