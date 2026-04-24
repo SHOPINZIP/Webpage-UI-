@@ -125,8 +125,12 @@ type LogoFocusedHeaderSectionDoc = {
 };
 type LogoFocusedHeaderProps = {
     section: LogoFocusedHeaderSectionDoc;
+    cartCount?: number | string;
+    onSearchChnage?: (search?: string) => void;
+    onProfileClick?: (data?: any) => void;
+    onCartClick?: (data?: any) => void;
 };
-declare function LogoFocusedHeader({ section }: LogoFocusedHeaderProps): React.JSX.Element;
+declare function LogoFocusedHeader({ section, cartCount, onSearchChnage, onProfileClick, onCartClick }: LogoFocusedHeaderProps): React.JSX.Element;
 
 type TransparentHeroHeaderNavBlockProps = {
     label?: string;
@@ -161,8 +165,12 @@ type TransparentHeroHeaderSectionDoc = {
 };
 type TransparentHeroHeaderProps = {
     section: TransparentHeroHeaderSectionDoc;
+    cartCount?: number | string;
+    onSearchChnage?: (search?: string) => void;
+    onProfileClick?: (data?: any) => void;
+    onCartClick?: (data?: any) => void;
 };
-declare function TransparentHeroHeader({ section }: TransparentHeroHeaderProps): React.JSX.Element;
+declare function TransparentHeroHeader({ section, cartCount, onSearchChnage, onProfileClick, onCartClick }: TransparentHeroHeaderProps): React.JSX.Element;
 
 type MessageStyleTestimonialItemProps = {
     name?: string;

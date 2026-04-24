@@ -1,6 +1,6 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 
-import { normalizeImageUrl } from "../HeroSection/heroSectionUtils";
+import { normalizeImageUrl, resolveHeaderNavActiveLabel } from "../HeroSection/heroSectionUtils";
 
 export type TransparentHeroHeaderNavBlockProps = {
   label?: string;
@@ -40,6 +40,10 @@ export type TransparentHeroHeaderSectionDoc = {
 
 export type TransparentHeroHeaderProps = {
   section: TransparentHeroHeaderSectionDoc;
+  cartCount?: number | string;
+  onSearchChnage?: (search?: string) => void;
+  onProfileClick?: (data?: any) => void;
+  onCartClick?: (data?: any) => void;
 };
 
 function safeText(v: unknown): string {
@@ -95,6 +99,46 @@ function IconBag() {
       <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z" />
       <path d="M3 6h18" />
       <path d="M16 10a4 4 0 0 1-8 0" />
+    </svg>
+  );
+}
+
+function IconSearch() {
+  return (
+    <svg
+      className="ak-thh__icon"
+      width="16"
+      height="16"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden
+    >
+      <circle cx="11" cy="11" r="8" />
+      <path d="m21 21-4.3-4.3" />
+    </svg>
+  );
+}
+
+function IconX() {
+  return (
+    <svg
+      className="ak-thh__icon"
+      width="16"
+      height="16"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden
+    >
+      <path d="M18 6 6 18" />
+      <path d="M6 6l12 12" />
     </svg>
   );
 }
@@ -157,9 +201,23 @@ function NavPills({ items, active, onSelect, scrolled }: NavPillProps) {
   );
 }
 
-export default function TransparentHeroHeader({ section }: TransparentHeroHeaderProps) {
+export default function TransparentHeroHeader({ section, cartCount, onSearchChnage, onProfileClick, onCartClick }: TransparentHeroHeaderProps) {
   const props = section?.settings?.props ?? {};
   const rawBlocks = section?.settings?.blocks;
+
+  const [pathname, setPathname] = useState<string>(() => {
+    try {
+      return window.location.pathname ?? "";
+    } catch {
+      return "";
+    }
+  });
+
+  useEffect(() => {
+    const onPop = () => setPathname(window.location.pathname ?? "");
+    window.addEventListener("popstate", onPop);
+    return () => window.removeEventListener("popstate", onPop);
+  }, []);
 
   const navItems = useMemo(() => {
     const blocks = Array.isArray(rawBlocks) ? rawBlocks : [];
@@ -169,15 +227,24 @@ export default function TransparentHeroHeader({ section }: TransparentHeroHeader
     }));
   }, [rawBlocks]);
 
-  const [activeLabel, setActiveLabel] = useState(() => navItems[0]?.label ?? "");
+  const [activeLabel, setActiveLabel] = useState(() => {
+    try {
+      const p = window.location.pathname ?? "";
+      return resolveHeaderNavActiveLabel(p, navItems) ?? navItems[0]?.label ?? "";
+    } catch {
+      return navItems[0]?.label ?? "";
+    }
+  });
   const [scrollY, setScrollY] = useState(0);
 
   useEffect(() => {
     setActiveLabel((prev) => {
+      const matched = resolveHeaderNavActiveLabel(pathname, navItems);
+      if (matched !== null) return matched;
       if (navItems.some((n) => n.label === prev)) return prev;
       return navItems[0]?.label ?? "";
     });
-  }, [navItems]);
+  }, [pathname, navItems]);
 
   const enableTransition = props.enableScrollTransition !== false;
   const sticky = props.stickyHeader !== false;
@@ -225,7 +292,89 @@ export default function TransparentHeroHeader({ section }: TransparentHeroHeader
   const logoSrc = normalizeImageUrl(props.logoImage);
   const showProfile = props.showProfileIcon !== false;
   const showCart = props.showCartIcon !== false;
-  const cartBadge = safeText(props.cartCount);
+
+  const showSearch = pathname?.startsWith("/store");
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [searchValue, setSearchValue] = useState("");
+
+  const desktopSearchRef = useRef<HTMLDivElement | null>(null);
+  const mobileSearchRef = useRef<HTMLDivElement | null>(null);
+  const desktopInputRef = useRef<HTMLInputElement | null>(null);
+  const mobileInputRef = useRef<HTMLInputElement | null>(null);
+  const debounceTimerRef = useRef<number | undefined>(undefined);
+
+  const setSearchOpen = (next: boolean) => {
+    setIsSearchOpen(next);
+  };
+
+  useEffect(() => {
+    return () => {
+      if (debounceTimerRef.current) window.clearTimeout(debounceTimerRef.current);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!showSearch || !isSearchOpen) return;
+
+    const raf = window.requestAnimationFrame(() => {
+      const isMobile = window.matchMedia?.("(max-width: 768px)")?.matches ?? false;
+      const el =
+        (isMobile ? mobileInputRef.current : desktopInputRef.current) ??
+        desktopInputRef.current ??
+        mobileInputRef.current;
+      el?.focus();
+    });
+
+    return () => window.cancelAnimationFrame(raf);
+  }, [isSearchOpen, showSearch]);
+
+  useEffect(() => {
+    if (!showSearch || !isSearchOpen) return;
+
+    const onPointerDown = (e: MouseEvent | TouchEvent) => {
+      const target = e.target as Node | null;
+      if (!target) return;
+
+      const insideDesktop = desktopSearchRef.current?.contains(target) ?? false;
+      const insideMobile = mobileSearchRef.current?.contains(target) ?? false;
+      if (insideDesktop || insideMobile) return;
+
+      if (searchValue.trim() === "") setSearchOpen(false);
+    };
+
+    document.addEventListener("mousedown", onPointerDown, true);
+    document.addEventListener("touchstart", onPointerDown, true);
+    return () => {
+      document.removeEventListener("mousedown", onPointerDown, true);
+      document.removeEventListener("touchstart", onPointerDown, true);
+    };
+  }, [isSearchOpen, searchValue, showSearch]);
+
+  const handleSearchChange = (next: string) => {
+    setSearchValue(next);
+
+    if (debounceTimerRef.current) window.clearTimeout(debounceTimerRef.current);
+    debounceTimerRef.current = window.setTimeout(() => {
+      onSearchChnage?.(next);
+    }, 300);
+  };
+
+  const clearSearch = (e?: React.MouseEvent<HTMLButtonElement>) => {
+    e?.preventDefault();
+    e?.stopPropagation();
+    setSearchValue("");
+    if (debounceTimerRef.current) window.clearTimeout(debounceTimerRef.current);
+    onSearchChnage?.("");
+
+    const isMobile = window.matchMedia?.("(max-width: 768px)")?.matches ?? false;
+    const el =
+      (isMobile ? mobileInputRef.current : desktopInputRef.current) ??
+      desktopInputRef.current ??
+      mobileInputRef.current;
+    el?.focus();
+  };
+
+  const iconBtnClass = ["ak-thh__iconBtn", scrolled ? "ak-thh__iconBtn--scrolled" : "ak-thh__iconBtn--top"].join(" ");
 
   const headerStyle: React.CSSProperties = {
     backgroundColor: `rgba(10, 10, 12, ${bgAlpha})`,
@@ -238,64 +387,160 @@ export default function TransparentHeroHeader({ section }: TransparentHeroHeader
 
   return (
     <header className={`ak-thh ${positionClass}`} style={headerStyle}>
-      <div className="ak-thh__inner">
-        <div className="ak-thh__logo">
-          <div
-            className={[
-              "ak-thh__logoBadge",
-              scrolled ? "ak-thh__logoBadge--scrolled" : "ak-thh__logoBadge--top",
-            ].join(" ")}
-            aria-hidden={Boolean(logoSrc)}
-          >
-            {logoSrc ? (
-              <img
-                className="ak-thh__logoImg"
-                src={logoSrc}
-                alt={logoText}
-                loading="lazy"
-              />
-            ) : (
-              <span className="ak-thh__logoText">{logoText}</span>
-            )}
+      <div className="ak-thh__wrap">
+        <div className="ak-thh__inner">
+          <div className="ak-thh__logo">
+            <div
+              className={[
+                "ak-thh__logoBadge",
+                scrolled ? "ak-thh__logoBadge--scrolled" : "ak-thh__logoBadge--top",
+              ].join(" ")}
+              aria-hidden={Boolean(logoSrc)}
+            >
+              {logoSrc ? (
+                <img
+                  className="ak-thh__logoImg"
+                  src={logoSrc}
+                  alt={logoText}
+                  loading="lazy"
+                />
+              ) : (
+                <span className="ak-thh__logoText">{logoText}</span>
+              )}
+            </div>
+          </div>
+
+          <div className="ak-thh__center">
+            <NavPills
+              items={navItems}
+              active={activeLabel}
+              onSelect={setActiveLabel}
+              scrolled={scrolled}
+            />
+          </div>
+
+          <div className="ak-thh__actions">
+            {showSearch ? (
+              <div
+                ref={desktopSearchRef}
+                className={isSearchOpen ? "ak-thh__search ak-thh__search--open" : "ak-thh__search"}
+              >
+                {!isSearchOpen ? (
+                  <button
+                    type="button"
+                    className={iconBtnClass}
+                    aria-label="Search"
+                    aria-expanded={false}
+                    onClick={() => setSearchOpen(true)}
+                  >
+                    <IconSearch />
+                  </button>
+                ) : null}
+                {isSearchOpen ? (
+                  <span
+                    className="ak-thh__searchIconSpacer"
+                    aria-hidden
+                    onClick={(e) => {
+                      e.stopPropagation();
+                    }}
+                  />
+                ) : null}
+
+                <div className="ak-thh__searchField" aria-hidden={!isSearchOpen}>
+                  <div className="ak-thh__searchInputWrap">
+                    <span className="ak-thh__searchInputIcon" aria-hidden>
+                      <IconSearch />
+                    </span>
+                    <input
+                      ref={desktopInputRef}
+                      className="ak-thh__searchInput"
+                      type="search"
+                      inputMode="search"
+                      autoComplete="off"
+                      placeholder="Search products..."
+                      value={searchValue}
+                      onChange={(e) => handleSearchChange(e.target.value)}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter") e.preventDefault();
+                      }}
+                    />
+                    {searchValue.trim() ? (
+                      <button
+                        type="button"
+                        className="ak-thh__searchClear"
+                        aria-label="Clear search"
+                        onClick={(e) => clearSearch(e)}
+                      >
+                        <IconX />
+                      </button>
+                    ) : null}
+                  </div>
+                </div>
+              </div>
+            ) : null}
+            {showProfile ? (
+              <button
+                type="button"
+                id="profile-button"
+                className={iconBtnClass}
+                aria-label="Account"
+                onClick={() => onProfileClick?.()}
+              >
+                <IconUser />
+              </button>
+            ) : null}
+            {showCart ? (
+              <button
+                type="button"
+                className={iconBtnClass}
+                aria-label="Shopping cart"
+                onClick={() => onCartClick?.()}
+              >
+                <IconBag />
+                <span className="ak-thh__badge">{cartCount ?? 0}</span>
+              </button>
+            ) : null}
           </div>
         </div>
 
-        <div className="ak-thh__center">
-          <NavPills
-            items={navItems}
-            active={activeLabel}
-            onSelect={setActiveLabel}
-            scrolled={scrolled}
-          />
-        </div>
-
-        <div className="ak-thh__actions">
-          {showProfile ? (
-            <button
-              type="button"
-              className={[
-                "ak-thh__iconBtn",
-                scrolled ? "ak-thh__iconBtn--scrolled" : "ak-thh__iconBtn--top",
-              ].join(" ")}
-              aria-label="Account"
-            >
-              <IconUser />
-            </button>
-          ) : null}
-          {showCart ? (
-            <button
-              type="button"
-              className={[
-                "ak-thh__iconBtn",
-                scrolled ? "ak-thh__iconBtn--scrolled" : "ak-thh__iconBtn--top",
-              ].join(" ")}
-              aria-label="Shopping cart"
-            >
-              <IconBag />
-              {cartBadge ? <span className="ak-thh__badge">{cartBadge}</span> : null}
-            </button>
-          ) : null}
-        </div>
+        {showSearch ? (
+          <div
+            ref={mobileSearchRef}
+            className={isSearchOpen ? "ak-thh__searchMobile ak-thh__searchMobile--open" : "ak-thh__searchMobile"}
+            aria-hidden={!isSearchOpen}
+          >
+            <div className="ak-thh__searchMobileInner">
+              <div className="ak-thh__searchInputWrap">
+                <span className="ak-thh__searchInputIcon" aria-hidden>
+                  <IconSearch />
+                </span>
+                <input
+                  ref={mobileInputRef}
+                  className="ak-thh__searchInput"
+                  type="search"
+                  inputMode="search"
+                  autoComplete="off"
+                  placeholder="Search products..."
+                  value={searchValue}
+                  onChange={(e) => handleSearchChange(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") e.preventDefault();
+                  }}
+                />
+                {searchValue.trim() ? (
+                  <button
+                    type="button"
+                    className="ak-thh__searchClear"
+                    aria-label="Clear search"
+                    onClick={(e) => clearSearch(e)}
+                  >
+                    <IconX />
+                  </button>
+                ) : null}
+              </div>
+            </div>
+          </div>
+        ) : null}
       </div>
     </header>
   );

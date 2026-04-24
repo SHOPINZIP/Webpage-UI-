@@ -25,9 +25,9 @@
 }
 
 .ak-lfh__row {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  justify-content: space-between;
   gap: 0.75rem;
   padding: 0.75rem 1rem;
 }
@@ -37,6 +37,7 @@
   align-items: center;
   gap: 0.75rem;
   min-width: 0;
+  justify-self: start;
 }
 
 .ak-lfh__logoBadge {
@@ -94,9 +95,9 @@
 
 .ak-lfh__center {
   display: flex;
-  flex: 1;
   justify-content: center;
   min-width: 0;
+  justify-self: center;
 }
 
 .ak-lfh__navToggle {
@@ -157,6 +158,9 @@
   align-items: center;
   gap: 0.5rem;
   flex-shrink: 0;
+  justify-self: end;
+  width: 100%;
+  justify-content: flex-end;
 }
 
 .ak-lfh__iconBtn {
@@ -173,6 +177,7 @@
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
   color: #0a0a0a;
   cursor: pointer;
+  flex-shrink: 0;
 }
 
 .ak-lfh__iconBtn:active {
@@ -208,4 +213,150 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+}
+
+/* Search (store only) — compact with profile/cart; matches transparent hero header */
+.ak-lfh__search {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.ak-lfh__searchIconSpacer {
+  display: none;
+  width: 40px;
+  height: 40px;
+}
+
+.ak-lfh__searchField {
+  display: inline-flex;
+  align-items: center;
+  overflow: hidden;
+  max-width: 0;
+  opacity: 0;
+  transform: translateX(4px);
+  transition: max-width 220ms ease, opacity 180ms ease, transform 220ms ease;
+  will-change: max-width, opacity, transform;
+}
+
+.ak-lfh__search--open .ak-lfh__searchField {
+  max-width: 320px;
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.ak-lfh__searchInputWrap {
+  position: relative;
+  width: 100%;
+  min-width: 220px;
+  max-width: 320px;
+}
+
+.ak-lfh__searchInputIcon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(0, 0, 0, 0.45);
+  pointer-events: none;
+}
+
+.ak-lfh__searchClear {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border-radius: 999px;
+  border: 0;
+  background: transparent;
+  color: rgba(0, 0, 0, 0.55);
+  cursor: pointer;
+}
+
+.ak-lfh__searchClear:hover {
+  background: rgba(0, 0, 0, 0.05);
+  color: rgba(0, 0, 0, 0.75);
+}
+
+.ak-lfh__searchInput {
+  width: 100%;
+  height: 38px;
+  padding: 0 36px 0 38px;
+  border-radius: 999px;
+  border: 1px solid rgba(0, 0, 0, 0.10);
+  background: rgba(255, 255, 255, 0.96);
+  outline: none;
+  box-shadow: none;
+  font-size: 13px;
+  transition: border-color 180ms ease, background 180ms ease;
+}
+
+.ak-lfh__searchInput:focus {
+  border-color: rgba(0, 0, 0, 0.18);
+  background: #fff;
+  box-shadow: none;
+}
+
+/* Hide native browser clear/decoration (Chrome/Edge blue X) — custom clear only */
+.ak-lfh__searchInput::-webkit-search-decoration,
+.ak-lfh__searchInput::-webkit-search-cancel-button,
+.ak-lfh__searchInput::-webkit-search-results-button,
+.ak-lfh__searchInput::-webkit-search-results-decoration {
+  -webkit-appearance: none;
+  appearance: none;
+  display: none;
+}
+
+/* Mobile: search opens below header row */
+.ak-lfh__searchMobile {
+  display: none;
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: max-height 220ms ease, opacity 180ms ease, transform 220ms ease;
+  will-change: max-height, opacity, transform;
+}
+
+.ak-lfh__searchMobileInner {
+  padding: 10px 1rem 8px;
+}
+
+.ak-lfh__searchMobile--open {
+  max-height: 80px;
+  opacity: 1;
+  transform: translateY(0);
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+@media (max-width: 768px) {
+  .ak-lfh__searchField {
+    display: none;
+  }
+
+  /* When open, keep the old icon's tap target "inside" the search area
+     so tapping there doesn't immediately close the empty search. */
+  .ak-lfh__search--open .ak-lfh__searchIconSpacer {
+    display: inline-block;
+  }
+
+  .ak-lfh__searchMobile {
+    display: block;
+  }
+
+  .ak-lfh__searchInputWrap {
+    min-width: 0;
+    max-width: none;
+    width: 100%;
+  }
 }
