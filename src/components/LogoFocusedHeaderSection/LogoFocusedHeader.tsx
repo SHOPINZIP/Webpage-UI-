@@ -297,6 +297,17 @@ export default function LogoFocusedHeader({ section, cartCount, onSearchChnage, 
   }, []);
 
   useEffect(() => {
+    // When navigating away from the store, reset search UI/state.
+    if (showSearch) return;
+    if (!isSearchOpen && searchValue.trim() === "") return;
+
+    if (debounceTimerRef.current) window.clearTimeout(debounceTimerRef.current);
+    setIsSearchOpen(false);
+    setSearchValue("");
+    onSearchChnage?.("");
+  }, [showSearch, isSearchOpen, searchValue, onSearchChnage]);
+
+  useEffect(() => {
     if (!showSearch || !isSearchOpen) return;
 
     const raf = window.requestAnimationFrame(() => {

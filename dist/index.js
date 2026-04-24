@@ -1064,6 +1064,14 @@ function LogoFocusedHeader({ section, cartCount, onSearchChnage, onProfileClick,
     };
   }, []);
   (0, import_react4.useEffect)(() => {
+    if (showSearch) return;
+    if (!isSearchOpen && searchValue.trim() === "") return;
+    if (debounceTimerRef.current) window.clearTimeout(debounceTimerRef.current);
+    setIsSearchOpen(false);
+    setSearchValue("");
+    onSearchChnage == null ? void 0 : onSearchChnage("");
+  }, [showSearch, isSearchOpen, searchValue, onSearchChnage]);
+  (0, import_react4.useEffect)(() => {
     if (!showSearch || !isSearchOpen) return;
     const raf = window.requestAnimationFrame(() => {
       var _a2, _b2, _c2, _d, _e;
@@ -1465,6 +1473,14 @@ function TransparentHeroHeader({ section, cartCount, onSearchChnage, onProfileCl
       if (debounceTimerRef.current) window.clearTimeout(debounceTimerRef.current);
     };
   }, []);
+  (0, import_react5.useEffect)(() => {
+    if (showSearch) return;
+    if (!isSearchOpen && searchValue.trim() === "") return;
+    if (debounceTimerRef.current) window.clearTimeout(debounceTimerRef.current);
+    setIsSearchOpen(false);
+    setSearchValue("");
+    onSearchChnage == null ? void 0 : onSearchChnage("");
+  }, [showSearch, isSearchOpen, searchValue, onSearchChnage]);
   (0, import_react5.useEffect)(() => {
     if (!showSearch || !isSearchOpen) return;
     const raf = window.requestAnimationFrame(() => {
