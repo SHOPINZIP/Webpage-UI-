@@ -67,8 +67,35 @@ function normalizeImageUrl(raw) {
   if (/^data:/i.test(s)) return s;
   if (/^blob:/i.test(s)) return s;
   if (/^https?:\/\//i.test(s)) return s;
-  if (s.startsWith("//")) return `https:${s}`;
+  if (s.startsWith("//")) return `https://${s}`;
   return `https://${s}`;
+}
+function resolveHeaderNavActiveLabel(pathname, items) {
+  var _a;
+  if (!items.length) return null;
+  let best = null;
+  const pathRaw = pathname || "/";
+  let pathNorm = pathRaw;
+  if (pathNorm.length > 1 && pathNorm.endsWith("/")) pathNorm = pathNorm.slice(0, -1);
+  const origin = typeof window !== "undefined" ? window.location.origin : "http://localhost";
+  for (const item of items) {
+    const href = String((_a = item.link) != null ? _a : "").trim();
+    if (!href) continue;
+    try {
+      const isAbsolute = /^https?:\/\//i.test(href);
+      const normalized = !isAbsolute && href && !href.startsWith("/") && !href.startsWith("#") ? `/${href.replace(/^\.\//, "")}` : href;
+      const url = new URL(normalized, origin);
+      if (typeof window !== "undefined" && url.origin !== window.location.origin) continue;
+      let p = url.pathname || "/";
+      if (p.length > 1 && p.endsWith("/")) p = p.slice(0, -1);
+      const matches = p === "/" ? pathNorm === "/" : pathNorm === p || pathNorm.startsWith(`${p}/`);
+      if (matches && (!best || p.length > best.len)) {
+        best = { label: item.label, len: p.length };
+      }
+    } catch {
+    }
+  }
+  return best ? best.label : null;
 }
 
 // src/components/HeroSection/HeroSlider/index.tsx
@@ -878,6 +905,44 @@ function IconBag() {
     /* @__PURE__ */ import_react4.default.createElement("path", { d: "M16 10a4 4 0 0 1-8 0" })
   );
 }
+function IconSearch() {
+  return /* @__PURE__ */ import_react4.default.createElement(
+    "svg",
+    {
+      className: "ak-lfh__icon",
+      width: "16",
+      height: "16",
+      viewBox: "0 0 24 24",
+      fill: "none",
+      stroke: "currentColor",
+      strokeWidth: "2",
+      strokeLinecap: "round",
+      strokeLinejoin: "round",
+      "aria-hidden": true
+    },
+    /* @__PURE__ */ import_react4.default.createElement("circle", { cx: "11", cy: "11", r: "8" }),
+    /* @__PURE__ */ import_react4.default.createElement("path", { d: "m21 21-4.3-4.3" })
+  );
+}
+function IconX() {
+  return /* @__PURE__ */ import_react4.default.createElement(
+    "svg",
+    {
+      className: "ak-lfh__icon",
+      width: "16",
+      height: "16",
+      viewBox: "0 0 24 24",
+      fill: "none",
+      stroke: "currentColor",
+      strokeWidth: "2",
+      strokeLinecap: "round",
+      strokeLinejoin: "round",
+      "aria-hidden": true
+    },
+    /* @__PURE__ */ import_react4.default.createElement("path", { d: "M18 6 6 18" }),
+    /* @__PURE__ */ import_react4.default.createElement("path", { d: "M6 6l12 12" })
+  );
+}
 function NavToggle({ items, active, onSelect }) {
   if (items.length === 0) return null;
   return /* @__PURE__ */ import_react4.default.createElement("div", { className: "ak-lfh__navToggle", role: "tablist", "aria-label": "Primary navigation" }, items.map((item, idx) => {
@@ -891,7 +956,24 @@ function NavToggle({ items, active, onSelect }) {
         role: "tab",
         "aria-selected": isActive,
         className: isActive ? "ak-lfh__navPill ak-lfh__navPill--active" : "ak-lfh__navPill",
-        onClick: () => onSelect(item.label)
+        onClick: (e) => {
+          onSelect(item.label);
+          if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) {
+            return;
+          }
+          try {
+            const raw = href.trim();
+            const isAbsolute = /^https?:\/\//i.test(raw);
+            const normalized = !isAbsolute && raw && !raw.startsWith("/") && !raw.startsWith("#") ? `/${raw.replace(/^\.\//, "")}` : raw;
+            const base = window.location.origin;
+            const url = new URL(normalized, base);
+            if (url.origin !== window.location.origin) return;
+            e.preventDefault();
+            window.history.pushState({}, "", url.pathname + url.search + url.hash);
+            window.dispatchEvent(new PopStateEvent("popstate"));
+          } catch {
+          }
+        }
       },
       item.label
     ) : /* @__PURE__ */ import_react4.default.createElement(
@@ -908,10 +990,26 @@ function NavToggle({ items, active, onSelect }) {
     );
   }));
 }
-function LogoFocusedHeader({ section }) {
+function LogoFocusedHeader({ section, cartCount, onSearchChnage, onProfileClick, onCartClick }) {
   var _a, _b, _c;
   const props = (_b = (_a = section == null ? void 0 : section.settings) == null ? void 0 : _a.props) != null ? _b : {};
   const rawBlocks = (_c = section == null ? void 0 : section.settings) == null ? void 0 : _c.blocks;
+  const [pathname, setPathname] = (0, import_react4.useState)(() => {
+    var _a2;
+    try {
+      return (_a2 = window.location.pathname) != null ? _a2 : "";
+    } catch {
+      return "";
+    }
+  });
+  (0, import_react4.useEffect)(() => {
+    const onPop = () => {
+      var _a2;
+      return setPathname((_a2 = window.location.pathname) != null ? _a2 : "");
+    };
+    window.addEventListener("popstate", onPop);
+    return () => window.removeEventListener("popstate", onPop);
+  }, []);
   const navItems = (0, import_react4.useMemo)(() => {
     const blocks = Array.isArray(rawBlocks) ? rawBlocks : [];
     return blocks.slice(0, 2).map((b, i) => {
@@ -923,16 +1021,23 @@ function LogoFocusedHeader({ section }) {
     });
   }, [rawBlocks]);
   const [activeLabel, setActiveLabel] = (0, import_react4.useState)(() => {
-    var _a2, _b2;
-    return (_b2 = (_a2 = navItems[0]) == null ? void 0 : _a2.label) != null ? _b2 : "";
+    var _a2, _b2, _c2, _d, _e, _f;
+    try {
+      const p = (_a2 = window.location.pathname) != null ? _a2 : "";
+      return (_d = (_c2 = resolveHeaderNavActiveLabel(p, navItems)) != null ? _c2 : (_b2 = navItems[0]) == null ? void 0 : _b2.label) != null ? _d : "";
+    } catch {
+      return (_f = (_e = navItems[0]) == null ? void 0 : _e.label) != null ? _f : "";
+    }
   });
   (0, import_react4.useEffect)(() => {
     setActiveLabel((prev) => {
       var _a2, _b2;
+      const matched = resolveHeaderNavActiveLabel(pathname, navItems);
+      if (matched !== null) return matched;
       if (navItems.some((n) => n.label === prev)) return prev;
       return (_b2 = (_a2 = navItems[0]) == null ? void 0 : _a2.label) != null ? _b2 : "";
     });
-  }, [navItems]);
+  }, [pathname, navItems]);
   const logoText = safeText(props.logoText) || "Logo";
   const brandName = safeText(props.brandName) || "";
   const brandSubtitle = safeText(props.brandSubtitle) || "";
@@ -942,6 +1047,69 @@ function LogoFocusedHeader({ section }) {
   const showCart = props.showCartIcon !== false;
   const cartBadge = safeText(props.cartCount);
   const sticky = props.stickyHeader !== false;
+  const showSearch = pathname == null ? void 0 : pathname.startsWith("/store");
+  const [isSearchOpen, setIsSearchOpen] = (0, import_react4.useState)(false);
+  const [searchValue, setSearchValue] = (0, import_react4.useState)("");
+  const desktopSearchRef = (0, import_react4.useRef)(null);
+  const mobileSearchRef = (0, import_react4.useRef)(null);
+  const desktopInputRef = (0, import_react4.useRef)(null);
+  const mobileInputRef = (0, import_react4.useRef)(null);
+  const debounceTimerRef = (0, import_react4.useRef)(void 0);
+  const setSearchOpen = (next) => {
+    setIsSearchOpen(next);
+  };
+  (0, import_react4.useEffect)(() => {
+    return () => {
+      if (debounceTimerRef.current) window.clearTimeout(debounceTimerRef.current);
+    };
+  }, []);
+  (0, import_react4.useEffect)(() => {
+    if (!showSearch || !isSearchOpen) return;
+    const raf = window.requestAnimationFrame(() => {
+      var _a2, _b2, _c2, _d, _e;
+      const isMobile = (_c2 = (_b2 = (_a2 = window.matchMedia) == null ? void 0 : _a2.call(window, "(max-width: 768px)")) == null ? void 0 : _b2.matches) != null ? _c2 : false;
+      const el = (_e = (_d = isMobile ? mobileInputRef.current : desktopInputRef.current) != null ? _d : desktopInputRef.current) != null ? _e : mobileInputRef.current;
+      el == null ? void 0 : el.focus();
+    });
+    return () => window.cancelAnimationFrame(raf);
+  }, [isSearchOpen, showSearch]);
+  (0, import_react4.useEffect)(() => {
+    if (!showSearch || !isSearchOpen) return;
+    const onPointerDown = (e) => {
+      var _a2, _b2, _c2, _d;
+      const target = e.target;
+      if (!target) return;
+      const insideDesktop = (_b2 = (_a2 = desktopSearchRef.current) == null ? void 0 : _a2.contains(target)) != null ? _b2 : false;
+      const insideMobile = (_d = (_c2 = mobileSearchRef.current) == null ? void 0 : _c2.contains(target)) != null ? _d : false;
+      if (insideDesktop || insideMobile) return;
+      if (searchValue.trim() === "") setSearchOpen(false);
+    };
+    document.addEventListener("mousedown", onPointerDown, true);
+    document.addEventListener("touchstart", onPointerDown, true);
+    return () => {
+      document.removeEventListener("mousedown", onPointerDown, true);
+      document.removeEventListener("touchstart", onPointerDown, true);
+    };
+  }, [isSearchOpen, searchValue, showSearch]);
+  const handleSearchChange = (next) => {
+    setSearchValue(next);
+    if (debounceTimerRef.current) window.clearTimeout(debounceTimerRef.current);
+    debounceTimerRef.current = window.setTimeout(() => {
+      if (onSearchChnage)
+        onSearchChnage(next);
+    }, 300);
+  };
+  const clearSearch = (e) => {
+    var _a2, _b2, _c2, _d, _e;
+    e == null ? void 0 : e.preventDefault();
+    e == null ? void 0 : e.stopPropagation();
+    setSearchValue("");
+    if (debounceTimerRef.current) window.clearTimeout(debounceTimerRef.current);
+    onSearchChnage == null ? void 0 : onSearchChnage("");
+    const isMobile = (_c2 = (_b2 = (_a2 = window.matchMedia) == null ? void 0 : _a2.call(window, "(max-width: 768px)")) == null ? void 0 : _b2.matches) != null ? _c2 : false;
+    const el = (_e = (_d = isMobile ? mobileInputRef.current : desktopInputRef.current) != null ? _d : desktopInputRef.current) != null ? _e : mobileInputRef.current;
+    el == null ? void 0 : el.focus();
+  };
   return /* @__PURE__ */ import_react4.default.createElement("header", { className: `ak-lfh ${sticky ? "ak-lfh__bar--sticky" : ""}` }, /* @__PURE__ */ import_react4.default.createElement("div", { className: "ak-lfh__bar" }, /* @__PURE__ */ import_react4.default.createElement("div", { className: "ak-lfh__row" }, /* @__PURE__ */ import_react4.default.createElement("div", { className: "ak-lfh__brand" }, /* @__PURE__ */ import_react4.default.createElement("div", { className: "ak-lfh__logoBadge", "aria-hidden": Boolean(logoSrc) }, logoSrc ? /* @__PURE__ */ import_react4.default.createElement(
     "img",
     {
@@ -950,15 +1118,111 @@ function LogoFocusedHeader({ section }) {
       alt: brandName,
       loading: "lazy"
     }
-  ) : /* @__PURE__ */ import_react4.default.createElement("span", { className: "ak-lfh__logoText" }, logoText)), /* @__PURE__ */ import_react4.default.createElement("div", { className: "ak-lfh__brandText" }, /* @__PURE__ */ import_react4.default.createElement("div", { className: "ak-lfh__brandName" }, brandName), showSubtitle ? /* @__PURE__ */ import_react4.default.createElement("div", { className: "ak-lfh__brandSub" }, brandSubtitle) : null)), /* @__PURE__ */ import_react4.default.createElement("div", { className: "ak-lfh__center" }, /* @__PURE__ */ import_react4.default.createElement(NavToggle, { items: navItems, active: activeLabel, onSelect: setActiveLabel })), /* @__PURE__ */ import_react4.default.createElement("div", { className: "ak-lfh__actions" }, showProfile ? /* @__PURE__ */ import_react4.default.createElement(
+  ) : /* @__PURE__ */ import_react4.default.createElement("span", { className: "ak-lfh__logoText" }, logoText)), /* @__PURE__ */ import_react4.default.createElement("div", { className: "ak-lfh__brandText" }, /* @__PURE__ */ import_react4.default.createElement("div", { className: "ak-lfh__brandName" }, brandName), showSubtitle ? /* @__PURE__ */ import_react4.default.createElement("div", { className: "ak-lfh__brandSub" }, brandSubtitle) : null)), /* @__PURE__ */ import_react4.default.createElement("div", { className: "ak-lfh__center" }, /* @__PURE__ */ import_react4.default.createElement(NavToggle, { items: navItems, active: activeLabel, onSelect: setActiveLabel })), /* @__PURE__ */ import_react4.default.createElement("div", { className: "ak-lfh__actions" }, showSearch ? /* @__PURE__ */ import_react4.default.createElement(
+    "div",
+    {
+      ref: desktopSearchRef,
+      className: isSearchOpen ? "ak-lfh__search ak-lfh__search--open" : "ak-lfh__search"
+    },
+    !isSearchOpen ? /* @__PURE__ */ import_react4.default.createElement(
+      "button",
+      {
+        type: "button",
+        className: "ak-lfh__iconBtn",
+        "aria-label": "Search",
+        "aria-expanded": false,
+        onClick: () => setSearchOpen(true)
+      },
+      /* @__PURE__ */ import_react4.default.createElement(IconSearch, null)
+    ) : null,
+    isSearchOpen ? /* @__PURE__ */ import_react4.default.createElement(
+      "span",
+      {
+        className: "ak-lfh__searchIconSpacer",
+        "aria-hidden": true,
+        onClick: (e) => {
+          e.stopPropagation();
+        }
+      }
+    ) : null,
+    /* @__PURE__ */ import_react4.default.createElement("div", { className: "ak-lfh__searchField", "aria-hidden": !isSearchOpen }, /* @__PURE__ */ import_react4.default.createElement("div", { className: "ak-lfh__searchInputWrap" }, /* @__PURE__ */ import_react4.default.createElement("span", { className: "ak-lfh__searchInputIcon", "aria-hidden": true }, /* @__PURE__ */ import_react4.default.createElement(IconSearch, null)), /* @__PURE__ */ import_react4.default.createElement(
+      "input",
+      {
+        ref: desktopInputRef,
+        className: "ak-lfh__searchInput",
+        type: "search",
+        inputMode: "search",
+        autoComplete: "off",
+        placeholder: "Search products...",
+        value: searchValue,
+        onChange: (e) => handleSearchChange(e.target.value),
+        onKeyDown: (e) => {
+          if (e.key === "Enter") e.preventDefault();
+        }
+      }
+    ), searchValue.trim() ? /* @__PURE__ */ import_react4.default.createElement(
+      "button",
+      {
+        type: "button",
+        className: "ak-lfh__searchClear",
+        "aria-label": "Clear search",
+        onClick: (e) => clearSearch(e)
+      },
+      /* @__PURE__ */ import_react4.default.createElement(IconX, null)
+    ) : null))
+  ) : null, showProfile ? /* @__PURE__ */ import_react4.default.createElement(
     "button",
     {
       type: "button",
+      id: "profile-button",
       className: "ak-lfh__iconBtn ak-lfh__iconBtn--profileDesktop",
-      "aria-label": "Account"
+      "aria-label": "Account",
+      onClick: () => onProfileClick == null ? void 0 : onProfileClick()
     },
     /* @__PURE__ */ import_react4.default.createElement(IconUser, null)
-  ) : null, showCart ? /* @__PURE__ */ import_react4.default.createElement("button", { type: "button", className: "ak-lfh__iconBtn", "aria-label": "Shopping cart" }, /* @__PURE__ */ import_react4.default.createElement(IconBag, null), cartBadge ? /* @__PURE__ */ import_react4.default.createElement("span", { className: "ak-lfh__badge" }, cartBadge) : null) : null))));
+  ) : null, showCart ? /* @__PURE__ */ import_react4.default.createElement(
+    "button",
+    {
+      type: "button",
+      className: "ak-lfh__iconBtn",
+      "aria-label": "Shopping cart",
+      onClick: () => onCartClick == null ? void 0 : onCartClick()
+    },
+    /* @__PURE__ */ import_react4.default.createElement(IconBag, null),
+    /* @__PURE__ */ import_react4.default.createElement("span", { className: "ak-lfh__badge" }, cartCount != null ? cartCount : 0)
+  ) : null)), showSearch ? /* @__PURE__ */ import_react4.default.createElement(
+    "div",
+    {
+      ref: mobileSearchRef,
+      className: isSearchOpen ? "ak-lfh__searchMobile ak-lfh__searchMobile--open" : "ak-lfh__searchMobile",
+      "aria-hidden": !isSearchOpen
+    },
+    /* @__PURE__ */ import_react4.default.createElement("div", { className: "ak-lfh__searchMobileInner" }, /* @__PURE__ */ import_react4.default.createElement("div", { className: "ak-lfh__searchInputWrap" }, /* @__PURE__ */ import_react4.default.createElement("span", { className: "ak-lfh__searchInputIcon", "aria-hidden": true }, /* @__PURE__ */ import_react4.default.createElement(IconSearch, null)), /* @__PURE__ */ import_react4.default.createElement(
+      "input",
+      {
+        ref: mobileInputRef,
+        className: "ak-lfh__searchInput",
+        type: "search",
+        inputMode: "search",
+        autoComplete: "off",
+        placeholder: "Search products...",
+        value: searchValue,
+        onChange: (e) => handleSearchChange(e.target.value),
+        onKeyDown: (e) => {
+          if (e.key === "Enter") e.preventDefault();
+        }
+      }
+    ), searchValue.trim() ? /* @__PURE__ */ import_react4.default.createElement(
+      "button",
+      {
+        type: "button",
+        className: "ak-lfh__searchClear",
+        "aria-label": "Clear search",
+        onClick: (e) => clearSearch(e)
+      },
+      /* @__PURE__ */ import_react4.default.createElement(IconX, null)
+    ) : null))
+  ) : null));
 }
 
 // src/components/TransparentHeroHeaderSection/TransparentHeroHeader.tsx
@@ -1015,6 +1279,44 @@ function IconBag2() {
     /* @__PURE__ */ import_react5.default.createElement("path", { d: "M16 10a4 4 0 0 1-8 0" })
   );
 }
+function IconSearch2() {
+  return /* @__PURE__ */ import_react5.default.createElement(
+    "svg",
+    {
+      className: "ak-thh__icon",
+      width: "16",
+      height: "16",
+      viewBox: "0 0 24 24",
+      fill: "none",
+      stroke: "currentColor",
+      strokeWidth: "2",
+      strokeLinecap: "round",
+      strokeLinejoin: "round",
+      "aria-hidden": true
+    },
+    /* @__PURE__ */ import_react5.default.createElement("circle", { cx: "11", cy: "11", r: "8" }),
+    /* @__PURE__ */ import_react5.default.createElement("path", { d: "m21 21-4.3-4.3" })
+  );
+}
+function IconX2() {
+  return /* @__PURE__ */ import_react5.default.createElement(
+    "svg",
+    {
+      className: "ak-thh__icon",
+      width: "16",
+      height: "16",
+      viewBox: "0 0 24 24",
+      fill: "none",
+      stroke: "currentColor",
+      strokeWidth: "2",
+      strokeLinecap: "round",
+      strokeLinejoin: "round",
+      "aria-hidden": true
+    },
+    /* @__PURE__ */ import_react5.default.createElement("path", { d: "M18 6 6 18" }),
+    /* @__PURE__ */ import_react5.default.createElement("path", { d: "M6 6l12 12" })
+  );
+}
 function NavPills({ items, active, onSelect, scrolled }) {
   if (items.length === 0) return null;
   return /* @__PURE__ */ import_react5.default.createElement(
@@ -1061,10 +1363,26 @@ function NavPills({ items, active, onSelect, scrolled }) {
     })
   );
 }
-function TransparentHeroHeader({ section }) {
+function TransparentHeroHeader({ section, cartCount, onSearchChnage, onProfileClick, onCartClick }) {
   var _a, _b, _c;
   const props = (_b = (_a = section == null ? void 0 : section.settings) == null ? void 0 : _a.props) != null ? _b : {};
   const rawBlocks = (_c = section == null ? void 0 : section.settings) == null ? void 0 : _c.blocks;
+  const [pathname, setPathname] = (0, import_react5.useState)(() => {
+    var _a2;
+    try {
+      return (_a2 = window.location.pathname) != null ? _a2 : "";
+    } catch {
+      return "";
+    }
+  });
+  (0, import_react5.useEffect)(() => {
+    const onPop = () => {
+      var _a2;
+      return setPathname((_a2 = window.location.pathname) != null ? _a2 : "");
+    };
+    window.addEventListener("popstate", onPop);
+    return () => window.removeEventListener("popstate", onPop);
+  }, []);
   const navItems = (0, import_react5.useMemo)(() => {
     const blocks = Array.isArray(rawBlocks) ? rawBlocks : [];
     return blocks.slice(0, 2).map((b, i) => {
@@ -1076,17 +1394,24 @@ function TransparentHeroHeader({ section }) {
     });
   }, [rawBlocks]);
   const [activeLabel, setActiveLabel] = (0, import_react5.useState)(() => {
-    var _a2, _b2;
-    return (_b2 = (_a2 = navItems[0]) == null ? void 0 : _a2.label) != null ? _b2 : "";
+    var _a2, _b2, _c2, _d, _e, _f;
+    try {
+      const p = (_a2 = window.location.pathname) != null ? _a2 : "";
+      return (_d = (_c2 = resolveHeaderNavActiveLabel(p, navItems)) != null ? _c2 : (_b2 = navItems[0]) == null ? void 0 : _b2.label) != null ? _d : "";
+    } catch {
+      return (_f = (_e = navItems[0]) == null ? void 0 : _e.label) != null ? _f : "";
+    }
   });
   const [scrollY, setScrollY] = (0, import_react5.useState)(0);
   (0, import_react5.useEffect)(() => {
     setActiveLabel((prev) => {
       var _a2, _b2;
+      const matched = resolveHeaderNavActiveLabel(pathname, navItems);
+      if (matched !== null) return matched;
       if (navItems.some((n) => n.label === prev)) return prev;
       return (_b2 = (_a2 = navItems[0]) == null ? void 0 : _a2.label) != null ? _b2 : "";
     });
-  }, [navItems]);
+  }, [pathname, navItems]);
   const enableTransition = props.enableScrollTransition !== false;
   const sticky = props.stickyHeader !== false;
   (0, import_react5.useEffect)(() => {
@@ -1124,7 +1449,69 @@ function TransparentHeroHeader({ section }) {
   const logoSrc = normalizeImageUrl(props.logoImage);
   const showProfile = props.showProfileIcon !== false;
   const showCart = props.showCartIcon !== false;
-  const cartBadge = safeText2(props.cartCount);
+  const showSearch = pathname == null ? void 0 : pathname.startsWith("/store");
+  const [isSearchOpen, setIsSearchOpen] = (0, import_react5.useState)(false);
+  const [searchValue, setSearchValue] = (0, import_react5.useState)("");
+  const desktopSearchRef = (0, import_react5.useRef)(null);
+  const mobileSearchRef = (0, import_react5.useRef)(null);
+  const desktopInputRef = (0, import_react5.useRef)(null);
+  const mobileInputRef = (0, import_react5.useRef)(null);
+  const debounceTimerRef = (0, import_react5.useRef)(void 0);
+  const setSearchOpen = (next) => {
+    setIsSearchOpen(next);
+  };
+  (0, import_react5.useEffect)(() => {
+    return () => {
+      if (debounceTimerRef.current) window.clearTimeout(debounceTimerRef.current);
+    };
+  }, []);
+  (0, import_react5.useEffect)(() => {
+    if (!showSearch || !isSearchOpen) return;
+    const raf = window.requestAnimationFrame(() => {
+      var _a2, _b2, _c2, _d, _e;
+      const isMobile = (_c2 = (_b2 = (_a2 = window.matchMedia) == null ? void 0 : _a2.call(window, "(max-width: 768px)")) == null ? void 0 : _b2.matches) != null ? _c2 : false;
+      const el = (_e = (_d = isMobile ? mobileInputRef.current : desktopInputRef.current) != null ? _d : desktopInputRef.current) != null ? _e : mobileInputRef.current;
+      el == null ? void 0 : el.focus();
+    });
+    return () => window.cancelAnimationFrame(raf);
+  }, [isSearchOpen, showSearch]);
+  (0, import_react5.useEffect)(() => {
+    if (!showSearch || !isSearchOpen) return;
+    const onPointerDown = (e) => {
+      var _a2, _b2, _c2, _d;
+      const target = e.target;
+      if (!target) return;
+      const insideDesktop = (_b2 = (_a2 = desktopSearchRef.current) == null ? void 0 : _a2.contains(target)) != null ? _b2 : false;
+      const insideMobile = (_d = (_c2 = mobileSearchRef.current) == null ? void 0 : _c2.contains(target)) != null ? _d : false;
+      if (insideDesktop || insideMobile) return;
+      if (searchValue.trim() === "") setSearchOpen(false);
+    };
+    document.addEventListener("mousedown", onPointerDown, true);
+    document.addEventListener("touchstart", onPointerDown, true);
+    return () => {
+      document.removeEventListener("mousedown", onPointerDown, true);
+      document.removeEventListener("touchstart", onPointerDown, true);
+    };
+  }, [isSearchOpen, searchValue, showSearch]);
+  const handleSearchChange = (next) => {
+    setSearchValue(next);
+    if (debounceTimerRef.current) window.clearTimeout(debounceTimerRef.current);
+    debounceTimerRef.current = window.setTimeout(() => {
+      onSearchChnage == null ? void 0 : onSearchChnage(next);
+    }, 300);
+  };
+  const clearSearch = (e) => {
+    var _a2, _b2, _c2, _d, _e;
+    e == null ? void 0 : e.preventDefault();
+    e == null ? void 0 : e.stopPropagation();
+    setSearchValue("");
+    if (debounceTimerRef.current) window.clearTimeout(debounceTimerRef.current);
+    onSearchChnage == null ? void 0 : onSearchChnage("");
+    const isMobile = (_c2 = (_b2 = (_a2 = window.matchMedia) == null ? void 0 : _a2.call(window, "(max-width: 768px)")) == null ? void 0 : _b2.matches) != null ? _c2 : false;
+    const el = (_e = (_d = isMobile ? mobileInputRef.current : desktopInputRef.current) != null ? _d : desktopInputRef.current) != null ? _e : mobileInputRef.current;
+    el == null ? void 0 : el.focus();
+  };
+  const iconBtnClass = ["ak-thh__iconBtn", scrolled ? "ak-thh__iconBtn--scrolled" : "ak-thh__iconBtn--top"].join(" ");
   const headerStyle = {
     backgroundColor: `rgba(10, 10, 12, ${bgAlpha})`,
     backdropFilter: blurPx > 0 ? `blur(${blurPx}px)` : void 0,
@@ -1132,7 +1519,7 @@ function TransparentHeroHeader({ section }) {
     boxShadow: `inset 0 -1px 0 rgba(255,255,255,${borderAlpha})`
   };
   const positionClass = sticky ? "ak-thh__bar--sticky" : "ak-thh__bar--static";
-  return /* @__PURE__ */ import_react5.default.createElement("header", { className: `ak-thh ${positionClass}`, style: headerStyle }, /* @__PURE__ */ import_react5.default.createElement("div", { className: "ak-thh__inner" }, /* @__PURE__ */ import_react5.default.createElement("div", { className: "ak-thh__logo" }, /* @__PURE__ */ import_react5.default.createElement(
+  return /* @__PURE__ */ import_react5.default.createElement("header", { className: `ak-thh ${positionClass}`, style: headerStyle }, /* @__PURE__ */ import_react5.default.createElement("div", { className: "ak-thh__wrap" }, /* @__PURE__ */ import_react5.default.createElement("div", { className: "ak-thh__inner" }, /* @__PURE__ */ import_react5.default.createElement("div", { className: "ak-thh__logo" }, /* @__PURE__ */ import_react5.default.createElement(
     "div",
     {
       className: [
@@ -1158,30 +1545,111 @@ function TransparentHeroHeader({ section }) {
       onSelect: setActiveLabel,
       scrolled
     }
-  )), /* @__PURE__ */ import_react5.default.createElement("div", { className: "ak-thh__actions" }, showProfile ? /* @__PURE__ */ import_react5.default.createElement(
+  )), /* @__PURE__ */ import_react5.default.createElement("div", { className: "ak-thh__actions" }, showSearch ? /* @__PURE__ */ import_react5.default.createElement(
+    "div",
+    {
+      ref: desktopSearchRef,
+      className: isSearchOpen ? "ak-thh__search ak-thh__search--open" : "ak-thh__search"
+    },
+    !isSearchOpen ? /* @__PURE__ */ import_react5.default.createElement(
+      "button",
+      {
+        type: "button",
+        className: iconBtnClass,
+        "aria-label": "Search",
+        "aria-expanded": false,
+        onClick: () => setSearchOpen(true)
+      },
+      /* @__PURE__ */ import_react5.default.createElement(IconSearch2, null)
+    ) : null,
+    isSearchOpen ? /* @__PURE__ */ import_react5.default.createElement(
+      "span",
+      {
+        className: "ak-thh__searchIconSpacer",
+        "aria-hidden": true,
+        onClick: (e) => {
+          e.stopPropagation();
+        }
+      }
+    ) : null,
+    /* @__PURE__ */ import_react5.default.createElement("div", { className: "ak-thh__searchField", "aria-hidden": !isSearchOpen }, /* @__PURE__ */ import_react5.default.createElement("div", { className: "ak-thh__searchInputWrap" }, /* @__PURE__ */ import_react5.default.createElement("span", { className: "ak-thh__searchInputIcon", "aria-hidden": true }, /* @__PURE__ */ import_react5.default.createElement(IconSearch2, null)), /* @__PURE__ */ import_react5.default.createElement(
+      "input",
+      {
+        ref: desktopInputRef,
+        className: "ak-thh__searchInput",
+        type: "search",
+        inputMode: "search",
+        autoComplete: "off",
+        placeholder: "Search products...",
+        value: searchValue,
+        onChange: (e) => handleSearchChange(e.target.value),
+        onKeyDown: (e) => {
+          if (e.key === "Enter") e.preventDefault();
+        }
+      }
+    ), searchValue.trim() ? /* @__PURE__ */ import_react5.default.createElement(
+      "button",
+      {
+        type: "button",
+        className: "ak-thh__searchClear",
+        "aria-label": "Clear search",
+        onClick: (e) => clearSearch(e)
+      },
+      /* @__PURE__ */ import_react5.default.createElement(IconX2, null)
+    ) : null))
+  ) : null, showProfile ? /* @__PURE__ */ import_react5.default.createElement(
     "button",
     {
       type: "button",
-      className: [
-        "ak-thh__iconBtn",
-        scrolled ? "ak-thh__iconBtn--scrolled" : "ak-thh__iconBtn--top"
-      ].join(" "),
-      "aria-label": "Account"
+      id: "profile-button",
+      className: iconBtnClass,
+      "aria-label": "Account",
+      onClick: () => onProfileClick == null ? void 0 : onProfileClick()
     },
     /* @__PURE__ */ import_react5.default.createElement(IconUser2, null)
   ) : null, showCart ? /* @__PURE__ */ import_react5.default.createElement(
     "button",
     {
       type: "button",
-      className: [
-        "ak-thh__iconBtn",
-        scrolled ? "ak-thh__iconBtn--scrolled" : "ak-thh__iconBtn--top"
-      ].join(" "),
-      "aria-label": "Shopping cart"
+      className: iconBtnClass,
+      "aria-label": "Shopping cart",
+      onClick: () => onCartClick == null ? void 0 : onCartClick()
     },
     /* @__PURE__ */ import_react5.default.createElement(IconBag2, null),
-    cartBadge ? /* @__PURE__ */ import_react5.default.createElement("span", { className: "ak-thh__badge" }, cartBadge) : null
-  ) : null)));
+    /* @__PURE__ */ import_react5.default.createElement("span", { className: "ak-thh__badge" }, cartCount != null ? cartCount : 0)
+  ) : null)), showSearch ? /* @__PURE__ */ import_react5.default.createElement(
+    "div",
+    {
+      ref: mobileSearchRef,
+      className: isSearchOpen ? "ak-thh__searchMobile ak-thh__searchMobile--open" : "ak-thh__searchMobile",
+      "aria-hidden": !isSearchOpen
+    },
+    /* @__PURE__ */ import_react5.default.createElement("div", { className: "ak-thh__searchMobileInner" }, /* @__PURE__ */ import_react5.default.createElement("div", { className: "ak-thh__searchInputWrap" }, /* @__PURE__ */ import_react5.default.createElement("span", { className: "ak-thh__searchInputIcon", "aria-hidden": true }, /* @__PURE__ */ import_react5.default.createElement(IconSearch2, null)), /* @__PURE__ */ import_react5.default.createElement(
+      "input",
+      {
+        ref: mobileInputRef,
+        className: "ak-thh__searchInput",
+        type: "search",
+        inputMode: "search",
+        autoComplete: "off",
+        placeholder: "Search products...",
+        value: searchValue,
+        onChange: (e) => handleSearchChange(e.target.value),
+        onKeyDown: (e) => {
+          if (e.key === "Enter") e.preventDefault();
+        }
+      }
+    ), searchValue.trim() ? /* @__PURE__ */ import_react5.default.createElement(
+      "button",
+      {
+        type: "button",
+        className: "ak-thh__searchClear",
+        "aria-label": "Clear search",
+        onClick: (e) => clearSearch(e)
+      },
+      /* @__PURE__ */ import_react5.default.createElement(IconX2, null)
+    ) : null))
+  ) : null));
 }
 
 // src/components/MessageStyleTestimonialsSection/MessageStyleTestimonials.tsx
