@@ -1,6 +1,11 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 
-import { normalizeImageUrl, resolveHeaderNavActiveLabel } from "../HeroSection/heroSectionUtils";
+import {
+  normalizeImageUrl,
+  normalizeNavLinkPath,
+  resolveHeaderNavActiveLabel,
+  subscribeToPathname,
+} from "../HeroSection/heroSectionUtils";
 
 export type LogoFocusedHeaderNavBlockProps = {
   label?: string;
@@ -174,24 +179,11 @@ function NavToggle({ items, active, onSelect }: NavToggleProps) {
                 // If the host app uses a client-side router, updating history is enough
                 // for it to respond without a full page reload.
                 try {
-                  const raw = href.trim();
-                  const isAbsolute = /^https?:\/\//i.test(raw);
-
-                  // Treat "store/..." as "/store/..." to avoid path-appending like
-                  // /store/.../store/... when clicked from a nested route.
-                  const normalized = !isAbsolute && raw && !raw.startsWith("/") && !raw.startsWith("#")
-                    ? `/${raw.replace(/^\.\//, "")}`
-                    : raw;
-
-                  // Full URL support: if it’s same-origin we can pushState; otherwise
-                  // fall back to normal browser navigation.
-                  const base = window.location.origin;
-                  const url = new URL(normalized, base);
-
-                  if (url.origin !== window.location.origin) return;
+                  const navPath = normalizeNavLinkPath(href);
+                  if (!navPath) return;
 
                   e.preventDefault();
-                  window.history.pushState({}, "", url.pathname + url.search + url.hash);
+                  window.history.pushState({}, "", navPath);
                   window.dispatchEvent(new PopStateEvent("popstate"));
                 } catch {
                   // If URL parsing fails, fall back to normal browser navigation.
@@ -234,11 +226,7 @@ export default function LogoFocusedHeader({ section, cartCount, onSearchChnage, 
     }
   });
 
-  useEffect(() => {
-    const onPop = () => setPathname(window.location.pathname ?? "");
-    window.addEventListener("popstate", onPop);
-    return () => window.removeEventListener("popstate", onPop);
-  }, []);
+  useEffect(() => subscribeToPathname(setPathname), []);
 
   const navItems = useMemo(() => {
     const blocks = Array.isArray(rawBlocks) ? rawBlocks : [];
@@ -251,19 +239,14 @@ export default function LogoFocusedHeader({ section, cartCount, onSearchChnage, 
   const [activeLabel, setActiveLabel] = useState(() => {
     try {
       const p = window.location.pathname ?? "";
-      return resolveHeaderNavActiveLabel(p, navItems) ?? navItems[0]?.label ?? "";
+      return resolveHeaderNavActiveLabel(p, navItems) ?? "";
     } catch {
-      return navItems[0]?.label ?? "";
+      return "";
     }
   });
 
   useEffect(() => {
-    setActiveLabel((prev) => {
-      const matched = resolveHeaderNavActiveLabel(pathname, navItems);
-      if (matched !== null) return matched;
-      if (navItems.some((n) => n.label === prev)) return prev;
-      return navItems[0]?.label ?? "";
-    });
+    setActiveLabel(resolveHeaderNavActiveLabel(pathname, navItems) ?? "");
   }, [pathname, navItems]);
 
   const logoText = safeText(props.logoText) || "Logo";

@@ -70,32 +70,62 @@ function normalizeImageUrl(raw) {
   if (s.startsWith("//")) return `https://${s}`;
   return `https://${s}`;
 }
+function normalizePathname(pathname) {
+  let p = pathname || "/";
+  if (p.length > 1 && p.endsWith("/")) p = p.slice(0, -1);
+  return p;
+}
+function normalizeNavLinkPath(href, baseOrigin) {
+  const raw = String(href != null ? href : "").trim();
+  if (!raw || raw.startsWith("#")) return null;
+  const origin = baseOrigin != null ? baseOrigin : typeof window !== "undefined" ? window.location.origin : "http://localhost";
+  try {
+    const isAbsolute = /^https?:\/\//i.test(raw);
+    const normalized = !isAbsolute && !raw.startsWith("/") ? `/${raw.replace(/^\.\//, "")}` : raw;
+    const url = new URL(normalized, origin);
+    if (typeof window !== "undefined" && url.origin !== window.location.origin) return null;
+    return normalizePathname(url.pathname || "/");
+  } catch {
+    return null;
+  }
+}
 function resolveHeaderNavActiveLabel(pathname, items) {
   var _a;
   if (!items.length) return null;
   let best = null;
-  const pathRaw = pathname || "/";
-  let pathNorm = pathRaw;
-  if (pathNorm.length > 1 && pathNorm.endsWith("/")) pathNorm = pathNorm.slice(0, -1);
-  const origin = typeof window !== "undefined" ? window.location.origin : "http://localhost";
+  const pathNorm = normalizePathname(pathname);
   for (const item of items) {
-    const href = String((_a = item.link) != null ? _a : "").trim();
-    if (!href) continue;
-    try {
-      const isAbsolute = /^https?:\/\//i.test(href);
-      const normalized = !isAbsolute && href && !href.startsWith("/") && !href.startsWith("#") ? `/${href.replace(/^\.\//, "")}` : href;
-      const url = new URL(normalized, origin);
-      if (typeof window !== "undefined" && url.origin !== window.location.origin) continue;
-      let p = url.pathname || "/";
-      if (p.length > 1 && p.endsWith("/")) p = p.slice(0, -1);
-      const matches = p === "/" ? pathNorm === "/" : pathNorm === p || pathNorm.startsWith(`${p}/`);
-      if (matches && (!best || p.length > best.len)) {
-        best = { label: item.label, len: p.length };
-      }
-    } catch {
+    const p = normalizeNavLinkPath(String((_a = item.link) != null ? _a : ""));
+    if (!p) continue;
+    const matches = p === "/" ? pathNorm === "/" : pathNorm === p || pathNorm.startsWith(`${p}/`);
+    if (matches && (!best || p.length > best.len)) {
+      best = { label: item.label, len: p.length };
     }
   }
   return best ? best.label : null;
+}
+function subscribeToPathname(onPathname) {
+  if (typeof window === "undefined") return () => {
+  };
+  const notify = () => {
+    var _a;
+    return onPathname((_a = window.location.pathname) != null ? _a : "");
+  };
+  notify();
+  window.addEventListener("popstate", notify);
+  const { pushState, replaceState } = history;
+  const wrap = (original) => function(...args) {
+    const result = original.apply(this, args);
+    notify();
+    return result;
+  };
+  history.pushState = wrap(pushState);
+  history.replaceState = wrap(replaceState);
+  return () => {
+    window.removeEventListener("popstate", notify);
+    history.pushState = pushState;
+    history.replaceState = replaceState;
+  };
 }
 
 // src/components/HeroSection/HeroSlider/index.tsx
@@ -962,14 +992,10 @@ function NavToggle({ items, active, onSelect }) {
             return;
           }
           try {
-            const raw = href.trim();
-            const isAbsolute = /^https?:\/\//i.test(raw);
-            const normalized = !isAbsolute && raw && !raw.startsWith("/") && !raw.startsWith("#") ? `/${raw.replace(/^\.\//, "")}` : raw;
-            const base = window.location.origin;
-            const url = new URL(normalized, base);
-            if (url.origin !== window.location.origin) return;
+            const navPath = normalizeNavLinkPath(href);
+            if (!navPath) return;
             e.preventDefault();
-            window.history.pushState({}, "", url.pathname + url.search + url.hash);
+            window.history.pushState({}, "", navPath);
             window.dispatchEvent(new PopStateEvent("popstate"));
           } catch {
           }
@@ -1002,14 +1028,7 @@ function LogoFocusedHeader({ section, cartCount, onSearchChnage, onProfileClick,
       return "";
     }
   });
-  (0, import_react4.useEffect)(() => {
-    const onPop = () => {
-      var _a2;
-      return setPathname((_a2 = window.location.pathname) != null ? _a2 : "");
-    };
-    window.addEventListener("popstate", onPop);
-    return () => window.removeEventListener("popstate", onPop);
-  }, []);
+  (0, import_react4.useEffect)(() => subscribeToPathname(setPathname), []);
   const navItems = (0, import_react4.useMemo)(() => {
     const blocks = Array.isArray(rawBlocks) ? rawBlocks : [];
     return blocks.slice(0, 2).map((b, i) => {
@@ -1021,22 +1040,17 @@ function LogoFocusedHeader({ section, cartCount, onSearchChnage, onProfileClick,
     });
   }, [rawBlocks]);
   const [activeLabel, setActiveLabel] = (0, import_react4.useState)(() => {
-    var _a2, _b2, _c2, _d, _e, _f;
+    var _a2, _b2;
     try {
       const p = (_a2 = window.location.pathname) != null ? _a2 : "";
-      return (_d = (_c2 = resolveHeaderNavActiveLabel(p, navItems)) != null ? _c2 : (_b2 = navItems[0]) == null ? void 0 : _b2.label) != null ? _d : "";
+      return (_b2 = resolveHeaderNavActiveLabel(p, navItems)) != null ? _b2 : "";
     } catch {
-      return (_f = (_e = navItems[0]) == null ? void 0 : _e.label) != null ? _f : "";
+      return "";
     }
   });
   (0, import_react4.useEffect)(() => {
-    setActiveLabel((prev) => {
-      var _a2, _b2;
-      const matched = resolveHeaderNavActiveLabel(pathname, navItems);
-      if (matched !== null) return matched;
-      if (navItems.some((n) => n.label === prev)) return prev;
-      return (_b2 = (_a2 = navItems[0]) == null ? void 0 : _a2.label) != null ? _b2 : "";
-    });
+    var _a2;
+    setActiveLabel((_a2 = resolveHeaderNavActiveLabel(pathname, navItems)) != null ? _a2 : "");
   }, [pathname, navItems]);
   const logoText = safeText(props.logoText) || "Logo";
   const brandName = safeText(props.brandName) || "";
@@ -1383,14 +1397,7 @@ function TransparentHeroHeader({ section, cartCount, onSearchChnage, onProfileCl
       return "";
     }
   });
-  (0, import_react5.useEffect)(() => {
-    const onPop = () => {
-      var _a2;
-      return setPathname((_a2 = window.location.pathname) != null ? _a2 : "");
-    };
-    window.addEventListener("popstate", onPop);
-    return () => window.removeEventListener("popstate", onPop);
-  }, []);
+  (0, import_react5.useEffect)(() => subscribeToPathname(setPathname), []);
   const navItems = (0, import_react5.useMemo)(() => {
     const blocks = Array.isArray(rawBlocks) ? rawBlocks : [];
     return blocks.slice(0, 2).map((b, i) => {
@@ -1402,23 +1409,18 @@ function TransparentHeroHeader({ section, cartCount, onSearchChnage, onProfileCl
     });
   }, [rawBlocks]);
   const [activeLabel, setActiveLabel] = (0, import_react5.useState)(() => {
-    var _a2, _b2, _c2, _d, _e, _f;
+    var _a2, _b2;
     try {
       const p = (_a2 = window.location.pathname) != null ? _a2 : "";
-      return (_d = (_c2 = resolveHeaderNavActiveLabel(p, navItems)) != null ? _c2 : (_b2 = navItems[0]) == null ? void 0 : _b2.label) != null ? _d : "";
+      return (_b2 = resolveHeaderNavActiveLabel(p, navItems)) != null ? _b2 : "";
     } catch {
-      return (_f = (_e = navItems[0]) == null ? void 0 : _e.label) != null ? _f : "";
+      return "";
     }
   });
   const [scrollY, setScrollY] = (0, import_react5.useState)(0);
   (0, import_react5.useEffect)(() => {
-    setActiveLabel((prev) => {
-      var _a2, _b2;
-      const matched = resolveHeaderNavActiveLabel(pathname, navItems);
-      if (matched !== null) return matched;
-      if (navItems.some((n) => n.label === prev)) return prev;
-      return (_b2 = (_a2 = navItems[0]) == null ? void 0 : _a2.label) != null ? _b2 : "";
-    });
+    var _a2;
+    setActiveLabel((_a2 = resolveHeaderNavActiveLabel(pathname, navItems)) != null ? _a2 : "");
   }, [pathname, navItems]);
   const enableTransition = props.enableScrollTransition !== false;
   const sticky = props.stickyHeader !== false;
