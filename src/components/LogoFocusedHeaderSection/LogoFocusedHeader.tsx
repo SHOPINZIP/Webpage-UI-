@@ -55,6 +55,38 @@ function safeText(v: unknown): string {
   return String(v ?? "").trim();
 }
 
+function handleClientNavClick(
+  e: React.MouseEvent<HTMLAnchorElement>,
+  href: string,
+  options?: { scrollToTop?: boolean },
+) {
+  if (
+    e.defaultPrevented ||
+    e.button !== 0 ||
+    e.metaKey ||
+    e.ctrlKey ||
+    e.shiftKey ||
+    e.altKey
+  ) {
+    return;
+  }
+
+  try {
+    const navPath = normalizeNavLinkPath(href);
+    if (!navPath) return;
+
+    e.preventDefault();
+    window.history.pushState({}, "", navPath);
+    window.dispatchEvent(new PopStateEvent("popstate"));
+
+    if (options?.scrollToTop) {
+      window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+    }
+  } catch {
+    // If URL parsing fails, fall back to normal browser navigation.
+  }
+}
+
 function IconUser() {
   return (
     <svg
@@ -164,30 +196,7 @@ function NavToggle({ items, active, onSelect }: NavToggleProps) {
               }
               onClick={(e) => {
                 onSelect(item.label);
-                // Keep default link behavior for new-tab / new-window / context menu.
-                if (
-                  e.defaultPrevented ||
-                  e.button !== 0 ||
-                  e.metaKey ||
-                  e.ctrlKey ||
-                  e.shiftKey ||
-                  e.altKey
-                ) {
-                  return;
-                }
-
-                // If the host app uses a client-side router, updating history is enough
-                // for it to respond without a full page reload.
-                try {
-                  const navPath = normalizeNavLinkPath(href);
-                  if (!navPath) return;
-
-                  e.preventDefault();
-                  window.history.pushState({}, "", navPath);
-                  window.dispatchEvent(new PopStateEvent("popstate"));
-                } catch {
-                  // If URL parsing fails, fall back to normal browser navigation.
-                }
+                handleClientNavClick(e, href);
               }}
             >
               {item.label}
@@ -351,17 +360,34 @@ export default function LogoFocusedHeader({ section, cartCount, onSearchChnage, 
       <div className="ak-lfh__bar">
         <div className="ak-lfh__row">
           <div className="ak-lfh__brand">
-            <div className="ak-lfh__logoBadge" aria-hidden={Boolean(logoSrc)}>
-              {logoSrc ? (
-                <img
-                  className="ak-lfh__logoImg"
-                  src={logoSrc}
-                  alt={brandName}
-                  loading="lazy"
-                />
-              ) : (
-                <span className="ak-lfh__logoText">{logoText}</span>
-              )}
+            <div className="ak-lfh__brandMark">
+              <a
+                href="/"
+                className="ak-lfh__logoBadge"
+                aria-label={brandName ? `Go to ${brandName} home` : "Go to home"}
+                onClick={(e) => handleClientNavClick(e, "/", { scrollToTop: true })}
+              >
+                {logoSrc ? (
+                  <img
+                    className="ak-lfh__logoImg"
+                    src={logoSrc}
+                    alt=""
+                    loading="lazy"
+                  />
+                ) : (
+                  <span className="ak-lfh__logoText">{logoText}</span>
+                )}
+              </a>
+              {showProfile ? (
+                <button
+                  type="button"
+                  className="ak-lfh__iconBtn ak-lfh__iconBtn--profileMobile"
+                  aria-label="Account"
+                  onClick={() => onProfileClick?.()}
+                >
+                  <IconUser />
+                </button>
+              ) : null}
             </div>
             <div className="ak-lfh__brandText">
               <div className="ak-lfh__brandName">{brandName}</div>

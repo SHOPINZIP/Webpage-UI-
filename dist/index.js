@@ -896,6 +896,22 @@ var import_react4 = __toESM(require("react"));
 function safeText(v) {
   return String(v != null ? v : "").trim();
 }
+function handleClientNavClick(e, href, options) {
+  if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) {
+    return;
+  }
+  try {
+    const navPath = normalizeNavLinkPath(href);
+    if (!navPath) return;
+    e.preventDefault();
+    window.history.pushState({}, "", navPath);
+    window.dispatchEvent(new PopStateEvent("popstate"));
+    if (options == null ? void 0 : options.scrollToTop) {
+      window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+    }
+  } catch {
+  }
+}
 function IconUser() {
   return /* @__PURE__ */ import_react4.default.createElement(
     "svg",
@@ -988,17 +1004,7 @@ function NavToggle({ items, active, onSelect }) {
         className: isActive ? "ak-lfh__navPill ak-lfh__navPill--active" : "ak-lfh__navPill",
         onClick: (e) => {
           onSelect(item.label);
-          if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) {
-            return;
-          }
-          try {
-            const navPath = normalizeNavLinkPath(href);
-            if (!navPath) return;
-            e.preventDefault();
-            window.history.pushState({}, "", navPath);
-            window.dispatchEvent(new PopStateEvent("popstate"));
-          } catch {
-          }
+          handleClientNavClick(e, href);
         }
       },
       item.label
@@ -1132,15 +1138,33 @@ function LogoFocusedHeader({ section, cartCount, onSearchChnage, onProfileClick,
     const el = (_e = (_d = isMobile ? mobileInputRef.current : desktopInputRef.current) != null ? _d : desktopInputRef.current) != null ? _e : mobileInputRef.current;
     el == null ? void 0 : el.focus();
   };
-  return /* @__PURE__ */ import_react4.default.createElement("header", { className: `ak-lfh ${sticky ? "ak-lfh__bar--sticky" : ""}` }, /* @__PURE__ */ import_react4.default.createElement("div", { className: "ak-lfh__bar" }, /* @__PURE__ */ import_react4.default.createElement("div", { className: "ak-lfh__row" }, /* @__PURE__ */ import_react4.default.createElement("div", { className: "ak-lfh__brand" }, /* @__PURE__ */ import_react4.default.createElement("div", { className: "ak-lfh__logoBadge", "aria-hidden": Boolean(logoSrc) }, logoSrc ? /* @__PURE__ */ import_react4.default.createElement(
-    "img",
+  return /* @__PURE__ */ import_react4.default.createElement("header", { className: `ak-lfh ${sticky ? "ak-lfh__bar--sticky" : ""}` }, /* @__PURE__ */ import_react4.default.createElement("div", { className: "ak-lfh__bar" }, /* @__PURE__ */ import_react4.default.createElement("div", { className: "ak-lfh__row" }, /* @__PURE__ */ import_react4.default.createElement("div", { className: "ak-lfh__brand" }, /* @__PURE__ */ import_react4.default.createElement("div", { className: "ak-lfh__brandMark" }, /* @__PURE__ */ import_react4.default.createElement(
+    "a",
     {
-      className: "ak-lfh__logoImg",
-      src: logoSrc,
-      alt: brandName,
-      loading: "lazy"
-    }
-  ) : /* @__PURE__ */ import_react4.default.createElement("span", { className: "ak-lfh__logoText" }, logoText)), /* @__PURE__ */ import_react4.default.createElement("div", { className: "ak-lfh__brandText" }, /* @__PURE__ */ import_react4.default.createElement("div", { className: "ak-lfh__brandName" }, brandName), showSubtitle ? /* @__PURE__ */ import_react4.default.createElement("div", { className: "ak-lfh__brandSub" }, brandSubtitle) : null)), /* @__PURE__ */ import_react4.default.createElement("div", { className: "ak-lfh__center" }, /* @__PURE__ */ import_react4.default.createElement(NavToggle, { items: navItems, active: activeLabel, onSelect: setActiveLabel })), /* @__PURE__ */ import_react4.default.createElement("div", { className: "ak-lfh__actions" }, showSearch ? /* @__PURE__ */ import_react4.default.createElement(
+      href: "/",
+      className: "ak-lfh__logoBadge",
+      "aria-label": brandName ? `Go to ${brandName} home` : "Go to home",
+      onClick: (e) => handleClientNavClick(e, "/", { scrollToTop: true })
+    },
+    logoSrc ? /* @__PURE__ */ import_react4.default.createElement(
+      "img",
+      {
+        className: "ak-lfh__logoImg",
+        src: logoSrc,
+        alt: "",
+        loading: "lazy"
+      }
+    ) : /* @__PURE__ */ import_react4.default.createElement("span", { className: "ak-lfh__logoText" }, logoText)
+  ), showProfile ? /* @__PURE__ */ import_react4.default.createElement(
+    "button",
+    {
+      type: "button",
+      className: "ak-lfh__iconBtn ak-lfh__iconBtn--profileMobile",
+      "aria-label": "Account",
+      onClick: () => onProfileClick == null ? void 0 : onProfileClick()
+    },
+    /* @__PURE__ */ import_react4.default.createElement(IconUser, null)
+  ) : null), /* @__PURE__ */ import_react4.default.createElement("div", { className: "ak-lfh__brandText" }, /* @__PURE__ */ import_react4.default.createElement("div", { className: "ak-lfh__brandName" }, brandName), showSubtitle ? /* @__PURE__ */ import_react4.default.createElement("div", { className: "ak-lfh__brandSub" }, brandSubtitle) : null)), /* @__PURE__ */ import_react4.default.createElement("div", { className: "ak-lfh__center" }, /* @__PURE__ */ import_react4.default.createElement(NavToggle, { items: navItems, active: activeLabel, onSelect: setActiveLabel })), /* @__PURE__ */ import_react4.default.createElement("div", { className: "ak-lfh__actions" }, showSearch ? /* @__PURE__ */ import_react4.default.createElement(
     "div",
     {
       ref: desktopSearchRef,
