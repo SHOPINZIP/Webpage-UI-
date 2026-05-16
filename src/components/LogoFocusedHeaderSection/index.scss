@@ -54,6 +54,8 @@
   font-weight: 600;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
   overflow: hidden;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .ak-lfh__logoImg {
@@ -184,11 +186,26 @@
   transform: scale(0.96);
 }
 
+.ak-lfh__brandMark {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.ak-lfh__iconBtn--profileMobile {
+  display: inline-flex;
+}
+
 .ak-lfh__iconBtn--profileDesktop {
   display: none;
 }
 
 @media (min-width: 768px) {
+  .ak-lfh__iconBtn--profileMobile {
+    display: none;
+  }
+
   .ak-lfh__iconBtn--profileDesktop {
     display: inline-flex;
   }
