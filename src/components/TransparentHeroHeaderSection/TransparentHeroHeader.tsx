@@ -1,6 +1,10 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 
-import { normalizeImageUrl, resolveHeaderNavActiveLabel } from "../HeroSection/heroSectionUtils";
+import {
+  normalizeImageUrl,
+  resolveHeaderNavActiveLabel,
+  subscribeToPathname,
+} from "../HeroSection/heroSectionUtils";
 
 export type TransparentHeroHeaderNavBlockProps = {
   label?: string;
@@ -213,11 +217,7 @@ export default function TransparentHeroHeader({ section, cartCount, onSearchChna
     }
   });
 
-  useEffect(() => {
-    const onPop = () => setPathname(window.location.pathname ?? "");
-    window.addEventListener("popstate", onPop);
-    return () => window.removeEventListener("popstate", onPop);
-  }, []);
+  useEffect(() => subscribeToPathname(setPathname), []);
 
   const navItems = useMemo(() => {
     const blocks = Array.isArray(rawBlocks) ? rawBlocks : [];
@@ -230,20 +230,15 @@ export default function TransparentHeroHeader({ section, cartCount, onSearchChna
   const [activeLabel, setActiveLabel] = useState(() => {
     try {
       const p = window.location.pathname ?? "";
-      return resolveHeaderNavActiveLabel(p, navItems) ?? navItems[0]?.label ?? "";
+      return resolveHeaderNavActiveLabel(p, navItems) ?? "";
     } catch {
-      return navItems[0]?.label ?? "";
+      return "";
     }
   });
   const [scrollY, setScrollY] = useState(0);
 
   useEffect(() => {
-    setActiveLabel((prev) => {
-      const matched = resolveHeaderNavActiveLabel(pathname, navItems);
-      if (matched !== null) return matched;
-      if (navItems.some((n) => n.label === prev)) return prev;
-      return navItems[0]?.label ?? "";
-    });
+    setActiveLabel(resolveHeaderNavActiveLabel(pathname, navItems) ?? "");
   }, [pathname, navItems]);
 
   const enableTransition = props.enableScrollTransition !== false;
@@ -312,6 +307,17 @@ export default function TransparentHeroHeader({ section, cartCount, onSearchChna
       if (debounceTimerRef.current) window.clearTimeout(debounceTimerRef.current);
     };
   }, []);
+
+  useEffect(() => {
+    // When navigating away from the store, reset search UI/state.
+    if (showSearch) return;
+    if (!isSearchOpen && searchValue.trim() === "") return;
+
+    if (debounceTimerRef.current) window.clearTimeout(debounceTimerRef.current);
+    setIsSearchOpen(false);
+    setSearchValue("");
+    onSearchChnage?.("");
+  }, [showSearch, isSearchOpen, searchValue, onSearchChnage]);
 
   useEffect(() => {
     if (!showSearch || !isSearchOpen) return;
