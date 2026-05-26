@@ -2,6 +2,7 @@ export { default as ScrollParallaxSignatureHero } from "./ScrollParallaxSignatur
 export { default as FullImageTypingHero } from "./FullImageTypingHero";
 export { default as PokerRowRevealHero } from "./PokerRowRevealHero";
 export { default as NSPSignatureHeroMarquee } from "./NSPSignatureHeroMarquee";
+export { default as FloatingSnackGalleryHero } from "./FloatingSnackGalleryHero";
 export type {
   ScrollParallaxSignatureHeroProps,
   NspSignatureHeroSectionDoc,
@@ -22,3 +23,8 @@ export type {
   NSPSignatureHeroMarqueeSectionDoc,
   NSPSignatureHeroMarqueeBlock,
 } from "./NSPSignatureHeroMarquee";
+export type {
+  FloatingSnackGalleryHeroProps,
+  FloatingSnackGalleryHeroSectionDoc,
+  FloatingSnackGalleryImageBlock,
+} from "./FloatingSnackGalleryHero";

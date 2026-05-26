@@ -397,6 +397,34 @@ type NSPSignatureHeroMarqueeProps = {
 };
 declare function NSPSignatureHeroMarquee({ section }: NSPSignatureHeroMarqueeProps): React.JSX.Element | null;
 
+type FloatingSnackGalleryImageBlock = {
+    id?: string;
+    type?: string;
+    image?: string;
+    title?: string;
+    altText?: string;
+    alt?: string;
+    props?: {
+        image?: string;
+        title?: string;
+        altText?: string;
+        alt?: string;
+    };
+};
+type FloatingSnackGalleryHeroSectionDoc = {
+    id?: string;
+    type?: string;
+    enabled?: boolean;
+    settings?: {
+        props?: Record<string, unknown>;
+        blocks?: FloatingSnackGalleryImageBlock[];
+    };
+};
+type FloatingSnackGalleryHeroProps = {
+    section: FloatingSnackGalleryHeroSectionDoc;
+};
+declare function FloatingSnackGalleryHero({ section, }: FloatingSnackGalleryHeroProps): React.JSX.Element | null;
+
 type MinimalTimelineBenefitBlockProps = {
     title?: string;
     desc?: string;
@@ -508,9 +536,64 @@ type CouponTickerMinimalProps = {
 
 declare function CouponTickerMinimal({ section }: CouponTickerMinimalProps): React.JSX.Element | null;
 
+type MarqueeTextRow = "top" | "bottom";
+type MarqueeTextBlock = {
+    id?: string;
+    type?: string;
+    text?: string;
+    row?: MarqueeTextRow | string;
+    props?: {
+        text?: string;
+        row?: MarqueeTextRow | string;
+    };
+};
+type MarqueeTextControls = {
+    speedTop?: number;
+    speedBottom?: number;
+    largeTopRow?: boolean;
+    largeBottomRow?: boolean;
+    pauseOnHover?: boolean;
+};
+type MarqueeTextSettings = {
+    props?: MarqueeTextControls;
+    blocks?: MarqueeTextBlock[];
+};
+type MarqueeTextSectionDoc = {
+    id?: string;
+    type?: "marquee_text" | string;
+    variant?: string;
+    enabled?: boolean;
+    settings?: MarqueeTextSettings;
+};
+type DualLineFeatureMarqueeProps = {
+    section: MarqueeTextSectionDoc;
+};
+type MarqueeLineProps = {
+    items: string[];
+    large?: boolean;
+    reverse?: boolean;
+    durationSec?: number;
+    pauseOnHover?: boolean;
+    reducedMotion?: boolean;
+};
+
+declare function DualLineFeatureMarquee({ section }: DualLineFeatureMarqueeProps): React.JSX.Element | null;
+
+type FeatureMarqueeBlockProps = {
+    marqueeTop: string[];
+    marqueeBottom: string[];
+    speedTop?: number;
+    speedBottom?: number;
+    largeTopRow?: boolean;
+    largeBottomRow?: boolean;
+    pauseOnHover?: boolean;
+    reducedMotion?: boolean;
+};
+declare function FeatureMarqueeBlock({ marqueeTop, marqueeBottom, speedTop, speedBottom, largeTopRow, largeBottomRow, pauseOnHover, reducedMotion, }: FeatureMarqueeBlockProps): React.JSX.Element | null;
+
 /**
  * Shared helpers for hero layouts (slider + scrollable).
  */
 declare function normalizeImageUrl(raw: unknown): string;
 
-export { type CouponStripBlock, type CouponStripBlockProps, type CouponStripsControls, type CouponStripsSectionDoc, type CouponStripsSettings, CouponTickerMinimal, type CouponTickerMinimalProps, CreativeCategoryMarquee, FullImageTypingHero, type FullImageTypingHeroProps, type FullImageTypingHeroSectionDoc, type FullImageTypingWordBlock, HeroScrollableSlide, type HeroScrollableSlideProps, type HeroSection, type HeroSectionControls, type HeroSectionSettings, type HeroSlideAlignmentOverride, type HeroSlideBlock, type HeroSlideBlockProps, HeroSlider, type HeroSliderProps, LiquidFocusCategories, LogoFocusedHeader, type LogoFocusedHeaderControls, type LogoFocusedHeaderNavBlock, type LogoFocusedHeaderNavBlockProps, type LogoFocusedHeaderProps, type LogoFocusedHeaderSectionDoc, type LogoFocusedHeaderSettings, MerchantFooterReveal, type MerchantFooterRevealBlock, type MerchantFooterRevealPolicyBlockProps, type MerchantFooterRevealProps, type MerchantFooterRevealPropsComponent, type MerchantFooterRevealSectionDoc, type MerchantFooterRevealSettings, type MerchantFooterRevealSocialPlatform, type MessageStyleTestimonialBlock, type MessageStyleTestimonialItemProps, MessageStyleTestimonials, type MessageStyleTestimonialsProps, type MessageStyleTestimonialsSectionDoc, type MessageStyleTestimonialsSettings, type MinimalTimelineBenefitBlock, type MinimalTimelineBenefitBlockProps, MinimalTimelineBenefits, type MinimalTimelineBenefitsControls, type MinimalTimelineBenefitsProps, type MinimalTimelineBenefitsSectionDoc, type MinimalTimelineBenefitsSettings, NSPSignatureHeroMarquee, type NSPSignatureHeroMarqueeBlock, type NSPSignatureHeroMarqueeProps, type NSPSignatureHeroMarqueeSectionDoc, type NspSignatureHeroBlock, type NspSignatureHeroSectionDoc, PokerRowRevealHero, type PokerRowRevealHeroBlock, type PokerRowRevealHeroProps, type PokerRowRevealHeroSectionDoc, PortraitTestimonials, ProductCardMarquee, ProductMarquee, type ProductMarqueeBlock, type ProductMarqueeItemProps, type ProductMarqueeProps, type ProductMarqueeSectionDoc, type ProductMarqueeSettings, STYLE_APPLE_MARQUEE, STYLE_MESSAGE_BUBBLE, STYLE_PORTRAIT_TESTIMONIALS, STYLE_STACKED_TESTIMONIALS, ScrollParallaxSignatureHero, type ScrollParallaxSignatureHeroProps, type StackedTestimonialBlock, type StackedTestimonialItemProps, StackedTestimonials, type StackedTestimonialsProps, type StackedTestimonialsSectionDoc, type StackedTestimonialsSettings, SubHeroImageLoop, type SubHeroImageLoopProps, type SubHeroImageLoopSectionDoc, TransparentHeroHeader, type TransparentHeroHeaderControls, type TransparentHeroHeaderNavBlock, type TransparentHeroHeaderNavBlockProps, type TransparentHeroHeaderProps, type TransparentHeroHeaderSectionDoc, type TransparentHeroHeaderSettings, normalizeImageUrl };
+export { type CouponStripBlock, type CouponStripBlockProps, type CouponStripsControls, type CouponStripsSectionDoc, type CouponStripsSettings, CouponTickerMinimal, type CouponTickerMinimalProps, CreativeCategoryMarquee, DualLineFeatureMarquee, type DualLineFeatureMarqueeProps, FeatureMarqueeBlock, type FeatureMarqueeBlockProps, FloatingSnackGalleryHero, type FloatingSnackGalleryHeroProps, type FloatingSnackGalleryHeroSectionDoc, type FloatingSnackGalleryImageBlock, FullImageTypingHero, type FullImageTypingHeroProps, type FullImageTypingHeroSectionDoc, type FullImageTypingWordBlock, HeroScrollableSlide, type HeroScrollableSlideProps, type HeroSection, type HeroSectionControls, type HeroSectionSettings, type HeroSlideAlignmentOverride, type HeroSlideBlock, type HeroSlideBlockProps, HeroSlider, type HeroSliderProps, LiquidFocusCategories, LogoFocusedHeader, type LogoFocusedHeaderControls, type LogoFocusedHeaderNavBlock, type LogoFocusedHeaderNavBlockProps, type LogoFocusedHeaderProps, type LogoFocusedHeaderSectionDoc, type LogoFocusedHeaderSettings, type MarqueeLineProps, type MarqueeTextBlock, type MarqueeTextControls, type MarqueeTextRow, type MarqueeTextSectionDoc, type MarqueeTextSettings, MerchantFooterReveal, type MerchantFooterRevealBlock, type MerchantFooterRevealPolicyBlockProps, type MerchantFooterRevealProps, type MerchantFooterRevealPropsComponent, type MerchantFooterRevealSectionDoc, type MerchantFooterRevealSettings, type MerchantFooterRevealSocialPlatform, type MessageStyleTestimonialBlock, type MessageStyleTestimonialItemProps, MessageStyleTestimonials, type MessageStyleTestimonialsProps, type MessageStyleTestimonialsSectionDoc, type MessageStyleTestimonialsSettings, type MinimalTimelineBenefitBlock, type MinimalTimelineBenefitBlockProps, MinimalTimelineBenefits, type MinimalTimelineBenefitsControls, type MinimalTimelineBenefitsProps, type MinimalTimelineBenefitsSectionDoc, type MinimalTimelineBenefitsSettings, NSPSignatureHeroMarquee, type NSPSignatureHeroMarqueeBlock, type NSPSignatureHeroMarqueeProps, type NSPSignatureHeroMarqueeSectionDoc, type NspSignatureHeroBlock, type NspSignatureHeroSectionDoc, PokerRowRevealHero, type PokerRowRevealHeroBlock, type PokerRowRevealHeroProps, type PokerRowRevealHeroSectionDoc, PortraitTestimonials, ProductCardMarquee, ProductMarquee, type ProductMarqueeBlock, type ProductMarqueeItemProps, type ProductMarqueeProps, type ProductMarqueeSectionDoc, type ProductMarqueeSettings, STYLE_APPLE_MARQUEE, STYLE_MESSAGE_BUBBLE, STYLE_PORTRAIT_TESTIMONIALS, STYLE_STACKED_TESTIMONIALS, ScrollParallaxSignatureHero, type ScrollParallaxSignatureHeroProps, type StackedTestimonialBlock, type StackedTestimonialItemProps, StackedTestimonials, type StackedTestimonialsProps, type StackedTestimonialsSectionDoc, type StackedTestimonialsSettings, SubHeroImageLoop, type SubHeroImageLoopProps, type SubHeroImageLoopSectionDoc, TransparentHeroHeader, type TransparentHeroHeaderControls, type TransparentHeroHeaderNavBlock, type TransparentHeroHeaderNavBlockProps, type TransparentHeroHeaderProps, type TransparentHeroHeaderSectionDoc, type TransparentHeroHeaderSettings, normalizeImageUrl };
