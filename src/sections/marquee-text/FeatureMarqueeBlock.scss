@@ -1,0 +1,121 @@
+.ak-dual-line-marquee {
+  width: 100%;
+  max-width: none;
+  overflow: hidden;
+  background: #fbfaf7;
+  color: #0b1f2a;
+}
+
+.feature-marquee-block {
+  width: 100%;
+  max-width: none;
+  border-top: 1px solid #e7e9ec;
+  border-bottom: 1px solid #e7e9ec;
+  padding: 1.75rem 0;
+
+  @media (min-width: 640px) {
+    padding: 2.25rem 0;
+  }
+}
+
+.feature-marquee-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.feature-marquee-row {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.feature-marquee-track {
+  display: inline-flex;
+  flex-shrink: 0;
+  white-space: nowrap;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  animation: feature-marquee-scroll linear infinite;
+  color: #0b1f2a;
+}
+
+.feature-marquee-track--reverse {
+  animation-name: feature-marquee-scroll-reverse;
+}
+
+.feature-marquee-track--pause-hover:hover {
+  animation-play-state: paused;
+}
+
+.feature-marquee-track--lg {
+  font-size: 2.3rem;
+  font-weight: 600;
+  letter-spacing: -0.05em;
+}
+
+@media (min-width: 640px) {
+  .feature-marquee-track--lg {
+    font-size: 3.8rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .feature-marquee-track--lg {
+    font-size: 5rem;
+  }
+}
+
+.feature-marquee-track--sm {
+  font-size: 0.95rem;
+  font-weight: 500;
+  opacity: 0.82;
+}
+
+.feature-marquee-item {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  margin-right: 2.4rem;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+.feature-marquee-dot {
+  margin-left: 2.4rem;
+  color: #f71c5b;
+  opacity: 0.55;
+}
+
+@keyframes feature-marquee-scroll {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes feature-marquee-scroll-reverse {
+  0% {
+    transform: translate3d(-50%, 0, 0);
+  }
+
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .feature-marquee-track {
+    animation: none;
+    transform: none;
+    flex-wrap: wrap;
+    white-space: normal;
+    justify-content: center;
+    row-gap: 0.75rem;
+  }
+}

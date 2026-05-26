@@ -15,10 +15,13 @@ export {
   FullImageTypingHero,
   PokerRowRevealHero,
   NSPSignatureHeroMarquee,
+  FloatingSnackGalleryHero,
 } from "./components/NspSignatureHeroSection";
 export { default as MinimalTimelineBenefits } from "./components/MinimalTimelineBenefitsSection";
 export { default as MerchantFooterReveal } from "./components/MerchantFooterRevealSection";
 export { CouponTickerMinimal } from "./components/CouponStripsSection";
+export { DualLineFeatureMarquee } from "./sections/marquee-text";
+export { FeatureMarqueeBlock } from "./sections/marquee-text";
 export type { HeroScrollableSlideProps } from "./components/HeroSection/HeroScrollableSlide";
 export type {
   SubHeroImageLoopProps,
@@ -38,6 +41,9 @@ export type {
   NSPSignatureHeroMarqueeProps,
   NSPSignatureHeroMarqueeSectionDoc,
   NSPSignatureHeroMarqueeBlock,
+  FloatingSnackGalleryHeroProps,
+  FloatingSnackGalleryHeroSectionDoc,
+  FloatingSnackGalleryImageBlock,
 } from "./components/NspSignatureHeroSection";
 
 export type {
@@ -119,6 +125,17 @@ export type {
   CouponStripBlock,
   CouponStripBlockProps,
 } from "./components/CouponStripsSection";
+
+export type {
+  DualLineFeatureMarqueeProps,
+  FeatureMarqueeBlockProps,
+  MarqueeLineProps,
+  MarqueeTextBlock,
+  MarqueeTextControls,
+  MarqueeTextRow,
+  MarqueeTextSectionDoc,
+  MarqueeTextSettings,
+} from "./sections/marquee-text";
 
 export {
   STYLE_MESSAGE_BUBBLE,

@@ -12,6 +12,19 @@ export function normalizeImageUrl(raw: unknown): string {
   return `https://${s}`;
 }
 
+/** Resolves image fields saved as a string URL or common object shapes. */
+export function resolveBlockImageUrl(raw: unknown): string {
+  if (raw == null) return "";
+  if (typeof raw === "string") return normalizeImageUrl(raw);
+  if (typeof raw === "object") {
+    const record = raw as Record<string, unknown>;
+    return normalizeImageUrl(
+      record.url ?? record.src ?? record.image ?? record.href ?? ""
+    );
+  }
+  return normalizeImageUrl(raw);
+}
+
 type NavItemForMatch = { label: string; link?: string };
 
 function normalizePathname(pathname: string): string {
