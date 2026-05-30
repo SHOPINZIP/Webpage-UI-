@@ -24,8 +24,12 @@ export type ProductMarqueeSectionProps = {
   resetToDefaultOnLeave?: boolean;
 };
 
+import type { ResolvedSectionAppearance, SectionAppearance, StorefrontTheme } from "../../shared/sectionAppearance";
+
 export type ProductMarqueeSettings = {
-  props?: ProductMarqueeSectionProps;
+  props?: ProductMarqueeSectionProps & {
+    appearance?: SectionAppearance;
+  };
   blocks?: ProductMarqueeBlock[];
 };
 
@@ -39,5 +43,7 @@ export type ProductMarqueeSectionDoc = {
 
 export type ProductMarqueeProps = {
   section: ProductMarqueeSectionDoc;
+  appearance?: ResolvedSectionAppearance | null;
+  theme?: StorefrontTheme | null;
 };
 

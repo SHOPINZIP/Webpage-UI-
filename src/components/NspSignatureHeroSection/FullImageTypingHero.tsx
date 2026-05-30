@@ -1,6 +1,20 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 
 import { normalizeImageUrl } from "../HeroSection/heroSectionUtils";
+import { sectionAppearanceStyle } from "../../shared/sectionAppearance";
+import type { ResolvedSectionAppearance, StorefrontTheme } from "../../shared/sectionAppearance";
+import {
+  resolveBlockGroupTextStyle,
+  resolveTextStyle,
+  resolvedTextStyleToInlineStyle,
+} from "../../shared/sectionTypography";
+import {
+  NSP_TYPING_DESCRIPTION_DEFAULT,
+  NSP_TYPING_PRIMARY_BUTTON_TEXT_DEFAULT,
+  NSP_TYPING_SECONDARY_BUTTON_TEXT_DEFAULT,
+  NSP_TYPING_STATIC_HEADING_DEFAULT,
+  NSP_TYPING_WORD_DEFAULT,
+} from "../../shared/textStyleDefaults/nspSignatureHeroTextStyleDefaults";
 
 /** Internal animation / typography — not configurable via section props */
 const TYPING_SPEED_MS = 90;
@@ -32,6 +46,8 @@ export type FullImageTypingHeroSectionDoc = {
 
 export type FullImageTypingHeroProps = {
   section: FullImageTypingHeroSectionDoc;
+  appearance?: ResolvedSectionAppearance | null;
+  theme?: StorefrontTheme | null;
 };
 
 function adjustFontSize(el: HTMLElement | null, max: number, min: number) {
@@ -45,7 +61,11 @@ function adjustFontSize(el: HTMLElement | null, max: number, min: number) {
   }
 }
 
-export default function FullImageTypingHero({ section }: FullImageTypingHeroProps) {
+export default function FullImageTypingHero({
+  section,
+  appearance,
+  theme,
+}: FullImageTypingHeroProps) {
   const props = section.settings?.props ?? {};
   const blocks = section.settings?.blocks ?? [];
 
@@ -136,6 +156,80 @@ export default function FullImageTypingHero({ section }: FullImageTypingHeroProp
     return () => window.removeEventListener("resize", resize);
   }, [displayedText, staticHeading, wordsKey]);
 
+  const staticHeadingStyle = useMemo(
+    () =>
+      resolvedTextStyleToInlineStyle(
+        resolveTextStyle({
+          section,
+          theme,
+          fieldId: "staticHeading",
+          role: "heading",
+          defaultStyle: NSP_TYPING_STATIC_HEADING_DEFAULT,
+        })
+      ),
+    [section, theme]
+  );
+
+  const typingWordStyle = useMemo(
+    () =>
+      resolvedTextStyleToInlineStyle(
+        resolveBlockGroupTextStyle({
+          section,
+          theme,
+          groupKey: "typingWord",
+          role: "heading",
+          defaultStyle: NSP_TYPING_WORD_DEFAULT,
+        })
+      ),
+    [section, theme]
+  );
+
+  const descriptionStyle = useMemo(
+    () =>
+      resolvedTextStyleToInlineStyle(
+        resolveTextStyle({
+          section,
+          theme,
+          fieldId: "description",
+          role: "body",
+          defaultStyle: NSP_TYPING_DESCRIPTION_DEFAULT,
+        })
+      ),
+    [section, theme]
+  );
+
+  const primaryButtonTextStyle = useMemo(
+    () =>
+      resolvedTextStyleToInlineStyle(
+        resolveTextStyle({
+          section,
+          theme,
+          fieldId: "primaryButtonText",
+          role: "body",
+          defaultStyle: NSP_TYPING_PRIMARY_BUTTON_TEXT_DEFAULT,
+        })
+      ),
+    [section, theme]
+  );
+
+  const secondaryButtonTextStyle = useMemo(
+    () =>
+      resolvedTextStyleToInlineStyle(
+        resolveTextStyle({
+          section,
+          theme,
+          fieldId: "secondaryButtonText",
+          role: "body",
+          defaultStyle: NSP_TYPING_SECONDARY_BUTTON_TEXT_DEFAULT,
+        })
+      ),
+    [section, theme]
+  );
+
+  const headingLineBaseStyle: React.CSSProperties = {
+    fontSize: `${MAX_FONT_SIZE_PX}px`,
+  };
+
   if (section.enabled === false) {
     return null;
   }
@@ -144,7 +238,7 @@ export default function FullImageTypingHero({ section }: FullImageTypingHeroProp
   const secondaryHref = secondaryButtonLink || "#";
 
   return (
-    <section className="ak-nsp-typing-hero">
+    <section className="ak-nsp-typing-hero" style={sectionAppearanceStyle(appearance)}>
       <div className="ak-nsp-typing-hero__bg" aria-hidden={!backgroundImage}>
         {backgroundImage ? (
           <img
@@ -163,7 +257,7 @@ export default function FullImageTypingHero({ section }: FullImageTypingHeroProp
             <div
               ref={staticRef}
               className="ak-nsp-typing-hero__line"
-              style={{ fontSize: `${MAX_FONT_SIZE_PX}px` }}
+              style={{ ...staticHeadingStyle, ...headingLineBaseStyle }}
             >
               {staticHeading}
             </div>
@@ -173,7 +267,7 @@ export default function FullImageTypingHero({ section }: FullImageTypingHeroProp
             <div
               ref={dynamicRef}
               className="ak-nsp-typing-hero__line ak-nsp-typing-hero__line--dynamic"
-              style={{ fontSize: `${MAX_FONT_SIZE_PX}px` }}
+              style={{ ...typingWordStyle, ...headingLineBaseStyle }}
             >
               {displayedText}
               <span className="ak-nsp-typing-hero__cursor" aria-hidden />
@@ -181,13 +275,19 @@ export default function FullImageTypingHero({ section }: FullImageTypingHeroProp
           ) : null}
 
           {description ? (
-            <p className="ak-nsp-typing-hero__desc">{description}</p>
+            <p className="ak-nsp-typing-hero__desc" style={descriptionStyle}>
+              {description}
+            </p>
           ) : null}
 
           {(primaryButtonText || (showSecondaryButton && secondaryButtonText)) ? (
             <div className="ak-nsp-typing-hero__actions">
               {primaryButtonText ? (
-                <a className="ak-nsp-typing-hero__btn ak-nsp-typing-hero__btn--primary" href={primaryHref}>
+                <a
+                  className="ak-nsp-typing-hero__btn ak-nsp-typing-hero__btn--primary"
+                  href={primaryHref}
+                  style={primaryButtonTextStyle}
+                >
                   {primaryButtonText}
                 </a>
               ) : null}
@@ -195,6 +295,7 @@ export default function FullImageTypingHero({ section }: FullImageTypingHeroProp
                 <a
                   className="ak-nsp-typing-hero__btn ak-nsp-typing-hero__btn--secondary"
                   href={secondaryHref}
+                  style={secondaryButtonTextStyle}
                 >
                   {secondaryButtonText}
                 </a>

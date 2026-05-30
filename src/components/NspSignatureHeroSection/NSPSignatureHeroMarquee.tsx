@@ -1,7 +1,22 @@
-﻿import React, { useMemo } from "react";
+import React, { useMemo } from "react";
 import { motion } from "framer-motion";
 
 import { normalizeImageUrl } from "../HeroSection/heroSectionUtils";
+import { sectionAppearanceStyle } from "../../shared/sectionAppearance";
+import type { ResolvedSectionAppearance, StorefrontTheme } from "../../shared/sectionAppearance";
+import {
+  resolveBlockGroupTextStyle,
+  resolveTextStyle,
+  resolvedTextStyleToInlineStyle,
+} from "../../shared/sectionTypography";
+import {
+  NSP_MARQUEE_CARD_SUBTITLE_DEFAULT,
+  NSP_MARQUEE_CARD_TITLE_DEFAULT,
+  NSP_MARQUEE_EYEBROW_DEFAULT,
+  NSP_MARQUEE_HEADING_DEFAULT,
+  NSP_MARQUEE_HERO_BADGE_TEXT_DEFAULT,
+  NSP_MARQUEE_SUBHEADING_DEFAULT,
+} from "../../shared/textStyleDefaults/nspSignatureHeroTextStyleDefaults";
 
 export type NSPSignatureHeroMarqueeBlock = {
   id?: string;
@@ -26,6 +41,8 @@ export type NSPSignatureHeroMarqueeSectionDoc = {
 
 export type NSPSignatureHeroMarqueeProps = {
   section: NSPSignatureHeroMarqueeSectionDoc;
+  appearance?: ResolvedSectionAppearance | null;
+  theme?: StorefrontTheme | null;
 };
 
 type MarqueeCardModel = {
@@ -74,7 +91,17 @@ function toOverlayOpacity(raw: unknown) {
   return Math.min(0.8, Math.max(0, num));
 }
 
-function MarqueeCard({ item, index }: { item: MarqueeCardModel; index: number }) {
+function MarqueeCard({
+  item,
+  index,
+  cardTitleStyle,
+  cardSubtitleStyle,
+}: {
+  item: MarqueeCardModel;
+  index: number;
+  cardTitleStyle?: React.CSSProperties;
+  cardSubtitleStyle?: React.CSSProperties;
+}) {
   const cardBody = (
     <motion.div
       initial={{ opacity: 0, y: 16 }}
@@ -102,8 +129,8 @@ function MarqueeCard({ item, index }: { item: MarqueeCardModel; index: number })
         <div className="ak-nsp-marquee-hero__marqueeGradient" />
       </div>
       <div className="ak-nsp-marquee-hero__marqueeMeta">
-        {item.title ? <h3>{item.title}</h3> : null}
-        {item.subtitle ? <p>{item.subtitle}</p> : null}
+        {item.title ? <h3 style={cardTitleStyle}>{item.title}</h3> : null}
+        {item.subtitle ? <p style={cardSubtitleStyle}>{item.subtitle}</p> : null}
       </div>
     </motion.div>
   );
@@ -123,9 +150,11 @@ function MarqueeCard({ item, index }: { item: MarqueeCardModel; index: number })
   return cardBody;
 }
 
-export default function NSPSignatureHeroMarquee({ section }: NSPSignatureHeroMarqueeProps) {
-  if (section.enabled === false) return null;
-
+export default function NSPSignatureHeroMarquee({
+  section,
+  appearance,
+  theme,
+}: NSPSignatureHeroMarqueeProps) {
   const props = section.settings?.props ?? {};
   const rawBlocks = Array.isArray(section.settings?.blocks) ? section.settings.blocks : [];
 
@@ -168,8 +197,94 @@ export default function NSPSignatureHeroMarquee({ section }: NSPSignatureHeroMar
     }));
   }, [rawBlocks]);
 
+  const eyebrowStyle = useMemo(
+    () =>
+      resolvedTextStyleToInlineStyle(
+        resolveTextStyle({
+          section,
+          theme,
+          fieldId: "eyebrow",
+          role: "body",
+          defaultStyle: NSP_MARQUEE_EYEBROW_DEFAULT,
+        })
+      ),
+    [section, theme]
+  );
+
+  const heroBadgeTextStyle = useMemo(
+    () =>
+      resolvedTextStyleToInlineStyle(
+        resolveTextStyle({
+          section,
+          theme,
+          fieldId: "heroBadgeText",
+          role: "body",
+          defaultStyle: NSP_MARQUEE_HERO_BADGE_TEXT_DEFAULT,
+        })
+      ),
+    [section, theme]
+  );
+
+  const headingStyle = useMemo(
+    () =>
+      resolvedTextStyleToInlineStyle(
+        resolveTextStyle({
+          section,
+          theme,
+          fieldId: "heading",
+          role: "heading",
+          defaultStyle: NSP_MARQUEE_HEADING_DEFAULT,
+        })
+      ),
+    [section, theme]
+  );
+
+  const subheadingStyle = useMemo(
+    () =>
+      resolvedTextStyleToInlineStyle(
+        resolveTextStyle({
+          section,
+          theme,
+          fieldId: "subheading",
+          role: "body",
+          defaultStyle: NSP_MARQUEE_SUBHEADING_DEFAULT,
+        })
+      ),
+    [section, theme]
+  );
+
+  const marqueeCardTitleStyle = useMemo(
+    () =>
+      resolvedTextStyleToInlineStyle(
+        resolveBlockGroupTextStyle({
+          section,
+          theme,
+          groupKey: "marqueeCardTitle",
+          role: "heading",
+          defaultStyle: NSP_MARQUEE_CARD_TITLE_DEFAULT,
+        })
+      ),
+    [section, theme]
+  );
+
+  const marqueeCardSubtitleStyle = useMemo(
+    () =>
+      resolvedTextStyleToInlineStyle(
+        resolveBlockGroupTextStyle({
+          section,
+          theme,
+          groupKey: "marqueeCardSubtitle",
+          role: "body",
+          defaultStyle: NSP_MARQUEE_CARD_SUBTITLE_DEFAULT,
+        })
+      ),
+    [section, theme]
+  );
+
+  if (section.enabled === false) return null;
+
   return (
-    <section className="ak-nsp-marquee-hero">
+    <section className="ak-nsp-marquee-hero" style={sectionAppearanceStyle(appearance)}>
 
       <div className="ak-nsp-marquee-hero__inner">
         <motion.div
@@ -180,13 +295,21 @@ export default function NSPSignatureHeroMarquee({ section }: NSPSignatureHeroMar
           className="ak-nsp-marquee-hero__copy"
         >
           {eyebrow ? (
-            <p className="ak-nsp-marquee-hero__eyebrow">
+            <p className="ak-nsp-marquee-hero__eyebrow" style={eyebrowStyle}>
               <SparklesIcon />
               <span>{eyebrow}</span>
             </p>
           ) : null}
-          {heading ? <h2 className="ak-nsp-marquee-hero__heading">{heading}</h2> : null}
-          {subheading ? <p className="ak-nsp-marquee-hero__subheading">{subheading}</p> : null}
+          {heading ? (
+            <h2 className="ak-nsp-marquee-hero__heading" style={headingStyle}>
+              {heading}
+            </h2>
+          ) : null}
+          {subheading ? (
+            <p className="ak-nsp-marquee-hero__subheading" style={subheadingStyle}>
+              {subheading}
+            </p>
+          ) : null}
         </motion.div>
 
         <motion.div
@@ -215,7 +338,9 @@ export default function NSPSignatureHeroMarquee({ section }: NSPSignatureHeroMar
             style={{ opacity: overlayOpacity }}
           />
           {heroBadgeText ? (
-            <div className="ak-nsp-marquee-hero__heroMediaBadge">{heroBadgeText}</div>
+            <div className="ak-nsp-marquee-hero__heroMediaBadge" style={heroBadgeTextStyle}>
+              {heroBadgeText}
+            </div>
           ) : null}
         </motion.div>
 
@@ -223,7 +348,13 @@ export default function NSPSignatureHeroMarquee({ section }: NSPSignatureHeroMar
           <div className="ak-nsp-marquee-hero__marqueeViewport">
             <div className="ak-nsp-marquee-hero__marqueeTrack">
               {marqueeCards.map((item, index) => (
-                <MarqueeCard key={item.key} item={item} index={index} />
+                <MarqueeCard
+                  key={item.key}
+                  item={item}
+                  index={index}
+                  cardTitleStyle={marqueeCardTitleStyle}
+                  cardSubtitleStyle={marqueeCardSubtitleStyle}
+                />
               ))}
             </div>
           </div>

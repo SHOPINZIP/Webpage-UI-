@@ -30,33 +30,122 @@ var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: tru
 // src/index.tsx
 var index_exports = {};
 __export(index_exports, {
+  BENEFITS_DESCRIPTION_DEFAULT: () => BENEFITS_DESCRIPTION_DEFAULT,
+  BENEFITS_EYEBROW_DEFAULT: () => BENEFITS_EYEBROW_DEFAULT,
+  BENEFITS_HEADING_DEFAULT: () => BENEFITS_HEADING_DEFAULT,
+  BENEFIT_DESCRIPTION_DEFAULT: () => BENEFIT_DESCRIPTION_DEFAULT,
+  BENEFIT_POINT_DEFAULT: () => BENEFIT_POINT_DEFAULT,
+  BENEFIT_TITLE_DEFAULT: () => BENEFIT_TITLE_DEFAULT,
+  COUPON_CODE_DEFAULT: () => COUPON_CODE_DEFAULT,
+  COUPON_HEADING_DEFAULT: () => COUPON_HEADING_DEFAULT,
+  COUPON_SUBHEADING_DEFAULT: () => COUPON_SUBHEADING_DEFAULT,
+  COUPON_TITLE_DEFAULT: () => COUPON_TITLE_DEFAULT,
   CouponTickerMinimal: () => CouponTickerMinimal,
   CreativeCategoryMarquee: () => CreativeCategoryMarquee,
+  DEFAULT_STOREFRONT_FONT_ID: () => DEFAULT_STOREFRONT_FONT_ID,
+  DEFAULT_TYPOGRAPHY: () => DEFAULT_TYPOGRAPHY,
   DualLineFeatureMarquee: () => DualLineFeatureMarquee,
+  FOOTER_COLUMN_HEADING_DEFAULT: () => FOOTER_COLUMN_HEADING_DEFAULT,
+  FOOTER_MERCHANT_NAME_DEFAULT: () => FOOTER_MERCHANT_NAME_DEFAULT,
+  FOOTER_MERCHANT_SUB_LABEL_DEFAULT: () => FOOTER_MERCHANT_SUB_LABEL_DEFAULT,
+  FOOTER_POLICY_LINK_TEXT_DEFAULT: () => FOOTER_POLICY_LINK_TEXT_DEFAULT,
+  FOOTER_TAGLINE_DEFAULT: () => FOOTER_TAGLINE_DEFAULT,
   FeatureMarqueeBlock: () => FeatureMarqueeBlock,
   FloatingSnackGalleryHero: () => FloatingSnackGalleryHero,
   FullImageTypingHero: () => FullImageTypingHero,
+  HEADER_BRAND_NAME_DEFAULT: () => HEADER_BRAND_NAME_DEFAULT,
+  HEADER_BRAND_SUBTITLE_DEFAULT: () => HEADER_BRAND_SUBTITLE_DEFAULT,
+  HEADER_NAV_LINK_TEXT_DEFAULT: () => HEADER_NAV_LINK_TEXT_DEFAULT,
+  HEADER_NAV_LINK_TEXT_LIGHT_DEFAULT: () => HEADER_NAV_LINK_TEXT_LIGHT_DEFAULT,
+  HERO_SECTION_LABEL_DEFAULT: () => HERO_SECTION_LABEL_DEFAULT,
+  HERO_SLIDE_DESCRIPTION_DEFAULT: () => HERO_SLIDE_DESCRIPTION_DEFAULT,
+  HERO_SLIDE_HEADLINE_DEFAULT: () => HERO_SLIDE_HEADLINE_DEFAULT,
   HeroScrollableSlide: () => HeroScrollableSlide,
   HeroSlider: () => HeroSlider,
   LiquidFocusCategories: () => LiquidFocusCategories,
   LogoFocusedHeader: () => LogoFocusedHeader,
+  MARQUEE_BOTTOM_ROW_DEFAULT: () => MARQUEE_BOTTOM_ROW_DEFAULT,
+  MARQUEE_TEXT_LARGE_DEFAULT: () => MARQUEE_TEXT_LARGE_DEFAULT,
+  MARQUEE_TEXT_SMALL_DEFAULT: () => MARQUEE_TEXT_SMALL_DEFAULT,
+  MARQUEE_TOP_ROW_DEFAULT: () => MARQUEE_TOP_ROW_DEFAULT,
   MerchantFooterReveal: () => MerchantFooterReveal,
   MessageStyleTestimonials: () => MessageStyleTestimonials,
   MinimalTimelineBenefits: () => MinimalTimelineBenefits,
   NSPSignatureHeroMarquee: () => NSPSignatureHeroMarquee,
+  NSP_FLOATING_SNACK_TITLE_DEFAULT: () => NSP_FLOATING_SNACK_TITLE_DEFAULT,
+  NSP_MARQUEE_CARD_SUBTITLE_DEFAULT: () => NSP_MARQUEE_CARD_SUBTITLE_DEFAULT,
+  NSP_MARQUEE_CARD_TITLE_DEFAULT: () => NSP_MARQUEE_CARD_TITLE_DEFAULT,
+  NSP_MARQUEE_EYEBROW_DEFAULT: () => NSP_MARQUEE_EYEBROW_DEFAULT,
+  NSP_MARQUEE_HEADING_DEFAULT: () => NSP_MARQUEE_HEADING_DEFAULT,
+  NSP_MARQUEE_HERO_BADGE_TEXT_DEFAULT: () => NSP_MARQUEE_HERO_BADGE_TEXT_DEFAULT,
+  NSP_MARQUEE_SUBHEADING_DEFAULT: () => NSP_MARQUEE_SUBHEADING_DEFAULT,
+  NSP_POKER_DESCRIPTION_DEFAULT: () => NSP_POKER_DESCRIPTION_DEFAULT,
+  NSP_POKER_EYEBROW_DEFAULT: () => NSP_POKER_EYEBROW_DEFAULT,
+  NSP_POKER_HEADING_DEFAULT: () => NSP_POKER_HEADING_DEFAULT,
+  NSP_SIG_HERO_DESCRIPTION_DEFAULT: () => NSP_SIG_HERO_DESCRIPTION_DEFAULT,
+  NSP_SIG_HERO_EYEBROW_DEFAULT: () => NSP_SIG_HERO_EYEBROW_DEFAULT,
+  NSP_SIG_HERO_HEADING_DEFAULT: () => NSP_SIG_HERO_HEADING_DEFAULT,
+  NSP_SIG_HERO_PRIMARY_BUTTON_TEXT_DEFAULT: () => NSP_SIG_HERO_PRIMARY_BUTTON_TEXT_DEFAULT,
+  NSP_SIG_HERO_SECONDARY_BUTTON_TEXT_DEFAULT: () => NSP_SIG_HERO_SECONDARY_BUTTON_TEXT_DEFAULT,
+  NSP_TYPING_DESCRIPTION_DEFAULT: () => NSP_TYPING_DESCRIPTION_DEFAULT,
+  NSP_TYPING_PRIMARY_BUTTON_TEXT_DEFAULT: () => NSP_TYPING_PRIMARY_BUTTON_TEXT_DEFAULT,
+  NSP_TYPING_SECONDARY_BUTTON_TEXT_DEFAULT: () => NSP_TYPING_SECONDARY_BUTTON_TEXT_DEFAULT,
+  NSP_TYPING_STATIC_HEADING_DEFAULT: () => NSP_TYPING_STATIC_HEADING_DEFAULT,
+  NSP_TYPING_WORD_DEFAULT: () => NSP_TYPING_WORD_DEFAULT,
+  PRODUCT_CARD_DESCRIPTION_DEFAULT: () => PRODUCT_CARD_DESCRIPTION_DEFAULT,
+  PRODUCT_CARD_SUBTITLE_DEFAULT: () => PRODUCT_CARD_SUBTITLE_DEFAULT,
+  PRODUCT_CARD_TITLE_DEFAULT: () => PRODUCT_CARD_TITLE_DEFAULT,
+  PRODUCT_CARD_TITLE_OVERLAY_DEFAULT: () => PRODUCT_CARD_TITLE_OVERLAY_DEFAULT,
+  PRODUCT_MARQUEE_DESCRIPTION_DEFAULT: () => PRODUCT_MARQUEE_DESCRIPTION_DEFAULT,
+  PRODUCT_MARQUEE_EYEBROW_DEFAULT: () => PRODUCT_MARQUEE_EYEBROW_DEFAULT,
+  PRODUCT_MARQUEE_HEADING_DEFAULT: () => PRODUCT_MARQUEE_HEADING_DEFAULT,
   PokerRowRevealHero: () => PokerRowRevealHero,
   PortraitTestimonials: () => PortraitTestimonials,
   ProductCardMarquee: () => ProductCardMarquee,
   ProductMarquee: () => ProductMarquee,
+  SECTION_TYPE_APPEARANCE_DEFAULTS: () => SECTION_TYPE_APPEARANCE_DEFAULTS,
+  STOREFRONT_FONTS: () => STOREFRONT_FONTS,
+  STOREFRONT_FONT_OPTIONS: () => STOREFRONT_FONT_OPTIONS,
   STYLE_APPLE_MARQUEE: () => STYLE_APPLE_MARQUEE,
   STYLE_MESSAGE_BUBBLE: () => STYLE_MESSAGE_BUBBLE,
   STYLE_PORTRAIT_TESTIMONIALS: () => STYLE_PORTRAIT_TESTIMONIALS,
   STYLE_STACKED_TESTIMONIALS: () => STYLE_STACKED_TESTIMONIALS,
   ScrollParallaxSignatureHero: () => ScrollParallaxSignatureHero,
   StackedTestimonials: () => StackedTestimonials,
+  StorefrontFontLoader: () => StorefrontFontLoader,
   SubHeroImageLoop: () => SubHeroImageLoop,
+  TESTIMONIAL_BACKGROUND_WORD_DEFAULT: () => TESTIMONIAL_BACKGROUND_WORD_DEFAULT,
+  TESTIMONIAL_BUTTON_TEXT_DEFAULT: () => TESTIMONIAL_BUTTON_TEXT_DEFAULT,
+  TESTIMONIAL_CUSTOMER_NAME_DEFAULT: () => TESTIMONIAL_CUSTOMER_NAME_DEFAULT,
+  TESTIMONIAL_CUSTOMER_ROLE_DEFAULT: () => TESTIMONIAL_CUSTOMER_ROLE_DEFAULT,
+  TESTIMONIAL_DESCRIPTION_DEFAULT: () => TESTIMONIAL_DESCRIPTION_DEFAULT,
+  TESTIMONIAL_EYEBROW_DEFAULT: () => TESTIMONIAL_EYEBROW_DEFAULT,
+  TESTIMONIAL_HEADING_DEFAULT: () => TESTIMONIAL_HEADING_DEFAULT,
+  TESTIMONIAL_HIGHLIGHT_TEXT_DEFAULT: () => TESTIMONIAL_HIGHLIGHT_TEXT_DEFAULT,
+  TESTIMONIAL_QUOTE_TEXT_DEFAULT: () => TESTIMONIAL_QUOTE_TEXT_DEFAULT,
+  TESTIMONIAL_SUBHEADING_DEFAULT: () => TESTIMONIAL_SUBHEADING_DEFAULT,
   TransparentHeroHeader: () => TransparentHeroHeader,
-  normalizeImageUrl: () => normalizeImageUrl
+  collectStorefrontFontIdsFromDocument: () => collectStorefrontFontIdsFromDocument,
+  collectThemeFontIds: () => collectThemeFontIds,
+  getStorefrontFontById: () => getStorefrontFontById,
+  normalizeAppearance: () => normalizeAppearance,
+  normalizeBlockGroupStyles: () => normalizeBlockGroupStyles,
+  normalizeFieldStyles: () => normalizeFieldStyles,
+  normalizeImageUrl: () => normalizeImageUrl,
+  normalizeSectionTypography: () => normalizeSectionTypography,
+  normalizeSectionTypographyRole: () => normalizeSectionTypographyRole,
+  normalizeTextStyle: () => normalizeTextStyle,
+  normalizeTheme: () => normalizeTheme,
+  normalizeThemeTypography: () => normalizeThemeTypography,
+  normalizeTypography: () => normalizeTypography,
+  resolveBlockGroupTextStyle: () => resolveBlockGroupTextStyle,
+  resolveSectionAppearance: () => resolveSectionAppearance,
+  resolveStorefrontFontFamily: () => resolveStorefrontFontFamily,
+  resolveTextStyle: () => resolveTextStyle,
+  resolveThemeFontKey: () => resolveThemeFontKey,
+  resolvedTextStyleToInlineStyle: () => resolvedTextStyleToInlineStyle,
+  sectionAppearanceStyle: () => sectionAppearanceStyle,
+  stripFieldOverrideStyle: () => stripFieldOverrideStyle
 });
 module.exports = __toCommonJS(index_exports);
 
@@ -142,6 +231,606 @@ function subscribeToPathname(onPathname) {
     history.replaceState = replaceState;
   };
 }
+
+// src/shared/fonts/fontRegistry.ts
+var DEFAULT_STOREFRONT_FONT_ID = "inter";
+var SYSTEM_FONT_FAMILY = 'Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif';
+var STOREFRONT_FONTS = [
+  {
+    value: "system",
+    label: "System Default",
+    cssFamily: SYSTEM_FONT_FAMILY,
+    source: "system"
+  },
+  {
+    value: "inter",
+    label: "Inter (Google)",
+    cssFamily: '"Inter", system-ui, sans-serif',
+    source: "google",
+    googleFamily: "Inter:wght@400;500;600;700;800"
+  },
+  {
+    value: "maharani",
+    label: "Maharani",
+    cssFamily: '"Maharani", serif',
+    source: "local",
+    files: ["Maharani-Regular.woff2", "Maharani-Regular.woff"]
+  },
+  {
+    value: "bongita",
+    label: "Bongita",
+    cssFamily: '"Bongita", cursive',
+    source: "local",
+    files: ["Bongita.woff2", "Bongita.woff"]
+  },
+  {
+    value: "girlkick",
+    label: "Girlkick",
+    cssFamily: '"Girlkick", cursive',
+    source: "local",
+    files: ["Girlkick.woff2", "Girlkick.woff"]
+  },
+  {
+    value: "glamoure-everyday",
+    label: "Glamoure Everyday",
+    cssFamily: '"Glamoure Everyday", cursive',
+    source: "local",
+    files: ["GlamoureEveryday.woff2", "GlamoureEveryday.woff"]
+  },
+  {
+    value: "kirome",
+    label: "Kirome",
+    cssFamily: '"Kirome", sans-serif',
+    source: "local",
+    files: ["Kirome.woff"]
+  },
+  {
+    value: "aesthetic",
+    label: "Aesthetic",
+    cssFamily: '"Aesthetic", cursive',
+    source: "local",
+    files: ["Aesthetic.woff2", "Aesthetic.woff"]
+  },
+  {
+    value: "royal",
+    label: "Royal",
+    cssFamily: '"Royal", serif',
+    source: "local",
+    files: ["Royal.woff2", "Royal.woff"]
+  },
+  {
+    value: "sabrine",
+    label: "Sabrine",
+    cssFamily: '"Sabrine", cursive',
+    source: "local",
+    files: ["Sabrine.woff2", "Sabrine.woff"]
+  },
+  {
+    value: "fresh-mango",
+    label: "Fresh Mango",
+    cssFamily: '"Fresh Mango", cursive',
+    source: "local",
+    files: ["FreshMango.ttf"]
+  },
+  {
+    value: "rounding",
+    label: "Rounding",
+    cssFamily: '"Rounding", sans-serif',
+    source: "local",
+    files: ["Rounding.ttf"]
+  }
+];
+var STOREFRONT_FONT_OPTIONS = STOREFRONT_FONTS.map(({ value, label }) => ({
+  value,
+  label
+}));
+var fontById = Object.fromEntries(STOREFRONT_FONTS.map((f) => [f.value, f]));
+function isDevelopment() {
+  var _a, _b;
+  const g = globalThis;
+  return ((_b = (_a = g.process) == null ? void 0 : _a.env) == null ? void 0 : _b.NODE_ENV) !== "production";
+}
+function getStorefrontFontById(fontId) {
+  var _a, _b;
+  const id = String(fontId != null ? fontId : "").trim();
+  if (id && !fontById[id] && isDevelopment()) {
+    console.warn(`[storefrontFonts] Unknown font id "${id}". Falling back to default.`);
+  }
+  return (_b = (_a = fontById[id]) != null ? _a : fontById[DEFAULT_STOREFRONT_FONT_ID]) != null ? _b : STOREFRONT_FONTS[0];
+}
+function resolveStorefrontFontFamily(fontId) {
+  return getStorefrontFontById(fontId).cssFamily;
+}
+function collectFontIdsFromTextStyle(style) {
+  var _a;
+  if (!style || typeof style !== "object") return [];
+  const id = String((_a = style.fontFamily) != null ? _a : "").trim();
+  return id ? [id] : [];
+}
+function collectFontIdsFromTypography(typography) {
+  if (!typography || typeof typography !== "object") return [];
+  return [
+    ...collectFontIdsFromTextStyle(typography.heading),
+    ...collectFontIdsFromTextStyle(typography.body)
+  ];
+}
+function collectFontIdsFromStyleMap(styleMap) {
+  if (!styleMap || typeof styleMap !== "object") return [];
+  const ids = [];
+  Object.values(styleMap).forEach((style) => {
+    ids.push(...collectFontIdsFromTextStyle(style));
+  });
+  return ids;
+}
+function collectStorefrontFontIdsFromDocument(doc) {
+  var _a;
+  const ids = /* @__PURE__ */ new Set();
+  const theme = doc == null ? void 0 : doc.theme;
+  if (theme == null ? void 0 : theme.fontFamily) ids.add(String(theme.fontFamily).trim());
+  collectFontIdsFromTypography(theme == null ? void 0 : theme.typography).forEach((id) => ids.add(id));
+  ((_a = doc == null ? void 0 : doc.sections) != null ? _a : []).forEach((section) => {
+    var _a2, _b;
+    const appearance = (_b = (_a2 = section == null ? void 0 : section.settings) == null ? void 0 : _a2.props) == null ? void 0 : _b.appearance;
+    if (!appearance) return;
+    collectFontIdsFromTypography(appearance.typography).forEach((id) => ids.add(id));
+    collectFontIdsFromStyleMap(appearance.fieldStyles).forEach((id) => ids.add(id));
+    collectFontIdsFromStyleMap(appearance.blockGroupStyles).forEach((id) => ids.add(id));
+  });
+  ids.delete("");
+  return Array.from(ids);
+}
+function buildGoogleFontLink(fontIds) {
+  const families = /* @__PURE__ */ new Set();
+  fontIds.forEach((id) => {
+    const font = getStorefrontFontById(id);
+    if (font.source === "google" && font.googleFamily) {
+      families.add(font.googleFamily);
+    }
+  });
+  if (families.size === 0) return null;
+  const query = Array.from(families).map((family) => `family=${family.replace(/ /g, "+")}`).join("&");
+  return `https://fonts.googleapis.com/css2?${query}&display=swap`;
+}
+
+// src/shared/sectionTypography.ts
+var DEFAULT_TYPOGRAPHY = {
+  heading: {
+    fontFamily: DEFAULT_STOREFRONT_FONT_ID,
+    color: "#111111",
+    fontWeight: "700",
+    fontSize: "48px"
+  },
+  body: {
+    fontFamily: DEFAULT_STOREFRONT_FONT_ID,
+    color: "#444444",
+    fontWeight: "400",
+    fontSize: "18px"
+  }
+};
+function pickNonEmpty(...values) {
+  for (const value of values) {
+    const next = String(value != null ? value : "").trim();
+    if (next) return next;
+  }
+  return "";
+}
+function normalizeTextStyle(raw) {
+  return {
+    fontFamily: pickNonEmpty(raw == null ? void 0 : raw.fontFamily),
+    color: pickNonEmpty(raw == null ? void 0 : raw.color),
+    fontWeight: pickNonEmpty(raw == null ? void 0 : raw.fontWeight),
+    fontSize: pickNonEmpty(raw == null ? void 0 : raw.fontSize)
+  };
+}
+function normalizeTypographyRole(raw) {
+  return normalizeTextStyle(raw);
+}
+function normalizeTypography(raw) {
+  return {
+    heading: normalizeTypographyRole(raw == null ? void 0 : raw.heading),
+    body: normalizeTypographyRole(raw == null ? void 0 : raw.body)
+  };
+}
+function normalizeSectionTypographyRole(raw) {
+  return {
+    color: pickNonEmpty(raw == null ? void 0 : raw.color)
+  };
+}
+function normalizeSectionTypography(raw) {
+  return {
+    heading: normalizeSectionTypographyRole(raw == null ? void 0 : raw.heading),
+    body: normalizeSectionTypographyRole(raw == null ? void 0 : raw.body)
+  };
+}
+function normalizeThemeTypographyRole(raw) {
+  return {
+    fontFamily: pickNonEmpty(raw == null ? void 0 : raw.fontFamily),
+    color: pickNonEmpty(raw == null ? void 0 : raw.color)
+  };
+}
+function normalizeThemeTypography(raw) {
+  return {
+    heading: normalizeThemeTypographyRole(raw == null ? void 0 : raw.heading),
+    body: normalizeThemeTypographyRole(raw == null ? void 0 : raw.body)
+  };
+}
+function stripFieldOverrideStyle(style) {
+  const normalized = normalizeTextStyle(style);
+  const next = {};
+  if (normalized.color) next.color = normalized.color;
+  if (normalized.fontWeight) next.fontWeight = normalized.fontWeight;
+  return next;
+}
+function normalizeFieldStyles(raw) {
+  if (!raw || typeof raw !== "object") return {};
+  const next = {};
+  Object.entries(raw).forEach(([fieldId, style]) => {
+    const normalized = stripFieldOverrideStyle(style);
+    if (Object.keys(normalized).length > 0) {
+      next[fieldId] = normalized;
+    }
+  });
+  return next;
+}
+function normalizeBlockGroupStyles(raw) {
+  return normalizeFieldStyles(raw);
+}
+function resolveThemeFontKey(role = "body", theme) {
+  var _a, _b, _c, _d;
+  const headingFont = pickNonEmpty((_b = (_a = theme == null ? void 0 : theme.typography) == null ? void 0 : _a.heading) == null ? void 0 : _b.fontFamily);
+  const bodyFont = pickNonEmpty((_d = (_c = theme == null ? void 0 : theme.typography) == null ? void 0 : _c.body) == null ? void 0 : _d.fontFamily);
+  const legacyFont = pickNonEmpty(theme == null ? void 0 : theme.fontFamily);
+  if (role === "heading") {
+    return pickNonEmpty(
+      headingFont,
+      bodyFont,
+      legacyFont,
+      DEFAULT_TYPOGRAPHY.heading.fontFamily,
+      DEFAULT_STOREFRONT_FONT_ID
+    ) || DEFAULT_STOREFRONT_FONT_ID;
+  }
+  return pickNonEmpty(
+    bodyFont,
+    headingFont,
+    legacyFont,
+    DEFAULT_TYPOGRAPHY.body.fontFamily,
+    DEFAULT_STOREFRONT_FONT_ID
+  ) || DEFAULT_STOREFRONT_FONT_ID;
+}
+function resolveTextStyle({
+  section,
+  theme,
+  fieldId,
+  role = "body",
+  defaultStyle
+}) {
+  var _a, _b, _c, _d, _e, _f, _g;
+  const typographyRole = role === "heading" ? "heading" : "body";
+  const appearance = (_c = (_b = (_a = section == null ? void 0 : section.settings) == null ? void 0 : _a.props) == null ? void 0 : _b.appearance) != null ? _c : {};
+  const fieldStyle = fieldId && ((_d = appearance.fieldStyles) == null ? void 0 : _d[fieldId]) ? stripFieldOverrideStyle(appearance.fieldStyles[fieldId]) : {};
+  const sectionRoleStyle = normalizeSectionTypographyRole(
+    (_e = appearance.typography) == null ? void 0 : _e[typographyRole]
+  );
+  const themeRoleStyle = normalizeThemeTypographyRole((_f = theme == null ? void 0 : theme.typography) == null ? void 0 : _f[typographyRole]);
+  const schemaDefault = normalizeTextStyle(defaultStyle);
+  const systemDefault = (_g = DEFAULT_TYPOGRAPHY[typographyRole]) != null ? _g : DEFAULT_TYPOGRAPHY.body;
+  const fontKey = resolveThemeFontKey(typographyRole, theme);
+  return {
+    fontFamily: resolveStorefrontFontFamily(fontKey),
+    color: pickNonEmpty(
+      fieldStyle.color,
+      sectionRoleStyle.color,
+      themeRoleStyle.color,
+      schemaDefault.color,
+      systemDefault.color
+    ),
+    fontWeight: pickNonEmpty(
+      fieldStyle.fontWeight,
+      schemaDefault.fontWeight,
+      systemDefault.fontWeight
+    ),
+    fontSize: pickNonEmpty(
+      fieldStyle.fontSize,
+      schemaDefault.fontSize,
+      systemDefault.fontSize
+    )
+  };
+}
+function resolveBlockGroupTextStyle({
+  section,
+  theme,
+  groupKey,
+  role = "body",
+  defaultStyle
+}) {
+  var _a, _b, _c, _d, _e, _f, _g;
+  const typographyRole = role === "heading" ? "heading" : "body";
+  const appearance = (_c = (_b = (_a = section == null ? void 0 : section.settings) == null ? void 0 : _a.props) == null ? void 0 : _b.appearance) != null ? _c : {};
+  const groupStyle = groupKey && ((_d = appearance.blockGroupStyles) == null ? void 0 : _d[groupKey]) ? stripFieldOverrideStyle(appearance.blockGroupStyles[groupKey]) : {};
+  const sectionRoleStyle = normalizeSectionTypographyRole(
+    (_e = appearance.typography) == null ? void 0 : _e[typographyRole]
+  );
+  const themeRoleStyle = normalizeThemeTypographyRole((_f = theme == null ? void 0 : theme.typography) == null ? void 0 : _f[typographyRole]);
+  const schemaDefault = normalizeTextStyle(defaultStyle);
+  const systemDefault = (_g = DEFAULT_TYPOGRAPHY[typographyRole]) != null ? _g : DEFAULT_TYPOGRAPHY.body;
+  const fontKey = resolveThemeFontKey(typographyRole, theme);
+  return {
+    fontFamily: resolveStorefrontFontFamily(fontKey),
+    color: pickNonEmpty(
+      groupStyle.color,
+      sectionRoleStyle.color,
+      themeRoleStyle.color,
+      schemaDefault.color,
+      systemDefault.color
+    ),
+    fontWeight: pickNonEmpty(
+      groupStyle.fontWeight,
+      schemaDefault.fontWeight,
+      systemDefault.fontWeight
+    ),
+    fontSize: pickNonEmpty(schemaDefault.fontSize, systemDefault.fontSize)
+  };
+}
+function resolvedTextStyleToInlineStyle(style) {
+  return {
+    fontFamily: style.fontFamily,
+    color: style.color,
+    fontWeight: style.fontWeight,
+    fontSize: style.fontSize
+  };
+}
+function collectThemeFontIds(theme) {
+  var _a, _b, _c, _d;
+  const ids = /* @__PURE__ */ new Set();
+  const heading = pickNonEmpty((_b = (_a = theme == null ? void 0 : theme.typography) == null ? void 0 : _a.heading) == null ? void 0 : _b.fontFamily);
+  const body = pickNonEmpty((_d = (_c = theme == null ? void 0 : theme.typography) == null ? void 0 : _c.body) == null ? void 0 : _d.fontFamily);
+  const legacy = pickNonEmpty(theme == null ? void 0 : theme.fontFamily);
+  if (heading) ids.add(heading);
+  if (body) ids.add(body);
+  if (legacy) ids.add(legacy);
+  if (ids.size === 0) ids.add(DEFAULT_STOREFRONT_FONT_ID);
+  return Array.from(ids);
+}
+
+// src/shared/headerAppearance.ts
+var HEADER_APPEARANCE_KEYS = [
+  "navContainerBackground",
+  "navTextColor",
+  "navActiveBackground",
+  "navActiveTextColor",
+  "navBorderColor",
+  "iconButtonBackground",
+  "iconButtonColor",
+  "iconButtonBorderColor",
+  "cartBadgeBackground",
+  "cartBadgeTextColor"
+];
+var HEADER_APPEARANCE_DEFAULTS = {
+  navContainerBackground: "rgba(255, 255, 255, 0.9)",
+  navTextColor: "rgba(0, 0, 0, 0.6)",
+  navActiveBackground: "#0a0a0a",
+  navActiveTextColor: "#ffffff",
+  navBorderColor: "rgba(0, 0, 0, 0.06)",
+  iconButtonBackground: "#ffffff",
+  iconButtonColor: "#0a0a0a",
+  iconButtonBorderColor: "rgba(0, 0, 0, 0.06)",
+  cartBadgeBackground: "#0a0a0a",
+  cartBadgeTextColor: "#ffffff"
+};
+function normalizeHeaderAppearance(raw) {
+  if (!raw || typeof raw !== "object") return {};
+  const next = {};
+  HEADER_APPEARANCE_KEYS.forEach((key) => {
+    const value = pickNonEmpty(raw[key]);
+    if (value) next[key] = value;
+  });
+  return next;
+}
+function resolveHeaderAppearance({
+  section,
+  theme
+}) {
+  var _a, _b, _c, _d, _e, _f;
+  const appearance = (_b = (_a = section == null ? void 0 : section.settings) == null ? void 0 : _a.props) == null ? void 0 : _b.appearance;
+  const header = normalizeHeaderAppearance(appearance == null ? void 0 : appearance.header);
+  const sectionTypo = normalizeSectionTypography(appearance == null ? void 0 : appearance.typography);
+  const themeTypo = normalizeThemeTypography(theme == null ? void 0 : theme.typography);
+  const navTextColor = pickNonEmpty(
+    header.navTextColor,
+    (_c = sectionTypo.body) == null ? void 0 : _c.color,
+    (_d = themeTypo.body) == null ? void 0 : _d.color,
+    HEADER_APPEARANCE_DEFAULTS.navTextColor
+  );
+  const navActiveTextColor = pickNonEmpty(
+    header.navActiveTextColor,
+    header.navTextColor,
+    HEADER_APPEARANCE_DEFAULTS.navActiveTextColor
+  );
+  const iconButtonColor = pickNonEmpty(
+    header.iconButtonColor,
+    (_e = sectionTypo.body) == null ? void 0 : _e.color,
+    (_f = themeTypo.body) == null ? void 0 : _f.color,
+    HEADER_APPEARANCE_DEFAULTS.iconButtonColor
+  );
+  return {
+    navContainerBackground: pickNonEmpty(
+      header.navContainerBackground,
+      HEADER_APPEARANCE_DEFAULTS.navContainerBackground
+    ),
+    navTextColor,
+    navActiveBackground: pickNonEmpty(
+      header.navActiveBackground,
+      HEADER_APPEARANCE_DEFAULTS.navActiveBackground
+    ),
+    navActiveTextColor,
+    navBorderColor: pickNonEmpty(
+      header.navBorderColor,
+      HEADER_APPEARANCE_DEFAULTS.navBorderColor
+    ),
+    iconButtonBackground: pickNonEmpty(
+      header.iconButtonBackground,
+      HEADER_APPEARANCE_DEFAULTS.iconButtonBackground
+    ),
+    iconButtonColor,
+    iconButtonBorderColor: pickNonEmpty(
+      header.iconButtonBorderColor,
+      HEADER_APPEARANCE_DEFAULTS.iconButtonBorderColor
+    ),
+    cartBadgeBackground: pickNonEmpty(
+      header.cartBadgeBackground,
+      HEADER_APPEARANCE_DEFAULTS.cartBadgeBackground
+    ),
+    cartBadgeTextColor: pickNonEmpty(
+      header.cartBadgeTextColor,
+      HEADER_APPEARANCE_DEFAULTS.cartBadgeTextColor
+    )
+  };
+}
+function logoFocusedHeaderAppearanceCssVars(resolved) {
+  return {
+    "--ak-lfh-nav-container-bg": resolved.navContainerBackground,
+    "--ak-lfh-nav-border": resolved.navBorderColor,
+    "--ak-lfh-nav-text": resolved.navTextColor,
+    "--ak-lfh-nav-active-bg": resolved.navActiveBackground,
+    "--ak-lfh-nav-active-text": resolved.navActiveTextColor,
+    "--ak-lfh-icon-bg": resolved.iconButtonBackground,
+    "--ak-lfh-icon-color": resolved.iconButtonColor,
+    "--ak-lfh-icon-border": resolved.iconButtonBorderColor,
+    "--ak-lfh-badge-bg": resolved.cartBadgeBackground,
+    "--ak-lfh-badge-text": resolved.cartBadgeTextColor
+  };
+}
+function transparentHeroHeaderAppearanceCssVars(resolved) {
+  return {
+    "--ak-thh-nav-container-bg": resolved.navContainerBackground,
+    "--ak-thh-nav-border": resolved.navBorderColor,
+    "--ak-thh-nav-text": resolved.navTextColor,
+    "--ak-thh-nav-active-bg": resolved.navActiveBackground,
+    "--ak-thh-nav-active-text": resolved.navActiveTextColor,
+    "--ak-thh-icon-bg": resolved.iconButtonBackground,
+    "--ak-thh-icon-color": resolved.iconButtonColor,
+    "--ak-thh-icon-border": resolved.iconButtonBorderColor,
+    "--ak-thh-badge-bg": resolved.cartBadgeBackground,
+    "--ak-thh-badge-text": resolved.cartBadgeTextColor
+  };
+}
+function headerChromeStyles(resolved) {
+  return {
+    navShell: {
+      background: resolved.navContainerBackground,
+      border: `1px solid ${resolved.navBorderColor}`
+    },
+    inactivePill: {
+      color: resolved.navTextColor,
+      background: "transparent"
+    },
+    activePill: {
+      color: resolved.navActiveTextColor,
+      background: resolved.navActiveBackground
+    },
+    iconButton: {
+      background: resolved.iconButtonBackground,
+      color: resolved.iconButtonColor,
+      border: `1px solid ${resolved.iconButtonBorderColor}`
+    },
+    cartBadge: {
+      background: resolved.cartBadgeBackground,
+      color: resolved.cartBadgeTextColor
+    }
+  };
+}
+function hasHeaderAppearanceOverrides(section) {
+  var _a, _b, _c;
+  const header = normalizeHeaderAppearance(
+    (_c = (_b = (_a = section == null ? void 0 : section.settings) == null ? void 0 : _a.props) == null ? void 0 : _b.appearance) == null ? void 0 : _c.header
+  );
+  return Object.keys(header).length > 0;
+}
+
+// src/shared/sectionAppearance.ts
+var SYSTEM_APPEARANCE_DEFAULTS = {
+  backgroundColor: "#ffffff"
+};
+var SECTION_TYPE_APPEARANCE_DEFAULTS = {
+  marquee_text: { backgroundColor: "#fbfaf7" },
+  coupon_strips: { backgroundColor: "#ffffff" },
+  messageStyleTestimonials: { backgroundColor: "#f5f5f7" },
+  "benefits-points": { backgroundColor: "#ffffff" },
+  footer: { backgroundColor: "#0b1f2a" }
+};
+function pickNonEmpty2(...values) {
+  for (const value of values) {
+    const next = String(value != null ? value : "").trim();
+    if (next) return next;
+  }
+  return "";
+}
+function normalizeAppearance(raw) {
+  const header = normalizeHeaderAppearance(raw == null ? void 0 : raw.header);
+  const next = {
+    backgroundColor: pickNonEmpty2(raw == null ? void 0 : raw.backgroundColor),
+    typography: normalizeSectionTypography(raw == null ? void 0 : raw.typography),
+    fieldStyles: normalizeFieldStyles(raw == null ? void 0 : raw.fieldStyles),
+    blockGroupStyles: normalizeBlockGroupStyles(raw == null ? void 0 : raw.blockGroupStyles)
+  };
+  if (Object.keys(header).length > 0) {
+    next.header = header;
+  }
+  return next;
+}
+function normalizeTheme(raw) {
+  return {
+    backgroundColor: pickNonEmpty2(raw == null ? void 0 : raw.backgroundColor) || SYSTEM_APPEARANCE_DEFAULTS.backgroundColor,
+    fontFamily: pickNonEmpty2(raw == null ? void 0 : raw.fontFamily),
+    typography: normalizeThemeTypography(raw == null ? void 0 : raw.typography)
+  };
+}
+function resolveSectionAppearance(section, theme) {
+  var _a, _b, _c, _d, _e, _f, _g, _h;
+  const override = normalizeAppearance((_b = (_a = section == null ? void 0 : section.settings) == null ? void 0 : _a.props) == null ? void 0 : _b.appearance);
+  const normalizedTheme = normalizeTheme(theme);
+  const typeDefaults = (_d = SECTION_TYPE_APPEARANCE_DEFAULTS[String((_c = section == null ? void 0 : section.type) != null ? _c : "").trim()]) != null ? _d : {};
+  const backgroundColor = pickNonEmpty2(
+    override.backgroundColor,
+    normalizedTheme.backgroundColor,
+    typeDefaults.backgroundColor,
+    SYSTEM_APPEARANCE_DEFAULTS.backgroundColor
+  ) || SYSTEM_APPEARANCE_DEFAULTS.backgroundColor;
+  const headingFontId = pickNonEmpty2(
+    (_f = (_e = override.typography) == null ? void 0 : _e.heading) == null ? void 0 : _f.fontFamily,
+    (_h = (_g = normalizedTheme.typography) == null ? void 0 : _g.heading) == null ? void 0 : _h.fontFamily,
+    normalizedTheme.fontFamily,
+    DEFAULT_STOREFRONT_FONT_ID
+  );
+  return {
+    backgroundColor,
+    fontId: headingFontId,
+    fontFamily: resolveStorefrontFontFamily(headingFontId)
+  };
+}
+function sectionAppearanceStyle(appearance) {
+  if (!appearance) return void 0;
+  return {
+    backgroundColor: appearance.backgroundColor
+  };
+}
+
+// src/shared/textStyleDefaults/heroTextStyleDefaults.ts
+var HERO_SECTION_LABEL_DEFAULT = {
+  color: "rgba(255, 255, 255, 0.9)",
+  fontWeight: "600",
+  fontSize: "12px"
+};
+var HERO_SLIDE_HEADLINE_DEFAULT = {
+  color: "#ffffff",
+  fontWeight: "700",
+  fontSize: "48px"
+};
+var HERO_SLIDE_DESCRIPTION_DEFAULT = {
+  color: "rgba(255, 255, 255, 0.84)",
+  fontWeight: "400",
+  fontSize: "16px"
+};
 
 // src/components/HeroSection/HeroSlider/index.tsx
 var HEIGHT_PRESETS = {
@@ -243,10 +932,46 @@ function SlideImage({
     }
   );
 }
-function HeroSlider({ section }) {
+function HeroSlider({ section, appearance, theme }) {
   var _a, _b, _c, _d, _e, _f, _g, _h, _i, _j, _k, _l;
   const p = (_b = (_a = section.settings) == null ? void 0 : _a.props) != null ? _b : {};
   const blocks = (_d = (_c = section.settings) == null ? void 0 : _c.blocks) != null ? _d : [];
+  const sectionLabelStyle = (0, import_react.useMemo)(
+    () => resolvedTextStyleToInlineStyle(
+      resolveTextStyle({
+        section,
+        theme,
+        fieldId: "sectionLabel",
+        role: "body",
+        defaultStyle: HERO_SECTION_LABEL_DEFAULT
+      })
+    ),
+    [section, theme]
+  );
+  const slideHeadlineStyle = (0, import_react.useMemo)(
+    () => resolvedTextStyleToInlineStyle(
+      resolveBlockGroupTextStyle({
+        section,
+        theme,
+        groupKey: "slideHeadline",
+        role: "heading",
+        defaultStyle: HERO_SLIDE_HEADLINE_DEFAULT
+      })
+    ),
+    [section, theme]
+  );
+  const slideDescriptionStyle = (0, import_react.useMemo)(
+    () => resolvedTextStyleToInlineStyle(
+      resolveBlockGroupTextStyle({
+        section,
+        theme,
+        groupKey: "slideDescription",
+        role: "body",
+        defaultStyle: HERO_SLIDE_DESCRIPTION_DEFAULT
+      })
+    ),
+    [section, theme]
+  );
   const sectionAlignment = (_e = p.alignment) != null ? _e : "left";
   const sectionLabel = p.sectionLabel;
   const heightPreset = (_f = p.height) != null ? _f : "default";
@@ -413,7 +1138,7 @@ function HeroSlider({ section }) {
   if (baseSlides.length === 0) {
     return null;
   }
-  return /* @__PURE__ */ import_react.default.createElement("div", { className: "ak-hero" }, /* @__PURE__ */ import_react.default.createElement("section", { className: "ak-hero__section" }, /* @__PURE__ */ import_react.default.createElement("div", { className: "ak-hero__container" }, /* @__PURE__ */ import_react.default.createElement("div", { className: "ak-hero__frame" }, /* @__PURE__ */ import_react.default.createElement(
+  return /* @__PURE__ */ import_react.default.createElement("div", { className: "ak-hero", style: sectionAppearanceStyle(appearance) }, /* @__PURE__ */ import_react.default.createElement("section", { className: "ak-hero__section" }, /* @__PURE__ */ import_react.default.createElement("div", { className: "ak-hero__container" }, /* @__PURE__ */ import_react.default.createElement("div", { className: "ak-hero__frame" }, /* @__PURE__ */ import_react.default.createElement(
     "div",
     {
       ref: viewportRef,
@@ -474,8 +1199,8 @@ function HeroSlider({ section }) {
         {
           className: `ak-hero__contentCard ak-hero__contentCard--${activeAlign}`
         },
-        displayHeadline ? /* @__PURE__ */ import_react.default.createElement("h1", { className: "ak-hero__headline" }, displayHeadline) : null,
-        displaySub ? /* @__PURE__ */ import_react.default.createElement("p", { className: "ak-hero__subhead" }, displaySub) : null,
+        displayHeadline ? /* @__PURE__ */ import_react.default.createElement("h1", { className: "ak-hero__headline", style: slideHeadlineStyle }, displayHeadline) : null,
+        displaySub ? /* @__PURE__ */ import_react.default.createElement("p", { className: "ak-hero__subhead", style: slideDescriptionStyle }, displaySub) : null,
         /* @__PURE__ */ import_react.default.createElement(
           "div",
           {
@@ -521,7 +1246,7 @@ function HeroSlider({ section }) {
       },
       /* @__PURE__ */ import_react.default.createElement("i", { className: "fa-solid fa-arrow-right" })
     )),
-    /* @__PURE__ */ import_react.default.createElement("div", { className: "ak-hero__topbar" }, /* @__PURE__ */ import_react.default.createElement("div", { className: "ak-hero__topbarInner" }, displayBadge ? /* @__PURE__ */ import_react.default.createElement("div", { className: "ak-hero__badge" }, displayBadge) : null, /* @__PURE__ */ import_react.default.createElement("div", { className: "ak-hero__counter" }, "Slide ", String(activeIndex + 1).padStart(2, "0"), " /", " ", String(baseSlides.length).padStart(2, "0"))))
+    /* @__PURE__ */ import_react.default.createElement("div", { className: "ak-hero__topbar" }, /* @__PURE__ */ import_react.default.createElement("div", { className: "ak-hero__topbarInner" }, displayBadge ? /* @__PURE__ */ import_react.default.createElement("div", { className: "ak-hero__badge", style: sectionLabelStyle }, displayBadge) : null, /* @__PURE__ */ import_react.default.createElement("div", { className: "ak-hero__counter" }, "Slide ", String(activeIndex + 1).padStart(2, "0"), " /", " ", String(baseSlides.length).padStart(2, "0"))))
   ), showDots && baseSlides.length > 1 && /* @__PURE__ */ import_react.default.createElement("div", { className: "ak-hero__dotsBar" }, /* @__PURE__ */ import_react.default.createElement("div", { className: "ak-hero__dots" }, baseSlides.map((slide, dotIndex) => /* @__PURE__ */ import_react.default.createElement(
     "button",
     {
@@ -624,23 +1349,49 @@ var CtaArrowIcon = () => /* @__PURE__ */ import_react2.default.createElement(
   /* @__PURE__ */ import_react2.default.createElement("path", { d: "M7 7h10v10" }),
   /* @__PURE__ */ import_react2.default.createElement("path", { d: "M7 17 17 7" })
 );
-function HeroScrollableSlide({ section }) {
-  var _a, _b, _c, _d, _e, _f;
+function HeroScrollableSlide({
+  section,
+  appearance,
+  theme
+}) {
+  var _a, _b, _c, _d;
   const p = (_b = (_a = section.settings) == null ? void 0 : _a.props) != null ? _b : {};
   const blocks = (_d = (_c = section.settings) == null ? void 0 : _c.blocks) != null ? _d : [];
+  const slideHeadlineStyle = (0, import_react2.useMemo)(
+    () => resolvedTextStyleToInlineStyle(
+      resolveBlockGroupTextStyle({
+        section,
+        theme,
+        groupKey: "slideHeadline",
+        role: "heading",
+        defaultStyle: HERO_SLIDE_HEADLINE_DEFAULT
+      })
+    ),
+    [section, theme]
+  );
+  const slideDescriptionStyle = (0, import_react2.useMemo)(
+    () => resolvedTextStyleToInlineStyle(
+      resolveBlockGroupTextStyle({
+        section,
+        theme,
+        groupKey: "slideDescription",
+        role: "body",
+        defaultStyle: HERO_SLIDE_DESCRIPTION_DEFAULT
+      })
+    ),
+    [section, theme]
+  );
   const cards = (0, import_react2.useMemo)(
     () => sectionBlocksToScrollCards(blocks),
     [blocks]
   );
-  const toolbarTitle = String((_e = p.sectionLabel) != null ? _e : "").trim();
-  const toolbarHint = String((_f = p.toolbarHint) != null ? _f : "").trim();
   if (section.enabled === false) {
     return null;
   }
   if (cards.length === 0) {
     return null;
   }
-  return /* @__PURE__ */ import_react2.default.createElement("section", { className: "ak-scroll-cards" }, /* @__PURE__ */ import_react2.default.createElement("div", { className: "ak-scroll-cards__inner" }, /* @__PURE__ */ import_react2.default.createElement("div", { className: "ak-scroll-cards__stack" }, cards.map((card, index) => {
+  return /* @__PURE__ */ import_react2.default.createElement("section", { className: "ak-scroll-cards", style: sectionAppearanceStyle(appearance) }, /* @__PURE__ */ import_react2.default.createElement("div", { className: "ak-scroll-cards__inner" }, /* @__PURE__ */ import_react2.default.createElement("div", { className: "ak-scroll-cards__stack" }, cards.map((card, index) => {
     var _a2;
     return /* @__PURE__ */ import_react2.default.createElement(
       "section",
@@ -655,7 +1406,7 @@ function HeroScrollableSlide({ section }) {
           desktopSrc: card.image,
           mobileSrc: card.imageMobile
         }
-      ), /* @__PURE__ */ import_react2.default.createElement("div", { className: "ak-scroll-cards__overlayTint" }), /* @__PURE__ */ import_react2.default.createElement("div", { className: "ak-scroll-cards__overlayGradient" }), /* @__PURE__ */ import_react2.default.createElement("div", { className: "ak-scroll-cards__overlayRadial" })), /* @__PURE__ */ import_react2.default.createElement("div", { className: "ak-scroll-cards__content" }, /* @__PURE__ */ import_react2.default.createElement("div", { className: "ak-scroll-cards__topRow" }, card.eyebrow ? /* @__PURE__ */ import_react2.default.createElement("div", { className: "ak-scroll-cards__eyebrow" }, card.eyebrow) : null, /* @__PURE__ */ import_react2.default.createElement("div", { className: "ak-scroll-cards__index" }, String(index + 1).padStart(2, "0"), " /", " ", String(cards.length).padStart(2, "0"))), /* @__PURE__ */ import_react2.default.createElement("div", { className: "ak-scroll-cards__panel" }, card.title ? /* @__PURE__ */ import_react2.default.createElement("h2", { className: "ak-scroll-cards__title" }, card.title) : null, card.description ? /* @__PURE__ */ import_react2.default.createElement("p", { className: "ak-scroll-cards__desc" }, card.description) : null, /* @__PURE__ */ import_react2.default.createElement(
+      ), /* @__PURE__ */ import_react2.default.createElement("div", { className: "ak-scroll-cards__overlayTint" }), /* @__PURE__ */ import_react2.default.createElement("div", { className: "ak-scroll-cards__overlayGradient" }), /* @__PURE__ */ import_react2.default.createElement("div", { className: "ak-scroll-cards__overlayRadial" })), /* @__PURE__ */ import_react2.default.createElement("div", { className: "ak-scroll-cards__content" }, /* @__PURE__ */ import_react2.default.createElement("div", { className: "ak-scroll-cards__topRow" }, card.eyebrow ? /* @__PURE__ */ import_react2.default.createElement("div", { className: "ak-scroll-cards__eyebrow" }, card.eyebrow) : null, /* @__PURE__ */ import_react2.default.createElement("div", { className: "ak-scroll-cards__index" }, String(index + 1).padStart(2, "0"), " /", " ", String(cards.length).padStart(2, "0"))), /* @__PURE__ */ import_react2.default.createElement("div", { className: "ak-scroll-cards__panel" }, card.title ? /* @__PURE__ */ import_react2.default.createElement("h2", { className: "ak-scroll-cards__title", style: slideHeadlineStyle }, card.title) : null, card.description ? /* @__PURE__ */ import_react2.default.createElement("p", { className: "ak-scroll-cards__desc", style: slideDescriptionStyle }, card.description) : null, /* @__PURE__ */ import_react2.default.createElement(
         "div",
         {
           style: {
@@ -908,6 +1659,30 @@ function SubHeroImageLoop({ section }) {
 
 // src/components/LogoFocusedHeaderSection/LogoFocusedHeader.tsx
 var import_react4 = __toESM(require("react"));
+
+// src/shared/textStyleDefaults/headerTextStyleDefaults.ts
+var HEADER_BRAND_NAME_DEFAULT = {
+  color: "#0a0a0a",
+  fontWeight: "600",
+  fontSize: "16px"
+};
+var HEADER_BRAND_SUBTITLE_DEFAULT = {
+  color: "rgba(0, 0, 0, 0.4)",
+  fontWeight: "400",
+  fontSize: "11px"
+};
+var HEADER_NAV_LINK_TEXT_DEFAULT = {
+  color: "rgba(0, 0, 0, 0.6)",
+  fontWeight: "500",
+  fontSize: "13px"
+};
+var HEADER_NAV_LINK_TEXT_LIGHT_DEFAULT = {
+  color: "rgba(255, 255, 255, 0.8)",
+  fontWeight: "500",
+  fontSize: "14px"
+};
+
+// src/components/LogoFocusedHeaderSection/LogoFocusedHeader.tsx
 function safeText(v) {
   return String(v != null ? v : "").trim();
 }
@@ -1004,40 +1779,71 @@ function IconX() {
     /* @__PURE__ */ import_react4.default.createElement("path", { d: "M6 6l12 12" })
   );
 }
-function NavToggle({ items, active, onSelect }) {
+function NavToggle({
+  items,
+  active,
+  onSelect,
+  linkFontStyle,
+  navShellStyle,
+  inactivePillStyle,
+  activePillStyle
+}) {
   if (items.length === 0) return null;
-  return /* @__PURE__ */ import_react4.default.createElement("div", { className: "ak-lfh__navToggle", role: "tablist", "aria-label": "Primary navigation" }, items.map((item, idx) => {
-    const isActive = active === item.label;
-    const href = safeText(item.link);
-    return href ? /* @__PURE__ */ import_react4.default.createElement(
-      "a",
-      {
-        key: `${item.label}-${idx}`,
-        href,
-        role: "tab",
-        "aria-selected": isActive,
-        className: isActive ? "ak-lfh__navPill ak-lfh__navPill--active" : "ak-lfh__navPill",
-        onClick: (e) => {
-          onSelect(item.label);
-          handleClientNavClick(e, href);
-        }
-      },
-      item.label
-    ) : /* @__PURE__ */ import_react4.default.createElement(
-      "button",
-      {
-        key: `${item.label}-${idx}`,
-        type: "button",
-        role: "tab",
-        "aria-selected": isActive,
-        className: isActive ? "ak-lfh__navPill ak-lfh__navPill--active" : "ak-lfh__navPill",
-        onClick: () => onSelect(item.label)
-      },
-      item.label
-    );
-  }));
+  return /* @__PURE__ */ import_react4.default.createElement(
+    "div",
+    {
+      className: "ak-lfh__navToggle",
+      role: "tablist",
+      "aria-label": "Primary navigation",
+      style: navShellStyle
+    },
+    items.map((item, idx) => {
+      const isActive = active === item.label;
+      const href = safeText(item.link);
+      const pillStyle = {
+        ...linkFontStyle,
+        ...isActive ? activePillStyle : inactivePillStyle
+      };
+      return href ? /* @__PURE__ */ import_react4.default.createElement(
+        "a",
+        {
+          key: `${item.label}-${idx}`,
+          href,
+          role: "tab",
+          "aria-selected": isActive,
+          className: isActive ? "ak-lfh__navPill ak-lfh__navPill--active" : "ak-lfh__navPill",
+          style: pillStyle,
+          onClick: (e) => {
+            onSelect(item.label);
+            handleClientNavClick(e, href);
+          }
+        },
+        item.label
+      ) : /* @__PURE__ */ import_react4.default.createElement(
+        "button",
+        {
+          key: `${item.label}-${idx}`,
+          type: "button",
+          role: "tab",
+          "aria-selected": isActive,
+          className: isActive ? "ak-lfh__navPill ak-lfh__navPill--active" : "ak-lfh__navPill",
+          style: pillStyle,
+          onClick: () => onSelect(item.label)
+        },
+        item.label
+      );
+    })
+  );
 }
-function LogoFocusedHeader({ section, cartCount, onSearchChnage, onProfileClick, onCartClick }) {
+function LogoFocusedHeader({
+  section,
+  appearance,
+  theme,
+  cartCount,
+  onSearchChnage,
+  onProfileClick,
+  onCartClick
+}) {
   var _a, _b, _c;
   const props = (_b = (_a = section == null ? void 0 : section.settings) == null ? void 0 : _a.props) != null ? _b : {};
   const rawBlocks = (_c = section == null ? void 0 : section.settings) == null ? void 0 : _c.blocks;
@@ -1080,8 +1886,63 @@ function LogoFocusedHeader({ section, cartCount, onSearchChnage, onProfileClick,
   const showSubtitle = props.showBrandSubtitle !== false;
   const showProfile = props.showProfileIcon !== false;
   const showCart = props.showCartIcon !== false;
-  const cartBadge = safeText(props.cartCount);
   const sticky = props.stickyHeader !== false;
+  const brandNameStyle = (0, import_react4.useMemo)(
+    () => resolvedTextStyleToInlineStyle(
+      resolveTextStyle({
+        section,
+        theme,
+        fieldId: "brandName",
+        role: "heading",
+        defaultStyle: HEADER_BRAND_NAME_DEFAULT
+      })
+    ),
+    [section, theme]
+  );
+  const brandSubtitleStyle = (0, import_react4.useMemo)(
+    () => resolvedTextStyleToInlineStyle(
+      resolveTextStyle({
+        section,
+        theme,
+        fieldId: "brandSubtitle",
+        role: "body",
+        defaultStyle: HEADER_BRAND_SUBTITLE_DEFAULT
+      })
+    ),
+    [section, theme]
+  );
+  const navLinkFontStyle = (0, import_react4.useMemo)(
+    () => {
+      const resolved = resolveBlockGroupTextStyle({
+        section,
+        theme,
+        groupKey: "navLinkText",
+        role: "body",
+        defaultStyle: HEADER_NAV_LINK_TEXT_DEFAULT
+      });
+      return {
+        fontFamily: resolved.fontFamily,
+        fontWeight: resolved.fontWeight,
+        fontSize: resolved.fontSize
+      };
+    },
+    [section, theme]
+  );
+  const resolvedHeaderAppearance = (0, import_react4.useMemo)(
+    () => resolveHeaderAppearance({ section, theme }),
+    [section, theme]
+  );
+  const headerChrome = (0, import_react4.useMemo)(
+    () => headerChromeStyles(resolvedHeaderAppearance),
+    [resolvedHeaderAppearance]
+  );
+  const headerBarStyle = (0, import_react4.useMemo)(
+    () => ({
+      ...sectionAppearanceStyle(appearance),
+      ...logoFocusedHeaderAppearanceCssVars(resolvedHeaderAppearance)
+    }),
+    [appearance, resolvedHeaderAppearance]
+  );
   const showSearch = pathname == null ? void 0 : pathname.startsWith("/store");
   const [isSearchOpen, setIsSearchOpen] = (0, import_react4.useState)(false);
   const [searchValue, setSearchValue] = (0, import_react4.useState)("");
@@ -1153,7 +2014,7 @@ function LogoFocusedHeader({ section, cartCount, onSearchChnage, onProfileClick,
     const el = (_e = (_d = isMobile ? mobileInputRef.current : desktopInputRef.current) != null ? _d : desktopInputRef.current) != null ? _e : mobileInputRef.current;
     el == null ? void 0 : el.focus();
   };
-  return /* @__PURE__ */ import_react4.default.createElement("header", { className: `ak-lfh ${sticky ? "ak-lfh__bar--sticky" : ""}` }, /* @__PURE__ */ import_react4.default.createElement("div", { className: "ak-lfh__bar" }, /* @__PURE__ */ import_react4.default.createElement("div", { className: "ak-lfh__row" }, /* @__PURE__ */ import_react4.default.createElement("div", { className: "ak-lfh__brand" }, /* @__PURE__ */ import_react4.default.createElement("div", { className: "ak-lfh__brandMark" }, /* @__PURE__ */ import_react4.default.createElement(
+  return /* @__PURE__ */ import_react4.default.createElement("header", { className: `ak-lfh ${sticky ? "ak-lfh__bar--sticky" : ""}` }, /* @__PURE__ */ import_react4.default.createElement("div", { className: "ak-lfh__bar", style: headerBarStyle }, /* @__PURE__ */ import_react4.default.createElement("div", { className: "ak-lfh__row" }, /* @__PURE__ */ import_react4.default.createElement("div", { className: "ak-lfh__brand" }, /* @__PURE__ */ import_react4.default.createElement("div", { className: "ak-lfh__brandMark" }, /* @__PURE__ */ import_react4.default.createElement(
     "a",
     {
       href: "/",
@@ -1176,10 +2037,22 @@ function LogoFocusedHeader({ section, cartCount, onSearchChnage, onProfileClick,
       type: "button",
       className: "ak-lfh__iconBtn ak-lfh__iconBtn--profileMobile",
       "aria-label": "Account",
+      style: headerChrome.iconButton,
       onClick: () => onProfileClick == null ? void 0 : onProfileClick()
     },
     /* @__PURE__ */ import_react4.default.createElement(IconUser, null)
-  ) : null), /* @__PURE__ */ import_react4.default.createElement("div", { className: "ak-lfh__brandText" }, /* @__PURE__ */ import_react4.default.createElement("div", { className: "ak-lfh__brandName" }, brandName), showSubtitle ? /* @__PURE__ */ import_react4.default.createElement("div", { className: "ak-lfh__brandSub" }, brandSubtitle) : null)), /* @__PURE__ */ import_react4.default.createElement("div", { className: "ak-lfh__center" }, /* @__PURE__ */ import_react4.default.createElement(NavToggle, { items: navItems, active: activeLabel, onSelect: setActiveLabel })), /* @__PURE__ */ import_react4.default.createElement("div", { className: "ak-lfh__actions" }, showSearch ? /* @__PURE__ */ import_react4.default.createElement(
+  ) : null), /* @__PURE__ */ import_react4.default.createElement("div", { className: "ak-lfh__brandText" }, /* @__PURE__ */ import_react4.default.createElement("div", { className: "ak-lfh__brandName", style: brandNameStyle }, brandName), showSubtitle ? /* @__PURE__ */ import_react4.default.createElement("div", { className: "ak-lfh__brandSub", style: brandSubtitleStyle }, brandSubtitle) : null)), /* @__PURE__ */ import_react4.default.createElement("div", { className: "ak-lfh__center" }, /* @__PURE__ */ import_react4.default.createElement(
+    NavToggle,
+    {
+      items: navItems,
+      active: activeLabel,
+      onSelect: setActiveLabel,
+      linkFontStyle: navLinkFontStyle,
+      navShellStyle: headerChrome.navShell,
+      inactivePillStyle: headerChrome.inactivePill,
+      activePillStyle: headerChrome.activePill
+    }
+  )), /* @__PURE__ */ import_react4.default.createElement("div", { className: "ak-lfh__actions" }, showSearch ? /* @__PURE__ */ import_react4.default.createElement(
     "div",
     {
       ref: desktopSearchRef,
@@ -1192,6 +2065,7 @@ function LogoFocusedHeader({ section, cartCount, onSearchChnage, onProfileClick,
         className: "ak-lfh__iconBtn",
         "aria-label": "Search",
         "aria-expanded": false,
+        style: headerChrome.iconButton,
         onClick: () => setSearchOpen(true)
       },
       /* @__PURE__ */ import_react4.default.createElement(IconSearch, null)
@@ -1238,6 +2112,7 @@ function LogoFocusedHeader({ section, cartCount, onSearchChnage, onProfileClick,
       id: "profile-button",
       className: "ak-lfh__iconBtn ak-lfh__iconBtn--profileDesktop",
       "aria-label": "Account",
+      style: headerChrome.iconButton,
       onClick: () => onProfileClick == null ? void 0 : onProfileClick()
     },
     /* @__PURE__ */ import_react4.default.createElement(IconUser, null)
@@ -1247,10 +2122,11 @@ function LogoFocusedHeader({ section, cartCount, onSearchChnage, onProfileClick,
       type: "button",
       className: "ak-lfh__iconBtn",
       "aria-label": "Shopping cart",
+      style: headerChrome.iconButton,
       onClick: () => onCartClick == null ? void 0 : onCartClick()
     },
     /* @__PURE__ */ import_react4.default.createElement(IconBag, null),
-    /* @__PURE__ */ import_react4.default.createElement("span", { className: "ak-lfh__badge" }, cartCount != null ? cartCount : 0)
+    /* @__PURE__ */ import_react4.default.createElement("span", { className: "ak-lfh__badge", style: headerChrome.cartBadge }, cartCount != null ? cartCount : 0)
   ) : null)), showSearch ? /* @__PURE__ */ import_react4.default.createElement(
     "div",
     {
@@ -1378,7 +2254,16 @@ function IconX2() {
     /* @__PURE__ */ import_react5.default.createElement("path", { d: "M6 6l12 12" })
   );
 }
-function NavPills({ items, active, onSelect, scrolled }) {
+function NavPills({
+  items,
+  active,
+  onSelect,
+  scrolled,
+  linkFontStyle,
+  navShellStyle,
+  inactivePillStyle,
+  activePillStyle
+}) {
   if (items.length === 0) return null;
   return /* @__PURE__ */ import_react5.default.createElement(
     "div",
@@ -1388,7 +2273,8 @@ function NavPills({ items, active, onSelect, scrolled }) {
         scrolled ? "ak-thh__navShell--scrolled" : "ak-thh__navShell--top"
       ].join(" "),
       role: "tablist",
-      "aria-label": "Primary navigation"
+      "aria-label": "Primary navigation",
+      style: navShellStyle
     },
     items.map((item, idx) => {
       const isActive = active === item.label;
@@ -1398,6 +2284,10 @@ function NavPills({ items, active, onSelect, scrolled }) {
         isActive ? "ak-thh__navPill--active" : "",
         scrolled ? "ak-thh__navPill--scrolled" : "ak-thh__navPill--top"
       ].filter(Boolean).join(" ");
+      const pillStyle = {
+        ...linkFontStyle,
+        ...isActive ? activePillStyle : inactivePillStyle
+      };
       return href ? /* @__PURE__ */ import_react5.default.createElement(
         "a",
         {
@@ -1406,6 +2296,7 @@ function NavPills({ items, active, onSelect, scrolled }) {
           role: "tab",
           "aria-selected": isActive,
           className: pillClass,
+          style: pillStyle,
           onClick: () => onSelect(item.label)
         },
         item.label
@@ -1417,6 +2308,7 @@ function NavPills({ items, active, onSelect, scrolled }) {
           role: "tab",
           "aria-selected": isActive,
           className: pillClass,
+          style: pillStyle,
           onClick: () => onSelect(item.label)
         },
         item.label
@@ -1424,7 +2316,15 @@ function NavPills({ items, active, onSelect, scrolled }) {
     })
   );
 }
-function TransparentHeroHeader({ section, cartCount, onSearchChnage, onProfileClick, onCartClick }) {
+function TransparentHeroHeader({
+  section,
+  appearance,
+  theme,
+  cartCount,
+  onSearchChnage,
+  onProfileClick,
+  onCartClick
+}) {
   var _a, _b, _c;
   const props = (_b = (_a = section == null ? void 0 : section.settings) == null ? void 0 : _a.props) != null ? _b : {};
   const rawBlocks = (_c = section == null ? void 0 : section.settings) == null ? void 0 : _c.blocks;
@@ -1495,9 +2395,64 @@ function TransparentHeroHeader({ section, cartCount, onSearchChnage, onProfileCl
   const blurPx = enableTransition ? progress * maxBlurPx : 0;
   const borderAlpha = enableTransition ? progress * 0.08 : 0;
   const logoText = safeText2(props.logoText) || "Logo";
+  const brandSubtitle = safeText2(props.brandSubtitle);
   const logoSrc = normalizeImageUrl(props.logoImage);
   const showProfile = props.showProfileIcon !== false;
   const showCart = props.showCartIcon !== false;
+  const brandNameStyle = (0, import_react5.useMemo)(
+    () => resolvedTextStyleToInlineStyle(
+      resolveTextStyle({
+        section,
+        theme,
+        fieldId: "brandName",
+        role: "heading",
+        defaultStyle: HEADER_BRAND_NAME_DEFAULT
+      })
+    ),
+    [section, theme]
+  );
+  const brandSubtitleStyle = (0, import_react5.useMemo)(
+    () => resolvedTextStyleToInlineStyle(
+      resolveTextStyle({
+        section,
+        theme,
+        fieldId: "brandSubtitle",
+        role: "body",
+        defaultStyle: HEADER_BRAND_SUBTITLE_DEFAULT
+      })
+    ),
+    [section, theme]
+  );
+  const navLinkFontStyle = (0, import_react5.useMemo)(
+    () => {
+      const resolved = resolveBlockGroupTextStyle({
+        section,
+        theme,
+        groupKey: "navLinkText",
+        role: "body",
+        defaultStyle: HEADER_NAV_LINK_TEXT_LIGHT_DEFAULT
+      });
+      return {
+        fontFamily: resolved.fontFamily,
+        fontWeight: resolved.fontWeight,
+        fontSize: resolved.fontSize
+      };
+    },
+    [section, theme]
+  );
+  const useHeaderChrome = hasHeaderAppearanceOverrides(section);
+  const resolvedHeaderAppearance = (0, import_react5.useMemo)(
+    () => resolveHeaderAppearance({ section, theme }),
+    [section, theme]
+  );
+  const headerChrome = (0, import_react5.useMemo)(
+    () => useHeaderChrome ? headerChromeStyles(resolvedHeaderAppearance) : null,
+    [useHeaderChrome, resolvedHeaderAppearance]
+  );
+  const headerChromeVars = (0, import_react5.useMemo)(
+    () => useHeaderChrome ? transparentHeroHeaderAppearanceCssVars(resolvedHeaderAppearance) : void 0,
+    [useHeaderChrome, resolvedHeaderAppearance]
+  );
   const showSearch = pathname == null ? void 0 : pathname.startsWith("/store");
   const [isSearchOpen, setIsSearchOpen] = (0, import_react5.useState)(false);
   const [searchValue, setSearchValue] = (0, import_react5.useState)("");
@@ -1570,11 +2525,15 @@ function TransparentHeroHeader({ section, cartCount, onSearchChnage, onProfileCl
   };
   const iconBtnClass = ["ak-thh__iconBtn", scrolled ? "ak-thh__iconBtn--scrolled" : "ak-thh__iconBtn--top"].join(" ");
   const headerStyle = {
+    ...sectionAppearanceStyle(appearance),
+    ...headerChromeVars,
     backgroundColor: `rgba(10, 10, 12, ${bgAlpha})`,
     backdropFilter: blurPx > 0 ? `blur(${blurPx}px)` : void 0,
     WebkitBackdropFilter: blurPx > 0 ? `blur(${blurPx}px)` : void 0,
     boxShadow: `inset 0 -1px 0 rgba(255,255,255,${borderAlpha})`
   };
+  const iconButtonStyle = headerChrome == null ? void 0 : headerChrome.iconButton;
+  const cartBadgeStyle = headerChrome == null ? void 0 : headerChrome.cartBadge;
   const positionClass = sticky ? "ak-thh__bar--sticky" : "ak-thh__bar--static";
   return /* @__PURE__ */ import_react5.default.createElement("header", { className: `ak-thh ${positionClass}`, style: headerStyle }, /* @__PURE__ */ import_react5.default.createElement("div", { className: "ak-thh__wrap" }, /* @__PURE__ */ import_react5.default.createElement("div", { className: "ak-thh__inner" }, /* @__PURE__ */ import_react5.default.createElement("div", { className: "ak-thh__logo" }, /* @__PURE__ */ import_react5.default.createElement(
     "div",
@@ -1593,14 +2552,18 @@ function TransparentHeroHeader({ section, cartCount, onSearchChnage, onProfileCl
         alt: logoText,
         loading: "lazy"
       }
-    ) : /* @__PURE__ */ import_react5.default.createElement("span", { className: "ak-thh__logoText" }, logoText)
-  )), /* @__PURE__ */ import_react5.default.createElement("div", { className: "ak-thh__center" }, /* @__PURE__ */ import_react5.default.createElement(
+    ) : /* @__PURE__ */ import_react5.default.createElement("span", { className: "ak-thh__logoText", style: brandNameStyle }, logoText)
+  ), brandSubtitle ? /* @__PURE__ */ import_react5.default.createElement("span", { className: "ak-thh__brandSub", style: brandSubtitleStyle }, brandSubtitle) : null), /* @__PURE__ */ import_react5.default.createElement("div", { className: "ak-thh__center" }, /* @__PURE__ */ import_react5.default.createElement(
     NavPills,
     {
       items: navItems,
       active: activeLabel,
       onSelect: setActiveLabel,
-      scrolled
+      scrolled,
+      linkFontStyle: navLinkFontStyle,
+      navShellStyle: headerChrome == null ? void 0 : headerChrome.navShell,
+      inactivePillStyle: headerChrome == null ? void 0 : headerChrome.inactivePill,
+      activePillStyle: headerChrome == null ? void 0 : headerChrome.activePill
     }
   )), /* @__PURE__ */ import_react5.default.createElement("div", { className: "ak-thh__actions" }, showSearch ? /* @__PURE__ */ import_react5.default.createElement(
     "div",
@@ -1615,6 +2578,7 @@ function TransparentHeroHeader({ section, cartCount, onSearchChnage, onProfileCl
         className: iconBtnClass,
         "aria-label": "Search",
         "aria-expanded": false,
+        style: iconButtonStyle,
         onClick: () => setSearchOpen(true)
       },
       /* @__PURE__ */ import_react5.default.createElement(IconSearch2, null)
@@ -1661,6 +2625,7 @@ function TransparentHeroHeader({ section, cartCount, onSearchChnage, onProfileCl
       id: "profile-button",
       className: iconBtnClass,
       "aria-label": "Account",
+      style: iconButtonStyle,
       onClick: () => onProfileClick == null ? void 0 : onProfileClick()
     },
     /* @__PURE__ */ import_react5.default.createElement(IconUser2, null)
@@ -1670,10 +2635,11 @@ function TransparentHeroHeader({ section, cartCount, onSearchChnage, onProfileCl
       type: "button",
       className: iconBtnClass,
       "aria-label": "Shopping cart",
+      style: iconButtonStyle,
       onClick: () => onCartClick == null ? void 0 : onCartClick()
     },
     /* @__PURE__ */ import_react5.default.createElement(IconBag2, null),
-    /* @__PURE__ */ import_react5.default.createElement("span", { className: "ak-thh__badge" }, cartCount != null ? cartCount : 0)
+    /* @__PURE__ */ import_react5.default.createElement("span", { className: "ak-thh__badge", style: cartBadgeStyle }, cartCount != null ? cartCount : 0)
   ) : null)), showSearch ? /* @__PURE__ */ import_react5.default.createElement(
     "div",
     {
@@ -1714,6 +2680,58 @@ var import_react11 = __toESM(require("react"));
 
 // src/components/MessageStyleTestimonialsSection/variants/AppleMessageMarquee.tsx
 var import_react7 = __toESM(require("react"));
+
+// src/shared/textStyleDefaults/testimonialTextStyleDefaults.ts
+var TESTIMONIAL_QUOTE_TEXT_DEFAULT = {
+  color: "#1d1d1f",
+  fontWeight: "400",
+  fontSize: "16px"
+};
+var TESTIMONIAL_CUSTOMER_NAME_DEFAULT = {
+  color: "#1d1d1f",
+  fontWeight: "600",
+  fontSize: "15px"
+};
+var TESTIMONIAL_CUSTOMER_ROLE_DEFAULT = {
+  color: "#86868b",
+  fontWeight: "400",
+  fontSize: "14px"
+};
+var TESTIMONIAL_SUBHEADING_DEFAULT = {
+  color: "#6e6e73",
+  fontWeight: "400",
+  fontSize: "17px"
+};
+var TESTIMONIAL_BACKGROUND_WORD_DEFAULT = {
+  color: "rgba(0, 0, 0, 0.06)",
+  fontWeight: "700",
+  fontSize: "15rem"
+};
+var TESTIMONIAL_EYEBROW_DEFAULT = {
+  color: "#86868b",
+  fontWeight: "600",
+  fontSize: "12px"
+};
+var TESTIMONIAL_HEADING_DEFAULT = {
+  color: "#1d1d1f",
+  fontWeight: "700",
+  fontSize: "36px"
+};
+var TESTIMONIAL_HIGHLIGHT_TEXT_DEFAULT = {
+  color: "#6e6e73",
+  fontWeight: "600",
+  fontSize: "36px"
+};
+var TESTIMONIAL_DESCRIPTION_DEFAULT = {
+  color: "#6e6e73",
+  fontWeight: "400",
+  fontSize: "16px"
+};
+var TESTIMONIAL_BUTTON_TEXT_DEFAULT = {
+  color: "#ffffff",
+  fontWeight: "600",
+  fontSize: "15px"
+};
 
 // src/components/MessageStyleTestimonialsSection/hooks.ts
 var import_react6 = require("react");
@@ -1787,7 +2805,10 @@ function StarRating({
 }
 function AppleCard({
   item,
-  showStars
+  showStars,
+  quoteStyle,
+  nameStyle,
+  roleStyle
 }) {
   var _a, _b, _c;
   const name = String((_a = item == null ? void 0 : item.name) != null ? _a : "").trim();
@@ -1795,10 +2816,12 @@ function AppleCard({
   const quote = String((_c = item == null ? void 0 : item.quote) != null ? _c : "").trim();
   const rating = Number(item == null ? void 0 : item.rating);
   const stars = Number.isFinite(rating) ? rating : 5;
-  return /* @__PURE__ */ import_react7.default.createElement("div", { className: "ak-mst-apple__card-wrap" }, /* @__PURE__ */ import_react7.default.createElement("div", { className: "ak-mst-apple__card" }, /* @__PURE__ */ import_react7.default.createElement(StarRating, { rating: stars, visible: showStars }), /* @__PURE__ */ import_react7.default.createElement("p", { className: "ak-mst-apple__quote" }, quote ? /* @__PURE__ */ import_react7.default.createElement(import_react7.default.Fragment, null, /* @__PURE__ */ import_react7.default.createElement("span", { className: "ak-mst-apple__q" }, "\u201C"), quote, /* @__PURE__ */ import_react7.default.createElement("span", { className: "ak-mst-apple__q" }, "\u201D")) : /* @__PURE__ */ import_react7.default.createElement("span", { className: "ak-mst-apple__placeholder" }, "Add a quote")), /* @__PURE__ */ import_react7.default.createElement("div", { className: "ak-mst-apple__footer" }, /* @__PURE__ */ import_react7.default.createElement("span", { className: "ak-mst-apple__name" }, name || "Name"), role ? /* @__PURE__ */ import_react7.default.createElement("span", { className: "ak-mst-apple__role" }, role) : null)));
+  return /* @__PURE__ */ import_react7.default.createElement("div", { className: "ak-mst-apple__card-wrap" }, /* @__PURE__ */ import_react7.default.createElement("div", { className: "ak-mst-apple__card" }, /* @__PURE__ */ import_react7.default.createElement(StarRating, { rating: stars, visible: showStars }), /* @__PURE__ */ import_react7.default.createElement("p", { className: "ak-mst-apple__quote", style: quoteStyle }, quote ? /* @__PURE__ */ import_react7.default.createElement(import_react7.default.Fragment, null, /* @__PURE__ */ import_react7.default.createElement("span", { className: "ak-mst-apple__q" }, "\u201C"), quote, /* @__PURE__ */ import_react7.default.createElement("span", { className: "ak-mst-apple__q" }, "\u201D")) : /* @__PURE__ */ import_react7.default.createElement("span", { className: "ak-mst-apple__placeholder" }, "Add a quote")), /* @__PURE__ */ import_react7.default.createElement("div", { className: "ak-mst-apple__footer" }, /* @__PURE__ */ import_react7.default.createElement("span", { className: "ak-mst-apple__name", style: nameStyle }, name || "Name"), role ? /* @__PURE__ */ import_react7.default.createElement("span", { className: "ak-mst-apple__role", style: roleStyle }, role) : null)));
 }
 function AppleMessageMarquee({
-  section
+  section,
+  appearance,
+  theme
 }) {
   var _a, _b, _c, _d, _e;
   const reduceMotion = usePrefersReducedMotion();
@@ -1821,7 +2844,56 @@ function AppleMessageMarquee({
     () => items.length > 0 ? buildMarqueeLoop(items, 6) : [],
     [items]
   );
+  const subheadingStyle = (0, import_react7.useMemo)(
+    () => resolvedTextStyleToInlineStyle(
+      resolveTextStyle({
+        section,
+        theme,
+        fieldId: "subheading",
+        role: "body",
+        defaultStyle: TESTIMONIAL_SUBHEADING_DEFAULT
+      })
+    ),
+    [section, theme]
+  );
+  const quoteTextStyle = (0, import_react7.useMemo)(
+    () => resolvedTextStyleToInlineStyle(
+      resolveBlockGroupTextStyle({
+        section,
+        theme,
+        groupKey: "quoteText",
+        role: "body",
+        defaultStyle: TESTIMONIAL_QUOTE_TEXT_DEFAULT
+      })
+    ),
+    [section, theme]
+  );
+  const customerNameStyle = (0, import_react7.useMemo)(
+    () => resolvedTextStyleToInlineStyle(
+      resolveBlockGroupTextStyle({
+        section,
+        theme,
+        groupKey: "customerName",
+        role: "heading",
+        defaultStyle: TESTIMONIAL_CUSTOMER_NAME_DEFAULT
+      })
+    ),
+    [section, theme]
+  );
+  const customerRoleStyle = (0, import_react7.useMemo)(
+    () => resolvedTextStyleToInlineStyle(
+      resolveBlockGroupTextStyle({
+        section,
+        theme,
+        groupKey: "customerRole",
+        role: "body",
+        defaultStyle: TESTIMONIAL_CUSTOMER_ROLE_DEFAULT
+      })
+    ),
+    [section, theme]
+  );
   const sectionStyle = {
+    ...sectionAppearanceStyle(appearance),
     background: bg,
     paddingTop: padTop,
     paddingBottom: padBot
@@ -1837,7 +2909,17 @@ function AppleMessageMarquee({
       style: sectionStyle,
       "aria-label": heading || "Testimonials"
     },
-    /* @__PURE__ */ import_react7.default.createElement("div", { className: "ak-mst-apple__inner" }, /* @__PURE__ */ import_react7.default.createElement("header", { className: "ak-mst-apple__intro" }, /* @__PURE__ */ import_react7.default.createElement("h2", { className: "ak-mst-apple__title" }, heading || "Loved by merchants."), sub ? /* @__PURE__ */ import_react7.default.createElement("p", { className: "ak-mst-apple__sub" }, sub) : null), items.length === 0 ? /* @__PURE__ */ import_react7.default.createElement("p", { className: "ak-mst-apple__empty" }, "No testimonials yet.") : reduceMotion ? /* @__PURE__ */ import_react7.default.createElement("div", { className: "ak-mst-apple__static-grid" }, items.map((item, i) => /* @__PURE__ */ import_react7.default.createElement(AppleCard, { key: i, item, showStars }))) : /* @__PURE__ */ import_react7.default.createElement(import_react7.default.Fragment, null, /* @__PURE__ */ import_react7.default.createElement("div", { className: "ak-mst-apple__marquee" }, /* @__PURE__ */ import_react7.default.createElement(
+    /* @__PURE__ */ import_react7.default.createElement("div", { className: "ak-mst-apple__inner" }, /* @__PURE__ */ import_react7.default.createElement("header", { className: "ak-mst-apple__intro" }, /* @__PURE__ */ import_react7.default.createElement("h2", { className: "ak-mst-apple__title" }, heading || "Loved by merchants."), sub ? /* @__PURE__ */ import_react7.default.createElement("p", { className: "ak-mst-apple__sub", style: subheadingStyle }, sub) : null), items.length === 0 ? /* @__PURE__ */ import_react7.default.createElement("p", { className: "ak-mst-apple__empty" }, "No testimonials yet.") : reduceMotion ? /* @__PURE__ */ import_react7.default.createElement("div", { className: "ak-mst-apple__static-grid" }, items.map((item, i) => /* @__PURE__ */ import_react7.default.createElement(
+      AppleCard,
+      {
+        key: i,
+        item,
+        showStars,
+        quoteStyle: quoteTextStyle,
+        nameStyle: customerNameStyle,
+        roleStyle: customerRoleStyle
+      }
+    ))) : /* @__PURE__ */ import_react7.default.createElement(import_react7.default.Fragment, null, /* @__PURE__ */ import_react7.default.createElement("div", { className: "ak-mst-apple__marquee" }, /* @__PURE__ */ import_react7.default.createElement(
       "div",
       {
         className: "ak-mst-apple__track ak-mst-apple__track--1",
@@ -1850,7 +2932,10 @@ function AppleMessageMarquee({
         {
           key: `r1-${index}`,
           item,
-          showStars
+          showStars,
+          quoteStyle: quoteTextStyle,
+          nameStyle: customerNameStyle,
+          roleStyle: customerRoleStyle
         }
       ))
     )), /* @__PURE__ */ import_react7.default.createElement("div", { className: "ak-mst-apple__marquee ak-mst-apple__marquee--second" }, /* @__PURE__ */ import_react7.default.createElement(
@@ -1866,7 +2951,10 @@ function AppleMessageMarquee({
         {
           key: `r2-${index}`,
           item,
-          showStars
+          showStars,
+          quoteStyle: quoteTextStyle,
+          nameStyle: customerNameStyle,
+          roleStyle: customerRoleStyle
         }
       ))
     ))))
@@ -1875,15 +2963,22 @@ function AppleMessageMarquee({
 
 // src/components/MessageStyleTestimonialsSection/variants/MessageBubbleMarquee.tsx
 var import_react8 = __toESM(require("react"));
-function MessageBubble({ item }) {
+function MessageBubble({
+  item,
+  quoteStyle,
+  nameStyle,
+  roleStyle
+}) {
   var _a, _b, _c;
   const name = String((_a = item == null ? void 0 : item.name) != null ? _a : "").trim();
   const role = String((_b = item == null ? void 0 : item.role) != null ? _b : "").trim();
   const quote = String((_c = item == null ? void 0 : item.quote) != null ? _c : "").trim();
-  return /* @__PURE__ */ import_react8.default.createElement("div", { className: "ak-mst__bubble-wrap" }, /* @__PURE__ */ import_react8.default.createElement("div", { className: "ak-mst__bubble" }, /* @__PURE__ */ import_react8.default.createElement("div", { className: "ak-mst__tail", "aria-hidden": true }), /* @__PURE__ */ import_react8.default.createElement("p", { className: "ak-mst__quote" }, quote ? /* @__PURE__ */ import_react8.default.createElement(import_react8.default.Fragment, null, /* @__PURE__ */ import_react8.default.createElement("span", { className: "ak-mst__quote-mark" }, "\u201C"), quote, /* @__PURE__ */ import_react8.default.createElement("span", { className: "ak-mst__quote-mark" }, "\u201D")) : /* @__PURE__ */ import_react8.default.createElement("span", { className: "ak-mst__quote-placeholder" }, "Add a quote")), /* @__PURE__ */ import_react8.default.createElement("div", { className: "ak-mst__meta" }, name || role ? /* @__PURE__ */ import_react8.default.createElement(import_react8.default.Fragment, null, name, name && role ? /* @__PURE__ */ import_react8.default.createElement("span", { className: "ak-mst__meta-sep" }, " \u2022 ") : null, role) : /* @__PURE__ */ import_react8.default.createElement("span", { className: "ak-mst__meta-placeholder" }, "Name \u2022 Role"))));
+  return /* @__PURE__ */ import_react8.default.createElement("div", { className: "ak-mst__bubble-wrap" }, /* @__PURE__ */ import_react8.default.createElement("div", { className: "ak-mst__bubble" }, /* @__PURE__ */ import_react8.default.createElement("div", { className: "ak-mst__tail", "aria-hidden": true }), /* @__PURE__ */ import_react8.default.createElement("p", { className: "ak-mst__quote", style: quoteStyle }, quote ? /* @__PURE__ */ import_react8.default.createElement(import_react8.default.Fragment, null, /* @__PURE__ */ import_react8.default.createElement("span", { className: "ak-mst__quote-mark" }, "\u201C"), quote, /* @__PURE__ */ import_react8.default.createElement("span", { className: "ak-mst__quote-mark" }, "\u201D")) : /* @__PURE__ */ import_react8.default.createElement("span", { className: "ak-mst__quote-placeholder" }, "Add a quote")), /* @__PURE__ */ import_react8.default.createElement("div", { className: "ak-mst__meta" }, name || role ? /* @__PURE__ */ import_react8.default.createElement(import_react8.default.Fragment, null, name ? /* @__PURE__ */ import_react8.default.createElement("span", { style: nameStyle }, name) : null, name && role ? /* @__PURE__ */ import_react8.default.createElement("span", { className: "ak-mst__meta-sep" }, " \u2022 ") : null, role ? /* @__PURE__ */ import_react8.default.createElement("span", { style: roleStyle }, role) : null) : /* @__PURE__ */ import_react8.default.createElement("span", { className: "ak-mst__meta-placeholder" }, "Name \u2022 Role"))));
 }
 function MessageBubbleMarquee({
-  section
+  section,
+  appearance,
+  theme
 }) {
   var _a, _b, _c;
   const reduceMotion = usePrefersReducedMotion();
@@ -1899,34 +2994,84 @@ function MessageBubbleMarquee({
     [items]
   );
   const durationSec = Math.max(18, items.length * 5);
-  return /* @__PURE__ */ import_react8.default.createElement("section", { className: "ak-mst", "aria-label": heading || "Testimonials" }, /* @__PURE__ */ import_react8.default.createElement("div", { className: "ak-mst__inner" }, /* @__PURE__ */ import_react8.default.createElement("div", { className: "ak-mst__header-wrap" }, /* @__PURE__ */ import_react8.default.createElement("h2", { className: "ak-mst__heading" }, heading || "What merchants say.")), items.length === 0 ? /* @__PURE__ */ import_react8.default.createElement("p", { className: "ak-mst__empty" }, "No testimonials yet.") : reduceMotion ? /* @__PURE__ */ import_react8.default.createElement("div", { className: "ak-mst__row ak-mst__row--static" }, items.map((item, index) => {
-    var _a2;
-    return /* @__PURE__ */ import_react8.default.createElement(
-      MessageBubble,
-      {
-        key: `${String((_a2 = item.name) != null ? _a2 : index)}-${index}`,
-        item
-      }
-    );
-  })) : /* @__PURE__ */ import_react8.default.createElement("div", { className: "ak-mst__marquee" }, /* @__PURE__ */ import_react8.default.createElement(
-    "div",
+  const quoteTextStyle = (0, import_react8.useMemo)(
+    () => resolvedTextStyleToInlineStyle(
+      resolveBlockGroupTextStyle({
+        section,
+        theme,
+        groupKey: "quoteText",
+        role: "body",
+        defaultStyle: TESTIMONIAL_QUOTE_TEXT_DEFAULT
+      })
+    ),
+    [section, theme]
+  );
+  const customerNameStyle = (0, import_react8.useMemo)(
+    () => resolvedTextStyleToInlineStyle(
+      resolveBlockGroupTextStyle({
+        section,
+        theme,
+        groupKey: "customerName",
+        role: "heading",
+        defaultStyle: TESTIMONIAL_CUSTOMER_NAME_DEFAULT
+      })
+    ),
+    [section, theme]
+  );
+  const customerRoleStyle = (0, import_react8.useMemo)(
+    () => resolvedTextStyleToInlineStyle(
+      resolveBlockGroupTextStyle({
+        section,
+        theme,
+        groupKey: "customerRole",
+        role: "body",
+        defaultStyle: TESTIMONIAL_CUSTOMER_ROLE_DEFAULT
+      })
+    ),
+    [section, theme]
+  );
+  return /* @__PURE__ */ import_react8.default.createElement(
+    "section",
     {
-      className: "ak-mst__track ak-mst__track--animate",
-      style: {
-        ["--ak-mst-duration"]: `${durationSec}s`
-      }
+      className: "ak-mst",
+      "aria-label": heading || "Testimonials",
+      style: sectionAppearanceStyle(appearance)
     },
-    trackItems.map((item, index) => {
-      var _a2, _b2;
+    /* @__PURE__ */ import_react8.default.createElement("div", { className: "ak-mst__inner" }, /* @__PURE__ */ import_react8.default.createElement("div", { className: "ak-mst__header-wrap" }, /* @__PURE__ */ import_react8.default.createElement("h2", { className: "ak-mst__heading" }, heading || "What merchants say.")), items.length === 0 ? /* @__PURE__ */ import_react8.default.createElement("p", { className: "ak-mst__empty" }, "No testimonials yet.") : reduceMotion ? /* @__PURE__ */ import_react8.default.createElement("div", { className: "ak-mst__row ak-mst__row--static" }, items.map((item, index) => {
+      var _a2;
       return /* @__PURE__ */ import_react8.default.createElement(
         MessageBubble,
         {
-          key: `${index}-${String((_a2 = item.name) != null ? _a2 : "")}-${String((_b2 = item.quote) != null ? _b2 : "").slice(0, 12)}`,
-          item
+          key: `${String((_a2 = item.name) != null ? _a2 : index)}-${index}`,
+          item,
+          quoteStyle: quoteTextStyle,
+          nameStyle: customerNameStyle,
+          roleStyle: customerRoleStyle
         }
       );
-    })
-  ))));
+    })) : /* @__PURE__ */ import_react8.default.createElement("div", { className: "ak-mst__marquee" }, /* @__PURE__ */ import_react8.default.createElement(
+      "div",
+      {
+        className: "ak-mst__track ak-mst__track--animate",
+        style: {
+          ["--ak-mst-duration"]: `${durationSec}s`
+        }
+      },
+      trackItems.map((item, index) => {
+        var _a2, _b2;
+        return /* @__PURE__ */ import_react8.default.createElement(
+          MessageBubble,
+          {
+            key: `${index}-${String((_a2 = item.name) != null ? _a2 : "")}-${String((_b2 = item.quote) != null ? _b2 : "").slice(0, 12)}`,
+            item,
+            quoteStyle: quoteTextStyle,
+            nameStyle: customerNameStyle,
+            roleStyle: customerRoleStyle
+          }
+        );
+      })
+    )))
+  );
 }
 
 // src/components/StackedTestimonialsSection/StackedTestimonials.tsx
@@ -1974,7 +3119,10 @@ var MOBILE_OFFSETS = [
 function StackedCard({
   item,
   index,
-  reduceMotion
+  reduceMotion,
+  quoteStyle,
+  nameStyle,
+  roleStyle
 }) {
   var _a, _b, _c;
   const name = String((_a = item == null ? void 0 : item.name) != null ? _a : "").trim();
@@ -1988,10 +3136,14 @@ function StackedCard({
       className: `ak-stacked-t__card-wrap ${posClass} ${reduceMotion ? "ak-stacked-t__card-wrap--static" : ""}`,
       style: { zIndex: 10 + index }
     },
-    /* @__PURE__ */ import_react9.default.createElement("div", { className: "ak-stacked-t__card" }, /* @__PURE__ */ import_react9.default.createElement("div", { className: "ak-stacked-t__card-shine", "aria-hidden": true }), /* @__PURE__ */ import_react9.default.createElement("div", { className: "ak-stacked-t__card-inner" }, /* @__PURE__ */ import_react9.default.createElement(StarRow, { count: stars }), /* @__PURE__ */ import_react9.default.createElement("p", { className: "ak-stacked-t__quote" }, quote ? /* @__PURE__ */ import_react9.default.createElement(import_react9.default.Fragment, null, /* @__PURE__ */ import_react9.default.createElement("span", { className: "ak-stacked-t__quote-mark" }, "\u201C"), quote, /* @__PURE__ */ import_react9.default.createElement("span", { className: "ak-stacked-t__quote-mark" }, "\u201D")) : /* @__PURE__ */ import_react9.default.createElement("span", { className: "ak-stacked-t__placeholder" }, "Add a quote")), /* @__PURE__ */ import_react9.default.createElement("div", { className: "ak-stacked-t__footer" }, /* @__PURE__ */ import_react9.default.createElement("div", { className: "ak-stacked-t__name" }, name || /* @__PURE__ */ import_react9.default.createElement("span", { className: "ak-stacked-t__placeholder" }, "Name")), /* @__PURE__ */ import_react9.default.createElement("div", { className: "ak-stacked-t__role" }, role || /* @__PURE__ */ import_react9.default.createElement("span", { className: "ak-stacked-t__placeholder" }, "Role")))))
+    /* @__PURE__ */ import_react9.default.createElement("div", { className: "ak-stacked-t__card" }, /* @__PURE__ */ import_react9.default.createElement("div", { className: "ak-stacked-t__card-shine", "aria-hidden": true }), /* @__PURE__ */ import_react9.default.createElement("div", { className: "ak-stacked-t__card-inner" }, /* @__PURE__ */ import_react9.default.createElement(StarRow, { count: stars }), /* @__PURE__ */ import_react9.default.createElement("p", { className: "ak-stacked-t__quote", style: quoteStyle }, quote ? /* @__PURE__ */ import_react9.default.createElement(import_react9.default.Fragment, null, /* @__PURE__ */ import_react9.default.createElement("span", { className: "ak-stacked-t__quote-mark" }, "\u201C"), quote, /* @__PURE__ */ import_react9.default.createElement("span", { className: "ak-stacked-t__quote-mark" }, "\u201D")) : /* @__PURE__ */ import_react9.default.createElement("span", { className: "ak-stacked-t__placeholder" }, "Add a quote")), /* @__PURE__ */ import_react9.default.createElement("div", { className: "ak-stacked-t__footer" }, /* @__PURE__ */ import_react9.default.createElement("div", { className: "ak-stacked-t__name", style: nameStyle }, name || /* @__PURE__ */ import_react9.default.createElement("span", { className: "ak-stacked-t__placeholder" }, "Name")), /* @__PURE__ */ import_react9.default.createElement("div", { className: "ak-stacked-t__role", style: roleStyle }, role || /* @__PURE__ */ import_react9.default.createElement("span", { className: "ak-stacked-t__placeholder" }, "Role")))))
   );
 }
-function StackedTestimonials({ section }) {
+function StackedTestimonials({
+  section,
+  appearance,
+  theme
+}) {
   var _a, _b, _c, _d;
   const reduceMotion = usePrefersReducedMotion();
   const props = (_b = (_a = section == null ? void 0 : section.settings) == null ? void 0 : _a.props) != null ? _b : {};
@@ -2010,18 +3162,92 @@ function StackedTestimonials({ section }) {
     if (!p || typeof p !== "object") return false;
     return String((_a2 = p.quote) != null ? _a2 : "").trim() !== "" || String((_b2 = p.name) != null ? _b2 : "").trim() !== "" || String((_c2 = p.role) != null ? _c2 : "").trim() !== "";
   });
-  return /* @__PURE__ */ import_react9.default.createElement("section", { className: "ak-stacked-t", "aria-label": headingWord }, /* @__PURE__ */ import_react9.default.createElement("div", { className: "ak-stacked-t__bg", "aria-hidden": true }), /* @__PURE__ */ import_react9.default.createElement("div", { className: "ak-stacked-t__container" }, showWord ? /* @__PURE__ */ import_react9.default.createElement("div", { className: "ak-stacked-t__wordmark-wrap" }, /* @__PURE__ */ import_react9.default.createElement("div", { className: "ak-stacked-t__wordmark ak-stacked-t__wordmark--sm" }, headingWord), /* @__PURE__ */ import_react9.default.createElement("div", { className: "ak-stacked-t__wordmark ak-stacked-t__wordmark--lg" }, headingWord)) : null, /* @__PURE__ */ import_react9.default.createElement("div", { className: "ak-stacked-t__stage" }, !hasContent ? /* @__PURE__ */ import_react9.default.createElement("p", { className: "ak-stacked-t__empty" }, "No testimonials yet.") : blocks.map((block, index) => {
-    var _a2, _b2;
-    return /* @__PURE__ */ import_react9.default.createElement(
-      StackedCard,
+  const backgroundWordStyle = (0, import_react9.useMemo)(
+    () => resolvedTextStyleToInlineStyle(
+      resolveTextStyle({
+        section,
+        theme,
+        fieldId: "backgroundWord",
+        role: "heading",
+        defaultStyle: TESTIMONIAL_BACKGROUND_WORD_DEFAULT
+      })
+    ),
+    [section, theme]
+  );
+  const quoteTextStyle = (0, import_react9.useMemo)(
+    () => resolvedTextStyleToInlineStyle(
+      resolveBlockGroupTextStyle({
+        section,
+        theme,
+        groupKey: "quoteText",
+        role: "body",
+        defaultStyle: TESTIMONIAL_QUOTE_TEXT_DEFAULT
+      })
+    ),
+    [section, theme]
+  );
+  const customerNameStyle = (0, import_react9.useMemo)(
+    () => resolvedTextStyleToInlineStyle(
+      resolveBlockGroupTextStyle({
+        section,
+        theme,
+        groupKey: "customerName",
+        role: "heading",
+        defaultStyle: TESTIMONIAL_CUSTOMER_NAME_DEFAULT
+      })
+    ),
+    [section, theme]
+  );
+  const customerRoleStyle = (0, import_react9.useMemo)(
+    () => resolvedTextStyleToInlineStyle(
+      resolveBlockGroupTextStyle({
+        section,
+        theme,
+        groupKey: "customerRole",
+        role: "body",
+        defaultStyle: TESTIMONIAL_CUSTOMER_ROLE_DEFAULT
+      })
+    ),
+    [section, theme]
+  );
+  return /* @__PURE__ */ import_react9.default.createElement(
+    "section",
+    {
+      className: "ak-stacked-t",
+      "aria-label": headingWord,
+      style: sectionAppearanceStyle(appearance)
+    },
+    /* @__PURE__ */ import_react9.default.createElement("div", { className: "ak-stacked-t__bg", "aria-hidden": true }),
+    /* @__PURE__ */ import_react9.default.createElement("div", { className: "ak-stacked-t__container" }, showWord ? /* @__PURE__ */ import_react9.default.createElement("div", { className: "ak-stacked-t__wordmark-wrap" }, /* @__PURE__ */ import_react9.default.createElement(
+      "div",
       {
-        key: String((_a2 = block.id) != null ? _a2 : index),
-        item: (_b2 = block.props) != null ? _b2 : {},
-        index,
-        reduceMotion
-      }
-    );
-  }))));
+        className: "ak-stacked-t__wordmark ak-stacked-t__wordmark--sm",
+        style: backgroundWordStyle
+      },
+      headingWord
+    ), /* @__PURE__ */ import_react9.default.createElement(
+      "div",
+      {
+        className: "ak-stacked-t__wordmark ak-stacked-t__wordmark--lg",
+        style: backgroundWordStyle
+      },
+      headingWord
+    )) : null, /* @__PURE__ */ import_react9.default.createElement("div", { className: "ak-stacked-t__stage" }, !hasContent ? /* @__PURE__ */ import_react9.default.createElement("p", { className: "ak-stacked-t__empty" }, "No testimonials yet.") : blocks.map((block, index) => {
+      var _a2, _b2;
+      return /* @__PURE__ */ import_react9.default.createElement(
+        StackedCard,
+        {
+          key: String((_a2 = block.id) != null ? _a2 : index),
+          item: (_b2 = block.props) != null ? _b2 : {},
+          index,
+          reduceMotion,
+          quoteStyle: quoteTextStyle,
+          nameStyle: customerNameStyle,
+          roleStyle: customerRoleStyle
+        }
+      );
+    })))
+  );
 }
 
 // src/components/PortraitTestimonialsSection/PortraitTestimonials.tsx
@@ -2053,7 +3279,9 @@ function easeOffset(offset, factor = 0.84) {
   return { x, y };
 }
 function PortraitTestimonials({
-  section
+  section,
+  appearance,
+  theme
 }) {
   var _a, _b, _c;
   const reduceMotion = usePrefersReducedMotion();
@@ -2145,37 +3373,139 @@ function PortraitTestimonials({
       stopRest();
     };
   }, [enableMagnetic, reduceMotion]);
-  return /* @__PURE__ */ import_react10.default.createElement("section", { ref: sectionRef, className: "ak-pt", "aria-label": heading }, /* @__PURE__ */ import_react10.default.createElement("div", { className: "ak-pt__container" }, /* @__PURE__ */ import_react10.default.createElement("div", { className: "ak-pt__desktop" }, DESKTOP_POS.map((pos, index) => {
-    var _a2, _b2, _c2;
-    const p = (_b2 = (_a2 = blocks[index]) == null ? void 0 : _a2.props) != null ? _b2 : {};
-    const img = safeText3(p.image);
-    const alt = safeText3(p.alt) || "Testimonial portrait";
-    const magnetic = (_c2 = offsets[index]) != null ? _c2 : { x: 0, y: 0 };
-    return /* @__PURE__ */ import_react10.default.createElement(
-      "div",
-      {
-        key: index,
-        className: `ak-pt__portrait ${pos.posClass}`,
-        style: {
-          transition: "transform 1400ms cubic-bezier(0.22,1,0.36,1), opacity 1200ms cubic-bezier(0.22,1,0.36,1), filter 1400ms cubic-bezier(0.22,1,0.36,1)",
-          transitionDelay: `${pos.delayMs}ms`,
-          opacity: loaded ? 1 : 0,
-          filter: loaded ? "blur(0px)" : "blur(10px)",
-          transform: loaded ? "translate3d(0px, 0px, 0px) scale(1)" : "translate3d(0px, 48px, 0px) scale(0.9)"
-        }
-      },
-      /* @__PURE__ */ import_react10.default.createElement(
+  const eyebrowStyle = (0, import_react10.useMemo)(
+    () => resolvedTextStyleToInlineStyle(
+      resolveTextStyle({
+        section,
+        theme,
+        fieldId: "eyebrow",
+        role: "body",
+        defaultStyle: TESTIMONIAL_EYEBROW_DEFAULT
+      })
+    ),
+    [section, theme]
+  );
+  const headingStyle = (0, import_react10.useMemo)(
+    () => resolvedTextStyleToInlineStyle(
+      resolveTextStyle({
+        section,
+        theme,
+        fieldId: "heading",
+        role: "heading",
+        defaultStyle: TESTIMONIAL_HEADING_DEFAULT
+      })
+    ),
+    [section, theme]
+  );
+  const highlightTextStyle = (0, import_react10.useMemo)(
+    () => resolvedTextStyleToInlineStyle(
+      resolveTextStyle({
+        section,
+        theme,
+        fieldId: "highlightText",
+        role: "heading",
+        defaultStyle: TESTIMONIAL_HIGHLIGHT_TEXT_DEFAULT
+      })
+    ),
+    [section, theme]
+  );
+  const descriptionStyle = (0, import_react10.useMemo)(
+    () => resolvedTextStyleToInlineStyle(
+      resolveTextStyle({
+        section,
+        theme,
+        fieldId: "description",
+        role: "body",
+        defaultStyle: TESTIMONIAL_DESCRIPTION_DEFAULT
+      })
+    ),
+    [section, theme]
+  );
+  const buttonTextStyle = (0, import_react10.useMemo)(
+    () => resolvedTextStyleToInlineStyle(
+      resolveTextStyle({
+        section,
+        theme,
+        fieldId: "buttonText",
+        role: "body",
+        defaultStyle: TESTIMONIAL_BUTTON_TEXT_DEFAULT
+      })
+    ),
+    [section, theme]
+  );
+  return /* @__PURE__ */ import_react10.default.createElement(
+    "section",
+    {
+      ref: sectionRef,
+      className: "ak-pt",
+      "aria-label": heading,
+      style: sectionAppearanceStyle(appearance)
+    },
+    /* @__PURE__ */ import_react10.default.createElement("div", { className: "ak-pt__container" }, /* @__PURE__ */ import_react10.default.createElement("div", { className: "ak-pt__desktop" }, DESKTOP_POS.map((pos, index) => {
+      var _a2, _b2, _c2;
+      const p = (_b2 = (_a2 = blocks[index]) == null ? void 0 : _a2.props) != null ? _b2 : {};
+      const img = safeText3(p.image);
+      const alt = safeText3(p.alt) || "Testimonial portrait";
+      const magnetic = (_c2 = offsets[index]) != null ? _c2 : { x: 0, y: 0 };
+      return /* @__PURE__ */ import_react10.default.createElement(
         "div",
         {
-          ref: (node) => {
-            cardRefs.current[index] = node;
-          },
-          className: "ak-pt__card",
+          key: index,
+          className: `ak-pt__portrait ${pos.posClass}`,
           style: {
-            transform: `translate3d(${magnetic.x}px, ${magnetic.y}px, 0) rotate(${pos.rotate}deg)`,
-            transition: "transform 320ms cubic-bezier(0.22,1,0.36,1), box-shadow 320ms cubic-bezier(0.22,1,0.36,1)",
-            boxShadow: magnetic.x !== 0 || magnetic.y !== 0 ? "0 34px 84px rgba(0,0,0,0.1)" : "0 26px 70px rgba(0,0,0,0.08)",
-            willChange: "transform"
+            transition: "transform 1400ms cubic-bezier(0.22,1,0.36,1), opacity 1200ms cubic-bezier(0.22,1,0.36,1), filter 1400ms cubic-bezier(0.22,1,0.36,1)",
+            transitionDelay: `${pos.delayMs}ms`,
+            opacity: loaded ? 1 : 0,
+            filter: loaded ? "blur(0px)" : "blur(10px)",
+            transform: loaded ? "translate3d(0px, 0px, 0px) scale(1)" : "translate3d(0px, 48px, 0px) scale(0.9)"
+          }
+        },
+        /* @__PURE__ */ import_react10.default.createElement(
+          "div",
+          {
+            ref: (node) => {
+              cardRefs.current[index] = node;
+            },
+            className: "ak-pt__card",
+            style: {
+              transform: `translate3d(${magnetic.x}px, ${magnetic.y}px, 0) rotate(${pos.rotate}deg)`,
+              transition: "transform 320ms cubic-bezier(0.22,1,0.36,1), box-shadow 320ms cubic-bezier(0.22,1,0.36,1)",
+              boxShadow: magnetic.x !== 0 || magnetic.y !== 0 ? "0 34px 84px rgba(0,0,0,0.1)" : "0 26px 70px rgba(0,0,0,0.08)",
+              willChange: "transform"
+            }
+          },
+          img ? /* @__PURE__ */ import_react10.default.createElement(
+            "img",
+            {
+              src: img,
+              alt,
+              className: "ak-pt__img",
+              style: {
+                transform: loaded ? "scale(1)" : "scale(1.08)",
+                transitionDelay: `${pos.delayMs + 60}ms`
+              },
+              loading: "lazy"
+            }
+          ) : /* @__PURE__ */ import_react10.default.createElement("div", { className: "ak-pt__img ak-pt__img--fallback", "aria-hidden": true })
+        )
+      );
+    })), /* @__PURE__ */ import_react10.default.createElement("div", { className: "ak-pt__mobile" }, blocks.slice(0, 8).map((b, index) => {
+      var _a2, _b2, _c2, _d, _e;
+      const p = (_a2 = b == null ? void 0 : b.props) != null ? _a2 : {};
+      const img = safeText3(p.image);
+      const alt = safeText3(p.alt) || "Testimonial portrait";
+      const settledY = index % 2 === 0 ? 16 : -4;
+      const startY = index % 2 === 0 ? 36 : 12;
+      return /* @__PURE__ */ import_react10.default.createElement(
+        "div",
+        {
+          key: `m-${index}`,
+          className: `ak-pt__mcard ${index % 2 === 0 ? "ak-pt__mcard--down" : "ak-pt__mcard--up"}`,
+          style: {
+            transitionDelay: `${(_c2 = (_b2 = DESKTOP_POS[index]) == null ? void 0 : _b2.delayMs) != null ? _c2 : 0}ms`,
+            transform: loaded ? `translateY(${settledY}px) scale(1)` : `translateY(${startY}px) scale(0.92)`,
+            opacity: loaded ? 1 : 0,
+            filter: loaded ? "blur(0px)" : "blur(4px)"
           }
         },
         img ? /* @__PURE__ */ import_react10.default.createElement(
@@ -2183,128 +3513,143 @@ function PortraitTestimonials({
           {
             src: img,
             alt,
-            className: "ak-pt__img",
+            className: "ak-pt__mimg",
             style: {
-              transform: loaded ? "scale(1)" : "scale(1.08)",
-              transitionDelay: `${pos.delayMs + 60}ms`
+              transform: loaded ? "scale(1)" : "scale(1.06)",
+              transitionDelay: `${((_e = (_d = DESKTOP_POS[index]) == null ? void 0 : _d.delayMs) != null ? _e : 0) + 60}ms`
             },
             loading: "lazy"
           }
-        ) : /* @__PURE__ */ import_react10.default.createElement("div", { className: "ak-pt__img ak-pt__img--fallback", "aria-hidden": true })
-      )
-    );
-  })), /* @__PURE__ */ import_react10.default.createElement("div", { className: "ak-pt__mobile" }, blocks.slice(0, 8).map((b, index) => {
-    var _a2, _b2, _c2, _d, _e;
-    const p = (_a2 = b == null ? void 0 : b.props) != null ? _a2 : {};
-    const img = safeText3(p.image);
-    const alt = safeText3(p.alt) || "Testimonial portrait";
-    const settledY = index % 2 === 0 ? 16 : -4;
-    const startY = index % 2 === 0 ? 36 : 12;
-    return /* @__PURE__ */ import_react10.default.createElement(
+        ) : /* @__PURE__ */ import_react10.default.createElement("div", { className: "ak-pt__mimg ak-pt__mimg--fallback", "aria-hidden": true })
+      );
+    })), /* @__PURE__ */ import_react10.default.createElement("div", { className: "ak-pt__center" }, /* @__PURE__ */ import_react10.default.createElement(
       "div",
       {
-        key: `m-${index}`,
-        className: `ak-pt__mcard ${index % 2 === 0 ? "ak-pt__mcard--down" : "ak-pt__mcard--up"}`,
+        className: "ak-pt__eyebrow",
         style: {
-          transitionDelay: `${(_c2 = (_b2 = DESKTOP_POS[index]) == null ? void 0 : _b2.delayMs) != null ? _c2 : 0}ms`,
-          transform: loaded ? `translateY(${settledY}px) scale(1)` : `translateY(${startY}px) scale(0.92)`,
+          ...eyebrowStyle,
           opacity: loaded ? 1 : 0,
-          filter: loaded ? "blur(0px)" : "blur(4px)"
+          transform: loaded ? "translateY(0)" : "translateY(16px)"
         }
       },
-      img ? /* @__PURE__ */ import_react10.default.createElement(
-        "img",
-        {
-          src: img,
-          alt,
-          className: "ak-pt__mimg",
-          style: {
-            transform: loaded ? "scale(1)" : "scale(1.06)",
-            transitionDelay: `${((_e = (_d = DESKTOP_POS[index]) == null ? void 0 : _d.delayMs) != null ? _e : 0) + 60}ms`
-          },
-          loading: "lazy"
+      eyebrow
+    ), /* @__PURE__ */ import_react10.default.createElement(
+      "h2",
+      {
+        className: "ak-pt__heading",
+        style: {
+          ...headingStyle,
+          opacity: loaded ? 1 : 0,
+          transform: loaded ? "translateY(0)" : "translateY(24px)"
         }
-      ) : /* @__PURE__ */ import_react10.default.createElement("div", { className: "ak-pt__mimg ak-pt__mimg--fallback", "aria-hidden": true })
-    );
-  })), /* @__PURE__ */ import_react10.default.createElement("div", { className: "ak-pt__center" }, /* @__PURE__ */ import_react10.default.createElement(
-    "div",
-    {
-      className: "ak-pt__eyebrow",
-      style: {
-        opacity: loaded ? 1 : 0,
-        transform: loaded ? "translateY(0)" : "translateY(16px)"
-      }
-    },
-    eyebrow
-  ), /* @__PURE__ */ import_react10.default.createElement(
-    "h2",
-    {
-      className: "ak-pt__heading",
-      style: {
-        opacity: loaded ? 1 : 0,
-        transform: loaded ? "translateY(0)" : "translateY(24px)"
-      }
-    },
-    heading,
-    /* @__PURE__ */ import_react10.default.createElement("br", null),
-    /* @__PURE__ */ import_react10.default.createElement("span", { className: "ak-pt__highlight" }, highlightText)
-  ), /* @__PURE__ */ import_react10.default.createElement(
-    "p",
-    {
-      className: "ak-pt__desc",
-      style: {
-        opacity: loaded ? 1 : 0,
-        transform: loaded ? "translateY(0)" : "translateY(24px)"
-      }
-    },
-    description
-  ), showButton ? buttonLink ? /* @__PURE__ */ import_react10.default.createElement(
-    "a",
-    {
-      className: "ak-pt__btn",
-      href: buttonLink,
-      style: {
-        opacity: loaded ? 1 : 0,
-        transform: loaded ? "translateY(0)" : "translateY(24px)"
-      }
-    },
-    buttonText,
-    " ",
-    /* @__PURE__ */ import_react10.default.createElement("span", { "aria-hidden": true }, "\u2192")
-  ) : /* @__PURE__ */ import_react10.default.createElement(
-    "button",
-    {
-      className: "ak-pt__btn",
-      type: "button",
-      style: {
-        opacity: loaded ? 1 : 0,
-        transform: loaded ? "translateY(0)" : "translateY(24px)"
-      }
-    },
-    buttonText,
-    " ",
-    /* @__PURE__ */ import_react10.default.createElement("span", { "aria-hidden": true }, "\u2192")
-  ) : null)));
+      },
+      heading,
+      /* @__PURE__ */ import_react10.default.createElement("br", null),
+      /* @__PURE__ */ import_react10.default.createElement("span", { className: "ak-pt__highlight", style: highlightTextStyle }, highlightText)
+    ), /* @__PURE__ */ import_react10.default.createElement(
+      "p",
+      {
+        className: "ak-pt__desc",
+        style: {
+          ...descriptionStyle,
+          opacity: loaded ? 1 : 0,
+          transform: loaded ? "translateY(0)" : "translateY(24px)"
+        }
+      },
+      description
+    ), showButton ? buttonLink ? /* @__PURE__ */ import_react10.default.createElement(
+      "a",
+      {
+        className: "ak-pt__btn",
+        href: buttonLink,
+        style: {
+          ...buttonTextStyle,
+          opacity: loaded ? 1 : 0,
+          transform: loaded ? "translateY(0)" : "translateY(24px)"
+        }
+      },
+      buttonText,
+      " ",
+      /* @__PURE__ */ import_react10.default.createElement("span", { "aria-hidden": true }, "\u2192")
+    ) : /* @__PURE__ */ import_react10.default.createElement(
+      "button",
+      {
+        className: "ak-pt__btn",
+        type: "button",
+        style: {
+          ...buttonTextStyle,
+          opacity: loaded ? 1 : 0,
+          transform: loaded ? "translateY(0)" : "translateY(24px)"
+        }
+      },
+      buttonText,
+      " ",
+      /* @__PURE__ */ import_react10.default.createElement("span", { "aria-hidden": true }, "\u2192")
+    ) : null))
+  );
 }
 
 // src/components/MessageStyleTestimonialsSection/MessageStyleTestimonials.tsx
-function MessageStyleTestimonials(props) {
-  var _a, _b, _c, _d;
-  const style = (_d = (_c = (_b = (_a = props.section) == null ? void 0 : _a.settings) == null ? void 0 : _b.props) == null ? void 0 : _c.testimonialStyle) != null ? _d : STYLE_MESSAGE_BUBBLE;
+function MessageStyleTestimonials({
+  section,
+  appearance,
+  theme
+}) {
+  var _a, _b, _c;
+  const style = (_c = (_b = (_a = section == null ? void 0 : section.settings) == null ? void 0 : _a.props) == null ? void 0 : _b.testimonialStyle) != null ? _c : STYLE_MESSAGE_BUBBLE;
   if (style === STYLE_STACKED_TESTIMONIALS) {
-    return /* @__PURE__ */ import_react11.default.createElement(StackedTestimonials, { section: props.section });
+    return /* @__PURE__ */ import_react11.default.createElement(StackedTestimonials, { section, appearance, theme });
   }
   if (style === STYLE_PORTRAIT_TESTIMONIALS) {
-    return /* @__PURE__ */ import_react11.default.createElement(PortraitTestimonials, { section: props.section });
+    return /* @__PURE__ */ import_react11.default.createElement(PortraitTestimonials, { section, appearance, theme });
   }
   if (style === STYLE_APPLE_MARQUEE) {
-    return /* @__PURE__ */ import_react11.default.createElement(AppleMessageMarquee, { ...props });
+    return /* @__PURE__ */ import_react11.default.createElement(AppleMessageMarquee, { section, appearance, theme });
   }
-  return /* @__PURE__ */ import_react11.default.createElement(MessageBubbleMarquee, { ...props });
+  return /* @__PURE__ */ import_react11.default.createElement(MessageBubbleMarquee, { section, appearance, theme });
 }
 
 // src/components/ProductMarqueeSection/ProductMarquee.tsx
 var import_react12 = __toESM(require("react"));
+
+// src/shared/textStyleDefaults/productMarqueeTextStyleDefaults.ts
+var PRODUCT_MARQUEE_EYEBROW_DEFAULT = {
+  color: "rgba(64, 64, 64, 1)",
+  fontWeight: "700",
+  fontSize: "0.6875rem"
+};
+var PRODUCT_MARQUEE_HEADING_DEFAULT = {
+  color: "#111111",
+  fontWeight: "600",
+  fontSize: "1.875rem"
+};
+var PRODUCT_MARQUEE_DESCRIPTION_DEFAULT = {
+  color: "rgba(82, 82, 82, 1)",
+  fontWeight: "400",
+  fontSize: "0.95rem"
+};
+var PRODUCT_CARD_TITLE_DEFAULT = {
+  color: "#111111",
+  fontWeight: "600",
+  fontSize: "0.875rem"
+};
+var PRODUCT_CARD_TITLE_OVERLAY_DEFAULT = {
+  color: "#ffffff",
+  fontWeight: "600",
+  fontSize: "1.5rem"
+};
+var PRODUCT_CARD_SUBTITLE_DEFAULT = {
+  color: "rgba(115, 115, 115, 1)",
+  fontWeight: "700",
+  fontSize: "0.8125rem"
+};
+var PRODUCT_CARD_DESCRIPTION_DEFAULT = {
+  color: "rgba(255, 255, 255, 0.78)",
+  fontWeight: "400",
+  fontSize: "0.875rem"
+};
+
+// src/components/ProductMarqueeSection/ProductMarquee.tsx
 function rotate(items, by) {
   if (items.length === 0) return [];
   const n = (by % items.length + items.length) % items.length;
@@ -2319,7 +3664,11 @@ function distributeRows(items) {
 function safeText4(v) {
   return String(v != null ? v : "").trim();
 }
-function ProductPill({ item }) {
+function ProductPill({
+  item,
+  cardTitleStyle,
+  cardSubtitleStyle
+}) {
   const title = safeText4(item == null ? void 0 : item.title);
   const subtitle = safeText4(item == null ? void 0 : item.subtitle);
   const image = safeText4(item == null ? void 0 : item.image);
@@ -2331,22 +3680,40 @@ function ProductPill({ item }) {
       alt: title,
       loading: "lazy"
     }
-  ) : /* @__PURE__ */ import_react12.default.createElement("div", { className: "ak-pm__pill-img ak-pm__pill-img--fallback", "aria-hidden": true })), /* @__PURE__ */ import_react12.default.createElement("div", { className: "ak-pm__pill-text" }, /* @__PURE__ */ import_react12.default.createElement("span", { className: "ak-pm__pill-title" }, title || /* @__PURE__ */ import_react12.default.createElement("span", { className: "ak-pm__placeholder" }, "Title")), /* @__PURE__ */ import_react12.default.createElement("span", { className: "ak-pm__pill-subtitle" }, subtitle || /* @__PURE__ */ import_react12.default.createElement("span", { className: "ak-pm__placeholder" }, "Subtitle"))));
+  ) : /* @__PURE__ */ import_react12.default.createElement("div", { className: "ak-pm__pill-img ak-pm__pill-img--fallback", "aria-hidden": true })), /* @__PURE__ */ import_react12.default.createElement("div", { className: "ak-pm__pill-text" }, /* @__PURE__ */ import_react12.default.createElement("span", { className: "ak-pm__pill-title", style: cardTitleStyle }, title || /* @__PURE__ */ import_react12.default.createElement("span", { className: "ak-pm__placeholder" }, "Title")), /* @__PURE__ */ import_react12.default.createElement("span", { className: "ak-pm__pill-subtitle", style: cardSubtitleStyle }, subtitle || /* @__PURE__ */ import_react12.default.createElement("span", { className: "ak-pm__placeholder" }, "Subtitle"))));
 }
 function MarqueeRow({
   items,
   reverse = false,
   durationSec = 34,
-  reduceMotion
+  reduceMotion,
+  cardTitleStyle,
+  cardSubtitleStyle
 }) {
   const loopItems = items.length > 0 ? [...items, ...items] : [];
   const animClass = reverse ? "ak-pm__track--rev" : "ak-pm__track";
   if (reduceMotion) {
-    return /* @__PURE__ */ import_react12.default.createElement("div", { className: "ak-pm__row" }, /* @__PURE__ */ import_react12.default.createElement("div", { className: "ak-pm__track ak-pm__track--static" }, items.map((item, index) => /* @__PURE__ */ import_react12.default.createElement(ProductPill, { key: `${safeText4(item.title)}-${index}`, item }))));
+    return /* @__PURE__ */ import_react12.default.createElement("div", { className: "ak-pm__row" }, /* @__PURE__ */ import_react12.default.createElement("div", { className: "ak-pm__track ak-pm__track--static" }, items.map((item, index) => /* @__PURE__ */ import_react12.default.createElement(
+      ProductPill,
+      {
+        key: `${safeText4(item.title)}-${index}`,
+        item,
+        cardTitleStyle,
+        cardSubtitleStyle
+      }
+    ))));
   }
-  return /* @__PURE__ */ import_react12.default.createElement("div", { className: "ak-pm__row" }, /* @__PURE__ */ import_react12.default.createElement("div", { className: animClass, style: { animationDuration: `${durationSec}s` } }, loopItems.map((item, index) => /* @__PURE__ */ import_react12.default.createElement(ProductPill, { key: `${safeText4(item.title)}-${index}`, item }))));
+  return /* @__PURE__ */ import_react12.default.createElement("div", { className: "ak-pm__row" }, /* @__PURE__ */ import_react12.default.createElement("div", { className: animClass, style: { animationDuration: `${durationSec}s` } }, loopItems.map((item, index) => /* @__PURE__ */ import_react12.default.createElement(
+    ProductPill,
+    {
+      key: `${safeText4(item.title)}-${index}`,
+      item,
+      cardTitleStyle,
+      cardSubtitleStyle
+    }
+  ))));
 }
-function ProductMarquee({ section }) {
+function ProductMarquee({ section, appearance, theme }) {
   var _a, _b, _c;
   const reduceMotion = usePrefersReducedMotion();
   const props = (_b = (_a = section == null ? void 0 : section.settings) == null ? void 0 : _a.props) != null ? _b : {};
@@ -2356,6 +3723,66 @@ function ProductMarquee({ section }) {
   const showButton = props.showButton !== false;
   const buttonText = safeText4(props.buttonText);
   const buttonLink = safeText4(props.buttonLink);
+  const eyebrowStyle = (0, import_react12.useMemo)(
+    () => resolvedTextStyleToInlineStyle(
+      resolveTextStyle({
+        section,
+        theme,
+        fieldId: "eyebrow",
+        role: "body",
+        defaultStyle: PRODUCT_MARQUEE_EYEBROW_DEFAULT
+      })
+    ),
+    [section, theme]
+  );
+  const headingStyle = (0, import_react12.useMemo)(
+    () => resolvedTextStyleToInlineStyle(
+      resolveTextStyle({
+        section,
+        theme,
+        fieldId: "heading",
+        role: "heading",
+        defaultStyle: PRODUCT_MARQUEE_HEADING_DEFAULT
+      })
+    ),
+    [section, theme]
+  );
+  const descriptionStyle = (0, import_react12.useMemo)(
+    () => resolvedTextStyleToInlineStyle(
+      resolveTextStyle({
+        section,
+        theme,
+        fieldId: "description",
+        role: "body",
+        defaultStyle: PRODUCT_MARQUEE_DESCRIPTION_DEFAULT
+      })
+    ),
+    [section, theme]
+  );
+  const cardTitleStyle = (0, import_react12.useMemo)(
+    () => resolvedTextStyleToInlineStyle(
+      resolveBlockGroupTextStyle({
+        section,
+        theme,
+        groupKey: "cardTitle",
+        role: "heading",
+        defaultStyle: PRODUCT_CARD_TITLE_DEFAULT
+      })
+    ),
+    [section, theme]
+  );
+  const cardSubtitleStyle = (0, import_react12.useMemo)(
+    () => resolvedTextStyleToInlineStyle(
+      resolveBlockGroupTextStyle({
+        section,
+        theme,
+        groupKey: "cardSubtitle",
+        role: "body",
+        defaultStyle: PRODUCT_CARD_SUBTITLE_DEFAULT
+      })
+    ),
+    [section, theme]
+  );
   const items = (0, import_react12.useMemo)(() => {
     var _a2;
     const blocks = (_a2 = section == null ? void 0 : section.settings) == null ? void 0 : _a2.blocks;
@@ -2366,15 +3793,35 @@ function ProductMarquee({ section }) {
     (it) => safeText4(it.title) || safeText4(it.subtitle) || safeText4(it.image)
   );
   const { row1, row2, row3 } = (0, import_react12.useMemo)(() => distributeRows(items), [items]);
-  return /* @__PURE__ */ import_react12.default.createElement("section", { className: "ak-pm", "aria-label": heading || "Products" }, /* @__PURE__ */ import_react12.default.createElement("div", { className: "ak-pm__bg", "aria-hidden": true }), /* @__PURE__ */ import_react12.default.createElement("div", { className: "ak-pm__glow", "aria-hidden": true }), /* @__PURE__ */ import_react12.default.createElement("div", { className: "ak-pm__container" }, /* @__PURE__ */ import_react12.default.createElement("div", { className: "ak-pm__header" }, eyebrow ? /* @__PURE__ */ import_react12.default.createElement("div", { className: "ak-pm__eyebrow" }, eyebrow) : null, /* @__PURE__ */ import_react12.default.createElement("h2", { className: "ak-pm__heading" }, heading || "Explore handpicked products."), description ? /* @__PURE__ */ import_react12.default.createElement("p", { className: "ak-pm__desc" }, description) : null), /* @__PURE__ */ import_react12.default.createElement("div", { className: "ak-pm__rows" }, /* @__PURE__ */ import_react12.default.createElement("div", { className: "ak-pm__fade ak-pm__fade--l", "aria-hidden": true }), /* @__PURE__ */ import_react12.default.createElement("div", { className: "ak-pm__fade ak-pm__fade--r", "aria-hidden": true }), !hasContent ? /* @__PURE__ */ import_react12.default.createElement("p", { className: "ak-pm__empty" }, "No items yet.") : /* @__PURE__ */ import_react12.default.createElement(import_react12.default.Fragment, null, /* @__PURE__ */ import_react12.default.createElement(MarqueeRow, { items: row1, durationSec: 34, reduceMotion }), /* @__PURE__ */ import_react12.default.createElement(
+  return /* @__PURE__ */ import_react12.default.createElement("section", { className: "ak-pm", "aria-label": heading || "Products", style: sectionAppearanceStyle(appearance) }, /* @__PURE__ */ import_react12.default.createElement("div", { className: "ak-pm__bg", "aria-hidden": true }), /* @__PURE__ */ import_react12.default.createElement("div", { className: "ak-pm__glow", "aria-hidden": true }), /* @__PURE__ */ import_react12.default.createElement("div", { className: "ak-pm__container" }, /* @__PURE__ */ import_react12.default.createElement("div", { className: "ak-pm__header" }, eyebrow ? /* @__PURE__ */ import_react12.default.createElement("div", { className: "ak-pm__eyebrow", style: eyebrowStyle }, eyebrow) : null, /* @__PURE__ */ import_react12.default.createElement("h2", { className: "ak-pm__heading", style: headingStyle }, heading || "Explore handpicked products."), description ? /* @__PURE__ */ import_react12.default.createElement("p", { className: "ak-pm__desc", style: descriptionStyle }, description) : null), /* @__PURE__ */ import_react12.default.createElement("div", { className: "ak-pm__rows" }, /* @__PURE__ */ import_react12.default.createElement("div", { className: "ak-pm__fade ak-pm__fade--l", "aria-hidden": true }), /* @__PURE__ */ import_react12.default.createElement("div", { className: "ak-pm__fade ak-pm__fade--r", "aria-hidden": true }), !hasContent ? /* @__PURE__ */ import_react12.default.createElement("p", { className: "ak-pm__empty" }, "No items yet.") : /* @__PURE__ */ import_react12.default.createElement(import_react12.default.Fragment, null, /* @__PURE__ */ import_react12.default.createElement(
+    MarqueeRow,
+    {
+      items: row1,
+      durationSec: 34,
+      reduceMotion,
+      cardTitleStyle,
+      cardSubtitleStyle
+    }
+  ), /* @__PURE__ */ import_react12.default.createElement(
     MarqueeRow,
     {
       items: row2,
       reverse: true,
       durationSec: 38,
-      reduceMotion
+      reduceMotion,
+      cardTitleStyle,
+      cardSubtitleStyle
     }
-  ), /* @__PURE__ */ import_react12.default.createElement(MarqueeRow, { items: row3, durationSec: 36, reduceMotion }))), showButton ? /* @__PURE__ */ import_react12.default.createElement("div", { className: "ak-pm__cta" }, buttonLink ? /* @__PURE__ */ import_react12.default.createElement("a", { className: "ak-pm__btn", href: buttonLink }, buttonText || "Buy Now", " ", /* @__PURE__ */ import_react12.default.createElement("span", { "aria-hidden": true }, "\u2192")) : /* @__PURE__ */ import_react12.default.createElement("button", { className: "ak-pm__btn", type: "button" }, buttonText || "Buy Now", " ", /* @__PURE__ */ import_react12.default.createElement("span", { "aria-hidden": true }, "\u2192"))) : null));
+  ), /* @__PURE__ */ import_react12.default.createElement(
+    MarqueeRow,
+    {
+      items: row3,
+      durationSec: 36,
+      reduceMotion,
+      cardTitleStyle,
+      cardSubtitleStyle
+    }
+  ))), showButton ? /* @__PURE__ */ import_react12.default.createElement("div", { className: "ak-pm__cta" }, buttonLink ? /* @__PURE__ */ import_react12.default.createElement("a", { className: "ak-pm__btn", href: buttonLink }, buttonText || "Buy Now", " ", /* @__PURE__ */ import_react12.default.createElement("span", { "aria-hidden": true }, "\u2192")) : /* @__PURE__ */ import_react12.default.createElement("button", { className: "ak-pm__btn", type: "button" }, buttonText || "Buy Now", " ", /* @__PURE__ */ import_react12.default.createElement("span", { "aria-hidden": true }, "\u2192"))) : null));
 }
 
 // src/components/ProductMarqueeSection/ProductCardMarquee.tsx
@@ -2393,26 +3840,48 @@ function distributeRows2(items) {
 function safeText5(v) {
   return String(v != null ? v : "").trim();
 }
-function ProductCard({ item }) {
+function ProductCard({
+  item,
+  cardTitleStyle,
+  cardSubtitleStyle
+}) {
   const title = safeText5(item == null ? void 0 : item.title);
   const subtitle = safeText5(item == null ? void 0 : item.subtitle);
   const image = safeText5(item == null ? void 0 : item.image);
-  return /* @__PURE__ */ import_react13.default.createElement("div", { className: "ak-pmc__card" }, /* @__PURE__ */ import_react13.default.createElement("div", { className: "ak-pmc__imgWrap", "aria-hidden": !image }, image ? /* @__PURE__ */ import_react13.default.createElement("img", { className: "ak-pmc__img", src: image, alt: title, loading: "lazy" }) : /* @__PURE__ */ import_react13.default.createElement("div", { className: "ak-pmc__img ak-pmc__img--fallback", "aria-hidden": true })), /* @__PURE__ */ import_react13.default.createElement("div", { className: "ak-pmc__meta" }, /* @__PURE__ */ import_react13.default.createElement("div", { className: "ak-pmc__title" }, title || /* @__PURE__ */ import_react13.default.createElement("span", { className: "ak-pmc__placeholder" }, "Title")), /* @__PURE__ */ import_react13.default.createElement("div", { className: "ak-pmc__subtitle" }, subtitle || /* @__PURE__ */ import_react13.default.createElement("span", { className: "ak-pmc__placeholder" }, "Subtitle"))));
+  return /* @__PURE__ */ import_react13.default.createElement("div", { className: "ak-pmc__card" }, /* @__PURE__ */ import_react13.default.createElement("div", { className: "ak-pmc__imgWrap", "aria-hidden": !image }, image ? /* @__PURE__ */ import_react13.default.createElement("img", { className: "ak-pmc__img", src: image, alt: title, loading: "lazy" }) : /* @__PURE__ */ import_react13.default.createElement("div", { className: "ak-pmc__img ak-pmc__img--fallback", "aria-hidden": true })), /* @__PURE__ */ import_react13.default.createElement("div", { className: "ak-pmc__meta" }, /* @__PURE__ */ import_react13.default.createElement("div", { className: "ak-pmc__title", style: cardTitleStyle }, title || /* @__PURE__ */ import_react13.default.createElement("span", { className: "ak-pmc__placeholder" }, "Title")), /* @__PURE__ */ import_react13.default.createElement("div", { className: "ak-pmc__subtitle", style: cardSubtitleStyle }, subtitle || /* @__PURE__ */ import_react13.default.createElement("span", { className: "ak-pmc__placeholder" }, "Subtitle"))));
 }
 function MarqueeRow2({
   items,
   reverse = false,
   durationSec = 34,
-  reduceMotion
+  reduceMotion,
+  cardTitleStyle,
+  cardSubtitleStyle
 }) {
   const loopItems = items.length > 0 ? [...items, ...items] : [];
   const animClass = reverse ? "ak-pmc__track--rev" : "ak-pmc__track";
   if (reduceMotion) {
-    return /* @__PURE__ */ import_react13.default.createElement("div", { className: "ak-pmc__row" }, /* @__PURE__ */ import_react13.default.createElement("div", { className: "ak-pmc__track ak-pmc__track--static" }, items.map((item, index) => /* @__PURE__ */ import_react13.default.createElement(ProductCard, { key: `${safeText5(item.title)}-${index}`, item }))));
+    return /* @__PURE__ */ import_react13.default.createElement("div", { className: "ak-pmc__row" }, /* @__PURE__ */ import_react13.default.createElement("div", { className: "ak-pmc__track ak-pmc__track--static" }, items.map((item, index) => /* @__PURE__ */ import_react13.default.createElement(
+      ProductCard,
+      {
+        key: `${safeText5(item.title)}-${index}`,
+        item,
+        cardTitleStyle,
+        cardSubtitleStyle
+      }
+    ))));
   }
-  return /* @__PURE__ */ import_react13.default.createElement("div", { className: "ak-pmc__row" }, /* @__PURE__ */ import_react13.default.createElement("div", { className: animClass, style: { animationDuration: `${durationSec}s` } }, loopItems.map((item, index) => /* @__PURE__ */ import_react13.default.createElement(ProductCard, { key: `${safeText5(item.title)}-${index}`, item }))));
+  return /* @__PURE__ */ import_react13.default.createElement("div", { className: "ak-pmc__row" }, /* @__PURE__ */ import_react13.default.createElement("div", { className: animClass, style: { animationDuration: `${durationSec}s` } }, loopItems.map((item, index) => /* @__PURE__ */ import_react13.default.createElement(
+    ProductCard,
+    {
+      key: `${safeText5(item.title)}-${index}`,
+      item,
+      cardTitleStyle,
+      cardSubtitleStyle
+    }
+  ))));
 }
-function ProductCardMarquee({ section }) {
+function ProductCardMarquee({ section, appearance, theme }) {
   var _a, _b, _c;
   const reduceMotion = usePrefersReducedMotion();
   const props = (_b = (_a = section == null ? void 0 : section.settings) == null ? void 0 : _a.props) != null ? _b : {};
@@ -2422,6 +3891,66 @@ function ProductCardMarquee({ section }) {
   const showButton = props.showButton !== false;
   const buttonText = safeText5(props.buttonText) || "Buy Now";
   const buttonLink = safeText5(props.buttonLink);
+  const eyebrowStyle = (0, import_react13.useMemo)(
+    () => resolvedTextStyleToInlineStyle(
+      resolveTextStyle({
+        section,
+        theme,
+        fieldId: "eyebrow",
+        role: "body",
+        defaultStyle: PRODUCT_MARQUEE_EYEBROW_DEFAULT
+      })
+    ),
+    [section, theme]
+  );
+  const headingStyle = (0, import_react13.useMemo)(
+    () => resolvedTextStyleToInlineStyle(
+      resolveTextStyle({
+        section,
+        theme,
+        fieldId: "heading",
+        role: "heading",
+        defaultStyle: PRODUCT_MARQUEE_HEADING_DEFAULT
+      })
+    ),
+    [section, theme]
+  );
+  const descriptionStyle = (0, import_react13.useMemo)(
+    () => resolvedTextStyleToInlineStyle(
+      resolveTextStyle({
+        section,
+        theme,
+        fieldId: "description",
+        role: "body",
+        defaultStyle: PRODUCT_MARQUEE_DESCRIPTION_DEFAULT
+      })
+    ),
+    [section, theme]
+  );
+  const cardTitleStyle = (0, import_react13.useMemo)(
+    () => resolvedTextStyleToInlineStyle(
+      resolveBlockGroupTextStyle({
+        section,
+        theme,
+        groupKey: "cardTitle",
+        role: "heading",
+        defaultStyle: PRODUCT_CARD_TITLE_DEFAULT
+      })
+    ),
+    [section, theme]
+  );
+  const cardSubtitleStyle = (0, import_react13.useMemo)(
+    () => resolvedTextStyleToInlineStyle(
+      resolveBlockGroupTextStyle({
+        section,
+        theme,
+        groupKey: "cardSubtitle",
+        role: "body",
+        defaultStyle: PRODUCT_CARD_SUBTITLE_DEFAULT
+      })
+    ),
+    [section, theme]
+  );
   const items = (0, import_react13.useMemo)(() => {
     var _a2;
     const blocks = (_a2 = section == null ? void 0 : section.settings) == null ? void 0 : _a2.blocks;
@@ -2432,15 +3961,35 @@ function ProductCardMarquee({ section }) {
     (it) => safeText5(it.title) || safeText5(it.subtitle) || safeText5(it.image)
   );
   const { row1, row2, row3 } = (0, import_react13.useMemo)(() => distributeRows2(items), [items]);
-  return /* @__PURE__ */ import_react13.default.createElement("section", { className: "ak-pmc", "aria-label": heading }, /* @__PURE__ */ import_react13.default.createElement("div", { className: "ak-pmc__bg", "aria-hidden": true }), /* @__PURE__ */ import_react13.default.createElement("div", { className: "ak-pmc__glow", "aria-hidden": true }), /* @__PURE__ */ import_react13.default.createElement("div", { className: "ak-pmc__container" }, /* @__PURE__ */ import_react13.default.createElement("div", { className: "ak-pmc__header" }, eyebrow ? /* @__PURE__ */ import_react13.default.createElement("div", { className: "ak-pmc__eyebrow" }, eyebrow) : null, /* @__PURE__ */ import_react13.default.createElement("h2", { className: "ak-pmc__heading" }, heading), description ? /* @__PURE__ */ import_react13.default.createElement("p", { className: "ak-pmc__desc" }, description) : null), /* @__PURE__ */ import_react13.default.createElement("div", { className: "ak-pmc__rows" }, /* @__PURE__ */ import_react13.default.createElement("div", { className: "ak-pmc__fade ak-pmc__fade--l", "aria-hidden": true }), /* @__PURE__ */ import_react13.default.createElement("div", { className: "ak-pmc__fade ak-pmc__fade--r", "aria-hidden": true }), !hasContent ? /* @__PURE__ */ import_react13.default.createElement("p", { className: "ak-pmc__empty" }, "No items yet.") : /* @__PURE__ */ import_react13.default.createElement(import_react13.default.Fragment, null, /* @__PURE__ */ import_react13.default.createElement(MarqueeRow2, { items: row1, durationSec: 34, reduceMotion }), /* @__PURE__ */ import_react13.default.createElement(
+  return /* @__PURE__ */ import_react13.default.createElement("section", { className: "ak-pmc", "aria-label": heading, style: sectionAppearanceStyle(appearance) }, /* @__PURE__ */ import_react13.default.createElement("div", { className: "ak-pmc__bg", "aria-hidden": true }), /* @__PURE__ */ import_react13.default.createElement("div", { className: "ak-pmc__glow", "aria-hidden": true }), /* @__PURE__ */ import_react13.default.createElement("div", { className: "ak-pmc__container" }, /* @__PURE__ */ import_react13.default.createElement("div", { className: "ak-pmc__header" }, eyebrow ? /* @__PURE__ */ import_react13.default.createElement("div", { className: "ak-pmc__eyebrow", style: eyebrowStyle }, eyebrow) : null, /* @__PURE__ */ import_react13.default.createElement("h2", { className: "ak-pmc__heading", style: headingStyle }, heading), description ? /* @__PURE__ */ import_react13.default.createElement("p", { className: "ak-pmc__desc", style: descriptionStyle }, description) : null), /* @__PURE__ */ import_react13.default.createElement("div", { className: "ak-pmc__rows" }, /* @__PURE__ */ import_react13.default.createElement("div", { className: "ak-pmc__fade ak-pmc__fade--l", "aria-hidden": true }), /* @__PURE__ */ import_react13.default.createElement("div", { className: "ak-pmc__fade ak-pmc__fade--r", "aria-hidden": true }), !hasContent ? /* @__PURE__ */ import_react13.default.createElement("p", { className: "ak-pmc__empty" }, "No items yet.") : /* @__PURE__ */ import_react13.default.createElement(import_react13.default.Fragment, null, /* @__PURE__ */ import_react13.default.createElement(
+    MarqueeRow2,
+    {
+      items: row1,
+      durationSec: 34,
+      reduceMotion,
+      cardTitleStyle,
+      cardSubtitleStyle
+    }
+  ), /* @__PURE__ */ import_react13.default.createElement(
     MarqueeRow2,
     {
       items: row2,
       reverse: true,
       durationSec: 38,
-      reduceMotion
+      reduceMotion,
+      cardTitleStyle,
+      cardSubtitleStyle
     }
-  ), /* @__PURE__ */ import_react13.default.createElement(MarqueeRow2, { items: row3, durationSec: 36, reduceMotion }))), showButton ? /* @__PURE__ */ import_react13.default.createElement("div", { className: "ak-pmc__cta" }, buttonLink ? /* @__PURE__ */ import_react13.default.createElement("a", { className: "ak-pmc__btn", href: buttonLink }, buttonText, " ", /* @__PURE__ */ import_react13.default.createElement("span", { "aria-hidden": true }, "\u2192")) : /* @__PURE__ */ import_react13.default.createElement("button", { className: "ak-pmc__btn", type: "button" }, buttonText, " ", /* @__PURE__ */ import_react13.default.createElement("span", { "aria-hidden": true }, "\u2192"))) : null));
+  ), /* @__PURE__ */ import_react13.default.createElement(
+    MarqueeRow2,
+    {
+      items: row3,
+      durationSec: 36,
+      reduceMotion,
+      cardTitleStyle,
+      cardSubtitleStyle
+    }
+  ))), showButton ? /* @__PURE__ */ import_react13.default.createElement("div", { className: "ak-pmc__cta" }, buttonLink ? /* @__PURE__ */ import_react13.default.createElement("a", { className: "ak-pmc__btn", href: buttonLink }, buttonText, " ", /* @__PURE__ */ import_react13.default.createElement("span", { "aria-hidden": true }, "\u2192")) : /* @__PURE__ */ import_react13.default.createElement("button", { className: "ak-pmc__btn", type: "button" }, buttonText, " ", /* @__PURE__ */ import_react13.default.createElement("span", { "aria-hidden": true }, "\u2192"))) : null));
 }
 
 // src/components/ProductMarqueeSection/CreativeCategoryMarquee.tsx
@@ -2458,20 +4007,31 @@ function distributeTwoRows(items) {
   const row2 = rotate3(items, 3);
   return { row1, row2 };
 }
-function CategoryCard({ item }) {
+function CategoryCard({
+  item,
+  cardTitleStyle
+}) {
   const name = safeText6(item == null ? void 0 : item.title);
   const image = safeText6(item == null ? void 0 : item.image);
-  return /* @__PURE__ */ import_react14.default.createElement("div", { className: "ak-ccm__card" }, /* @__PURE__ */ import_react14.default.createElement("div", { className: "ak-ccm__imgOuter" }, /* @__PURE__ */ import_react14.default.createElement("div", { className: "ak-ccm__imgInner", "aria-hidden": !image }, image ? /* @__PURE__ */ import_react14.default.createElement("img", { className: "ak-ccm__img", src: image, alt: name, loading: "lazy" }) : /* @__PURE__ */ import_react14.default.createElement("div", { className: "ak-ccm__img ak-ccm__img--fallback", "aria-hidden": true }), /* @__PURE__ */ import_react14.default.createElement("div", { className: "ak-ccm__imgOverlay", "aria-hidden": true }))), /* @__PURE__ */ import_react14.default.createElement("p", { className: "ak-ccm__name" }, name || /* @__PURE__ */ import_react14.default.createElement("span", { className: "ak-ccm__placeholder" }, "Category")));
+  return /* @__PURE__ */ import_react14.default.createElement("div", { className: "ak-ccm__card" }, /* @__PURE__ */ import_react14.default.createElement("div", { className: "ak-ccm__imgOuter" }, /* @__PURE__ */ import_react14.default.createElement("div", { className: "ak-ccm__imgInner", "aria-hidden": !image }, image ? /* @__PURE__ */ import_react14.default.createElement("img", { className: "ak-ccm__img", src: image, alt: name, loading: "lazy" }) : /* @__PURE__ */ import_react14.default.createElement("div", { className: "ak-ccm__img ak-ccm__img--fallback", "aria-hidden": true }), /* @__PURE__ */ import_react14.default.createElement("div", { className: "ak-ccm__imgOverlay", "aria-hidden": true }))), /* @__PURE__ */ import_react14.default.createElement("p", { className: "ak-ccm__name", style: cardTitleStyle }, name || /* @__PURE__ */ import_react14.default.createElement("span", { className: "ak-ccm__placeholder" }, "Category")));
 }
 function Row({
   items,
   reverse = false,
   durationSec = 30,
-  reduceMotion
+  reduceMotion,
+  cardTitleStyle
 }) {
   const loop = items.length > 0 ? [...items, ...items, ...items] : [];
   if (reduceMotion) {
-    return /* @__PURE__ */ import_react14.default.createElement("div", { className: "ak-ccm__row" }, /* @__PURE__ */ import_react14.default.createElement("div", { className: "ak-ccm__track ak-ccm__track--static" }, items.map((item, i) => /* @__PURE__ */ import_react14.default.createElement(CategoryCard, { key: `${safeText6(item.title)}-${i}`, item }))));
+    return /* @__PURE__ */ import_react14.default.createElement("div", { className: "ak-ccm__row" }, /* @__PURE__ */ import_react14.default.createElement("div", { className: "ak-ccm__track ak-ccm__track--static" }, items.map((item, i) => /* @__PURE__ */ import_react14.default.createElement(
+      CategoryCard,
+      {
+        key: `${safeText6(item.title)}-${i}`,
+        item,
+        cardTitleStyle
+      }
+    ))));
   }
   return /* @__PURE__ */ import_react14.default.createElement("div", { className: "ak-ccm__row" }, /* @__PURE__ */ import_react14.default.createElement(
     "div",
@@ -2479,15 +4039,62 @@ function Row({
       className: reverse ? "ak-ccm__track--rev" : "ak-ccm__track",
       style: { animationDuration: `${durationSec}s` }
     },
-    loop.map((item, i) => /* @__PURE__ */ import_react14.default.createElement(CategoryCard, { key: `${safeText6(item.title)}-${i}`, item }))
+    loop.map((item, i) => /* @__PURE__ */ import_react14.default.createElement(
+      CategoryCard,
+      {
+        key: `${safeText6(item.title)}-${i}`,
+        item,
+        cardTitleStyle
+      }
+    ))
   ));
 }
-function CreativeCategoryMarquee({ section }) {
+function CreativeCategoryMarquee({
+  section,
+  appearance,
+  theme
+}) {
   var _a, _b, _c;
   const reduceMotion = usePrefersReducedMotion();
   const props = (_b = (_a = section == null ? void 0 : section.settings) == null ? void 0 : _a.props) != null ? _b : {};
   const heading = safeText6(props.heading) || "Explore by Category";
   const description = safeText6(props.description) || "Smooth, scrollable categories designed for quick discovery.";
+  const headingStyle = (0, import_react14.useMemo)(
+    () => resolvedTextStyleToInlineStyle(
+      resolveTextStyle({
+        section,
+        theme,
+        fieldId: "heading",
+        role: "heading",
+        defaultStyle: PRODUCT_MARQUEE_HEADING_DEFAULT
+      })
+    ),
+    [section, theme]
+  );
+  const descriptionStyle = (0, import_react14.useMemo)(
+    () => resolvedTextStyleToInlineStyle(
+      resolveTextStyle({
+        section,
+        theme,
+        fieldId: "description",
+        role: "body",
+        defaultStyle: PRODUCT_MARQUEE_DESCRIPTION_DEFAULT
+      })
+    ),
+    [section, theme]
+  );
+  const cardTitleStyle = (0, import_react14.useMemo)(
+    () => resolvedTextStyleToInlineStyle(
+      resolveBlockGroupTextStyle({
+        section,
+        theme,
+        groupKey: "cardTitle",
+        role: "heading",
+        defaultStyle: PRODUCT_CARD_TITLE_DEFAULT
+      })
+    ),
+    [section, theme]
+  );
   const items = (0, import_react14.useMemo)(() => {
     var _a2;
     const blocks = (_a2 = section == null ? void 0 : section.settings) == null ? void 0 : _a2.blocks;
@@ -2496,7 +4103,16 @@ function CreativeCategoryMarquee({ section }) {
   }, [(_c = section == null ? void 0 : section.settings) == null ? void 0 : _c.blocks]);
   const hasContent = items.some((it) => safeText6(it.title) || safeText6(it.image));
   const { row1, row2 } = (0, import_react14.useMemo)(() => distributeTwoRows(items), [items]);
-  return /* @__PURE__ */ import_react14.default.createElement("section", { className: "ak-ccm", "aria-label": heading }, /* @__PURE__ */ import_react14.default.createElement("div", { className: "ak-ccm__container" }, /* @__PURE__ */ import_react14.default.createElement("div", { className: "ak-ccm__header" }, /* @__PURE__ */ import_react14.default.createElement("h2", { className: "ak-ccm__heading" }, heading), /* @__PURE__ */ import_react14.default.createElement("p", { className: "ak-ccm__desc" }, description)), /* @__PURE__ */ import_react14.default.createElement("div", { className: "ak-ccm__rows" }, /* @__PURE__ */ import_react14.default.createElement("div", { className: "ak-ccm__fade ak-ccm__fade--l", "aria-hidden": true }), /* @__PURE__ */ import_react14.default.createElement("div", { className: "ak-ccm__fade ak-ccm__fade--r", "aria-hidden": true }), !hasContent ? /* @__PURE__ */ import_react14.default.createElement("p", { className: "ak-ccm__empty" }, "No categories yet.") : /* @__PURE__ */ import_react14.default.createElement(import_react14.default.Fragment, null, /* @__PURE__ */ import_react14.default.createElement(Row, { items: row1, durationSec: 30, reduceMotion }), /* @__PURE__ */ import_react14.default.createElement(Row, { items: row2, reverse: true, durationSec: 34, reduceMotion })))));
+  return /* @__PURE__ */ import_react14.default.createElement("section", { className: "ak-ccm", "aria-label": heading, style: sectionAppearanceStyle(appearance) }, /* @__PURE__ */ import_react14.default.createElement("div", { className: "ak-ccm__container" }, /* @__PURE__ */ import_react14.default.createElement("div", { className: "ak-ccm__header" }, /* @__PURE__ */ import_react14.default.createElement("h2", { className: "ak-ccm__heading", style: headingStyle }, heading), /* @__PURE__ */ import_react14.default.createElement("p", { className: "ak-ccm__desc", style: descriptionStyle }, description)), /* @__PURE__ */ import_react14.default.createElement("div", { className: "ak-ccm__rows" }, /* @__PURE__ */ import_react14.default.createElement("div", { className: "ak-ccm__fade ak-ccm__fade--l", "aria-hidden": true }), /* @__PURE__ */ import_react14.default.createElement("div", { className: "ak-ccm__fade ak-ccm__fade--r", "aria-hidden": true }), !hasContent ? /* @__PURE__ */ import_react14.default.createElement("p", { className: "ak-ccm__empty" }, "No categories yet.") : /* @__PURE__ */ import_react14.default.createElement(import_react14.default.Fragment, null, /* @__PURE__ */ import_react14.default.createElement(Row, { items: row1, durationSec: 30, reduceMotion, cardTitleStyle }), /* @__PURE__ */ import_react14.default.createElement(
+    Row,
+    {
+      items: row2,
+      reverse: true,
+      durationSec: 34,
+      reduceMotion,
+      cardTitleStyle
+    }
+  )))));
 }
 
 // src/components/ProductMarqueeSection/LiquidFocusCategories.tsx
@@ -2521,7 +4137,11 @@ function padToFour(items) {
   while (next.length < 4) next.push({});
   return next;
 }
-function LiquidFocusCategories({ section }) {
+function LiquidFocusCategories({
+  section,
+  appearance,
+  theme
+}) {
   var _a, _b, _c;
   const reduceMotion = usePrefersReducedMotion();
   const props = (_b = (_a = section == null ? void 0 : section.settings) == null ? void 0 : _a.props) != null ? _b : {};
@@ -2529,6 +4149,54 @@ function LiquidFocusCategories({ section }) {
   const description = safeText7(props.description);
   const resetToDefaultOnLeave = props.resetToDefaultOnLeave !== false;
   const defaultActiveIndex = parseDefaultActiveIndex(props.defaultActiveIndex);
+  const headingStyle = (0, import_react15.useMemo)(
+    () => resolvedTextStyleToInlineStyle(
+      resolveTextStyle({
+        section,
+        theme,
+        fieldId: "heading",
+        role: "heading",
+        defaultStyle: PRODUCT_MARQUEE_HEADING_DEFAULT
+      })
+    ),
+    [section, theme]
+  );
+  const descriptionStyle = (0, import_react15.useMemo)(
+    () => resolvedTextStyleToInlineStyle(
+      resolveTextStyle({
+        section,
+        theme,
+        fieldId: "description",
+        role: "body",
+        defaultStyle: PRODUCT_MARQUEE_DESCRIPTION_DEFAULT
+      })
+    ),
+    [section, theme]
+  );
+  const cardTitleStyle = (0, import_react15.useMemo)(
+    () => resolvedTextStyleToInlineStyle(
+      resolveBlockGroupTextStyle({
+        section,
+        theme,
+        groupKey: "cardTitle",
+        role: "heading",
+        defaultStyle: PRODUCT_CARD_TITLE_OVERLAY_DEFAULT
+      })
+    ),
+    [section, theme]
+  );
+  const cardDescriptionStyle = (0, import_react15.useMemo)(
+    () => resolvedTextStyleToInlineStyle(
+      resolveBlockGroupTextStyle({
+        section,
+        theme,
+        groupKey: "cardDescription",
+        role: "body",
+        defaultStyle: PRODUCT_CARD_DESCRIPTION_DEFAULT
+      })
+    ),
+    [section, theme]
+  );
   const [active, setActive] = (0, import_react15.useState)(defaultActiveIndex);
   (0, import_react15.useEffect)(() => {
     setActive(defaultActiveIndex);
@@ -2543,7 +4211,7 @@ function LiquidFocusCategories({ section }) {
     return padToFour(mapped);
   }, [(_c = section == null ? void 0 : section.settings) == null ? void 0 : _c.blocks]);
   const transitionMs = reduceMotion ? 120 : 700;
-  return /* @__PURE__ */ import_react15.default.createElement("section", { className: "ak-lfc", "aria-label": heading }, /* @__PURE__ */ import_react15.default.createElement("div", { className: "ak-lfc__inner" }, /* @__PURE__ */ import_react15.default.createElement("div", { className: "ak-lfc__header" }, /* @__PURE__ */ import_react15.default.createElement("h2", { className: "ak-lfc__heading" }, heading), description ? /* @__PURE__ */ import_react15.default.createElement("p", { className: "ak-lfc__sub" }, description) : null), /* @__PURE__ */ import_react15.default.createElement("div", { className: "ak-lfc__desktop" }, /* @__PURE__ */ import_react15.default.createElement(
+  return /* @__PURE__ */ import_react15.default.createElement("section", { className: "ak-lfc", "aria-label": heading, style: sectionAppearanceStyle(appearance) }, /* @__PURE__ */ import_react15.default.createElement("div", { className: "ak-lfc__inner" }, /* @__PURE__ */ import_react15.default.createElement("div", { className: "ak-lfc__header" }, /* @__PURE__ */ import_react15.default.createElement("h2", { className: "ak-lfc__heading", style: headingStyle }, heading), description ? /* @__PURE__ */ import_react15.default.createElement("p", { className: "ak-lfc__sub", style: descriptionStyle }, description) : null), /* @__PURE__ */ import_react15.default.createElement("div", { className: "ak-lfc__desktop" }, /* @__PURE__ */ import_react15.default.createElement(
     "div",
     {
       className: "ak-lfc__strip",
@@ -2584,14 +4252,14 @@ function LiquidFocusCategories({ section }) {
           "h3",
           {
             className: isActive ? "ak-lfc__title ak-lfc__title--active" : "ak-lfc__title",
-            style: { transitionDuration: `${transitionMs}ms` }
+            style: { ...cardTitleStyle, transitionDuration: `${transitionMs}ms` }
           },
           title || /* @__PURE__ */ import_react15.default.createElement("span", { className: "ak-lfc__placeholder" }, "Title")
         ), /* @__PURE__ */ import_react15.default.createElement(
           "p",
           {
             className: isActive ? "ak-lfc__desc ak-lfc__desc--visible" : "ak-lfc__desc",
-            style: { transitionDuration: `${transitionMs}ms` }
+            style: { ...cardDescriptionStyle, transitionDuration: `${transitionMs}ms` }
           },
           cardDescription
         ))
@@ -2610,13 +4278,117 @@ function LiquidFocusCategories({ section }) {
         alt,
         loading: "lazy"
       }
-    ) : /* @__PURE__ */ import_react15.default.createElement("div", { className: "ak-lfc__img ak-lfc__img--fallback" })), /* @__PURE__ */ import_react15.default.createElement("div", { className: "ak-lfc__mgrad", "aria-hidden": true }), /* @__PURE__ */ import_react15.default.createElement("div", { className: "ak-lfc__mbody" }, /* @__PURE__ */ import_react15.default.createElement("h3", { className: "ak-lfc__mtitle" }, title || /* @__PURE__ */ import_react15.default.createElement("span", { className: "ak-lfc__placeholder" }, "Title")), /* @__PURE__ */ import_react15.default.createElement("p", { className: "ak-lfc__mdesc" }, cardDescription)));
+    ) : /* @__PURE__ */ import_react15.default.createElement("div", { className: "ak-lfc__img ak-lfc__img--fallback" })), /* @__PURE__ */ import_react15.default.createElement("div", { className: "ak-lfc__mgrad", "aria-hidden": true }), /* @__PURE__ */ import_react15.default.createElement("div", { className: "ak-lfc__mbody" }, /* @__PURE__ */ import_react15.default.createElement("h3", { className: "ak-lfc__mtitle", style: cardTitleStyle }, title || /* @__PURE__ */ import_react15.default.createElement("span", { className: "ak-lfc__placeholder" }, "Title")), /* @__PURE__ */ import_react15.default.createElement("p", { className: "ak-lfc__mdesc", style: cardDescriptionStyle }, cardDescription)));
   }))))));
 }
 
 // src/components/NspSignatureHeroSection/ScrollParallaxSignatureHero.tsx
 var import_react16 = __toESM(require("react"));
 var import_framer_motion2 = require("framer-motion");
+
+// src/shared/textStyleDefaults/nspSignatureHeroTextStyleDefaults.ts
+var NSP_SIG_HERO_EYEBROW_DEFAULT = {
+  color: "#86868b",
+  fontWeight: "600",
+  fontSize: "11px"
+};
+var NSP_SIG_HERO_HEADING_DEFAULT = {
+  color: "#14151c",
+  fontWeight: "700",
+  fontSize: "42px"
+};
+var NSP_SIG_HERO_DESCRIPTION_DEFAULT = {
+  color: "rgba(28, 30, 40, 0.72)",
+  fontWeight: "400",
+  fontSize: "17px"
+};
+var NSP_SIG_HERO_PRIMARY_BUTTON_TEXT_DEFAULT = {
+  color: "#ffffff",
+  fontWeight: "600",
+  fontSize: "14px"
+};
+var NSP_SIG_HERO_SECONDARY_BUTTON_TEXT_DEFAULT = {
+  color: "#1c1f2e",
+  fontWeight: "600",
+  fontSize: "14px"
+};
+var NSP_TYPING_STATIC_HEADING_DEFAULT = {
+  color: "#ffffff",
+  fontWeight: "700",
+  fontSize: "56px"
+};
+var NSP_TYPING_DESCRIPTION_DEFAULT = {
+  color: "rgba(255, 255, 255, 0.84)",
+  fontWeight: "400",
+  fontSize: "16px"
+};
+var NSP_TYPING_PRIMARY_BUTTON_TEXT_DEFAULT = {
+  color: "#000000",
+  fontWeight: "500",
+  fontSize: "14px"
+};
+var NSP_TYPING_SECONDARY_BUTTON_TEXT_DEFAULT = {
+  color: "#ffffff",
+  fontWeight: "500",
+  fontSize: "14px"
+};
+var NSP_TYPING_WORD_DEFAULT = {
+  color: "#ffffff",
+  fontWeight: "700",
+  fontSize: "56px"
+};
+var NSP_POKER_EYEBROW_DEFAULT = {
+  color: "rgba(17, 17, 17, 0.72)",
+  fontWeight: "600",
+  fontSize: "12px"
+};
+var NSP_POKER_HEADING_DEFAULT = {
+  color: "#141413",
+  fontWeight: "600",
+  fontSize: "48px"
+};
+var NSP_POKER_DESCRIPTION_DEFAULT = {
+  color: "rgba(17, 17, 17, 0.62)",
+  fontWeight: "400",
+  fontSize: "17px"
+};
+var NSP_MARQUEE_EYEBROW_DEFAULT = {
+  color: "rgba(17, 17, 17, 0.68)",
+  fontWeight: "600",
+  fontSize: "11px"
+};
+var NSP_MARQUEE_HERO_BADGE_TEXT_DEFAULT = {
+  color: "rgba(255, 255, 255, 0.82)",
+  fontWeight: "600",
+  fontSize: "10px"
+};
+var NSP_MARQUEE_HEADING_DEFAULT = {
+  color: "#141413",
+  fontWeight: "600",
+  fontSize: "48px"
+};
+var NSP_MARQUEE_SUBHEADING_DEFAULT = {
+  color: "rgba(17, 17, 17, 0.62)",
+  fontWeight: "400",
+  fontSize: "17px"
+};
+var NSP_MARQUEE_CARD_TITLE_DEFAULT = {
+  color: "#111111",
+  fontWeight: "600",
+  fontSize: "16px"
+};
+var NSP_MARQUEE_CARD_SUBTITLE_DEFAULT = {
+  color: "rgba(0, 0, 0, 0.58)",
+  fontWeight: "400",
+  fontSize: "12px"
+};
+var NSP_FLOATING_SNACK_TITLE_DEFAULT = {
+  color: "#0a0a0a",
+  fontWeight: "900",
+  fontSize: "13.4rem"
+};
+
+// src/components/NspSignatureHeroSection/ScrollParallaxSignatureHero.tsx
 var POSITIONS = [
   "top-left",
   "top-right",
@@ -2795,7 +4567,8 @@ function FloatingImageCard({
 function ScrollParallaxSignatureHeroInner({
   section,
   sectionRef,
-  scrollRoot
+  scrollRoot,
+  theme
 }) {
   var _a, _b, _c, _d, _e, _f, _g, _h, _i, _j, _k, _l;
   const scrollOpts = (0, import_react16.useMemo)(() => {
@@ -2930,6 +4703,66 @@ function ScrollParallaxSignatureHeroInner({
       };
     });
   }, [blocks]);
+  const eyebrowStyle = (0, import_react16.useMemo)(
+    () => resolvedTextStyleToInlineStyle(
+      resolveTextStyle({
+        section,
+        theme,
+        fieldId: "eyebrow",
+        role: "body",
+        defaultStyle: NSP_SIG_HERO_EYEBROW_DEFAULT
+      })
+    ),
+    [section, theme]
+  );
+  const headingStyle = (0, import_react16.useMemo)(
+    () => resolvedTextStyleToInlineStyle(
+      resolveTextStyle({
+        section,
+        theme,
+        fieldId: "heading",
+        role: "heading",
+        defaultStyle: NSP_SIG_HERO_HEADING_DEFAULT
+      })
+    ),
+    [section, theme]
+  );
+  const descriptionStyle = (0, import_react16.useMemo)(
+    () => resolvedTextStyleToInlineStyle(
+      resolveTextStyle({
+        section,
+        theme,
+        fieldId: "description",
+        role: "body",
+        defaultStyle: NSP_SIG_HERO_DESCRIPTION_DEFAULT
+      })
+    ),
+    [section, theme]
+  );
+  const primaryButtonTextStyle = (0, import_react16.useMemo)(
+    () => resolvedTextStyleToInlineStyle(
+      resolveTextStyle({
+        section,
+        theme,
+        fieldId: "primaryButtonText",
+        role: "body",
+        defaultStyle: NSP_SIG_HERO_PRIMARY_BUTTON_TEXT_DEFAULT
+      })
+    ),
+    [section, theme]
+  );
+  const secondaryButtonTextStyle = (0, import_react16.useMemo)(
+    () => resolvedTextStyleToInlineStyle(
+      resolveTextStyle({
+        section,
+        theme,
+        fieldId: "secondaryButtonText",
+        role: "body",
+        defaultStyle: NSP_SIG_HERO_SECONDARY_BUTTON_TEXT_DEFAULT
+      })
+    ),
+    [section, theme]
+  );
   const rootMods = backgroundTone === "soft-neutral" ? "ak-nsp-sig-hero--tone-soft" : "ak-nsp-sig-hero--tone-light";
   return /* @__PURE__ */ import_react16.default.createElement(import_react16.default.Fragment, null, /* @__PURE__ */ import_react16.default.createElement("div", { className: "ak-nsp-sig-hero__halo", "aria-hidden": true }), /* @__PURE__ */ import_react16.default.createElement("div", { className: "ak-nsp-sig-hero__cards" }, cards.map((c, index) => /* @__PURE__ */ import_react16.default.createElement(
     FloatingImageCard,
@@ -2954,7 +4787,7 @@ function ScrollParallaxSignatureHeroInner({
         style: { opacity: badgeOpacity, y: settleLift },
         className: "ak-nsp-sig-hero__badge"
       },
-      eyebrow
+      /* @__PURE__ */ import_react16.default.createElement("span", { style: eyebrowStyle }, eyebrow)
     ) : null,
     heading ? /* @__PURE__ */ import_react16.default.createElement(
       import_framer_motion2.motion.div,
@@ -2966,7 +4799,7 @@ function ScrollParallaxSignatureHeroInner({
         },
         className: "ak-nsp-sig-hero__headingShell"
       },
-      /* @__PURE__ */ import_react16.default.createElement("h2", { className: "ak-nsp-sig-hero__heading" }, heading)
+      /* @__PURE__ */ import_react16.default.createElement("h2", { className: "ak-nsp-sig-hero__heading", style: headingStyle }, heading)
     ) : null,
     description ? /* @__PURE__ */ import_react16.default.createElement(
       import_framer_motion2.motion.div,
@@ -2974,13 +4807,31 @@ function ScrollParallaxSignatureHeroInner({
         style: { y: settleLift, backdropFilter: descBlur },
         className: "ak-nsp-sig-hero__descShell"
       },
-      /* @__PURE__ */ import_react16.default.createElement("p", { className: "ak-nsp-sig-hero__desc" }, description)
+      /* @__PURE__ */ import_react16.default.createElement("p", { className: "ak-nsp-sig-hero__desc", style: descriptionStyle }, description)
     ) : null,
-    /* @__PURE__ */ import_react16.default.createElement(import_framer_motion2.motion.div, { style: { y: settleLift }, className: "ak-nsp-sig-hero__actions" }, primaryButtonText ? /* @__PURE__ */ import_react16.default.createElement("a", { className: "ak-nsp-sig-hero__btnPrimary", href: primaryButtonLink }, primaryButtonText) : null, showSecondaryButton && secondaryButtonText ? /* @__PURE__ */ import_react16.default.createElement("a", { className: "ak-nsp-sig-hero__btnSecondary", href: secondaryButtonLink }, secondaryButtonText) : null)
+    /* @__PURE__ */ import_react16.default.createElement(import_framer_motion2.motion.div, { style: { y: settleLift }, className: "ak-nsp-sig-hero__actions" }, primaryButtonText ? /* @__PURE__ */ import_react16.default.createElement(
+      "a",
+      {
+        className: "ak-nsp-sig-hero__btnPrimary",
+        href: primaryButtonLink,
+        style: primaryButtonTextStyle
+      },
+      primaryButtonText
+    ) : null, showSecondaryButton && secondaryButtonText ? /* @__PURE__ */ import_react16.default.createElement(
+      "a",
+      {
+        className: "ak-nsp-sig-hero__btnSecondary",
+        href: secondaryButtonLink,
+        style: secondaryButtonTextStyle
+      },
+      secondaryButtonText
+    ) : null)
   )));
 }
 function ScrollParallaxSignatureHero({
-  section
+  section,
+  appearance,
+  theme
 }) {
   var _a, _b, _c, _d;
   const sectionRef = (0, import_react16.useRef)(null);
@@ -3006,14 +4857,15 @@ function ScrollParallaxSignatureHero({
     {
       ref: sectionRef,
       className: `ak-nsp-sig-hero ak-nsp-sig-hero--scroll ${rootMods}`,
-      style: { height: sectionHeight }
+      style: { height: sectionHeight, ...sectionAppearanceStyle(appearance) }
     },
     /* @__PURE__ */ import_react16.default.createElement("div", { className: "ak-nsp-sig-hero__sticky" }, scrollRoot !== null ? /* @__PURE__ */ import_react16.default.createElement(
       ScrollParallaxSignatureHeroInner,
       {
         section,
         sectionRef,
-        scrollRoot
+        scrollRoot,
+        theme
       }
     ) : null)
   );
@@ -3036,7 +4888,11 @@ function adjustFontSize(el, max, min) {
     el.style.fontSize = `${size}px`;
   }
 }
-function FullImageTypingHero({ section }) {
+function FullImageTypingHero({
+  section,
+  appearance,
+  theme
+}) {
   var _a, _b, _c, _d, _e, _f, _g, _h, _i, _j, _k;
   const props = (_b = (_a = section.settings) == null ? void 0 : _a.props) != null ? _b : {};
   const blocks = (_d = (_c = section.settings) == null ? void 0 : _c.blocks) != null ? _d : [];
@@ -3113,12 +4969,75 @@ function FullImageTypingHero({ section }) {
     window.addEventListener("resize", resize);
     return () => window.removeEventListener("resize", resize);
   }, [displayedText, staticHeading, wordsKey]);
+  const staticHeadingStyle = (0, import_react17.useMemo)(
+    () => resolvedTextStyleToInlineStyle(
+      resolveTextStyle({
+        section,
+        theme,
+        fieldId: "staticHeading",
+        role: "heading",
+        defaultStyle: NSP_TYPING_STATIC_HEADING_DEFAULT
+      })
+    ),
+    [section, theme]
+  );
+  const typingWordStyle = (0, import_react17.useMemo)(
+    () => resolvedTextStyleToInlineStyle(
+      resolveBlockGroupTextStyle({
+        section,
+        theme,
+        groupKey: "typingWord",
+        role: "heading",
+        defaultStyle: NSP_TYPING_WORD_DEFAULT
+      })
+    ),
+    [section, theme]
+  );
+  const descriptionStyle = (0, import_react17.useMemo)(
+    () => resolvedTextStyleToInlineStyle(
+      resolveTextStyle({
+        section,
+        theme,
+        fieldId: "description",
+        role: "body",
+        defaultStyle: NSP_TYPING_DESCRIPTION_DEFAULT
+      })
+    ),
+    [section, theme]
+  );
+  const primaryButtonTextStyle = (0, import_react17.useMemo)(
+    () => resolvedTextStyleToInlineStyle(
+      resolveTextStyle({
+        section,
+        theme,
+        fieldId: "primaryButtonText",
+        role: "body",
+        defaultStyle: NSP_TYPING_PRIMARY_BUTTON_TEXT_DEFAULT
+      })
+    ),
+    [section, theme]
+  );
+  const secondaryButtonTextStyle = (0, import_react17.useMemo)(
+    () => resolvedTextStyleToInlineStyle(
+      resolveTextStyle({
+        section,
+        theme,
+        fieldId: "secondaryButtonText",
+        role: "body",
+        defaultStyle: NSP_TYPING_SECONDARY_BUTTON_TEXT_DEFAULT
+      })
+    ),
+    [section, theme]
+  );
+  const headingLineBaseStyle = {
+    fontSize: `${MAX_FONT_SIZE_PX}px`
+  };
   if (section.enabled === false) {
     return null;
   }
   const primaryHref = primaryButtonLink || "#";
   const secondaryHref = secondaryButtonLink || "#";
-  return /* @__PURE__ */ import_react17.default.createElement("section", { className: "ak-nsp-typing-hero" }, /* @__PURE__ */ import_react17.default.createElement("div", { className: "ak-nsp-typing-hero__bg", "aria-hidden": !backgroundImage }, backgroundImage ? /* @__PURE__ */ import_react17.default.createElement(
+  return /* @__PURE__ */ import_react17.default.createElement("section", { className: "ak-nsp-typing-hero", style: sectionAppearanceStyle(appearance) }, /* @__PURE__ */ import_react17.default.createElement("div", { className: "ak-nsp-typing-hero__bg", "aria-hidden": !backgroundImage }, backgroundImage ? /* @__PURE__ */ import_react17.default.createElement(
     "img",
     {
       className: "ak-nsp-typing-hero__bg-img",
@@ -3130,7 +5049,7 @@ function FullImageTypingHero({ section }) {
     {
       ref: staticRef,
       className: "ak-nsp-typing-hero__line",
-      style: { fontSize: `${MAX_FONT_SIZE_PX}px` }
+      style: { ...staticHeadingStyle, ...headingLineBaseStyle }
     },
     staticHeading
   ) : null, words.length > 0 ? /* @__PURE__ */ import_react17.default.createElement(
@@ -3138,15 +5057,24 @@ function FullImageTypingHero({ section }) {
     {
       ref: dynamicRef,
       className: "ak-nsp-typing-hero__line ak-nsp-typing-hero__line--dynamic",
-      style: { fontSize: `${MAX_FONT_SIZE_PX}px` }
+      style: { ...typingWordStyle, ...headingLineBaseStyle }
     },
     displayedText,
     /* @__PURE__ */ import_react17.default.createElement("span", { className: "ak-nsp-typing-hero__cursor", "aria-hidden": true })
-  ) : null, description ? /* @__PURE__ */ import_react17.default.createElement("p", { className: "ak-nsp-typing-hero__desc" }, description) : null, primaryButtonText || showSecondaryButton && secondaryButtonText ? /* @__PURE__ */ import_react17.default.createElement("div", { className: "ak-nsp-typing-hero__actions" }, primaryButtonText ? /* @__PURE__ */ import_react17.default.createElement("a", { className: "ak-nsp-typing-hero__btn ak-nsp-typing-hero__btn--primary", href: primaryHref }, primaryButtonText) : null, showSecondaryButton && secondaryButtonText ? /* @__PURE__ */ import_react17.default.createElement(
+  ) : null, description ? /* @__PURE__ */ import_react17.default.createElement("p", { className: "ak-nsp-typing-hero__desc", style: descriptionStyle }, description) : null, primaryButtonText || showSecondaryButton && secondaryButtonText ? /* @__PURE__ */ import_react17.default.createElement("div", { className: "ak-nsp-typing-hero__actions" }, primaryButtonText ? /* @__PURE__ */ import_react17.default.createElement(
+    "a",
+    {
+      className: "ak-nsp-typing-hero__btn ak-nsp-typing-hero__btn--primary",
+      href: primaryHref,
+      style: primaryButtonTextStyle
+    },
+    primaryButtonText
+  ) : null, showSecondaryButton && secondaryButtonText ? /* @__PURE__ */ import_react17.default.createElement(
     "a",
     {
       className: "ak-nsp-typing-hero__btn ak-nsp-typing-hero__btn--secondary",
-      href: secondaryHref
+      href: secondaryHref,
+      style: secondaryButtonTextStyle
     },
     secondaryButtonText
   ) : null) : null)));
@@ -3311,7 +5239,8 @@ function PokerSpread({
 function PokerRowRevealHeroInner({
   section,
   sectionRef,
-  scrollRoot
+  scrollRoot,
+  theme
 }) {
   var _a, _b, _c, _d, _e, _f, _g;
   const p = (_b = (_a = section.settings) == null ? void 0 : _a.props) != null ? _b : {};
@@ -3350,6 +5279,42 @@ function PokerRowRevealHeroInner({
   const heading = String((_f = p.heading) != null ? _f : "").trim();
   const description = String((_g = p.description) != null ? _g : "").trim();
   const showSparklesIcon = p.showSparklesIcon !== false;
+  const eyebrowStyle = (0, import_react18.useMemo)(
+    () => resolvedTextStyleToInlineStyle(
+      resolveTextStyle({
+        section,
+        theme,
+        fieldId: "eyebrow",
+        role: "body",
+        defaultStyle: NSP_POKER_EYEBROW_DEFAULT
+      })
+    ),
+    [section, theme]
+  );
+  const headingStyle = (0, import_react18.useMemo)(
+    () => resolvedTextStyleToInlineStyle(
+      resolveTextStyle({
+        section,
+        theme,
+        fieldId: "heading",
+        role: "heading",
+        defaultStyle: NSP_POKER_HEADING_DEFAULT
+      })
+    ),
+    [section, theme]
+  );
+  const descriptionStyle = (0, import_react18.useMemo)(
+    () => resolvedTextStyleToInlineStyle(
+      resolveTextStyle({
+        section,
+        theme,
+        fieldId: "description",
+        role: "body",
+        defaultStyle: NSP_POKER_DESCRIPTION_DEFAULT
+      })
+    ),
+    [section, theme]
+  );
   return /* @__PURE__ */ import_react18.default.createElement("div", { className: "ak-nsp-poker-hero__sticky" }, /* @__PURE__ */ import_react18.default.createElement("div", { className: "ak-nsp-poker-hero__inner" }, /* @__PURE__ */ import_react18.default.createElement(
     import_framer_motion3.motion.div,
     {
@@ -3359,12 +5324,16 @@ function PokerRowRevealHeroInner({
       transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] },
       className: "ak-nsp-poker-hero__copy"
     },
-    (showSparklesIcon || eyebrow) && /* @__PURE__ */ import_react18.default.createElement("div", { className: "ak-nsp-poker-hero__eyebrow" }, showSparklesIcon ? /* @__PURE__ */ import_react18.default.createElement("span", { "aria-hidden": true, className: "ak-nsp-poker-hero__eyebrowIcon" }, "*") : null, eyebrow),
-    heading ? /* @__PURE__ */ import_react18.default.createElement("h2", { className: "ak-nsp-poker-hero__heading" }, heading) : null,
-    description ? /* @__PURE__ */ import_react18.default.createElement("p", { className: "ak-nsp-poker-hero__description" }, description) : null
+    (showSparklesIcon || eyebrow) && /* @__PURE__ */ import_react18.default.createElement("div", { className: "ak-nsp-poker-hero__eyebrow", style: eyebrowStyle }, showSparklesIcon ? /* @__PURE__ */ import_react18.default.createElement("span", { "aria-hidden": true, className: "ak-nsp-poker-hero__eyebrowIcon" }, "*") : null, eyebrow),
+    heading ? /* @__PURE__ */ import_react18.default.createElement("h2", { className: "ak-nsp-poker-hero__heading", style: headingStyle }, heading) : null,
+    description ? /* @__PURE__ */ import_react18.default.createElement("p", { className: "ak-nsp-poker-hero__description", style: descriptionStyle }, description) : null
   ), /* @__PURE__ */ import_react18.default.createElement("div", { className: "ak-nsp-poker-hero__cardsWrap" }, /* @__PURE__ */ import_react18.default.createElement(PokerSpread, { cards, progress: pinnedProgress, isMobile }))));
 }
-function PokerRowRevealHero({ section }) {
+function PokerRowRevealHero({
+  section,
+  appearance,
+  theme
+}) {
   var _a, _b, _c;
   const sectionRef = (0, import_react18.useRef)(null);
   const [scrollRoot, setScrollRoot] = (0, import_react18.useState)(null);
@@ -3385,14 +5354,15 @@ function PokerRowRevealHero({ section }) {
     {
       ref: sectionRef,
       className: "ak-nsp-poker-hero",
-      style: { height: sectionHeight }
+      style: { height: sectionHeight, ...sectionAppearanceStyle(appearance) }
     },
     scrollRoot ? /* @__PURE__ */ import_react18.default.createElement(
       PokerRowRevealHeroInner,
       {
         section,
         sectionRef,
-        scrollRoot
+        scrollRoot,
+        theme
       }
     ) : null
   );
@@ -3430,7 +5400,12 @@ function toOverlayOpacity(raw) {
   if (!Number.isFinite(num)) return 0.4;
   return Math.min(0.8, Math.max(0, num));
 }
-function MarqueeCard({ item, index }) {
+function MarqueeCard({
+  item,
+  index,
+  cardTitleStyle,
+  cardSubtitleStyle
+}) {
   const cardBody = /* @__PURE__ */ import_react19.default.createElement(
     import_framer_motion4.motion.div,
     {
@@ -3454,7 +5429,7 @@ function MarqueeCard({ item, index }) {
         }
       }
     ) : /* @__PURE__ */ import_react19.default.createElement("div", { className: "ak-nsp-marquee-hero__marqueeImagePlaceholder", "aria-hidden": true }), /* @__PURE__ */ import_react19.default.createElement("div", { className: "ak-nsp-marquee-hero__marqueeGradient" })),
-    /* @__PURE__ */ import_react19.default.createElement("div", { className: "ak-nsp-marquee-hero__marqueeMeta" }, item.title ? /* @__PURE__ */ import_react19.default.createElement("h3", null, item.title) : null, item.subtitle ? /* @__PURE__ */ import_react19.default.createElement("p", null, item.subtitle) : null)
+    /* @__PURE__ */ import_react19.default.createElement("div", { className: "ak-nsp-marquee-hero__marqueeMeta" }, item.title ? /* @__PURE__ */ import_react19.default.createElement("h3", { style: cardTitleStyle }, item.title) : null, item.subtitle ? /* @__PURE__ */ import_react19.default.createElement("p", { style: cardSubtitleStyle }, item.subtitle) : null)
   );
   if (item.link) {
     return /* @__PURE__ */ import_react19.default.createElement(
@@ -3469,9 +5444,12 @@ function MarqueeCard({ item, index }) {
   }
   return cardBody;
 }
-function NSPSignatureHeroMarquee({ section }) {
+function NSPSignatureHeroMarquee({
+  section,
+  appearance,
+  theme
+}) {
   var _a, _b, _c, _d, _e, _f, _g, _h, _i, _j, _k, _l;
-  if (section.enabled === false) return null;
   const props = (_b = (_a = section.settings) == null ? void 0 : _a.props) != null ? _b : {};
   const rawBlocks = Array.isArray((_c = section.settings) == null ? void 0 : _c.blocks) ? section.settings.blocks : [];
   const eyebrow = String((_d = props.eyebrow) != null ? _d : "").trim();
@@ -3504,7 +5482,80 @@ function NSPSignatureHeroMarquee({ section }) {
       key: `${item.key}-${index}`
     }));
   }, [rawBlocks]);
-  return /* @__PURE__ */ import_react19.default.createElement("section", { className: "ak-nsp-marquee-hero" }, /* @__PURE__ */ import_react19.default.createElement("div", { className: "ak-nsp-marquee-hero__inner" }, /* @__PURE__ */ import_react19.default.createElement(
+  const eyebrowStyle = (0, import_react19.useMemo)(
+    () => resolvedTextStyleToInlineStyle(
+      resolveTextStyle({
+        section,
+        theme,
+        fieldId: "eyebrow",
+        role: "body",
+        defaultStyle: NSP_MARQUEE_EYEBROW_DEFAULT
+      })
+    ),
+    [section, theme]
+  );
+  const heroBadgeTextStyle = (0, import_react19.useMemo)(
+    () => resolvedTextStyleToInlineStyle(
+      resolveTextStyle({
+        section,
+        theme,
+        fieldId: "heroBadgeText",
+        role: "body",
+        defaultStyle: NSP_MARQUEE_HERO_BADGE_TEXT_DEFAULT
+      })
+    ),
+    [section, theme]
+  );
+  const headingStyle = (0, import_react19.useMemo)(
+    () => resolvedTextStyleToInlineStyle(
+      resolveTextStyle({
+        section,
+        theme,
+        fieldId: "heading",
+        role: "heading",
+        defaultStyle: NSP_MARQUEE_HEADING_DEFAULT
+      })
+    ),
+    [section, theme]
+  );
+  const subheadingStyle = (0, import_react19.useMemo)(
+    () => resolvedTextStyleToInlineStyle(
+      resolveTextStyle({
+        section,
+        theme,
+        fieldId: "subheading",
+        role: "body",
+        defaultStyle: NSP_MARQUEE_SUBHEADING_DEFAULT
+      })
+    ),
+    [section, theme]
+  );
+  const marqueeCardTitleStyle = (0, import_react19.useMemo)(
+    () => resolvedTextStyleToInlineStyle(
+      resolveBlockGroupTextStyle({
+        section,
+        theme,
+        groupKey: "marqueeCardTitle",
+        role: "heading",
+        defaultStyle: NSP_MARQUEE_CARD_TITLE_DEFAULT
+      })
+    ),
+    [section, theme]
+  );
+  const marqueeCardSubtitleStyle = (0, import_react19.useMemo)(
+    () => resolvedTextStyleToInlineStyle(
+      resolveBlockGroupTextStyle({
+        section,
+        theme,
+        groupKey: "marqueeCardSubtitle",
+        role: "body",
+        defaultStyle: NSP_MARQUEE_CARD_SUBTITLE_DEFAULT
+      })
+    ),
+    [section, theme]
+  );
+  if (section.enabled === false) return null;
+  return /* @__PURE__ */ import_react19.default.createElement("section", { className: "ak-nsp-marquee-hero", style: sectionAppearanceStyle(appearance) }, /* @__PURE__ */ import_react19.default.createElement("div", { className: "ak-nsp-marquee-hero__inner" }, /* @__PURE__ */ import_react19.default.createElement(
     import_framer_motion4.motion.div,
     {
       initial: { opacity: 0, y: 20 },
@@ -3513,9 +5564,9 @@ function NSPSignatureHeroMarquee({ section }) {
       transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] },
       className: "ak-nsp-marquee-hero__copy"
     },
-    eyebrow ? /* @__PURE__ */ import_react19.default.createElement("p", { className: "ak-nsp-marquee-hero__eyebrow" }, /* @__PURE__ */ import_react19.default.createElement(SparklesIcon, null), /* @__PURE__ */ import_react19.default.createElement("span", null, eyebrow)) : null,
-    heading ? /* @__PURE__ */ import_react19.default.createElement("h2", { className: "ak-nsp-marquee-hero__heading" }, heading) : null,
-    subheading ? /* @__PURE__ */ import_react19.default.createElement("p", { className: "ak-nsp-marquee-hero__subheading" }, subheading) : null
+    eyebrow ? /* @__PURE__ */ import_react19.default.createElement("p", { className: "ak-nsp-marquee-hero__eyebrow", style: eyebrowStyle }, /* @__PURE__ */ import_react19.default.createElement(SparklesIcon, null), /* @__PURE__ */ import_react19.default.createElement("span", null, eyebrow)) : null,
+    heading ? /* @__PURE__ */ import_react19.default.createElement("h2", { className: "ak-nsp-marquee-hero__heading", style: headingStyle }, heading) : null,
+    subheading ? /* @__PURE__ */ import_react19.default.createElement("p", { className: "ak-nsp-marquee-hero__subheading", style: subheadingStyle }, subheading) : null
   ), /* @__PURE__ */ import_react19.default.createElement(
     import_framer_motion4.motion.div,
     {
@@ -3545,8 +5596,17 @@ function NSPSignatureHeroMarquee({ section }) {
         style: { opacity: overlayOpacity }
       }
     ),
-    heroBadgeText ? /* @__PURE__ */ import_react19.default.createElement("div", { className: "ak-nsp-marquee-hero__heroMediaBadge" }, heroBadgeText) : null
-  ), marqueeCards.length > 0 ? /* @__PURE__ */ import_react19.default.createElement("div", { className: "ak-nsp-marquee-hero__marqueeViewport" }, /* @__PURE__ */ import_react19.default.createElement("div", { className: "ak-nsp-marquee-hero__marqueeTrack" }, marqueeCards.map((item, index) => /* @__PURE__ */ import_react19.default.createElement(MarqueeCard, { key: item.key, item, index })))) : null, showBottomStrip ? /* @__PURE__ */ import_react19.default.createElement(
+    heroBadgeText ? /* @__PURE__ */ import_react19.default.createElement("div", { className: "ak-nsp-marquee-hero__heroMediaBadge", style: heroBadgeTextStyle }, heroBadgeText) : null
+  ), marqueeCards.length > 0 ? /* @__PURE__ */ import_react19.default.createElement("div", { className: "ak-nsp-marquee-hero__marqueeViewport" }, /* @__PURE__ */ import_react19.default.createElement("div", { className: "ak-nsp-marquee-hero__marqueeTrack" }, marqueeCards.map((item, index) => /* @__PURE__ */ import_react19.default.createElement(
+    MarqueeCard,
+    {
+      key: item.key,
+      item,
+      index,
+      cardTitleStyle: marqueeCardTitleStyle,
+      cardSubtitleStyle: marqueeCardSubtitleStyle
+    }
+  )))) : null, showBottomStrip ? /* @__PURE__ */ import_react19.default.createElement(
     import_framer_motion4.motion.div,
     {
       initial: { opacity: 0, y: 18 },
@@ -3784,7 +5844,8 @@ function renderTwoLineTitle(titleRaw) {
 function FloatingSnackGalleryHeroContent({
   section,
   sectionRef,
-  scrollContainer
+  scrollContainer,
+  theme
 }) {
   var _a, _b, _c, _d;
   const props = (_b = (_a = section == null ? void 0 : section.settings) == null ? void 0 : _a.props) != null ? _b : {};
@@ -3838,6 +5899,18 @@ function FloatingSnackGalleryHeroContent({
     mass: 1
   });
   const titleOpacity = (0, import_framer_motion5.useTransform)(scrollYProgress, [0, 0.85], [1, 0.92]);
+  const titleStyle = (0, import_react20.useMemo)(
+    () => resolvedTextStyleToInlineStyle(
+      resolveTextStyle({
+        section,
+        theme,
+        fieldId: "title",
+        role: "heading",
+        defaultStyle: NSP_FLOATING_SNACK_TITLE_DEFAULT
+      })
+    ),
+    [section, theme]
+  );
   return /* @__PURE__ */ import_react20.default.createElement("div", { className: "sticky-wrapper" }, /* @__PURE__ */ import_react20.default.createElement("div", { className: "bg-layer" }), /* @__PURE__ */ import_react20.default.createElement("div", { className: "gradient-layer" }), /* @__PURE__ */ import_react20.default.createElement(import_framer_motion5.motion.div, { style: { scale: glowScale }, className: "center-glow" }), showScrollHint ? /* @__PURE__ */ import_react20.default.createElement("div", { className: "scroll-indicator" }, /* @__PURE__ */ import_react20.default.createElement("span", null, SCROLL_HINT_TEXT), /* @__PURE__ */ import_react20.default.createElement("span", { className: "line" })) : null, /* @__PURE__ */ import_react20.default.createElement("div", { className: "floating-cluster" }, tiles.map((tile, index) => /* @__PURE__ */ import_react20.default.createElement(
     FloatingTile,
     {
@@ -3857,11 +5930,13 @@ function FloatingSnackGalleryHeroContent({
     },
     /* @__PURE__ */ import_react20.default.createElement("div", { className: "title-glow-one" }),
     /* @__PURE__ */ import_react20.default.createElement("div", { className: "title-glow-two" }),
-    /* @__PURE__ */ import_react20.default.createElement("h1", null, renderTwoLineTitle(title))
+    /* @__PURE__ */ import_react20.default.createElement("h1", { style: titleStyle }, renderTwoLineTitle(title))
   )));
 }
 function FloatingSnackGalleryHero({
-  section
+  section,
+  appearance,
+  theme
 }) {
   const sectionRef = (0, import_react20.useRef)(null);
   const [scrollContainer, setScrollContainer] = (0, import_react20.useState)(
@@ -3874,19 +5949,62 @@ function FloatingSnackGalleryHero({
   if ((section == null ? void 0 : section.enabled) === false) {
     return null;
   }
-  return /* @__PURE__ */ import_react20.default.createElement("section", { ref: sectionRef, className: "premium-snack-gallery" }, scrollContainer !== void 0 ? /* @__PURE__ */ import_react20.default.createElement(
-    FloatingSnackGalleryHeroContent,
+  return /* @__PURE__ */ import_react20.default.createElement(
+    "section",
     {
-      section,
-      sectionRef,
-      scrollContainer
-    }
-  ) : null);
+      ref: sectionRef,
+      className: "premium-snack-gallery",
+      style: sectionAppearanceStyle(appearance)
+    },
+    scrollContainer !== void 0 ? /* @__PURE__ */ import_react20.default.createElement(
+      FloatingSnackGalleryHeroContent,
+      {
+        section,
+        sectionRef,
+        scrollContainer,
+        theme
+      }
+    ) : null
+  );
 }
 
 // src/components/MinimalTimelineBenefitsSection/MinimalTimelineBenefits.tsx
 var import_react21 = __toESM(require("react"));
 var import_framer_motion6 = require("framer-motion");
+
+// src/shared/textStyleDefaults/benefitsTextStyleDefaults.ts
+var BENEFITS_EYEBROW_DEFAULT = {
+  color: "rgba(0, 0, 0, 0.3)",
+  fontWeight: "500",
+  fontSize: "10px"
+};
+var BENEFITS_HEADING_DEFAULT = {
+  color: "#111111",
+  fontWeight: "600",
+  fontSize: "2rem"
+};
+var BENEFITS_DESCRIPTION_DEFAULT = {
+  color: "rgba(0, 0, 0, 0.55)",
+  fontWeight: "400",
+  fontSize: "14px"
+};
+var BENEFIT_TITLE_DEFAULT = {
+  color: "#111111",
+  fontWeight: "600",
+  fontSize: "1.2rem"
+};
+var BENEFIT_DESCRIPTION_DEFAULT = {
+  color: "rgba(0, 0, 0, 0.55)",
+  fontWeight: "400",
+  fontSize: "13.5px"
+};
+var BENEFIT_POINT_DEFAULT = {
+  color: "rgba(0, 0, 0, 0.6)",
+  fontWeight: "400",
+  fontSize: "13px"
+};
+
+// src/components/MinimalTimelineBenefitsSection/MinimalTimelineBenefits.tsx
 var easing = [0.22, 1, 0.36, 1];
 function safeText8(v) {
   return String(v != null ? v : "").trim();
@@ -3899,7 +6017,10 @@ function Row2({
   index,
   isLast,
   showActiveRailFill,
-  reduceMotion
+  reduceMotion,
+  benefitTitleStyle,
+  benefitDescriptionStyle,
+  benefitPointStyle
 }) {
   const title = safeText8(item.title);
   const desc = safeText8(item.desc);
@@ -3939,7 +6060,7 @@ function Row2({
       },
       /* @__PURE__ */ import_react21.default.createElement("span", { className: "ak-mt-benefits__dot-inner" })
     )),
-    /* @__PURE__ */ import_react21.default.createElement("div", { className: "ak-mt-benefits__row-body" }, /* @__PURE__ */ import_react21.default.createElement("div", { className: "ak-mt-benefits__row-inner" }, title ? /* @__PURE__ */ import_react21.default.createElement("h3", { className: "ak-mt-benefits__item-title" }, title) : null, desc ? /* @__PURE__ */ import_react21.default.createElement("p", { className: "ak-mt-benefits__item-desc" }, desc) : null, points.length > 0 ? /* @__PURE__ */ import_react21.default.createElement("div", { className: "ak-mt-benefits__points" }, points.map((p, i) => /* @__PURE__ */ import_react21.default.createElement(
+    /* @__PURE__ */ import_react21.default.createElement("div", { className: "ak-mt-benefits__row-body" }, /* @__PURE__ */ import_react21.default.createElement("div", { className: "ak-mt-benefits__row-inner" }, title ? /* @__PURE__ */ import_react21.default.createElement("h3", { className: "ak-mt-benefits__item-title", style: benefitTitleStyle }, title) : null, desc ? /* @__PURE__ */ import_react21.default.createElement("p", { className: "ak-mt-benefits__item-desc", style: benefitDescriptionStyle }, desc) : null, points.length > 0 ? /* @__PURE__ */ import_react21.default.createElement("div", { className: "ak-mt-benefits__points" }, points.map((p, i) => /* @__PURE__ */ import_react21.default.createElement(
       import_framer_motion6.motion.div,
       {
         key: `${index}-${p}-${i}`,
@@ -3956,11 +6077,15 @@ function Row2({
         className: "ak-mt-benefits__point"
       },
       /* @__PURE__ */ import_react21.default.createElement("span", { className: "ak-mt-benefits__point-bullet", "aria-hidden": true }),
-      /* @__PURE__ */ import_react21.default.createElement("span", { className: "ak-mt-benefits__point-text" }, p)
+      /* @__PURE__ */ import_react21.default.createElement("span", { className: "ak-mt-benefits__point-text", style: benefitPointStyle }, p)
     ))) : null))
   );
 }
-function MinimalTimelineBenefits({ section }) {
+function MinimalTimelineBenefits({
+  section,
+  appearance,
+  theme
+}) {
   var _a, _b, _c;
   const reduceMotion = usePrefersReducedMotion();
   const props = (_b = (_a = section == null ? void 0 : section.settings) == null ? void 0 : _a.props) != null ? _b : {};
@@ -3969,6 +6094,78 @@ function MinimalTimelineBenefits({ section }) {
   const heading = safeText8(props.heading);
   const description = safeText8(props.description);
   const showActiveRailFill = props.showActiveRailFill !== false;
+  const eyebrowStyle = (0, import_react21.useMemo)(
+    () => resolvedTextStyleToInlineStyle(
+      resolveTextStyle({
+        section,
+        theme,
+        fieldId: "eyebrow",
+        role: "body",
+        defaultStyle: BENEFITS_EYEBROW_DEFAULT
+      })
+    ),
+    [section, theme]
+  );
+  const headingStyle = (0, import_react21.useMemo)(
+    () => resolvedTextStyleToInlineStyle(
+      resolveTextStyle({
+        section,
+        theme,
+        fieldId: "heading",
+        role: "heading",
+        defaultStyle: BENEFITS_HEADING_DEFAULT
+      })
+    ),
+    [section, theme]
+  );
+  const descriptionStyle = (0, import_react21.useMemo)(
+    () => resolvedTextStyleToInlineStyle(
+      resolveTextStyle({
+        section,
+        theme,
+        fieldId: "description",
+        role: "body",
+        defaultStyle: BENEFITS_DESCRIPTION_DEFAULT
+      })
+    ),
+    [section, theme]
+  );
+  const benefitTitleStyle = (0, import_react21.useMemo)(
+    () => resolvedTextStyleToInlineStyle(
+      resolveBlockGroupTextStyle({
+        section,
+        theme,
+        groupKey: "benefitTitle",
+        role: "heading",
+        defaultStyle: BENEFIT_TITLE_DEFAULT
+      })
+    ),
+    [section, theme]
+  );
+  const benefitDescriptionStyle = (0, import_react21.useMemo)(
+    () => resolvedTextStyleToInlineStyle(
+      resolveBlockGroupTextStyle({
+        section,
+        theme,
+        groupKey: "benefitDescription",
+        role: "body",
+        defaultStyle: BENEFIT_DESCRIPTION_DEFAULT
+      })
+    ),
+    [section, theme]
+  );
+  const benefitPointStyle = (0, import_react21.useMemo)(
+    () => resolvedTextStyleToInlineStyle(
+      resolveBlockGroupTextStyle({
+        section,
+        theme,
+        groupKey: "benefitPoint",
+        role: "body",
+        defaultStyle: BENEFIT_POINT_DEFAULT
+      })
+    ),
+    [section, theme]
+  );
   const blocks = (0, import_react21.useMemo)(() => Array.isArray(rawBlocks) ? rawBlocks : [], [rawBlocks]);
   const headerMotion = reduceMotion ? { initial: false, animate: { opacity: 1, y: 0 } } : {
     initial: { opacity: 0, y: 20 },
@@ -3976,7 +6173,21 @@ function MinimalTimelineBenefits({ section }) {
     viewport: { once: true },
     transition: { duration: 0.6, ease: easing }
   };
-  return /* @__PURE__ */ import_react21.default.createElement("section", { className: "ak-mt-benefits" }, /* @__PURE__ */ import_react21.default.createElement("div", { className: "ak-mt-benefits__container" }, /* @__PURE__ */ import_react21.default.createElement(import_framer_motion6.motion.div, { ...headerMotion, className: "ak-mt-benefits__header" }, eyebrow ? /* @__PURE__ */ import_react21.default.createElement("div", { className: "ak-mt-benefits__eyebrow" }, eyebrow) : null, heading ? /* @__PURE__ */ import_react21.default.createElement("h2", { className: "ak-mt-benefits__heading", style: { whiteSpace: "pre-line" } }, heading) : null, description ? /* @__PURE__ */ import_react21.default.createElement("p", { className: "ak-mt-benefits__sub", style: { whiteSpace: "pre-line" } }, description) : null), /* @__PURE__ */ import_react21.default.createElement("div", { className: "ak-mt-benefits__timeline" }, blocks.map((b, i) => {
+  return /* @__PURE__ */ import_react21.default.createElement("section", { className: "ak-mt-benefits", style: sectionAppearanceStyle(appearance) }, /* @__PURE__ */ import_react21.default.createElement("div", { className: "ak-mt-benefits__container" }, /* @__PURE__ */ import_react21.default.createElement(import_framer_motion6.motion.div, { ...headerMotion, className: "ak-mt-benefits__header" }, eyebrow ? /* @__PURE__ */ import_react21.default.createElement("div", { className: "ak-mt-benefits__eyebrow", style: eyebrowStyle }, eyebrow) : null, heading ? /* @__PURE__ */ import_react21.default.createElement(
+    "h2",
+    {
+      className: "ak-mt-benefits__heading",
+      style: { ...headingStyle, whiteSpace: "pre-line" }
+    },
+    heading
+  ) : null, description ? /* @__PURE__ */ import_react21.default.createElement(
+    "p",
+    {
+      className: "ak-mt-benefits__sub",
+      style: { ...descriptionStyle, whiteSpace: "pre-line" }
+    },
+    description
+  ) : null), /* @__PURE__ */ import_react21.default.createElement("div", { className: "ak-mt-benefits__timeline" }, blocks.map((b, i) => {
     var _a2;
     return /* @__PURE__ */ import_react21.default.createElement(
       Row2,
@@ -3986,7 +6197,10 @@ function MinimalTimelineBenefits({ section }) {
         index: i,
         isLast: i === blocks.length - 1,
         showActiveRailFill,
-        reduceMotion
+        reduceMotion,
+        benefitTitleStyle,
+        benefitDescriptionStyle,
+        benefitPointStyle
       }
     );
   }))));
@@ -3995,6 +6209,45 @@ function MinimalTimelineBenefits({ section }) {
 // src/components/MerchantFooterRevealSection/MerchantFooterReveal.tsx
 var import_react22 = __toESM(require("react"));
 var import_framer_motion7 = require("framer-motion");
+
+// src/shared/textStyleDefaults/footerTextStyleDefaults.ts
+var FOOTER_MERCHANT_NAME_DEFAULT = {
+  color: "#ffffff",
+  fontWeight: "700",
+  fontSize: "40px"
+};
+var FOOTER_MERCHANT_SUB_LABEL_DEFAULT = {
+  color: "rgba(255, 255, 255, 0.56)",
+  fontWeight: "400",
+  fontSize: "15px"
+};
+var FOOTER_TAGLINE_DEFAULT = {
+  color: "rgba(255, 255, 255, 0.72)",
+  fontWeight: "400",
+  fontSize: "16px"
+};
+var FOOTER_COLUMN_HEADING_DEFAULT = {
+  color: "rgba(255, 255, 255, 0.76)",
+  fontWeight: "600",
+  fontSize: "16px"
+};
+var FOOTER_POLICY_LINK_TEXT_DEFAULT = {
+  color: "rgba(255, 255, 255, 0.76)",
+  fontWeight: "500",
+  fontSize: "14px"
+};
+var FOOTER_LOGO_TEXT_DEFAULT = {
+  color: "#ffffff",
+  fontWeight: "700",
+  fontSize: "18px"
+};
+var FOOTER_CONTACT_TEXT_DEFAULT = {
+  color: "rgba(255, 255, 255, 0.72)",
+  fontWeight: "400",
+  fontSize: "14px"
+};
+
+// src/components/MerchantFooterRevealSection/MerchantFooterReveal.tsx
 function safeText9(v) {
   return String(v != null ? v : "").trim();
 }
@@ -4121,10 +6374,11 @@ function normalizePolicyHref(raw) {
 }
 function InfoRow({
   icon: Icon,
-  text
+  text,
+  style
 }) {
   if (!text) return null;
-  return /* @__PURE__ */ import_react22.default.createElement("div", { className: "ak-mf__info-row" }, /* @__PURE__ */ import_react22.default.createElement("span", { className: "ak-mf__info-icon", "aria-hidden": true }, /* @__PURE__ */ import_react22.default.createElement(Icon, { className: "ak-mf__info-icon-svg" })), /* @__PURE__ */ import_react22.default.createElement("p", { className: "ak-mf__info-text" }, text));
+  return /* @__PURE__ */ import_react22.default.createElement("div", { className: "ak-mf__info-row" }, /* @__PURE__ */ import_react22.default.createElement("span", { className: "ak-mf__info-icon", "aria-hidden": true }, /* @__PURE__ */ import_react22.default.createElement(Icon, { className: "ak-mf__info-icon-svg" })), /* @__PURE__ */ import_react22.default.createElement("p", { className: "ak-mf__info-text", style }, text));
 }
 function collectPolicies(blocks) {
   var _a;
@@ -4137,7 +6391,11 @@ function collectPolicies(blocks) {
   return policies;
 }
 var FIXED_SOCIAL_ORDER = ["instagram", "facebook", "website"];
-function MerchantFooterReveal({ section }) {
+function MerchantFooterReveal({
+  section,
+  appearance,
+  theme
+}) {
   var _a, _b, _c;
   const sectionRef = (0, import_react22.useRef)(null);
   const reduceMotion = usePrefersReducedMotion();
@@ -4191,8 +6449,128 @@ function MerchantFooterReveal({ section }) {
   const brandScaleX = (0, import_framer_motion7.useTransform)(reveal, [0, 1], [1, 1.02]);
   const topLift = (0, import_framer_motion7.useTransform)(reveal, [0, 1], [0, 28]);
   const whatsappLine = whatsapp ? `WhatsApp: ${whatsapp}` : "";
+  const merchantNameStyle = (0, import_react22.useMemo)(
+    () => resolvedTextStyleToInlineStyle(
+      resolveTextStyle({
+        section,
+        theme,
+        fieldId: "merchantName",
+        role: "heading",
+        defaultStyle: FOOTER_MERCHANT_NAME_DEFAULT
+      })
+    ),
+    [section, theme]
+  );
+  const merchantSubLabelStyle = (0, import_react22.useMemo)(
+    () => resolvedTextStyleToInlineStyle(
+      resolveTextStyle({
+        section,
+        theme,
+        fieldId: "merchantSubLabel",
+        role: "body",
+        defaultStyle: FOOTER_MERCHANT_SUB_LABEL_DEFAULT
+      })
+    ),
+    [section, theme]
+  );
+  const taglineStyle = (0, import_react22.useMemo)(
+    () => resolvedTextStyleToInlineStyle(
+      resolveTextStyle({
+        section,
+        theme,
+        fieldId: "tagline",
+        role: "body",
+        defaultStyle: FOOTER_TAGLINE_DEFAULT
+      })
+    ),
+    [section, theme]
+  );
+  const socialHeadingStyle = (0, import_react22.useMemo)(
+    () => resolvedTextStyleToInlineStyle(
+      resolveTextStyle({
+        section,
+        theme,
+        fieldId: "socialHeading",
+        role: "heading",
+        defaultStyle: FOOTER_COLUMN_HEADING_DEFAULT
+      })
+    ),
+    [section, theme]
+  );
+  const policiesHeadingStyle = (0, import_react22.useMemo)(
+    () => resolvedTextStyleToInlineStyle(
+      resolveTextStyle({
+        section,
+        theme,
+        fieldId: "policiesHeading",
+        role: "heading",
+        defaultStyle: FOOTER_COLUMN_HEADING_DEFAULT
+      })
+    ),
+    [section, theme]
+  );
+  const policyLinkTextStyle = (0, import_react22.useMemo)(
+    () => resolvedTextStyleToInlineStyle(
+      resolveBlockGroupTextStyle({
+        section,
+        theme,
+        groupKey: "policyLinkText",
+        role: "body",
+        defaultStyle: FOOTER_POLICY_LINK_TEXT_DEFAULT
+      })
+    ),
+    [section, theme]
+  );
+  const logoTextStyle = (0, import_react22.useMemo)(
+    () => resolvedTextStyleToInlineStyle(
+      resolveTextStyle({
+        section,
+        theme,
+        fieldId: "logoText",
+        role: "heading",
+        defaultStyle: FOOTER_LOGO_TEXT_DEFAULT
+      })
+    ),
+    [section, theme]
+  );
+  const addressStyle = (0, import_react22.useMemo)(
+    () => resolvedTextStyleToInlineStyle(
+      resolveTextStyle({
+        section,
+        theme,
+        fieldId: "address",
+        role: "body",
+        defaultStyle: FOOTER_CONTACT_TEXT_DEFAULT
+      })
+    ),
+    [section, theme]
+  );
+  const phoneStyle = (0, import_react22.useMemo)(
+    () => resolvedTextStyleToInlineStyle(
+      resolveTextStyle({
+        section,
+        theme,
+        fieldId: "phone",
+        role: "body",
+        defaultStyle: FOOTER_CONTACT_TEXT_DEFAULT
+      })
+    ),
+    [section, theme]
+  );
+  const whatsappStyle = (0, import_react22.useMemo)(
+    () => resolvedTextStyleToInlineStyle(
+      resolveTextStyle({
+        section,
+        theme,
+        fieldId: "whatsapp",
+        role: "body",
+        defaultStyle: FOOTER_CONTACT_TEXT_DEFAULT
+      })
+    ),
+    [section, theme]
+  );
   const revealInner = /* @__PURE__ */ import_react22.default.createElement("div", { className: "ak-mf__reveal-box" }, /* @__PURE__ */ import_react22.default.createElement("div", { className: "ak-mf__powered-wrap" }, /* @__PURE__ */ import_react22.default.createElement("span", { className: "ak-mf__powered" }, "Powered by")), /* @__PURE__ */ import_react22.default.createElement("div", { className: "ak-mf__brand-big-wrap" }, /* @__PURE__ */ import_react22.default.createElement("div", { className: "ak-mf__brand-big" }, "areakart")), /* @__PURE__ */ import_react22.default.createElement("div", { className: "ak-mf__reveal-fade", "aria-hidden": true }));
-  return /* @__PURE__ */ import_react22.default.createElement("section", { ref: sectionRef, className: "ak-mf" }, /* @__PURE__ */ import_react22.default.createElement("div", { className: "ak-mf__ambient", "aria-hidden": true }), /* @__PURE__ */ import_react22.default.createElement("div", { className: "ak-mf__top-rule", "aria-hidden": true }), enableRevealMotion ? /* @__PURE__ */ import_react22.default.createElement(import_framer_motion7.motion.div, { style: { height: topLift }, className: "ak-mf__top-spacer", "aria-hidden": true }) : null, /* @__PURE__ */ import_react22.default.createElement("div", { className: "ak-mf__inner" }, /* @__PURE__ */ import_react22.default.createElement("div", { className: `ak-mf__grid ${gridModifier}` }, /* @__PURE__ */ import_react22.default.createElement("div", { className: "ak-mf__col ak-mf__col--brand" }, /* @__PURE__ */ import_react22.default.createElement("div", { className: "ak-mf__brand-row" }, logoImage ? /* @__PURE__ */ import_react22.default.createElement("div", { className: "ak-mf__logo-img-wrap" }, /* @__PURE__ */ import_react22.default.createElement("img", { src: logoImage, alt: "", className: "ak-mf__logo-img" })) : /* @__PURE__ */ import_react22.default.createElement("div", { className: "ak-mf__logo-fallback", "aria-hidden": true }, logoText.slice(0, 3)), /* @__PURE__ */ import_react22.default.createElement("div", { className: "ak-mf__brand-text" }, merchantName ? /* @__PURE__ */ import_react22.default.createElement("h2", { className: "ak-mf__merchant-name" }, merchantName) : null, merchantSubLabel ? /* @__PURE__ */ import_react22.default.createElement("p", { className: "ak-mf__merchant-sub" }, merchantSubLabel) : null)), tagline ? /* @__PURE__ */ import_react22.default.createElement("p", { className: "ak-mf__tagline" }, tagline) : null, address || phone || whatsappLine ? /* @__PURE__ */ import_react22.default.createElement("div", { className: "ak-mf__contact" }, /* @__PURE__ */ import_react22.default.createElement(InfoRow, { icon: MapPinIcon, text: address }), /* @__PURE__ */ import_react22.default.createElement(InfoRow, { icon: PhoneIcon, text: phone }), /* @__PURE__ */ import_react22.default.createElement(InfoRow, { icon: MessageCircleIcon, text: whatsappLine })) : null), hasSocial ? /* @__PURE__ */ import_react22.default.createElement("div", { className: "ak-mf__col ak-mf__col--social" }, /* @__PURE__ */ import_react22.default.createElement("p", { className: "ak-mf__col-heading" }, socialHeading), /* @__PURE__ */ import_react22.default.createElement("div", { className: "ak-mf__link-stack" }, socialItems.map((item, idx) => /* @__PURE__ */ import_react22.default.createElement(
+  return /* @__PURE__ */ import_react22.default.createElement("section", { ref: sectionRef, className: "ak-mf", style: sectionAppearanceStyle(appearance) }, /* @__PURE__ */ import_react22.default.createElement("div", { className: "ak-mf__ambient", "aria-hidden": true }), /* @__PURE__ */ import_react22.default.createElement("div", { className: "ak-mf__top-rule", "aria-hidden": true }), enableRevealMotion ? /* @__PURE__ */ import_react22.default.createElement(import_framer_motion7.motion.div, { style: { height: topLift }, className: "ak-mf__top-spacer", "aria-hidden": true }) : null, /* @__PURE__ */ import_react22.default.createElement("div", { className: "ak-mf__inner" }, /* @__PURE__ */ import_react22.default.createElement("div", { className: `ak-mf__grid ${gridModifier}` }, /* @__PURE__ */ import_react22.default.createElement("div", { className: "ak-mf__col ak-mf__col--brand" }, /* @__PURE__ */ import_react22.default.createElement("div", { className: "ak-mf__brand-row" }, logoImage ? /* @__PURE__ */ import_react22.default.createElement("div", { className: "ak-mf__logo-img-wrap" }, /* @__PURE__ */ import_react22.default.createElement("img", { src: logoImage, alt: "", className: "ak-mf__logo-img" })) : /* @__PURE__ */ import_react22.default.createElement("div", { className: "ak-mf__logo-fallback", "aria-hidden": true, style: logoTextStyle }, logoText.slice(0, 3)), /* @__PURE__ */ import_react22.default.createElement("div", { className: "ak-mf__brand-text" }, merchantName ? /* @__PURE__ */ import_react22.default.createElement("h2", { className: "ak-mf__merchant-name", style: merchantNameStyle }, merchantName) : null, merchantSubLabel ? /* @__PURE__ */ import_react22.default.createElement("p", { className: "ak-mf__merchant-sub", style: merchantSubLabelStyle }, merchantSubLabel) : null)), tagline ? /* @__PURE__ */ import_react22.default.createElement("p", { className: "ak-mf__tagline", style: taglineStyle }, tagline) : null, address || phone || whatsappLine ? /* @__PURE__ */ import_react22.default.createElement("div", { className: "ak-mf__contact" }, /* @__PURE__ */ import_react22.default.createElement(InfoRow, { icon: MapPinIcon, text: address, style: addressStyle }), /* @__PURE__ */ import_react22.default.createElement(InfoRow, { icon: PhoneIcon, text: phone, style: phoneStyle }), /* @__PURE__ */ import_react22.default.createElement(InfoRow, { icon: MessageCircleIcon, text: whatsappLine, style: whatsappStyle })) : null), hasSocial ? /* @__PURE__ */ import_react22.default.createElement("div", { className: "ak-mf__col ak-mf__col--social" }, /* @__PURE__ */ import_react22.default.createElement("p", { className: "ak-mf__col-heading", style: socialHeadingStyle }, socialHeading), /* @__PURE__ */ import_react22.default.createElement("div", { className: "ak-mf__link-stack" }, socialItems.map((item, idx) => /* @__PURE__ */ import_react22.default.createElement(
     "a",
     {
       key: `social-${idx}-${item.platform}`,
@@ -4203,11 +6581,35 @@ function MerchantFooterReveal({ section }) {
     },
     /* @__PURE__ */ import_react22.default.createElement("span", { className: "ak-mf__social-label" }, /* @__PURE__ */ import_react22.default.createElement("span", { className: "ak-mf__social-icon" }, /* @__PURE__ */ import_react22.default.createElement(item.Icon, { className: "ak-mf__social-icon-svg" })), item.label),
     /* @__PURE__ */ import_react22.default.createElement(ChevronRightIcon, { className: "ak-mf__chev ak-mf__chev--social" })
-  )))) : null, hasPolicies ? /* @__PURE__ */ import_react22.default.createElement("div", { className: "ak-mf__col ak-mf__col--policies" }, /* @__PURE__ */ import_react22.default.createElement("p", { className: "ak-mf__col-heading" }, policiesHeading), /* @__PURE__ */ import_react22.default.createElement("div", { className: "ak-mf__link-stack" }, policyItems.map((item, idx) => /* @__PURE__ */ import_react22.default.createElement("div", { key: `policy-${idx}-${item.text}`, className: "ak-mf__policy-row" }, item.link ? /* @__PURE__ */ import_react22.default.createElement("a", { href: item.link, className: "ak-mf__link-row" }, /* @__PURE__ */ import_react22.default.createElement("span", null, item.text), /* @__PURE__ */ import_react22.default.createElement(ChevronRightIcon, { className: "ak-mf__chev" })) : /* @__PURE__ */ import_react22.default.createElement("div", { className: "ak-mf__link-row ak-mf__link-row--static" }, /* @__PURE__ */ import_react22.default.createElement("span", null, item.text), /* @__PURE__ */ import_react22.default.createElement(ChevronRightIcon, { className: "ak-mf__chev ak-mf__chev--muted" })))))) : null), /* @__PURE__ */ import_react22.default.createElement("div", { className: "ak-mf__reveal-wrap" }, enableRevealMotion ? /* @__PURE__ */ import_react22.default.createElement(import_framer_motion7.motion.div, { className: "ak-mf__reveal-motion", style: { y: brandY, scaleX: brandScaleX } }, revealInner) : /* @__PURE__ */ import_react22.default.createElement("div", { className: "ak-mf__reveal-motion" }, revealInner))));
+  )))) : null, hasPolicies ? /* @__PURE__ */ import_react22.default.createElement("div", { className: "ak-mf__col ak-mf__col--policies" }, /* @__PURE__ */ import_react22.default.createElement("p", { className: "ak-mf__col-heading", style: policiesHeadingStyle }, policiesHeading), /* @__PURE__ */ import_react22.default.createElement("div", { className: "ak-mf__link-stack" }, policyItems.map((item, idx) => /* @__PURE__ */ import_react22.default.createElement("div", { key: `policy-${idx}-${item.text}`, className: "ak-mf__policy-row" }, item.link ? /* @__PURE__ */ import_react22.default.createElement("a", { href: item.link, className: "ak-mf__link-row" }, /* @__PURE__ */ import_react22.default.createElement("span", { style: policyLinkTextStyle }, item.text), /* @__PURE__ */ import_react22.default.createElement(ChevronRightIcon, { className: "ak-mf__chev" })) : /* @__PURE__ */ import_react22.default.createElement("div", { className: "ak-mf__link-row ak-mf__link-row--static" }, /* @__PURE__ */ import_react22.default.createElement("span", { style: policyLinkTextStyle }, item.text), /* @__PURE__ */ import_react22.default.createElement(ChevronRightIcon, { className: "ak-mf__chev ak-mf__chev--muted" })))))) : null), /* @__PURE__ */ import_react22.default.createElement("div", { className: "ak-mf__reveal-wrap" }, enableRevealMotion ? /* @__PURE__ */ import_react22.default.createElement(import_framer_motion7.motion.div, { className: "ak-mf__reveal-motion", style: { y: brandY, scaleX: brandScaleX } }, revealInner) : /* @__PURE__ */ import_react22.default.createElement("div", { className: "ak-mf__reveal-motion" }, revealInner))));
 }
 
 // src/components/CouponStripsSection/CouponTickerMinimal.tsx
 var import_react23 = __toESM(require("react"));
+
+// src/shared/textStyleDefaults/couponTextStyleDefaults.ts
+var COUPON_HEADING_DEFAULT = {
+  color: "#141413",
+  fontWeight: "600",
+  fontSize: "3.75rem"
+};
+var COUPON_SUBHEADING_DEFAULT = {
+  color: "rgba(0, 0, 0, 0.52)",
+  fontWeight: "400",
+  fontSize: "0.94rem"
+};
+var COUPON_CODE_DEFAULT = {
+  color: "#ffffff",
+  fontWeight: "600",
+  fontSize: "0.68rem"
+};
+var COUPON_TITLE_DEFAULT = {
+  color: "#111111",
+  fontWeight: "500",
+  fontSize: "1rem"
+};
+
+// src/components/CouponStripsSection/CouponTickerMinimal.tsx
 function safeText10(value) {
   return String(value != null ? value : "").trim();
 }
@@ -4247,7 +6649,9 @@ function TickerRow({
   reverse = false,
   durationSec,
   reducedMotion,
-  secondary = false
+  secondary = false,
+  codeStyle,
+  titleStyle
 }) {
   const loopItems = (0, import_react23.useMemo)(
     () => [...items, ...items].map((item, index) => ({
@@ -4267,10 +6671,18 @@ function TickerRow({
         animationDuration: `${durationSec}s`
       }
     },
-    loopItems.map((item) => /* @__PURE__ */ import_react23.default.createElement("div", { key: item.key, className: "ak-coupon-ticker__item" }, secondary ? /* @__PURE__ */ import_react23.default.createElement("span", { className: "ak-coupon-ticker__code ak-coupon-ticker__code--secondary" }, item.code) : /* @__PURE__ */ import_react23.default.createElement("span", { className: "ak-coupon-ticker__pill" }, item.code), /* @__PURE__ */ import_react23.default.createElement(
+    loopItems.map((item) => /* @__PURE__ */ import_react23.default.createElement("div", { key: item.key, className: "ak-coupon-ticker__item" }, secondary ? /* @__PURE__ */ import_react23.default.createElement(
       "span",
       {
-        className: secondary ? "ak-coupon-ticker__title ak-coupon-ticker__title--secondary" : "ak-coupon-ticker__title"
+        className: "ak-coupon-ticker__code ak-coupon-ticker__code--secondary",
+        style: codeStyle
+      },
+      item.code
+    ) : /* @__PURE__ */ import_react23.default.createElement("span", { className: "ak-coupon-ticker__pill", style: codeStyle }, item.code), /* @__PURE__ */ import_react23.default.createElement(
+      "span",
+      {
+        className: secondary ? "ak-coupon-ticker__title ak-coupon-ticker__title--secondary" : "ak-coupon-ticker__title",
+        style: titleStyle
       },
       item.title
     ), /* @__PURE__ */ import_react23.default.createElement(
@@ -4282,7 +6694,11 @@ function TickerRow({
     )))
   ));
 }
-function CouponTickerMinimal({ section }) {
+function CouponTickerMinimal({
+  section,
+  appearance,
+  theme
+}) {
   var _a, _b, _c;
   if ((section == null ? void 0 : section.enabled) === false) return null;
   const reducedMotion = usePrefersReducedMotion();
@@ -4293,6 +6709,54 @@ function CouponTickerMinimal({ section }) {
   const showSecondaryStrip = props.showSecondaryStrip !== false;
   const stripSpeedPrimary = normalizeSpeed(props.stripSpeedPrimary, 20);
   const stripSpeedSecondary = normalizeSpeed(props.stripSpeedSecondary, 28);
+  const headingStyle = (0, import_react23.useMemo)(
+    () => resolvedTextStyleToInlineStyle(
+      resolveTextStyle({
+        section,
+        theme,
+        fieldId: "heading",
+        role: "heading",
+        defaultStyle: COUPON_HEADING_DEFAULT
+      })
+    ),
+    [section, theme]
+  );
+  const subheadingStyle = (0, import_react23.useMemo)(
+    () => resolvedTextStyleToInlineStyle(
+      resolveTextStyle({
+        section,
+        theme,
+        fieldId: "subheading",
+        role: "body",
+        defaultStyle: COUPON_SUBHEADING_DEFAULT
+      })
+    ),
+    [section, theme]
+  );
+  const couponCodeStyle = (0, import_react23.useMemo)(
+    () => resolvedTextStyleToInlineStyle(
+      resolveBlockGroupTextStyle({
+        section,
+        theme,
+        groupKey: "couponCode",
+        role: "body",
+        defaultStyle: COUPON_CODE_DEFAULT
+      })
+    ),
+    [section, theme]
+  );
+  const couponTitleStyle = (0, import_react23.useMemo)(
+    () => resolvedTextStyleToInlineStyle(
+      resolveBlockGroupTextStyle({
+        section,
+        theme,
+        groupKey: "couponTitle",
+        role: "body",
+        defaultStyle: COUPON_TITLE_DEFAULT
+      })
+    ),
+    [section, theme]
+  );
   const items = (0, import_react23.useMemo)(
     () => {
       var _a2;
@@ -4301,12 +6765,14 @@ function CouponTickerMinimal({ section }) {
     [(_c = section == null ? void 0 : section.settings) == null ? void 0 : _c.blocks]
   );
   const showTicker = items.length > 0;
-  return /* @__PURE__ */ import_react23.default.createElement("section", { className: "ak-coupon-ticker" }, /* @__PURE__ */ import_react23.default.createElement("span", { className: "ak-coupon-ticker__divider-line ak-coupon-ticker__divider-line--top", "aria-hidden": true }), /* @__PURE__ */ import_react23.default.createElement("span", { className: "ak-coupon-ticker__divider-line ak-coupon-ticker__divider-line--bottom", "aria-hidden": true }), /* @__PURE__ */ import_react23.default.createElement("div", { className: "ak-coupon-ticker__header" }, /* @__PURE__ */ import_react23.default.createElement("h2", { className: "ak-coupon-ticker__heading" }, heading), showSubheading && subheading ? /* @__PURE__ */ import_react23.default.createElement("p", { className: "ak-coupon-ticker__subheading" }, subheading) : null), showTicker ? /* @__PURE__ */ import_react23.default.createElement("div", { className: "ak-coupon-ticker__strips" }, /* @__PURE__ */ import_react23.default.createElement("div", { className: "ak-coupon-ticker__fade ak-coupon-ticker__fade--left", "aria-hidden": true }), /* @__PURE__ */ import_react23.default.createElement("div", { className: "ak-coupon-ticker__fade ak-coupon-ticker__fade--right", "aria-hidden": true }), /* @__PURE__ */ import_react23.default.createElement(
+  return /* @__PURE__ */ import_react23.default.createElement("section", { className: "ak-coupon-ticker", style: sectionAppearanceStyle(appearance) }, /* @__PURE__ */ import_react23.default.createElement("span", { className: "ak-coupon-ticker__divider-line ak-coupon-ticker__divider-line--top", "aria-hidden": true }), /* @__PURE__ */ import_react23.default.createElement("span", { className: "ak-coupon-ticker__divider-line ak-coupon-ticker__divider-line--bottom", "aria-hidden": true }), /* @__PURE__ */ import_react23.default.createElement("div", { className: "ak-coupon-ticker__header" }, /* @__PURE__ */ import_react23.default.createElement("h2", { className: "ak-coupon-ticker__heading", style: headingStyle }, heading), showSubheading && subheading ? /* @__PURE__ */ import_react23.default.createElement("p", { className: "ak-coupon-ticker__subheading", style: subheadingStyle }, subheading) : null), showTicker ? /* @__PURE__ */ import_react23.default.createElement("div", { className: "ak-coupon-ticker__strips" }, /* @__PURE__ */ import_react23.default.createElement("div", { className: "ak-coupon-ticker__fade ak-coupon-ticker__fade--left", "aria-hidden": true }), /* @__PURE__ */ import_react23.default.createElement("div", { className: "ak-coupon-ticker__fade ak-coupon-ticker__fade--right", "aria-hidden": true }), /* @__PURE__ */ import_react23.default.createElement(
     TickerRow,
     {
       items,
       durationSec: stripSpeedPrimary,
-      reducedMotion
+      reducedMotion,
+      codeStyle: couponCodeStyle,
+      titleStyle: couponTitleStyle
     }
   ), showSecondaryStrip ? /* @__PURE__ */ import_react23.default.createElement("div", { className: "ak-coupon-ticker__secondary-wrap" }, /* @__PURE__ */ import_react23.default.createElement(
     TickerRow,
@@ -4315,7 +6781,9 @@ function CouponTickerMinimal({ section }) {
       reverse: true,
       secondary: true,
       durationSec: stripSpeedSecondary,
-      reducedMotion
+      reducedMotion,
+      codeStyle: couponCodeStyle,
+      titleStyle: couponTitleStyle
     }
   )) : null) : null);
 }
@@ -4325,13 +6793,12 @@ var import_react26 = __toESM(require("react"));
 
 // src/sections/marquee-text/FeatureMarqueeBlock.tsx
 var import_react25 = __toESM(require("react"));
-var import_framer_motion8 = require("framer-motion");
 
 // src/sections/marquee-text/MarqueeLine.tsx
 var import_react24 = __toESM(require("react"));
 function getCopiesPerSequence(items, large) {
   const count = items.length;
-  const avgChars = items.reduce((sum, text) => sum + text.length, 0) / Math.max(count, 1);
+  const avgChars = items.reduce((sum, item) => sum + item.text.length, 0) / Math.max(count, 1);
   let copies = count === 1 ? 12 : count === 2 ? 10 : count === 3 ? 8 : count === 4 ? 6 : 4;
   if (avgChars <= 16) copies += 2;
   if (avgChars <= 10) copies += 2;
@@ -4344,8 +6811,8 @@ function buildMarqueeSequence(items, large) {
   const copies = getCopiesPerSequence(items, large);
   const expanded = [];
   for (let copy = 0; copy < copies; copy += 1) {
-    items.forEach((text) => {
-      expanded.push(text);
+    items.forEach((item) => {
+      expanded.push(item);
     });
   }
   return expanded;
@@ -4363,9 +6830,9 @@ function MarqueeLine({
     [items, large]
   );
   const loopItems = (0, import_react24.useMemo)(
-    () => [...sequence, ...sequence].map((text, index) => ({
-      text,
-      key: `${text}-${index}`
+    () => [...sequence, ...sequence].map((item, index) => ({
+      ...item,
+      key: `${item.id || item.text}-${index}`
     })),
     [sequence]
   );
@@ -4384,12 +6851,11 @@ function MarqueeLine({
         animationDuration: `${durationSec}s`
       }
     },
-    loopItems.map((item) => /* @__PURE__ */ import_react24.default.createElement("span", { key: item.key, className: "feature-marquee-item" }, item.text, /* @__PURE__ */ import_react24.default.createElement("span", { className: "feature-marquee-dot", "aria-hidden": true }, "\u2022")))
+    loopItems.map((item) => /* @__PURE__ */ import_react24.default.createElement("span", { key: item.key, className: "feature-marquee-item", style: item.style }, item.text, /* @__PURE__ */ import_react24.default.createElement("span", { className: "feature-marquee-dot", "aria-hidden": true }, "\u2022")))
   ));
 }
 
 // src/sections/marquee-text/FeatureMarqueeBlock.tsx
-var AnimatePresenceWait = import_framer_motion8.AnimatePresence;
 function FeatureMarqueeBlock({
   marqueeTop,
   marqueeBottom,
@@ -4403,40 +6869,53 @@ function FeatureMarqueeBlock({
   const hasTopRow = marqueeTop.length > 0;
   const hasBottomRow = marqueeBottom.length > 0;
   if (!hasTopRow && !hasBottomRow) return null;
-  const contentKey = `${marqueeTop.join("|")}-${marqueeBottom.join("|")}-marquee`;
-  return /* @__PURE__ */ import_react25.default.createElement("div", { className: "feature-marquee-block" }, /* @__PURE__ */ import_react25.default.createElement(AnimatePresenceWait, { mode: "wait" }, /* @__PURE__ */ import_react25.default.createElement(
-    import_framer_motion8.motion.div,
+  const contentKey = (0, import_react25.useMemo)(
+    () => `${marqueeTop.map((i) => i.text).join("|")}-${marqueeBottom.map((i) => i.text).join("|")}-marquee`,
+    [marqueeTop, marqueeBottom]
+  );
+  return /* @__PURE__ */ import_react25.default.createElement("div", { className: "feature-marquee-block" }, hasTopRow ? /* @__PURE__ */ import_react25.default.createElement(
+    MarqueeLine,
     {
-      key: contentKey,
-      initial: { opacity: 0 },
-      animate: { opacity: 1 },
-      exit: { opacity: 0 },
-      transition: { duration: 0.35 },
-      className: "feature-marquee-content"
-    },
-    hasTopRow ? /* @__PURE__ */ import_react25.default.createElement(
-      MarqueeLine,
-      {
-        items: marqueeTop,
-        large: largeTopRow,
-        durationSec: speedTop,
-        pauseOnHover,
-        reducedMotion
-      }
-    ) : null,
-    hasBottomRow ? /* @__PURE__ */ import_react25.default.createElement(
-      MarqueeLine,
-      {
-        items: marqueeBottom,
-        large: largeBottomRow,
-        reverse: true,
-        durationSec: speedBottom,
-        pauseOnHover,
-        reducedMotion
-      }
-    ) : null
-  )));
+      items: marqueeTop,
+      large: largeTopRow,
+      durationSec: speedTop,
+      pauseOnHover,
+      reducedMotion
+    }
+  ) : null, hasBottomRow ? /* @__PURE__ */ import_react25.default.createElement(
+    MarqueeLine,
+    {
+      items: marqueeBottom,
+      large: largeBottomRow,
+      reverse: true,
+      durationSec: speedBottom,
+      pauseOnHover,
+      reducedMotion
+    }
+  ) : null);
 }
+
+// src/shared/textStyleDefaults/marqueeTextStyleDefaults.ts
+var MARQUEE_TOP_ROW_DEFAULT = {
+  color: "#111111",
+  fontWeight: "700",
+  fontSize: "48px"
+};
+var MARQUEE_BOTTOM_ROW_DEFAULT = {
+  color: "#444444",
+  fontWeight: "400",
+  fontSize: "18px"
+};
+var MARQUEE_TEXT_LARGE_DEFAULT = {
+  color: "#0b1f2a",
+  fontWeight: "600",
+  fontSize: "80px"
+};
+var MARQUEE_TEXT_SMALL_DEFAULT = {
+  color: "#0b1f2a",
+  fontWeight: "500",
+  fontSize: "15px"
+};
 
 // src/sections/marquee-text/DualLineFeatureMarquee.tsx
 function safeText11(value) {
@@ -4456,11 +6935,43 @@ function readBlockText(block) {
   var _a, _b;
   return safeText11((_b = block.text) != null ? _b : (_a = block.props) == null ? void 0 : _a.text);
 }
-function buildRowItems(rawBlocks, row) {
-  if (!Array.isArray(rawBlocks)) return [];
-  return rawBlocks.filter((block) => block && typeof block === "object").map((block) => block).filter((block) => readBlockRow(block) === row).map((block) => readBlockText(block)).filter(Boolean);
+function rowDefaultStyle(row, large) {
+  if (row === "top") {
+    return large ? MARQUEE_TEXT_LARGE_DEFAULT : MARQUEE_TOP_ROW_DEFAULT;
+  }
+  return large ? MARQUEE_TEXT_LARGE_DEFAULT : MARQUEE_BOTTOM_ROW_DEFAULT;
 }
-function DualLineFeatureMarquee({ section }) {
+function buildRowItems(rawBlocks, row, section, theme, large) {
+  if (!Array.isArray(rawBlocks)) return [];
+  const groupKey = row === "top" ? "topRowText" : "bottomRowText";
+  const role = row === "top" ? "heading" : "body";
+  const defaultStyle = rowDefaultStyle(row, large);
+  const rowStyle = resolvedTextStyleToInlineStyle(
+    resolveBlockGroupTextStyle({
+      section,
+      theme,
+      groupKey,
+      role,
+      defaultStyle
+    })
+  );
+  return rawBlocks.filter((block) => block && typeof block === "object").map((block) => block).filter((block) => readBlockRow(block) === row).map((block) => {
+    var _a;
+    const text = readBlockText(block);
+    if (!text) return null;
+    const blockId = String((_a = block.id) != null ? _a : "").trim();
+    return {
+      id: blockId || `${row}-${text}`,
+      text,
+      style: rowStyle
+    };
+  }).filter(Boolean);
+}
+function DualLineFeatureMarquee({
+  section,
+  appearance,
+  theme
+}) {
   var _a, _b, _c;
   if ((section == null ? void 0 : section.enabled) === false) return null;
   const reducedMotion = usePrefersReducedMotion();
@@ -4472,55 +6983,205 @@ function DualLineFeatureMarquee({ section }) {
   const largeBottomRow = props.largeBottomRow === true;
   const pauseOnHover = props.pauseOnHover === true;
   const marqueeTop = (0, import_react26.useMemo)(
-    () => buildRowItems(rawBlocks, "top"),
-    [rawBlocks]
+    () => buildRowItems(rawBlocks, "top", section, theme, largeTopRow),
+    [rawBlocks, section, theme, largeTopRow]
   );
   const marqueeBottom = (0, import_react26.useMemo)(
-    () => buildRowItems(rawBlocks, "bottom"),
-    [rawBlocks]
+    () => buildRowItems(rawBlocks, "bottom", section, theme, largeBottomRow),
+    [rawBlocks, section, theme, largeBottomRow]
   );
-  return /* @__PURE__ */ import_react26.default.createElement("section", { className: "ak-dual-line-marquee" }, /* @__PURE__ */ import_react26.default.createElement(
-    FeatureMarqueeBlock,
+  return /* @__PURE__ */ import_react26.default.createElement(
+    "section",
     {
-      marqueeTop,
-      marqueeBottom,
-      speedTop,
-      speedBottom,
-      largeTopRow,
-      largeBottomRow,
-      pauseOnHover,
-      reducedMotion
-    }
-  ));
+      className: "ak-dual-line-marquee",
+      style: sectionAppearanceStyle(appearance)
+    },
+    /* @__PURE__ */ import_react26.default.createElement(
+      FeatureMarqueeBlock,
+      {
+        marqueeTop,
+        marqueeBottom,
+        speedTop,
+        speedBottom,
+        largeTopRow,
+        largeBottomRow,
+        pauseOnHover,
+        reducedMotion
+      }
+    )
+  );
+}
+
+// src/shared/StorefrontFontLoader.tsx
+var import_react27 = require("react");
+var GOOGLE_FONTS_MARKER = "data-storefront-fonts";
+function ensureGooglePreconnect() {
+  const head = window.document.head;
+  if (!head.querySelector('link[rel="preconnect"][href="https://fonts.googleapis.com"]')) {
+    const preconnect = window.document.createElement("link");
+    preconnect.rel = "preconnect";
+    preconnect.href = "https://fonts.googleapis.com";
+    head.appendChild(preconnect);
+  }
+  if (!head.querySelector('link[rel="preconnect"][href="https://fonts.gstatic.com"]')) {
+    const preconnect = window.document.createElement("link");
+    preconnect.rel = "preconnect";
+    preconnect.href = "https://fonts.gstatic.com";
+    preconnect.crossOrigin = "anonymous";
+    head.appendChild(preconnect);
+  }
+}
+function StorefrontFontLoader({
+  themeFontId,
+  fontIds,
+  document: document2
+}) {
+  const ids = (0, import_react27.useMemo)(() => {
+    const fromDoc = document2 ? collectStorefrontFontIdsFromDocument(document2) : [];
+    const merged = /* @__PURE__ */ new Set([
+      DEFAULT_STOREFRONT_FONT_ID,
+      ...fromDoc,
+      ...fontIds != null ? fontIds : [],
+      String(themeFontId != null ? themeFontId : "").trim()
+    ]);
+    merged.delete("");
+    merged.delete("system");
+    return Array.from(merged);
+  }, [document2, fontIds, themeFontId]);
+  const googleHref = (0, import_react27.useMemo)(() => buildGoogleFontLink(ids), [ids]);
+  (0, import_react27.useEffect)(() => {
+    if (!googleHref) return void 0;
+    ensureGooglePreconnect();
+    const head = window.document.head;
+    head.querySelectorAll(`link[${GOOGLE_FONTS_MARKER}="google"]`).forEach((el) => el.remove());
+    const link = window.document.createElement("link");
+    link.rel = "stylesheet";
+    link.href = googleHref;
+    link.setAttribute(GOOGLE_FONTS_MARKER, "google");
+    head.appendChild(link);
+    return () => {
+      link.remove();
+    };
+  }, [googleHref]);
+  return null;
 }
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
+  BENEFITS_DESCRIPTION_DEFAULT,
+  BENEFITS_EYEBROW_DEFAULT,
+  BENEFITS_HEADING_DEFAULT,
+  BENEFIT_DESCRIPTION_DEFAULT,
+  BENEFIT_POINT_DEFAULT,
+  BENEFIT_TITLE_DEFAULT,
+  COUPON_CODE_DEFAULT,
+  COUPON_HEADING_DEFAULT,
+  COUPON_SUBHEADING_DEFAULT,
+  COUPON_TITLE_DEFAULT,
   CouponTickerMinimal,
   CreativeCategoryMarquee,
+  DEFAULT_STOREFRONT_FONT_ID,
+  DEFAULT_TYPOGRAPHY,
   DualLineFeatureMarquee,
+  FOOTER_COLUMN_HEADING_DEFAULT,
+  FOOTER_MERCHANT_NAME_DEFAULT,
+  FOOTER_MERCHANT_SUB_LABEL_DEFAULT,
+  FOOTER_POLICY_LINK_TEXT_DEFAULT,
+  FOOTER_TAGLINE_DEFAULT,
   FeatureMarqueeBlock,
   FloatingSnackGalleryHero,
   FullImageTypingHero,
+  HEADER_BRAND_NAME_DEFAULT,
+  HEADER_BRAND_SUBTITLE_DEFAULT,
+  HEADER_NAV_LINK_TEXT_DEFAULT,
+  HEADER_NAV_LINK_TEXT_LIGHT_DEFAULT,
+  HERO_SECTION_LABEL_DEFAULT,
+  HERO_SLIDE_DESCRIPTION_DEFAULT,
+  HERO_SLIDE_HEADLINE_DEFAULT,
   HeroScrollableSlide,
   HeroSlider,
   LiquidFocusCategories,
   LogoFocusedHeader,
+  MARQUEE_BOTTOM_ROW_DEFAULT,
+  MARQUEE_TEXT_LARGE_DEFAULT,
+  MARQUEE_TEXT_SMALL_DEFAULT,
+  MARQUEE_TOP_ROW_DEFAULT,
   MerchantFooterReveal,
   MessageStyleTestimonials,
   MinimalTimelineBenefits,
   NSPSignatureHeroMarquee,
+  NSP_FLOATING_SNACK_TITLE_DEFAULT,
+  NSP_MARQUEE_CARD_SUBTITLE_DEFAULT,
+  NSP_MARQUEE_CARD_TITLE_DEFAULT,
+  NSP_MARQUEE_EYEBROW_DEFAULT,
+  NSP_MARQUEE_HEADING_DEFAULT,
+  NSP_MARQUEE_HERO_BADGE_TEXT_DEFAULT,
+  NSP_MARQUEE_SUBHEADING_DEFAULT,
+  NSP_POKER_DESCRIPTION_DEFAULT,
+  NSP_POKER_EYEBROW_DEFAULT,
+  NSP_POKER_HEADING_DEFAULT,
+  NSP_SIG_HERO_DESCRIPTION_DEFAULT,
+  NSP_SIG_HERO_EYEBROW_DEFAULT,
+  NSP_SIG_HERO_HEADING_DEFAULT,
+  NSP_SIG_HERO_PRIMARY_BUTTON_TEXT_DEFAULT,
+  NSP_SIG_HERO_SECONDARY_BUTTON_TEXT_DEFAULT,
+  NSP_TYPING_DESCRIPTION_DEFAULT,
+  NSP_TYPING_PRIMARY_BUTTON_TEXT_DEFAULT,
+  NSP_TYPING_SECONDARY_BUTTON_TEXT_DEFAULT,
+  NSP_TYPING_STATIC_HEADING_DEFAULT,
+  NSP_TYPING_WORD_DEFAULT,
+  PRODUCT_CARD_DESCRIPTION_DEFAULT,
+  PRODUCT_CARD_SUBTITLE_DEFAULT,
+  PRODUCT_CARD_TITLE_DEFAULT,
+  PRODUCT_CARD_TITLE_OVERLAY_DEFAULT,
+  PRODUCT_MARQUEE_DESCRIPTION_DEFAULT,
+  PRODUCT_MARQUEE_EYEBROW_DEFAULT,
+  PRODUCT_MARQUEE_HEADING_DEFAULT,
   PokerRowRevealHero,
   PortraitTestimonials,
   ProductCardMarquee,
   ProductMarquee,
+  SECTION_TYPE_APPEARANCE_DEFAULTS,
+  STOREFRONT_FONTS,
+  STOREFRONT_FONT_OPTIONS,
   STYLE_APPLE_MARQUEE,
   STYLE_MESSAGE_BUBBLE,
   STYLE_PORTRAIT_TESTIMONIALS,
   STYLE_STACKED_TESTIMONIALS,
   ScrollParallaxSignatureHero,
   StackedTestimonials,
+  StorefrontFontLoader,
   SubHeroImageLoop,
+  TESTIMONIAL_BACKGROUND_WORD_DEFAULT,
+  TESTIMONIAL_BUTTON_TEXT_DEFAULT,
+  TESTIMONIAL_CUSTOMER_NAME_DEFAULT,
+  TESTIMONIAL_CUSTOMER_ROLE_DEFAULT,
+  TESTIMONIAL_DESCRIPTION_DEFAULT,
+  TESTIMONIAL_EYEBROW_DEFAULT,
+  TESTIMONIAL_HEADING_DEFAULT,
+  TESTIMONIAL_HIGHLIGHT_TEXT_DEFAULT,
+  TESTIMONIAL_QUOTE_TEXT_DEFAULT,
+  TESTIMONIAL_SUBHEADING_DEFAULT,
   TransparentHeroHeader,
-  normalizeImageUrl
+  collectStorefrontFontIdsFromDocument,
+  collectThemeFontIds,
+  getStorefrontFontById,
+  normalizeAppearance,
+  normalizeBlockGroupStyles,
+  normalizeFieldStyles,
+  normalizeImageUrl,
+  normalizeSectionTypography,
+  normalizeSectionTypographyRole,
+  normalizeTextStyle,
+  normalizeTheme,
+  normalizeThemeTypography,
+  normalizeTypography,
+  resolveBlockGroupTextStyle,
+  resolveSectionAppearance,
+  resolveStorefrontFontFamily,
+  resolveTextStyle,
+  resolveThemeFontKey,
+  resolvedTextStyleToInlineStyle,
+  sectionAppearanceStyle,
+  stripFieldOverrideStyle
 });
 //# sourceMappingURL=index.js.map

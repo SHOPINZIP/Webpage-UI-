@@ -11,6 +11,19 @@ import {
 } from "framer-motion";
 
 import { normalizeImageUrl } from "../HeroSection/heroSectionUtils";
+import { sectionAppearanceStyle } from "../../shared/sectionAppearance";
+import type { ResolvedSectionAppearance, StorefrontTheme } from "../../shared/sectionAppearance";
+import {
+  resolveTextStyle,
+  resolvedTextStyleToInlineStyle,
+} from "../../shared/sectionTypography";
+import {
+  NSP_SIG_HERO_DESCRIPTION_DEFAULT,
+  NSP_SIG_HERO_EYEBROW_DEFAULT,
+  NSP_SIG_HERO_HEADING_DEFAULT,
+  NSP_SIG_HERO_PRIMARY_BUTTON_TEXT_DEFAULT,
+  NSP_SIG_HERO_SECONDARY_BUTTON_TEXT_DEFAULT,
+} from "../../shared/textStyleDefaults/nspSignatureHeroTextStyleDefaults";
 
 export type NspSignatureHeroBlock = {
   id?: string;
@@ -34,6 +47,8 @@ export type NspSignatureHeroSectionDoc = {
 
 export type ScrollParallaxSignatureHeroProps = {
   section: NspSignatureHeroSectionDoc;
+  appearance?: ResolvedSectionAppearance | null;
+  theme?: StorefrontTheme | null;
 };
 
 type PositionKey = "top-left" | "top-right" | "bottom-left" | "bottom-right";
@@ -268,10 +283,12 @@ function ScrollParallaxSignatureHeroInner({
   section,
   sectionRef,
   scrollRoot,
+  theme,
 }: {
   section: NspSignatureHeroSectionDoc;
   sectionRef: React.RefObject<HTMLElement>;
   scrollRoot: ScrollRoot;
+  theme?: StorefrontTheme | null;
 }) {
   const scrollOpts = useMemo(() => {
     const base = {
@@ -426,6 +443,76 @@ function ScrollParallaxSignatureHeroInner({
     });
   }, [blocks]);
 
+  const eyebrowStyle = useMemo(
+    () =>
+      resolvedTextStyleToInlineStyle(
+        resolveTextStyle({
+          section,
+          theme,
+          fieldId: "eyebrow",
+          role: "body",
+          defaultStyle: NSP_SIG_HERO_EYEBROW_DEFAULT,
+        })
+      ),
+    [section, theme]
+  );
+
+  const headingStyle = useMemo(
+    () =>
+      resolvedTextStyleToInlineStyle(
+        resolveTextStyle({
+          section,
+          theme,
+          fieldId: "heading",
+          role: "heading",
+          defaultStyle: NSP_SIG_HERO_HEADING_DEFAULT,
+        })
+      ),
+    [section, theme]
+  );
+
+  const descriptionStyle = useMemo(
+    () =>
+      resolvedTextStyleToInlineStyle(
+        resolveTextStyle({
+          section,
+          theme,
+          fieldId: "description",
+          role: "body",
+          defaultStyle: NSP_SIG_HERO_DESCRIPTION_DEFAULT,
+        })
+      ),
+    [section, theme]
+  );
+
+  const primaryButtonTextStyle = useMemo(
+    () =>
+      resolvedTextStyleToInlineStyle(
+        resolveTextStyle({
+          section,
+          theme,
+          fieldId: "primaryButtonText",
+          role: "body",
+          defaultStyle: NSP_SIG_HERO_PRIMARY_BUTTON_TEXT_DEFAULT,
+        })
+      ),
+    [section, theme]
+  );
+
+  const secondaryButtonTextStyle = useMemo(
+    () =>
+      resolvedTextStyleToInlineStyle(
+        resolveTextStyle({
+          section,
+          theme,
+          fieldId: "secondaryButtonText",
+          role: "body",
+          defaultStyle: NSP_SIG_HERO_SECONDARY_BUTTON_TEXT_DEFAULT,
+        })
+      ),
+    [section, theme]
+  );
+
   const rootMods =
     backgroundTone === "soft-neutral"
       ? "ak-nsp-sig-hero--tone-soft"
@@ -462,7 +549,7 @@ function ScrollParallaxSignatureHeroInner({
               style={{ opacity: badgeOpacity, y: settleLift }}
               className="ak-nsp-sig-hero__badge"
             >
-              {eyebrow}
+              <span style={eyebrowStyle}>{eyebrow}</span>
             </motion.div>
           ) : null}
 
@@ -475,7 +562,9 @@ function ScrollParallaxSignatureHeroInner({
               }}
               className="ak-nsp-sig-hero__headingShell"
             >
-              <h2 className="ak-nsp-sig-hero__heading">{heading}</h2>
+              <h2 className="ak-nsp-sig-hero__heading" style={headingStyle}>
+                {heading}
+              </h2>
             </motion.div>
           ) : null}
 
@@ -484,18 +573,28 @@ function ScrollParallaxSignatureHeroInner({
               style={{ y: settleLift, backdropFilter: descBlur }}
               className="ak-nsp-sig-hero__descShell"
             >
-              <p className="ak-nsp-sig-hero__desc">{description}</p>
+              <p className="ak-nsp-sig-hero__desc" style={descriptionStyle}>
+                {description}
+              </p>
             </motion.div>
           ) : null}
 
           <motion.div style={{ y: settleLift }} className="ak-nsp-sig-hero__actions">
             {primaryButtonText ? (
-              <a className="ak-nsp-sig-hero__btnPrimary" href={primaryButtonLink}>
+              <a
+                className="ak-nsp-sig-hero__btnPrimary"
+                href={primaryButtonLink}
+                style={primaryButtonTextStyle}
+              >
                 {primaryButtonText}
               </a>
             ) : null}
             {showSecondaryButton && secondaryButtonText ? (
-              <a className="ak-nsp-sig-hero__btnSecondary" href={secondaryButtonLink}>
+              <a
+                className="ak-nsp-sig-hero__btnSecondary"
+                href={secondaryButtonLink}
+                style={secondaryButtonTextStyle}
+              >
                 {secondaryButtonText}
               </a>
             ) : null}
@@ -508,6 +607,8 @@ function ScrollParallaxSignatureHeroInner({
 
 export default function ScrollParallaxSignatureHero({
   section,
+  appearance,
+  theme,
 }: ScrollParallaxSignatureHeroProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const [scrollRoot, setScrollRoot] = useState<ScrollRoot | null>(null);
@@ -538,7 +639,7 @@ export default function ScrollParallaxSignatureHero({
     <section
       ref={sectionRef}
       className={`ak-nsp-sig-hero ak-nsp-sig-hero--scroll ${rootMods}`}
-      style={{ height: sectionHeight }}
+      style={{ height: sectionHeight, ...sectionAppearanceStyle(appearance) }}
     >
       <div className="ak-nsp-sig-hero__sticky">
         {scrollRoot !== null ? (
@@ -546,6 +647,7 @@ export default function ScrollParallaxSignatureHero({
             section={section}
             sectionRef={sectionRef}
             scrollRoot={scrollRoot}
+            theme={theme}
           />
         ) : null}
       </div>

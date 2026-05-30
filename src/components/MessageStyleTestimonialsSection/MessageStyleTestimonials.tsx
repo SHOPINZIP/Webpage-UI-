@@ -11,23 +11,29 @@ import StackedTestimonials from "../StackedTestimonialsSection";
 import PortraitTestimonials from "../PortraitTestimonialsSection";
 import type { MessageStyleTestimonialsProps } from "./types";
 
-export default function MessageStyleTestimonials(
-  props: MessageStyleTestimonialsProps
-) {
+export default function MessageStyleTestimonials({
+  section,
+  appearance,
+  theme,
+}: MessageStyleTestimonialsProps) {
   const style =
-    props.section?.settings?.props?.testimonialStyle ?? STYLE_MESSAGE_BUBBLE;
+    section?.settings?.props?.testimonialStyle ?? STYLE_MESSAGE_BUBBLE;
 
   if (style === STYLE_STACKED_TESTIMONIALS) {
-    return <StackedTestimonials section={props.section as any} />;
+    return (
+      <StackedTestimonials section={section as any} appearance={appearance} theme={theme} />
+    );
   }
 
   if (style === STYLE_PORTRAIT_TESTIMONIALS) {
-    return <PortraitTestimonials section={props.section as any} />;
+    return (
+      <PortraitTestimonials section={section as any} appearance={appearance} theme={theme} />
+    );
   }
 
   if (style === STYLE_APPLE_MARQUEE) {
-    return <AppleMessageMarquee {...props} />;
+    return <AppleMessageMarquee section={section} appearance={appearance} theme={theme} />;
   }
 
-  return <MessageBubbleMarquee {...props} />;
+  return <MessageBubbleMarquee section={section} appearance={appearance} theme={theme} />;
 }

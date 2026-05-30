@@ -1,11 +1,11 @@
-import React from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import React, { useMemo } from "react";
 
 import MarqueeLine from "./MarqueeLine";
+import type { MarqueeRenderItem } from "./types";
 
 export type FeatureMarqueeBlockProps = {
-  marqueeTop: string[];
-  marqueeBottom: string[];
+  marqueeTop: MarqueeRenderItem[];
+  marqueeBottom: MarqueeRenderItem[];
   speedTop?: number;
   speedBottom?: number;
   largeTopRow?: boolean;
@@ -13,12 +13,6 @@ export type FeatureMarqueeBlockProps = {
   pauseOnHover?: boolean;
   reducedMotion?: boolean;
 };
-
-const AnimatePresenceWait = AnimatePresence as React.ComponentType<
-  React.ComponentProps<typeof AnimatePresence> & {
-    mode?: "wait" | "sync" | "popLayout";
-  }
->;
 
 export default function FeatureMarqueeBlock({
   marqueeTop,
@@ -35,41 +29,34 @@ export default function FeatureMarqueeBlock({
 
   if (!hasTopRow && !hasBottomRow) return null;
 
-  const contentKey = `${marqueeTop.join("|")}-${marqueeBottom.join("|")}-marquee`;
+  const contentKey = useMemo(
+    () =>
+      `${marqueeTop.map((i) => i.text).join("|")}-${marqueeBottom.map((i) => i.text).join("|")}-marquee`,
+    [marqueeTop, marqueeBottom]
+  );
 
   return (
     <div className="feature-marquee-block">
-      <AnimatePresenceWait mode="wait">
-        <motion.div
-          key={contentKey}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.35 }}
-          className="feature-marquee-content"
-        >
-          {hasTopRow ? (
-            <MarqueeLine
-              items={marqueeTop}
-              large={largeTopRow}
-              durationSec={speedTop}
-              pauseOnHover={pauseOnHover}
-              reducedMotion={reducedMotion}
-            />
-          ) : null}
+      {hasTopRow ? (
+        <MarqueeLine
+          items={marqueeTop}
+          large={largeTopRow}
+          durationSec={speedTop}
+          pauseOnHover={pauseOnHover}
+          reducedMotion={reducedMotion}
+        />
+      ) : null}
 
-          {hasBottomRow ? (
-            <MarqueeLine
-              items={marqueeBottom}
-              large={largeBottomRow}
-              reverse
-              durationSec={speedBottom}
-              pauseOnHover={pauseOnHover}
-              reducedMotion={reducedMotion}
-            />
-          ) : null}
-        </motion.div>
-      </AnimatePresenceWait>
+      {hasBottomRow ? (
+        <MarqueeLine
+          items={marqueeBottom}
+          large={largeBottomRow}
+          reverse
+          durationSec={speedBottom}
+          pauseOnHover={pauseOnHover}
+          reducedMotion={reducedMotion}
+        />
+      ) : null}
     </div>
   );
 }

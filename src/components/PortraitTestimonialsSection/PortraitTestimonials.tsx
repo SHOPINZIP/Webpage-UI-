@@ -1,5 +1,18 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 
+import { sectionAppearanceStyle } from "../../shared/sectionAppearance";
+import type { ResolvedSectionAppearance, StorefrontTheme } from "../../shared/sectionAppearance";
+import {
+  resolveTextStyle,
+  resolvedTextStyleToInlineStyle,
+} from "../../shared/sectionTypography";
+import {
+  TESTIMONIAL_BUTTON_TEXT_DEFAULT,
+  TESTIMONIAL_DESCRIPTION_DEFAULT,
+  TESTIMONIAL_EYEBROW_DEFAULT,
+  TESTIMONIAL_HEADING_DEFAULT,
+  TESTIMONIAL_HIGHLIGHT_TEXT_DEFAULT,
+} from "../../shared/textStyleDefaults/testimonialTextStyleDefaults";
 import { usePrefersReducedMotion } from "../MessageStyleTestimonialsSection/hooks";
 
 type PortraitBlock = {
@@ -48,8 +61,12 @@ function easeOffset(offset: Offset, factor = 0.84): Offset {
 
 export default function PortraitTestimonials({
   section,
+  appearance,
+  theme,
 }: {
   section: { settings?: any };
+  appearance?: ResolvedSectionAppearance | null;
+  theme?: StorefrontTheme | null;
 }) {
   const reduceMotion = usePrefersReducedMotion();
   const props = section?.settings?.props ?? {};
@@ -151,8 +168,83 @@ export default function PortraitTestimonials({
     };
   }, [enableMagnetic, reduceMotion]);
 
+  const eyebrowStyle = useMemo(
+    () =>
+      resolvedTextStyleToInlineStyle(
+        resolveTextStyle({
+          section,
+          theme,
+          fieldId: "eyebrow",
+          role: "body",
+          defaultStyle: TESTIMONIAL_EYEBROW_DEFAULT,
+        })
+      ),
+    [section, theme]
+  );
+
+  const headingStyle = useMemo(
+    () =>
+      resolvedTextStyleToInlineStyle(
+        resolveTextStyle({
+          section,
+          theme,
+          fieldId: "heading",
+          role: "heading",
+          defaultStyle: TESTIMONIAL_HEADING_DEFAULT,
+        })
+      ),
+    [section, theme]
+  );
+
+  const highlightTextStyle = useMemo(
+    () =>
+      resolvedTextStyleToInlineStyle(
+        resolveTextStyle({
+          section,
+          theme,
+          fieldId: "highlightText",
+          role: "heading",
+          defaultStyle: TESTIMONIAL_HIGHLIGHT_TEXT_DEFAULT,
+        })
+      ),
+    [section, theme]
+  );
+
+  const descriptionStyle = useMemo(
+    () =>
+      resolvedTextStyleToInlineStyle(
+        resolveTextStyle({
+          section,
+          theme,
+          fieldId: "description",
+          role: "body",
+          defaultStyle: TESTIMONIAL_DESCRIPTION_DEFAULT,
+        })
+      ),
+    [section, theme]
+  );
+
+  const buttonTextStyle = useMemo(
+    () =>
+      resolvedTextStyleToInlineStyle(
+        resolveTextStyle({
+          section,
+          theme,
+          fieldId: "buttonText",
+          role: "body",
+          defaultStyle: TESTIMONIAL_BUTTON_TEXT_DEFAULT,
+        })
+      ),
+    [section, theme]
+  );
+
   return (
-    <section ref={sectionRef} className="ak-pt" aria-label={heading}>
+    <section
+      ref={sectionRef}
+      className="ak-pt"
+      aria-label={heading}
+      style={sectionAppearanceStyle(appearance)}
+    >
       <div className="ak-pt__container">
         <div className="ak-pt__desktop">
           {DESKTOP_POS.map((pos, index) => {
@@ -256,6 +348,7 @@ export default function PortraitTestimonials({
           <div
             className="ak-pt__eyebrow"
             style={{
+              ...eyebrowStyle,
               opacity: loaded ? 1 : 0,
               transform: loaded ? "translateY(0)" : "translateY(16px)",
             }}
@@ -266,18 +359,22 @@ export default function PortraitTestimonials({
           <h2
             className="ak-pt__heading"
             style={{
+              ...headingStyle,
               opacity: loaded ? 1 : 0,
               transform: loaded ? "translateY(0)" : "translateY(24px)",
             }}
           >
             {heading}
             <br />
-            <span className="ak-pt__highlight">{highlightText}</span>
+            <span className="ak-pt__highlight" style={highlightTextStyle}>
+              {highlightText}
+            </span>
           </h2>
 
           <p
             className="ak-pt__desc"
             style={{
+              ...descriptionStyle,
               opacity: loaded ? 1 : 0,
               transform: loaded ? "translateY(0)" : "translateY(24px)",
             }}
@@ -291,6 +388,7 @@ export default function PortraitTestimonials({
                 className="ak-pt__btn"
                 href={buttonLink}
                 style={{
+                  ...buttonTextStyle,
                   opacity: loaded ? 1 : 0,
                   transform: loaded ? "translateY(0)" : "translateY(24px)",
                 }}
@@ -302,6 +400,7 @@ export default function PortraitTestimonials({
                 className="ak-pt__btn"
                 type="button"
                 style={{
+                  ...buttonTextStyle,
                   opacity: loaded ? 1 : 0,
                   transform: loaded ? "translateY(0)" : "translateY(24px)",
                 }}

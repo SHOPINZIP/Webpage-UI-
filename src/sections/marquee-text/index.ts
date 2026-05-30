@@ -5,6 +5,7 @@ export type { FeatureMarqueeBlockProps } from "./FeatureMarqueeBlock";
 export type {
   DualLineFeatureMarqueeProps,
   MarqueeLineProps,
+  MarqueeRenderItem,
   MarqueeTextBlock,
   MarqueeTextControls,
   MarqueeTextRow,

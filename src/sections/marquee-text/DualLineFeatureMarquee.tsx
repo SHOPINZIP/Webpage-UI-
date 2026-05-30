@@ -2,8 +2,20 @@ import React, { useMemo } from "react";
 
 import { usePrefersReducedMotion } from "../../components/MessageStyleTestimonialsSection/hooks";
 import FeatureMarqueeBlock from "./FeatureMarqueeBlock";
+import { sectionAppearanceStyle } from "../../shared/sectionAppearance";
+import {
+  resolveBlockGroupTextStyle,
+  resolvedTextStyleToInlineStyle,
+} from "../../shared/sectionTypography";
+import {
+  MARQUEE_BOTTOM_ROW_DEFAULT,
+  MARQUEE_TEXT_LARGE_DEFAULT,
+  MARQUEE_TEXT_SMALL_DEFAULT,
+  MARQUEE_TOP_ROW_DEFAULT,
+} from "../../shared/textStyleDefaults/marqueeTextStyleDefaults";
 import type {
   DualLineFeatureMarqueeProps,
+  MarqueeRenderItem,
   MarqueeTextBlock,
   MarqueeTextRow,
 } from "./types";
@@ -27,18 +39,58 @@ function readBlockText(block: MarqueeTextBlock): string {
   return safeText(block.text ?? block.props?.text);
 }
 
-function buildRowItems(rawBlocks: unknown, row: MarqueeTextRow): string[] {
+function rowDefaultStyle(row: MarqueeTextRow, large: boolean) {
+  if (row === "top") {
+    return large ? MARQUEE_TEXT_LARGE_DEFAULT : MARQUEE_TOP_ROW_DEFAULT;
+  }
+  return large ? MARQUEE_TEXT_LARGE_DEFAULT : MARQUEE_BOTTOM_ROW_DEFAULT;
+}
+
+function buildRowItems(
+  rawBlocks: unknown,
+  row: MarqueeTextRow,
+  section: DualLineFeatureMarqueeProps["section"],
+  theme: DualLineFeatureMarqueeProps["theme"],
+  large: boolean
+): MarqueeRenderItem[] {
   if (!Array.isArray(rawBlocks)) return [];
+
+  const groupKey = row === "top" ? "topRowText" : "bottomRowText";
+  const role = row === "top" ? "heading" : "body";
+  const defaultStyle = rowDefaultStyle(row, large);
+
+  const rowStyle = resolvedTextStyleToInlineStyle(
+    resolveBlockGroupTextStyle({
+      section,
+      theme,
+      groupKey,
+      role,
+      defaultStyle,
+    })
+  );
 
   return rawBlocks
     .filter((block) => block && typeof block === "object")
     .map((block) => block as MarqueeTextBlock)
     .filter((block) => readBlockRow(block) === row)
-    .map((block) => readBlockText(block))
-    .filter(Boolean);
+    .map((block) => {
+      const text = readBlockText(block);
+      if (!text) return null;
+      const blockId = String(block.id ?? "").trim();
+      return {
+        id: blockId || `${row}-${text}`,
+        text,
+        style: rowStyle,
+      };
+    })
+    .filter(Boolean) as MarqueeRenderItem[];
 }
 
-export default function DualLineFeatureMarquee({ section }: DualLineFeatureMarqueeProps) {
+export default function DualLineFeatureMarquee({
+  section,
+  appearance,
+  theme,
+}: DualLineFeatureMarqueeProps) {
   if (section?.enabled === false) return null;
 
   const reducedMotion = usePrefersReducedMotion();
@@ -52,16 +104,19 @@ export default function DualLineFeatureMarquee({ section }: DualLineFeatureMarqu
   const pauseOnHover = props.pauseOnHover === true;
 
   const marqueeTop = useMemo(
-    () => buildRowItems(rawBlocks, "top"),
-    [rawBlocks]
+    () => buildRowItems(rawBlocks, "top", section, theme, largeTopRow),
+    [rawBlocks, section, theme, largeTopRow]
   );
   const marqueeBottom = useMemo(
-    () => buildRowItems(rawBlocks, "bottom"),
-    [rawBlocks]
+    () => buildRowItems(rawBlocks, "bottom", section, theme, largeBottomRow),
+    [rawBlocks, section, theme, largeBottomRow]
   );
 
   return (
-    <section className="ak-dual-line-marquee">
+    <section
+      className="ak-dual-line-marquee"
+      style={sectionAppearanceStyle(appearance)}
+    >
       <FeatureMarqueeBlock
         marqueeTop={marqueeTop}
         marqueeBottom={marqueeBottom}

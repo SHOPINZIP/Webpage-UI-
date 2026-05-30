@@ -8,6 +8,13 @@ import {
 } from "framer-motion";
 
 import { resolveBlockImageUrl } from "../HeroSection/heroSectionUtils";
+import { sectionAppearanceStyle } from "../../shared/sectionAppearance";
+import type { ResolvedSectionAppearance, StorefrontTheme } from "../../shared/sectionAppearance";
+import {
+  resolveTextStyle,
+  resolvedTextStyleToInlineStyle,
+} from "../../shared/sectionTypography";
+import { NSP_FLOATING_SNACK_TITLE_DEFAULT } from "../../shared/textStyleDefaults/nspSignatureHeroTextStyleDefaults";
 
 export type FloatingSnackGalleryImageBlock = {
   id?: string;
@@ -36,6 +43,8 @@ export type FloatingSnackGalleryHeroSectionDoc = {
 
 export type FloatingSnackGalleryHeroProps = {
   section: FloatingSnackGalleryHeroSectionDoc;
+  appearance?: ResolvedSectionAppearance | null;
+  theme?: StorefrontTheme | null;
 };
 
 const MAX_RENDER_TILES = 12;
@@ -332,10 +341,12 @@ function FloatingSnackGalleryHeroContent({
   section,
   sectionRef,
   scrollContainer,
+  theme,
 }: {
   section: FloatingSnackGalleryHeroSectionDoc;
   sectionRef: React.RefObject<HTMLElement>;
   scrollContainer: HTMLElement | null;
+  theme?: StorefrontTheme | null;
 }) {
   const props = section?.settings?.props ?? {};
   const blocks = section?.settings?.blocks;
@@ -399,6 +410,20 @@ function FloatingSnackGalleryHeroContent({
 
   const titleOpacity = useTransform(scrollYProgress, [0, 0.85], [1, 0.92]);
 
+  const titleStyle = useMemo(
+    () =>
+      resolvedTextStyleToInlineStyle(
+        resolveTextStyle({
+          section,
+          theme,
+          fieldId: "title",
+          role: "heading",
+          defaultStyle: NSP_FLOATING_SNACK_TITLE_DEFAULT,
+        })
+      ),
+    [section, theme]
+  );
+
   return (
     <div className="sticky-wrapper">
       <div className="bg-layer" />
@@ -434,7 +459,7 @@ function FloatingSnackGalleryHeroContent({
         >
           <div className="title-glow-one" />
           <div className="title-glow-two" />
-          <h1>{renderTwoLineTitle(title)}</h1>
+          <h1 style={titleStyle}>{renderTwoLineTitle(title)}</h1>
         </motion.div>
       </div>
     </div>
@@ -443,6 +468,8 @@ function FloatingSnackGalleryHeroContent({
 
 export default function FloatingSnackGalleryHero({
   section,
+  appearance,
+  theme,
 }: FloatingSnackGalleryHeroProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const [scrollContainer, setScrollContainer] = useState<HTMLElement | null | undefined>(
@@ -459,12 +486,17 @@ export default function FloatingSnackGalleryHero({
   }
 
   return (
-    <section ref={sectionRef} className="premium-snack-gallery">
+    <section
+      ref={sectionRef}
+      className="premium-snack-gallery"
+      style={sectionAppearanceStyle(appearance)}
+    >
       {scrollContainer !== undefined ? (
         <FloatingSnackGalleryHeroContent
           section={section}
           sectionRef={sectionRef}
           scrollContainer={scrollContainer}
+          theme={theme}
         />
       ) : null}
     </section>
