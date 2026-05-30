@@ -1,6 +1,18 @@
 import React, { useMemo } from "react";
 
 import { usePrefersReducedMotion } from "../MessageStyleTestimonialsSection/hooks";
+import { sectionAppearanceStyle } from "../../shared/sectionAppearance";
+import {
+  resolveBlockGroupTextStyle,
+  resolveTextStyle,
+  resolvedTextStyleToInlineStyle,
+} from "../../shared/sectionTypography";
+import {
+  COUPON_CODE_DEFAULT,
+  COUPON_HEADING_DEFAULT,
+  COUPON_SUBHEADING_DEFAULT,
+  COUPON_TITLE_DEFAULT,
+} from "../../shared/textStyleDefaults/couponTextStyleDefaults";
 import type { CouponTickerMinimalProps } from "./types";
 
 type CouponTickerItem = {
@@ -39,8 +51,6 @@ function buildTickerItems(rawBlocks: unknown): CouponTickerItem[] {
 
   if (baseItems.length === 0) return [];
 
-  // Lightweight static expansion to avoid visible gaps when coupon count is low.
-  // No DOM measurements/observers; purely data-side duplication for marquee continuity.
   const copiesPerSequence =
     baseItems.length === 1
       ? 8
@@ -71,12 +81,16 @@ function TickerRow({
   durationSec,
   reducedMotion,
   secondary = false,
+  codeStyle,
+  titleStyle,
 }: {
   items: CouponTickerItem[];
   reverse?: boolean;
   durationSec: number;
   reducedMotion: boolean;
   secondary?: boolean;
+  codeStyle?: React.CSSProperties;
+  titleStyle?: React.CSSProperties;
 }) {
   const loopItems = useMemo(
     () =>
@@ -111,11 +125,16 @@ function TickerRow({
         {loopItems.map((item) => (
           <div key={item.key} className="ak-coupon-ticker__item">
             {secondary ? (
-              <span className="ak-coupon-ticker__code ak-coupon-ticker__code--secondary">
+              <span
+                className="ak-coupon-ticker__code ak-coupon-ticker__code--secondary"
+                style={codeStyle}
+              >
                 {item.code}
               </span>
             ) : (
-              <span className="ak-coupon-ticker__pill">{item.code}</span>
+              <span className="ak-coupon-ticker__pill" style={codeStyle}>
+                {item.code}
+              </span>
             )}
 
             <span
@@ -124,6 +143,7 @@ function TickerRow({
                   ? "ak-coupon-ticker__title ak-coupon-ticker__title--secondary"
                   : "ak-coupon-ticker__title"
               }
+              style={titleStyle}
             >
               {item.title}
             </span>
@@ -143,7 +163,11 @@ function TickerRow({
   );
 }
 
-export default function CouponTickerMinimal({ section }: CouponTickerMinimalProps) {
+export default function CouponTickerMinimal({
+  section,
+  appearance,
+  theme,
+}: CouponTickerMinimalProps) {
   if (section?.enabled === false) return null;
 
   const reducedMotion = usePrefersReducedMotion();
@@ -156,6 +180,62 @@ export default function CouponTickerMinimal({ section }: CouponTickerMinimalProp
   const stripSpeedPrimary = normalizeSpeed(props.stripSpeedPrimary, 20);
   const stripSpeedSecondary = normalizeSpeed(props.stripSpeedSecondary, 28);
 
+  const headingStyle = useMemo(
+    () =>
+      resolvedTextStyleToInlineStyle(
+        resolveTextStyle({
+          section,
+          theme,
+          fieldId: "heading",
+          role: "heading",
+          defaultStyle: COUPON_HEADING_DEFAULT,
+        })
+      ),
+    [section, theme]
+  );
+
+  const subheadingStyle = useMemo(
+    () =>
+      resolvedTextStyleToInlineStyle(
+        resolveTextStyle({
+          section,
+          theme,
+          fieldId: "subheading",
+          role: "body",
+          defaultStyle: COUPON_SUBHEADING_DEFAULT,
+        })
+      ),
+    [section, theme]
+  );
+
+  const couponCodeStyle = useMemo(
+    () =>
+      resolvedTextStyleToInlineStyle(
+        resolveBlockGroupTextStyle({
+          section,
+          theme,
+          groupKey: "couponCode",
+          role: "body",
+          defaultStyle: COUPON_CODE_DEFAULT,
+        })
+      ),
+    [section, theme]
+  );
+
+  const couponTitleStyle = useMemo(
+    () =>
+      resolvedTextStyleToInlineStyle(
+        resolveBlockGroupTextStyle({
+          section,
+          theme,
+          groupKey: "couponTitle",
+          role: "body",
+          defaultStyle: COUPON_TITLE_DEFAULT,
+        })
+      ),
+    [section, theme]
+  );
+
   const items = useMemo(
     () => buildTickerItems(section?.settings?.blocks),
     [section?.settings?.blocks]
@@ -164,14 +244,18 @@ export default function CouponTickerMinimal({ section }: CouponTickerMinimalProp
   const showTicker = items.length > 0;
 
   return (
-    <section className="ak-coupon-ticker">
+    <section className="ak-coupon-ticker" style={sectionAppearanceStyle(appearance)}>
       <span className="ak-coupon-ticker__divider-line ak-coupon-ticker__divider-line--top" aria-hidden />
       <span className="ak-coupon-ticker__divider-line ak-coupon-ticker__divider-line--bottom" aria-hidden />
 
       <div className="ak-coupon-ticker__header">
-        <h2 className="ak-coupon-ticker__heading">{heading}</h2>
+        <h2 className="ak-coupon-ticker__heading" style={headingStyle}>
+          {heading}
+        </h2>
         {showSubheading && subheading ? (
-          <p className="ak-coupon-ticker__subheading">{subheading}</p>
+          <p className="ak-coupon-ticker__subheading" style={subheadingStyle}>
+            {subheading}
+          </p>
         ) : null}
       </div>
 
@@ -184,6 +268,8 @@ export default function CouponTickerMinimal({ section }: CouponTickerMinimalProp
             items={items}
             durationSec={stripSpeedPrimary}
             reducedMotion={reducedMotion}
+            codeStyle={couponCodeStyle}
+            titleStyle={couponTitleStyle}
           />
 
           {showSecondaryStrip ? (
@@ -194,6 +280,8 @@ export default function CouponTickerMinimal({ section }: CouponTickerMinimalProp
                 secondary
                 durationSec={stripSpeedSecondary}
                 reducedMotion={reducedMotion}
+                codeStyle={couponCodeStyle}
+                titleStyle={couponTitleStyle}
               />
             </div>
           ) : null}

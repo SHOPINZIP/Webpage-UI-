@@ -2,9 +2,21 @@ import React, { useMemo } from "react";
 
 import type { HeroSection, HeroSlideBlock } from "../HeroSlider";
 import { normalizeImageUrl } from "../heroSectionUtils";
+import { sectionAppearanceStyle } from "../../../shared/sectionAppearance";
+import type { ResolvedSectionAppearance, StorefrontTheme } from "../../../shared/sectionAppearance";
+import {
+  resolveBlockGroupTextStyle,
+  resolvedTextStyleToInlineStyle,
+} from "../../../shared/sectionTypography";
+import {
+  HERO_SLIDE_DESCRIPTION_DEFAULT,
+  HERO_SLIDE_HEADLINE_DEFAULT,
+} from "../../../shared/textStyleDefaults/heroTextStyleDefaults";
 
 export type HeroScrollableSlideProps = {
   section: HeroSection;
+  appearance?: ResolvedSectionAppearance | null;
+  theme?: StorefrontTheme | null;
 };
 
 type NormalizedScrollCard = {
@@ -118,17 +130,46 @@ const CtaArrowIcon = () => (
  * Stacked full-screen scroll cards — same `HeroSection` document shape as {@link HeroSlider}.
  * All copy and media must come from `section.settings` (no built-in demo data).
  */
-export default function HeroScrollableSlide({ section }: HeroScrollableSlideProps) {
+export default function HeroScrollableSlide({
+  section,
+  appearance,
+  theme,
+}: HeroScrollableSlideProps) {
   const p = section.settings?.props ?? {};
   const blocks = section.settings?.blocks ?? [];
+
+  const slideHeadlineStyle = useMemo(
+    () =>
+      resolvedTextStyleToInlineStyle(
+        resolveBlockGroupTextStyle({
+          section,
+          theme,
+          groupKey: "slideHeadline",
+          role: "heading",
+          defaultStyle: HERO_SLIDE_HEADLINE_DEFAULT,
+        })
+      ),
+    [section, theme]
+  );
+
+  const slideDescriptionStyle = useMemo(
+    () =>
+      resolvedTextStyleToInlineStyle(
+        resolveBlockGroupTextStyle({
+          section,
+          theme,
+          groupKey: "slideDescription",
+          role: "body",
+          defaultStyle: HERO_SLIDE_DESCRIPTION_DEFAULT,
+        })
+      ),
+    [section, theme]
+  );
 
   const cards = useMemo(
     () => sectionBlocksToScrollCards(blocks),
     [blocks]
   );
-
-  const toolbarTitle = String(p.sectionLabel ?? "").trim();
-  const toolbarHint = String(p.toolbarHint ?? "").trim();
 
   if (section.enabled === false) {
     return null;
@@ -139,7 +180,7 @@ export default function HeroScrollableSlide({ section }: HeroScrollableSlideProp
   }
 
   return (
-    <section className="ak-scroll-cards">
+    <section className="ak-scroll-cards" style={sectionAppearanceStyle(appearance)}>
       <div className="ak-scroll-cards__inner">
 
         <div className="ak-scroll-cards__stack">
@@ -174,11 +215,15 @@ export default function HeroScrollableSlide({ section }: HeroScrollableSlideProp
 
                     <div className="ak-scroll-cards__panel">
                       {card.title ? (
-                        <h2 className="ak-scroll-cards__title">{card.title}</h2>
+                        <h2 className="ak-scroll-cards__title" style={slideHeadlineStyle}>
+                          {card.title}
+                        </h2>
                       ) : null}
 
                       {card.description ? (
-                        <p className="ak-scroll-cards__desc">{card.description}</p>
+                        <p className="ak-scroll-cards__desc" style={slideDescriptionStyle}>
+                          {card.description}
+                        </p>
                       ) : null}
 
                       <div

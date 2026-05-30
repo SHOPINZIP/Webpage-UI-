@@ -18,8 +18,12 @@ export type CouponStripsControls = {
   stripSpeedSecondary?: number;
 };
 
+import type { ResolvedSectionAppearance, SectionAppearance, StorefrontTheme } from "../../shared/sectionAppearance";
+
 export type CouponStripsSettings = {
-  props?: CouponStripsControls;
+  props?: CouponStripsControls & {
+    appearance?: SectionAppearance;
+  };
   blocks?: CouponStripBlock[];
 };
 
@@ -32,5 +36,7 @@ export type CouponStripsSectionDoc = {
 
 export type CouponTickerMinimalProps = {
   section: CouponStripsSectionDoc;
+  appearance?: ResolvedSectionAppearance | null;
+  theme?: StorefrontTheme | null;
 };
 

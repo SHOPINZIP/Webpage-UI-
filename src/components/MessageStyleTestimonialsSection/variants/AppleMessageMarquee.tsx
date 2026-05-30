@@ -1,4 +1,16 @@
 import React, { useMemo } from "react";
+import { sectionAppearanceStyle } from "../../../shared/sectionAppearance";
+import {
+  resolveBlockGroupTextStyle,
+  resolveTextStyle,
+  resolvedTextStyleToInlineStyle,
+} from "../../../shared/sectionTypography";
+import {
+  TESTIMONIAL_CUSTOMER_NAME_DEFAULT,
+  TESTIMONIAL_CUSTOMER_ROLE_DEFAULT,
+  TESTIMONIAL_QUOTE_TEXT_DEFAULT,
+  TESTIMONIAL_SUBHEADING_DEFAULT,
+} from "../../../shared/textStyleDefaults/testimonialTextStyleDefaults";
 import { usePrefersReducedMotion } from "../hooks";
 import {
   buildMarqueeLoop,
@@ -51,9 +63,15 @@ function StarRating({
 function AppleCard({
   item,
   showStars,
+  quoteStyle,
+  nameStyle,
+  roleStyle,
 }: {
   item: MessageStyleTestimonialItemProps;
   showStars: boolean;
+  quoteStyle?: React.CSSProperties;
+  nameStyle?: React.CSSProperties;
+  roleStyle?: React.CSSProperties;
 }) {
   const name = String(item?.name ?? "").trim();
   const role = String(item?.role ?? "").trim();
@@ -65,7 +83,7 @@ function AppleCard({
     <div className="ak-mst-apple__card-wrap">
       <div className="ak-mst-apple__card">
         <StarRating rating={stars} visible={showStars} />
-        <p className="ak-mst-apple__quote">
+        <p className="ak-mst-apple__quote" style={quoteStyle}>
           {quote ? (
             <>
               <span className="ak-mst-apple__q">“</span>
@@ -77,9 +95,13 @@ function AppleCard({
           )}
         </p>
         <div className="ak-mst-apple__footer">
-          <span className="ak-mst-apple__name">{name || "Name"}</span>
+          <span className="ak-mst-apple__name" style={nameStyle}>
+            {name || "Name"}
+          </span>
           {role ? (
-            <span className="ak-mst-apple__role">{role}</span>
+            <span className="ak-mst-apple__role" style={roleStyle}>
+              {role}
+            </span>
           ) : null}
         </div>
       </div>
@@ -89,6 +111,8 @@ function AppleCard({
 
 export default function AppleMessageMarquee({
   section,
+  appearance,
+  theme,
 }: MessageStyleTestimonialsProps) {
   const reduceMotion = usePrefersReducedMotion();
   const props = section?.settings?.props ?? {};
@@ -113,7 +137,64 @@ export default function AppleMessageMarquee({
     [items]
   );
 
+  const subheadingStyle = useMemo(
+    () =>
+      resolvedTextStyleToInlineStyle(
+        resolveTextStyle({
+          section,
+          theme,
+          fieldId: "subheading",
+          role: "body",
+          defaultStyle: TESTIMONIAL_SUBHEADING_DEFAULT,
+        })
+      ),
+    [section, theme]
+  );
+
+  const quoteTextStyle = useMemo(
+    () =>
+      resolvedTextStyleToInlineStyle(
+        resolveBlockGroupTextStyle({
+          section,
+          theme,
+          groupKey: "quoteText",
+          role: "body",
+          defaultStyle: TESTIMONIAL_QUOTE_TEXT_DEFAULT,
+        })
+      ),
+    [section, theme]
+  );
+
+  const customerNameStyle = useMemo(
+    () =>
+      resolvedTextStyleToInlineStyle(
+        resolveBlockGroupTextStyle({
+          section,
+          theme,
+          groupKey: "customerName",
+          role: "heading",
+          defaultStyle: TESTIMONIAL_CUSTOMER_NAME_DEFAULT,
+        })
+      ),
+    [section, theme]
+  );
+
+  const customerRoleStyle = useMemo(
+    () =>
+      resolvedTextStyleToInlineStyle(
+        resolveBlockGroupTextStyle({
+          section,
+          theme,
+          groupKey: "customerRole",
+          role: "body",
+          defaultStyle: TESTIMONIAL_CUSTOMER_ROLE_DEFAULT,
+        })
+      ),
+    [section, theme]
+  );
+
   const sectionStyle: React.CSSProperties = {
+    ...sectionAppearanceStyle(appearance),
     background: bg,
     paddingTop: padTop,
     paddingBottom: padBot,
@@ -137,7 +218,11 @@ export default function AppleMessageMarquee({
           <h2 className="ak-mst-apple__title">
             {heading || "Loved by merchants."}
           </h2>
-          {sub ? <p className="ak-mst-apple__sub">{sub}</p> : null}
+          {sub ? (
+            <p className="ak-mst-apple__sub" style={subheadingStyle}>
+              {sub}
+            </p>
+          ) : null}
         </header>
 
         {items.length === 0 ? (
@@ -145,7 +230,14 @@ export default function AppleMessageMarquee({
         ) : reduceMotion ? (
           <div className="ak-mst-apple__static-grid">
             {items.map((item, i) => (
-              <AppleCard key={i} item={item} showStars={showStars} />
+              <AppleCard
+                key={i}
+                item={item}
+                showStars={showStars}
+                quoteStyle={quoteTextStyle}
+                nameStyle={customerNameStyle}
+                roleStyle={customerRoleStyle}
+              />
             ))}
           </div>
         ) : (
@@ -164,6 +256,9 @@ export default function AppleMessageMarquee({
                     key={`r1-${index}`}
                     item={item}
                     showStars={showStars}
+                    quoteStyle={quoteTextStyle}
+                    nameStyle={customerNameStyle}
+                    roleStyle={customerRoleStyle}
                   />
                 ))}
               </div>
@@ -182,6 +277,9 @@ export default function AppleMessageMarquee({
                     key={`r2-${index}`}
                     item={item}
                     showStars={showStars}
+                    quoteStyle={quoteTextStyle}
+                    nameStyle={customerNameStyle}
+                    roleStyle={customerRoleStyle}
                   />
                 ))}
               </div>

@@ -145,3 +145,123 @@ export {
 } from "./components/MessageStyleTestimonialsSection";
 
 export { normalizeImageUrl } from "./components/HeroSection/heroSectionUtils";
+
+export { default as StorefrontFontLoader } from "./shared/StorefrontFontLoader";
+export {
+  DEFAULT_STOREFRONT_FONT_ID,
+  STOREFRONT_FONT_OPTIONS,
+  STOREFRONT_FONTS,
+  collectStorefrontFontIdsFromDocument,
+  getStorefrontFontById,
+  resolveStorefrontFontFamily,
+} from "./shared/fonts/fontRegistry";
+export {
+  DEFAULT_TYPOGRAPHY,
+  normalizeTextStyle,
+  normalizeTypography,
+  normalizeThemeTypography,
+  normalizeSectionTypography,
+  normalizeSectionTypographyRole,
+  normalizeFieldStyles,
+  normalizeBlockGroupStyles,
+  stripFieldOverrideStyle,
+  resolveThemeFontKey,
+  resolveTextStyle,
+  resolveBlockGroupTextStyle,
+  resolvedTextStyleToInlineStyle,
+  collectThemeFontIds,
+} from "./shared/sectionTypography";
+export type { TextStyle, ResolvedTextStyle, TypographyRole } from "./shared/sectionTypography";
+export {
+  normalizeAppearance,
+  normalizeTheme,
+  resolveSectionAppearance,
+  sectionAppearanceStyle,
+  SECTION_TYPE_APPEARANCE_DEFAULTS,
+} from "./shared/sectionAppearance";
+export type {
+  SectionAppearance,
+  StorefrontTheme,
+  ResolvedSectionAppearance,
+} from "./shared/sectionAppearance";
+export {
+  MARQUEE_TOP_ROW_DEFAULT,
+  MARQUEE_BOTTOM_ROW_DEFAULT,
+  MARQUEE_TEXT_LARGE_DEFAULT,
+  MARQUEE_TEXT_SMALL_DEFAULT,
+} from "./shared/textStyleDefaults/marqueeTextStyleDefaults";
+export {
+  HERO_SECTION_LABEL_DEFAULT,
+  HERO_SLIDE_HEADLINE_DEFAULT,
+  HERO_SLIDE_DESCRIPTION_DEFAULT,
+} from "./shared/textStyleDefaults/heroTextStyleDefaults";
+export {
+  FOOTER_MERCHANT_NAME_DEFAULT,
+  FOOTER_MERCHANT_SUB_LABEL_DEFAULT,
+  FOOTER_TAGLINE_DEFAULT,
+  FOOTER_COLUMN_HEADING_DEFAULT,
+  FOOTER_POLICY_LINK_TEXT_DEFAULT,
+} from "./shared/textStyleDefaults/footerTextStyleDefaults";
+export {
+  HEADER_BRAND_NAME_DEFAULT,
+  HEADER_BRAND_SUBTITLE_DEFAULT,
+  HEADER_NAV_LINK_TEXT_DEFAULT,
+  HEADER_NAV_LINK_TEXT_LIGHT_DEFAULT,
+} from "./shared/textStyleDefaults/headerTextStyleDefaults";
+export {
+  COUPON_HEADING_DEFAULT,
+  COUPON_SUBHEADING_DEFAULT,
+  COUPON_CODE_DEFAULT,
+  COUPON_TITLE_DEFAULT,
+} from "./shared/textStyleDefaults/couponTextStyleDefaults";
+export {
+  BENEFITS_EYEBROW_DEFAULT,
+  BENEFITS_HEADING_DEFAULT,
+  BENEFITS_DESCRIPTION_DEFAULT,
+  BENEFIT_TITLE_DEFAULT,
+  BENEFIT_DESCRIPTION_DEFAULT,
+  BENEFIT_POINT_DEFAULT,
+} from "./shared/textStyleDefaults/benefitsTextStyleDefaults";
+export {
+  PRODUCT_MARQUEE_EYEBROW_DEFAULT,
+  PRODUCT_MARQUEE_HEADING_DEFAULT,
+  PRODUCT_MARQUEE_DESCRIPTION_DEFAULT,
+  PRODUCT_CARD_TITLE_DEFAULT,
+  PRODUCT_CARD_TITLE_OVERLAY_DEFAULT,
+  PRODUCT_CARD_SUBTITLE_DEFAULT,
+  PRODUCT_CARD_DESCRIPTION_DEFAULT,
+} from "./shared/textStyleDefaults/productMarqueeTextStyleDefaults";
+export {
+  TESTIMONIAL_QUOTE_TEXT_DEFAULT,
+  TESTIMONIAL_CUSTOMER_NAME_DEFAULT,
+  TESTIMONIAL_CUSTOMER_ROLE_DEFAULT,
+  TESTIMONIAL_SUBHEADING_DEFAULT,
+  TESTIMONIAL_BACKGROUND_WORD_DEFAULT,
+  TESTIMONIAL_EYEBROW_DEFAULT,
+  TESTIMONIAL_HEADING_DEFAULT,
+  TESTIMONIAL_HIGHLIGHT_TEXT_DEFAULT,
+  TESTIMONIAL_DESCRIPTION_DEFAULT,
+  TESTIMONIAL_BUTTON_TEXT_DEFAULT,
+} from "./shared/textStyleDefaults/testimonialTextStyleDefaults";
+export {
+  NSP_SIG_HERO_EYEBROW_DEFAULT,
+  NSP_SIG_HERO_HEADING_DEFAULT,
+  NSP_SIG_HERO_DESCRIPTION_DEFAULT,
+  NSP_SIG_HERO_PRIMARY_BUTTON_TEXT_DEFAULT,
+  NSP_SIG_HERO_SECONDARY_BUTTON_TEXT_DEFAULT,
+  NSP_TYPING_STATIC_HEADING_DEFAULT,
+  NSP_TYPING_DESCRIPTION_DEFAULT,
+  NSP_TYPING_PRIMARY_BUTTON_TEXT_DEFAULT,
+  NSP_TYPING_SECONDARY_BUTTON_TEXT_DEFAULT,
+  NSP_TYPING_WORD_DEFAULT,
+  NSP_POKER_EYEBROW_DEFAULT,
+  NSP_POKER_HEADING_DEFAULT,
+  NSP_POKER_DESCRIPTION_DEFAULT,
+  NSP_MARQUEE_EYEBROW_DEFAULT,
+  NSP_MARQUEE_HERO_BADGE_TEXT_DEFAULT,
+  NSP_MARQUEE_HEADING_DEFAULT,
+  NSP_MARQUEE_SUBHEADING_DEFAULT,
+  NSP_MARQUEE_CARD_TITLE_DEFAULT,
+  NSP_MARQUEE_CARD_SUBTITLE_DEFAULT,
+  NSP_FLOATING_SNACK_TITLE_DEFAULT,
+} from "./shared/textStyleDefaults/nspSignatureHeroTextStyleDefaults";

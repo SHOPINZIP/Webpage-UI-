@@ -2,6 +2,20 @@ import React, { useMemo } from "react";
 import { motion } from "framer-motion";
 
 import { usePrefersReducedMotion } from "../MessageStyleTestimonialsSection/hooks";
+import { sectionAppearanceStyle } from "../../shared/sectionAppearance";
+import {
+  resolveBlockGroupTextStyle,
+  resolveTextStyle,
+  resolvedTextStyleToInlineStyle,
+} from "../../shared/sectionTypography";
+import {
+  BENEFITS_DESCRIPTION_DEFAULT,
+  BENEFITS_EYEBROW_DEFAULT,
+  BENEFITS_HEADING_DEFAULT,
+  BENEFIT_DESCRIPTION_DEFAULT,
+  BENEFIT_POINT_DEFAULT,
+  BENEFIT_TITLE_DEFAULT,
+} from "../../shared/textStyleDefaults/benefitsTextStyleDefaults";
 import type {
   MinimalTimelineBenefitsProps,
   MinimalTimelineBenefitBlockProps,
@@ -25,12 +39,18 @@ function Row({
   isLast,
   showActiveRailFill,
   reduceMotion,
+  benefitTitleStyle,
+  benefitDescriptionStyle,
+  benefitPointStyle,
 }: {
   item: MinimalTimelineBenefitBlockProps;
   index: number;
   isLast: boolean;
   showActiveRailFill: boolean;
   reduceMotion: boolean;
+  benefitTitleStyle?: React.CSSProperties;
+  benefitDescriptionStyle?: React.CSSProperties;
+  benefitPointStyle?: React.CSSProperties;
 }) {
   const title = safeText(item.title);
   const desc = safeText(item.desc);
@@ -84,10 +104,16 @@ function Row({
       <div className="ak-mt-benefits__row-body">
         <div className="ak-mt-benefits__row-inner">
           {title ? (
-            <h3 className="ak-mt-benefits__item-title">{title}</h3>
+            <h3 className="ak-mt-benefits__item-title" style={benefitTitleStyle}>
+              {title}
+            </h3>
           ) : null}
 
-          {desc ? <p className="ak-mt-benefits__item-desc">{desc}</p> : null}
+          {desc ? (
+            <p className="ak-mt-benefits__item-desc" style={benefitDescriptionStyle}>
+              {desc}
+            </p>
+          ) : null}
 
           {points.length > 0 ? (
             <div className="ak-mt-benefits__points">
@@ -109,7 +135,9 @@ function Row({
                   className="ak-mt-benefits__point"
                 >
                   <span className="ak-mt-benefits__point-bullet" aria-hidden />
-                  <span className="ak-mt-benefits__point-text">{p}</span>
+                  <span className="ak-mt-benefits__point-text" style={benefitPointStyle}>
+                    {p}
+                  </span>
                 </motion.div>
               ))}
             </div>
@@ -120,7 +148,11 @@ function Row({
   );
 }
 
-export default function MinimalTimelineBenefits({ section }: MinimalTimelineBenefitsProps) {
+export default function MinimalTimelineBenefits({
+  section,
+  appearance,
+  theme,
+}: MinimalTimelineBenefitsProps) {
   const reduceMotion = usePrefersReducedMotion();
   const props = section?.settings?.props ?? {};
   const rawBlocks = section?.settings?.blocks;
@@ -129,6 +161,90 @@ export default function MinimalTimelineBenefits({ section }: MinimalTimelineBene
   const heading = safeText(props.heading);
   const description = safeText(props.description);
   const showActiveRailFill = props.showActiveRailFill !== false;
+
+  const eyebrowStyle = useMemo(
+    () =>
+      resolvedTextStyleToInlineStyle(
+        resolveTextStyle({
+          section,
+          theme,
+          fieldId: "eyebrow",
+          role: "body",
+          defaultStyle: BENEFITS_EYEBROW_DEFAULT,
+        })
+      ),
+    [section, theme]
+  );
+
+  const headingStyle = useMemo(
+    () =>
+      resolvedTextStyleToInlineStyle(
+        resolveTextStyle({
+          section,
+          theme,
+          fieldId: "heading",
+          role: "heading",
+          defaultStyle: BENEFITS_HEADING_DEFAULT,
+        })
+      ),
+    [section, theme]
+  );
+
+  const descriptionStyle = useMemo(
+    () =>
+      resolvedTextStyleToInlineStyle(
+        resolveTextStyle({
+          section,
+          theme,
+          fieldId: "description",
+          role: "body",
+          defaultStyle: BENEFITS_DESCRIPTION_DEFAULT,
+        })
+      ),
+    [section, theme]
+  );
+
+  const benefitTitleStyle = useMemo(
+    () =>
+      resolvedTextStyleToInlineStyle(
+        resolveBlockGroupTextStyle({
+          section,
+          theme,
+          groupKey: "benefitTitle",
+          role: "heading",
+          defaultStyle: BENEFIT_TITLE_DEFAULT,
+        })
+      ),
+    [section, theme]
+  );
+
+  const benefitDescriptionStyle = useMemo(
+    () =>
+      resolvedTextStyleToInlineStyle(
+        resolveBlockGroupTextStyle({
+          section,
+          theme,
+          groupKey: "benefitDescription",
+          role: "body",
+          defaultStyle: BENEFIT_DESCRIPTION_DEFAULT,
+        })
+      ),
+    [section, theme]
+  );
+
+  const benefitPointStyle = useMemo(
+    () =>
+      resolvedTextStyleToInlineStyle(
+        resolveBlockGroupTextStyle({
+          section,
+          theme,
+          groupKey: "benefitPoint",
+          role: "body",
+          defaultStyle: BENEFIT_POINT_DEFAULT,
+        })
+      ),
+    [section, theme]
+  );
 
   const blocks = useMemo(() => (Array.isArray(rawBlocks) ? rawBlocks : []), [rawBlocks]);
 
@@ -142,20 +258,29 @@ export default function MinimalTimelineBenefits({ section }: MinimalTimelineBene
       };
 
   return (
-    <section className="ak-mt-benefits">
-
+    <section className="ak-mt-benefits" style={sectionAppearanceStyle(appearance)}>
       <div className="ak-mt-benefits__container">
         <motion.div {...headerMotion} className="ak-mt-benefits__header">
-          {eyebrow ? <div className="ak-mt-benefits__eyebrow">{eyebrow}</div> : null}
+          {eyebrow ? (
+            <div className="ak-mt-benefits__eyebrow" style={eyebrowStyle}>
+              {eyebrow}
+            </div>
+          ) : null}
 
           {heading ? (
-            <h2 className="ak-mt-benefits__heading" style={{ whiteSpace: "pre-line" }}>
+            <h2
+              className="ak-mt-benefits__heading"
+              style={{ ...headingStyle, whiteSpace: "pre-line" }}
+            >
               {heading}
             </h2>
           ) : null}
 
           {description ? (
-            <p className="ak-mt-benefits__sub" style={{ whiteSpace: "pre-line" }}>
+            <p
+              className="ak-mt-benefits__sub"
+              style={{ ...descriptionStyle, whiteSpace: "pre-line" }}
+            >
               {description}
             </p>
           ) : null}
@@ -170,6 +295,9 @@ export default function MinimalTimelineBenefits({ section }: MinimalTimelineBene
               isLast={i === blocks.length - 1}
               showActiveRailFill={showActiveRailFill}
               reduceMotion={reduceMotion}
+              benefitTitleStyle={benefitTitleStyle}
+              benefitDescriptionStyle={benefitDescriptionStyle}
+              benefitPointStyle={benefitPointStyle}
             />
           ))}
         </div>

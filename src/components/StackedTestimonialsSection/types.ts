@@ -1,3 +1,9 @@
+import type {
+  ResolvedSectionAppearance,
+  SectionAppearance,
+  StorefrontTheme,
+} from "../../shared/sectionAppearance";
+
 export type StackedTestimonialItemProps = {
   /** "1"–"5" */
   stars?: string;
@@ -15,6 +21,7 @@ export type StackedTestimonialBlock = {
 export type StackedTestimonialsSectionProps = {
   backgroundWord?: string;
   showBackgroundWord?: boolean;
+  appearance?: SectionAppearance;
 };
 
 export type StackedTestimonialsSettings = {
@@ -33,4 +40,6 @@ export type StackedTestimonialsSectionDoc = {
 
 export type StackedTestimonialsProps = {
   section: StackedTestimonialsSectionDoc;
+  appearance?: ResolvedSectionAppearance | null;
+  theme?: StorefrontTheme | null;
 };

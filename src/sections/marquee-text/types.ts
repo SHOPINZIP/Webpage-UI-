@@ -1,3 +1,7 @@
+import type { CSSProperties } from "react";
+
+import type { ResolvedSectionAppearance, SectionAppearance, StorefrontTheme } from "../../shared/sectionAppearance";
+
 export type MarqueeTextRow = "top" | "bottom";
 
 export type MarqueeTextBlock = {
@@ -20,7 +24,9 @@ export type MarqueeTextControls = {
 };
 
 export type MarqueeTextSettings = {
-  props?: MarqueeTextControls;
+  props?: MarqueeTextControls & {
+    appearance?: SectionAppearance;
+  };
   blocks?: MarqueeTextBlock[];
 };
 
@@ -32,12 +38,20 @@ export type MarqueeTextSectionDoc = {
   settings?: MarqueeTextSettings;
 };
 
+export type MarqueeRenderItem = {
+  id: string;
+  text: string;
+  style?: CSSProperties;
+};
+
 export type DualLineFeatureMarqueeProps = {
   section: MarqueeTextSectionDoc;
+  appearance?: ResolvedSectionAppearance | null;
+  theme?: StorefrontTheme | null;
 };
 
 export type MarqueeLineProps = {
-  items: string[];
+  items: MarqueeRenderItem[];
   large?: boolean;
   reverse?: boolean;
   durationSec?: number;

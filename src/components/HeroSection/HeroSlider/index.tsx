@@ -8,6 +8,22 @@ import React, {
 } from "react";
 
 import { normalizeImageUrl } from "../heroSectionUtils";
+import { sectionAppearanceStyle } from "../../../shared/sectionAppearance";
+import type {
+  ResolvedSectionAppearance,
+  SectionAppearance,
+  StorefrontTheme,
+} from "../../../shared/sectionAppearance";
+import {
+  resolveBlockGroupTextStyle,
+  resolveTextStyle,
+  resolvedTextStyleToInlineStyle,
+} from "../../../shared/sectionTypography";
+import {
+  HERO_SECTION_LABEL_DEFAULT,
+  HERO_SLIDE_DESCRIPTION_DEFAULT,
+  HERO_SLIDE_HEADLINE_DEFAULT,
+} from "../../../shared/textStyleDefaults/heroTextStyleDefaults";
 
 /** Section-level controls (settings.props) */
 export type HeroSectionControls = {
@@ -49,7 +65,9 @@ export type HeroSlideBlock = {
 };
 
 export type HeroSectionSettings = {
-  props?: HeroSectionControls;
+  props?: HeroSectionControls & {
+    appearance?: SectionAppearance;
+  };
   blocks?: HeroSlideBlock[];
 };
 
@@ -77,6 +95,8 @@ type NormalizedSlide = {
 
 export type HeroSliderProps = {
   section: HeroSection;
+  appearance?: ResolvedSectionAppearance | null;
+  theme?: StorefrontTheme | null;
 };
 
 const HEIGHT_PRESETS: Record<string, "default" | "short" | "tall"> = {
@@ -198,9 +218,51 @@ function SlideImage({
   );
 }
 
-export default function HeroSlider({ section }: HeroSliderProps) {
+export default function HeroSlider({ section, appearance, theme }: HeroSliderProps) {
   const p = section.settings?.props ?? {};
   const blocks = section.settings?.blocks ?? [];
+
+  const sectionLabelStyle = useMemo(
+    () =>
+      resolvedTextStyleToInlineStyle(
+        resolveTextStyle({
+          section,
+          theme,
+          fieldId: "sectionLabel",
+          role: "body",
+          defaultStyle: HERO_SECTION_LABEL_DEFAULT,
+        })
+      ),
+    [section, theme]
+  );
+
+  const slideHeadlineStyle = useMemo(
+    () =>
+      resolvedTextStyleToInlineStyle(
+        resolveBlockGroupTextStyle({
+          section,
+          theme,
+          groupKey: "slideHeadline",
+          role: "heading",
+          defaultStyle: HERO_SLIDE_HEADLINE_DEFAULT,
+        })
+      ),
+    [section, theme]
+  );
+
+  const slideDescriptionStyle = useMemo(
+    () =>
+      resolvedTextStyleToInlineStyle(
+        resolveBlockGroupTextStyle({
+          section,
+          theme,
+          groupKey: "slideDescription",
+          role: "body",
+          defaultStyle: HERO_SLIDE_DESCRIPTION_DEFAULT,
+        })
+      ),
+    [section, theme]
+  );
 
   const sectionAlignment = p.alignment ?? "left";
   const sectionLabel = p.sectionLabel;
@@ -416,7 +478,7 @@ export default function HeroSlider({ section }: HeroSliderProps) {
   }
 
   return (
-    <div className="ak-hero">
+    <div className="ak-hero" style={sectionAppearanceStyle(appearance)}>
       <section className="ak-hero__section">
         <div className="ak-hero__container">
           <div className="ak-hero__frame">
@@ -475,11 +537,15 @@ export default function HeroSlider({ section }: HeroSliderProps) {
                     className={`ak-hero__contentCard ak-hero__contentCard--${activeAlign}`}
                   >
                     {displayHeadline ? (
-                      <h1 className="ak-hero__headline">{displayHeadline}</h1>
+                      <h1 className="ak-hero__headline" style={slideHeadlineStyle}>
+                        {displayHeadline}
+                      </h1>
                     ) : null}
 
                     {displaySub ? (
-                      <p className="ak-hero__subhead">{displaySub}</p>
+                      <p className="ak-hero__subhead" style={slideDescriptionStyle}>
+                        {displaySub}
+                      </p>
                     ) : null}
 
                     <div
@@ -534,7 +600,9 @@ export default function HeroSlider({ section }: HeroSliderProps) {
               <div className="ak-hero__topbar">
                 <div className="ak-hero__topbarInner">
                   {displayBadge ? (
-                    <div className="ak-hero__badge">{displayBadge}</div>
+                    <div className="ak-hero__badge" style={sectionLabelStyle}>
+                      {displayBadge}
+                    </div>
                   ) : null}
 
                   <div className="ak-hero__counter">

@@ -1,3 +1,9 @@
+import type {
+  ResolvedSectionAppearance,
+  SectionAppearance,
+  StorefrontTheme,
+} from "../../shared/sectionAppearance";
+
 export type MessageStyleTestimonialItemProps = {
   name?: string;
   role?: string;
@@ -27,6 +33,7 @@ export type MessageStyleTestimonialsSectionProps = {
   showStars?: boolean;
   sectionPaddingTop?: number | string;
   sectionPaddingBottom?: number | string;
+  appearance?: SectionAppearance;
 };
 
 export type MessageStyleTestimonialsSettings = {
@@ -43,4 +50,6 @@ export type MessageStyleTestimonialsSectionDoc = {
 
 export type MessageStyleTestimonialsProps = {
   section: MessageStyleTestimonialsSectionDoc;
+  appearance?: ResolvedSectionAppearance | null;
+  theme?: StorefrontTheme | null;
 };

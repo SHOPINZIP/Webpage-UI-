@@ -1,6 +1,18 @@
 import React, { useEffect, useMemo, useState } from "react";
 
 import { usePrefersReducedMotion } from "../MessageStyleTestimonialsSection/hooks";
+import { sectionAppearanceStyle } from "../../shared/sectionAppearance";
+import {
+  resolveBlockGroupTextStyle,
+  resolveTextStyle,
+  resolvedTextStyleToInlineStyle,
+} from "../../shared/sectionTypography";
+import {
+  PRODUCT_CARD_DESCRIPTION_DEFAULT,
+  PRODUCT_CARD_TITLE_OVERLAY_DEFAULT,
+  PRODUCT_MARQUEE_DESCRIPTION_DEFAULT,
+  PRODUCT_MARQUEE_HEADING_DEFAULT,
+} from "../../shared/textStyleDefaults/productMarqueeTextStyleDefaults";
 import type { ProductMarqueeProps, ProductMarqueeItemProps } from "./types";
 
 function safeText(v: unknown): string {
@@ -27,7 +39,11 @@ function padToFour(items: ProductMarqueeItemProps[]): ProductMarqueeItemProps[] 
   return next;
 }
 
-export default function LiquidFocusCategories({ section }: ProductMarqueeProps) {
+export default function LiquidFocusCategories({
+  section,
+  appearance,
+  theme,
+}: ProductMarqueeProps) {
   const reduceMotion = usePrefersReducedMotion();
   const props = section?.settings?.props ?? {};
   const heading =
@@ -35,6 +51,62 @@ export default function LiquidFocusCategories({ section }: ProductMarqueeProps) 
   const description = safeText(props.description);
   const resetToDefaultOnLeave = props.resetToDefaultOnLeave !== false;
   const defaultActiveIndex = parseDefaultActiveIndex(props.defaultActiveIndex);
+
+  const headingStyle = useMemo(
+    () =>
+      resolvedTextStyleToInlineStyle(
+        resolveTextStyle({
+          section,
+          theme,
+          fieldId: "heading",
+          role: "heading",
+          defaultStyle: PRODUCT_MARQUEE_HEADING_DEFAULT,
+        })
+      ),
+    [section, theme]
+  );
+
+  const descriptionStyle = useMemo(
+    () =>
+      resolvedTextStyleToInlineStyle(
+        resolveTextStyle({
+          section,
+          theme,
+          fieldId: "description",
+          role: "body",
+          defaultStyle: PRODUCT_MARQUEE_DESCRIPTION_DEFAULT,
+        })
+      ),
+    [section, theme]
+  );
+
+  const cardTitleStyle = useMemo(
+    () =>
+      resolvedTextStyleToInlineStyle(
+        resolveBlockGroupTextStyle({
+          section,
+          theme,
+          groupKey: "cardTitle",
+          role: "heading",
+          defaultStyle: PRODUCT_CARD_TITLE_OVERLAY_DEFAULT,
+        })
+      ),
+    [section, theme]
+  );
+
+  const cardDescriptionStyle = useMemo(
+    () =>
+      resolvedTextStyleToInlineStyle(
+        resolveBlockGroupTextStyle({
+          section,
+          theme,
+          groupKey: "cardDescription",
+          role: "body",
+          defaultStyle: PRODUCT_CARD_DESCRIPTION_DEFAULT,
+        })
+      ),
+    [section, theme]
+  );
 
   const [active, setActive] = useState(defaultActiveIndex);
 
@@ -56,11 +128,17 @@ export default function LiquidFocusCategories({ section }: ProductMarqueeProps) 
   const transitionMs = reduceMotion ? 120 : 700;
 
   return (
-    <section className="ak-lfc" aria-label={heading}>
+    <section className="ak-lfc" aria-label={heading} style={sectionAppearanceStyle(appearance)}>
       <div className="ak-lfc__inner">
         <div className="ak-lfc__header">
-          <h2 className="ak-lfc__heading">{heading}</h2>
-          {description ? <p className="ak-lfc__sub">{description}</p> : null}
+          <h2 className="ak-lfc__heading" style={headingStyle}>
+            {heading}
+          </h2>
+          {description ? (
+            <p className="ak-lfc__sub" style={descriptionStyle}>
+              {description}
+            </p>
+          ) : null}
         </div>
 
         <div className="ak-lfc__desktop">
@@ -113,7 +191,7 @@ export default function LiquidFocusCategories({ section }: ProductMarqueeProps) 
                           ? "ak-lfc__title ak-lfc__title--active"
                           : "ak-lfc__title"
                       }
-                      style={{ transitionDuration: `${transitionMs}ms` }}
+                      style={{ ...cardTitleStyle, transitionDuration: `${transitionMs}ms` }}
                     >
                       {title || (
                         <span className="ak-lfc__placeholder">Title</span>
@@ -125,7 +203,7 @@ export default function LiquidFocusCategories({ section }: ProductMarqueeProps) 
                           ? "ak-lfc__desc ak-lfc__desc--visible"
                           : "ak-lfc__desc"
                       }
-                      style={{ transitionDuration: `${transitionMs}ms` }}
+                      style={{ ...cardDescriptionStyle, transitionDuration: `${transitionMs}ms` }}
                     >
                       {cardDescription}
                     </p>
@@ -161,12 +239,14 @@ export default function LiquidFocusCategories({ section }: ProductMarqueeProps) 
                     </div>
                     <div className="ak-lfc__mgrad" aria-hidden />
                     <div className="ak-lfc__mbody">
-                      <h3 className="ak-lfc__mtitle">
+                      <h3 className="ak-lfc__mtitle" style={cardTitleStyle}>
                         {title || (
                           <span className="ak-lfc__placeholder">Title</span>
                         )}
                       </h3>
-                      <p className="ak-lfc__mdesc">{cardDescription}</p>
+                      <p className="ak-lfc__mdesc" style={cardDescriptionStyle}>
+                        {cardDescription}
+                      </p>
                     </div>
                   </div>
                 );

@@ -3,6 +3,22 @@ import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 
 import { normalizeImageUrl } from "../HeroSection/heroSectionUtils";
 import { usePrefersReducedMotion } from "../MessageStyleTestimonialsSection/hooks";
+import { sectionAppearanceStyle } from "../../shared/sectionAppearance";
+import type { ResolvedSectionAppearance, StorefrontTheme } from "../../shared/sectionAppearance";
+import {
+  resolveBlockGroupTextStyle,
+  resolveTextStyle,
+  resolvedTextStyleToInlineStyle,
+} from "../../shared/sectionTypography";
+import {
+  FOOTER_COLUMN_HEADING_DEFAULT,
+  FOOTER_CONTACT_TEXT_DEFAULT,
+  FOOTER_LOGO_TEXT_DEFAULT,
+  FOOTER_MERCHANT_NAME_DEFAULT,
+  FOOTER_MERCHANT_SUB_LABEL_DEFAULT,
+  FOOTER_POLICY_LINK_TEXT_DEFAULT,
+  FOOTER_TAGLINE_DEFAULT,
+} from "../../shared/textStyleDefaults/footerTextStyleDefaults";
 import type {
   MerchantFooterRevealPolicyBlockProps,
   MerchantFooterRevealPropsComponent,
@@ -160,9 +176,11 @@ function normalizePolicyHref(raw: unknown): string {
 function InfoRow({
   icon: Icon,
   text,
+  style,
 }: {
   icon: React.FC<{ className?: string }>;
   text: string;
+  style?: React.CSSProperties;
 }) {
   if (!text) return null;
   return (
@@ -170,7 +188,9 @@ function InfoRow({
       <span className="ak-mf__info-icon" aria-hidden>
         <Icon className="ak-mf__info-icon-svg" />
       </span>
-      <p className="ak-mf__info-text">{text}</p>
+      <p className="ak-mf__info-text" style={style}>
+        {text}
+      </p>
     </div>
   );
 }
@@ -187,7 +207,11 @@ function collectPolicies(blocks: unknown): MerchantFooterRevealPolicyBlockProps[
 
 const FIXED_SOCIAL_ORDER: MerchantFooterRevealSocialPlatform[] = ["instagram", "facebook", "website"];
 
-export default function MerchantFooterReveal({ section }: MerchantFooterRevealPropsComponent) {
+export default function MerchantFooterReveal({
+  section,
+  appearance,
+  theme,
+}: MerchantFooterRevealPropsComponent) {
   const sectionRef = useRef<HTMLElement | null>(null);
   const reduceMotion = usePrefersReducedMotion();
 
@@ -261,6 +285,146 @@ export default function MerchantFooterReveal({ section }: MerchantFooterRevealPr
 
   const whatsappLine = whatsapp ? `WhatsApp: ${whatsapp}` : "";
 
+  const merchantNameStyle = useMemo(
+    () =>
+      resolvedTextStyleToInlineStyle(
+        resolveTextStyle({
+          section,
+          theme,
+          fieldId: "merchantName",
+          role: "heading",
+          defaultStyle: FOOTER_MERCHANT_NAME_DEFAULT,
+        })
+      ),
+    [section, theme]
+  );
+
+  const merchantSubLabelStyle = useMemo(
+    () =>
+      resolvedTextStyleToInlineStyle(
+        resolveTextStyle({
+          section,
+          theme,
+          fieldId: "merchantSubLabel",
+          role: "body",
+          defaultStyle: FOOTER_MERCHANT_SUB_LABEL_DEFAULT,
+        })
+      ),
+    [section, theme]
+  );
+
+  const taglineStyle = useMemo(
+    () =>
+      resolvedTextStyleToInlineStyle(
+        resolveTextStyle({
+          section,
+          theme,
+          fieldId: "tagline",
+          role: "body",
+          defaultStyle: FOOTER_TAGLINE_DEFAULT,
+        })
+      ),
+    [section, theme]
+  );
+
+  const socialHeadingStyle = useMemo(
+    () =>
+      resolvedTextStyleToInlineStyle(
+        resolveTextStyle({
+          section,
+          theme,
+          fieldId: "socialHeading",
+          role: "heading",
+          defaultStyle: FOOTER_COLUMN_HEADING_DEFAULT,
+        })
+      ),
+    [section, theme]
+  );
+
+  const policiesHeadingStyle = useMemo(
+    () =>
+      resolvedTextStyleToInlineStyle(
+        resolveTextStyle({
+          section,
+          theme,
+          fieldId: "policiesHeading",
+          role: "heading",
+          defaultStyle: FOOTER_COLUMN_HEADING_DEFAULT,
+        })
+      ),
+    [section, theme]
+  );
+
+  const policyLinkTextStyle = useMemo(
+    () =>
+      resolvedTextStyleToInlineStyle(
+        resolveBlockGroupTextStyle({
+          section,
+          theme,
+          groupKey: "policyLinkText",
+          role: "body",
+          defaultStyle: FOOTER_POLICY_LINK_TEXT_DEFAULT,
+        })
+      ),
+    [section, theme]
+  );
+
+  const logoTextStyle = useMemo(
+    () =>
+      resolvedTextStyleToInlineStyle(
+        resolveTextStyle({
+          section,
+          theme,
+          fieldId: "logoText",
+          role: "heading",
+          defaultStyle: FOOTER_LOGO_TEXT_DEFAULT,
+        })
+      ),
+    [section, theme]
+  );
+
+  const addressStyle = useMemo(
+    () =>
+      resolvedTextStyleToInlineStyle(
+        resolveTextStyle({
+          section,
+          theme,
+          fieldId: "address",
+          role: "body",
+          defaultStyle: FOOTER_CONTACT_TEXT_DEFAULT,
+        })
+      ),
+    [section, theme]
+  );
+
+  const phoneStyle = useMemo(
+    () =>
+      resolvedTextStyleToInlineStyle(
+        resolveTextStyle({
+          section,
+          theme,
+          fieldId: "phone",
+          role: "body",
+          defaultStyle: FOOTER_CONTACT_TEXT_DEFAULT,
+        })
+      ),
+    [section, theme]
+  );
+
+  const whatsappStyle = useMemo(
+    () =>
+      resolvedTextStyleToInlineStyle(
+        resolveTextStyle({
+          section,
+          theme,
+          fieldId: "whatsapp",
+          role: "body",
+          defaultStyle: FOOTER_CONTACT_TEXT_DEFAULT,
+        })
+      ),
+    [section, theme]
+  );
+
   const revealInner = (
     <div className="ak-mf__reveal-box">
       <div className="ak-mf__powered-wrap">
@@ -276,7 +440,7 @@ export default function MerchantFooterReveal({ section }: MerchantFooterRevealPr
   );
 
   return (
-    <section ref={sectionRef} className="ak-mf">
+    <section ref={sectionRef} className="ak-mf" style={sectionAppearanceStyle(appearance)}>
       <div className="ak-mf__ambient" aria-hidden />
       <div className="ak-mf__top-rule" aria-hidden />
 
@@ -293,31 +457,45 @@ export default function MerchantFooterReveal({ section }: MerchantFooterRevealPr
                   <img src={logoImage} alt="" className="ak-mf__logo-img" />
                 </div>
               ) : (
-                <div className="ak-mf__logo-fallback" aria-hidden>
+                <div className="ak-mf__logo-fallback" aria-hidden style={logoTextStyle}>
                   {logoText.slice(0, 3)}
                 </div>
               )}
 
               <div className="ak-mf__brand-text">
-                {merchantName ? <h2 className="ak-mf__merchant-name">{merchantName}</h2> : null}
-                {merchantSubLabel ? <p className="ak-mf__merchant-sub">{merchantSubLabel}</p> : null}
+                {merchantName ? (
+                  <h2 className="ak-mf__merchant-name" style={merchantNameStyle}>
+                    {merchantName}
+                  </h2>
+                ) : null}
+                {merchantSubLabel ? (
+                  <p className="ak-mf__merchant-sub" style={merchantSubLabelStyle}>
+                    {merchantSubLabel}
+                  </p>
+                ) : null}
               </div>
             </div>
 
-            {tagline ? <p className="ak-mf__tagline">{tagline}</p> : null}
+            {tagline ? (
+              <p className="ak-mf__tagline" style={taglineStyle}>
+                {tagline}
+              </p>
+            ) : null}
 
             {address || phone || whatsappLine ? (
               <div className="ak-mf__contact">
-                <InfoRow icon={MapPinIcon} text={address} />
-                <InfoRow icon={PhoneIcon} text={phone} />
-                <InfoRow icon={MessageCircleIcon} text={whatsappLine} />
+                <InfoRow icon={MapPinIcon} text={address} style={addressStyle} />
+                <InfoRow icon={PhoneIcon} text={phone} style={phoneStyle} />
+                <InfoRow icon={MessageCircleIcon} text={whatsappLine} style={whatsappStyle} />
               </div>
             ) : null}
           </div>
 
           {hasSocial ? (
             <div className="ak-mf__col ak-mf__col--social">
-              <p className="ak-mf__col-heading">{socialHeading}</p>
+              <p className="ak-mf__col-heading" style={socialHeadingStyle}>
+                {socialHeading}
+              </p>
               <div className="ak-mf__link-stack">
                 {socialItems.map((item, idx) => (
                   <a
@@ -342,18 +520,20 @@ export default function MerchantFooterReveal({ section }: MerchantFooterRevealPr
 
           {hasPolicies ? (
             <div className="ak-mf__col ak-mf__col--policies">
-              <p className="ak-mf__col-heading">{policiesHeading}</p>
+              <p className="ak-mf__col-heading" style={policiesHeadingStyle}>
+                {policiesHeading}
+              </p>
               <div className="ak-mf__link-stack">
                 {policyItems.map((item, idx) => (
                   <div key={`policy-${idx}-${item.text}`} className="ak-mf__policy-row">
                     {item.link ? (
                       <a href={item.link} className="ak-mf__link-row">
-                        <span>{item.text}</span>
+                        <span style={policyLinkTextStyle}>{item.text}</span>
                         <ChevronRightIcon className="ak-mf__chev" />
                       </a>
                     ) : (
                       <div className="ak-mf__link-row ak-mf__link-row--static">
-                        <span>{item.text}</span>
+                        <span style={policyLinkTextStyle}>{item.text}</span>
                         <ChevronRightIcon className="ak-mf__chev ak-mf__chev--muted" />
                       </div>
                     )}

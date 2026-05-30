@@ -2,14 +2,10 @@ import React, { useMemo } from "react";
 
 import type { MarqueeLineProps } from "./types";
 
-/**
- * Statically expands items so each marquee half is wide enough to fill common
- * viewports. No DOM measurement — purely data-side duplication for continuity.
- */
-function getCopiesPerSequence(items: string[], large: boolean): number {
+function getCopiesPerSequence(items: { text: string }[], large: boolean): number {
   const count = items.length;
   const avgChars =
-    items.reduce((sum, text) => sum + text.length, 0) / Math.max(count, 1);
+    items.reduce((sum, item) => sum + item.text.length, 0) / Math.max(count, 1);
 
   let copies =
     count === 1
@@ -30,15 +26,15 @@ function getCopiesPerSequence(items: string[], large: boolean): number {
   return copies;
 }
 
-function buildMarqueeSequence(items: string[], large: boolean): string[] {
+function buildMarqueeSequence(items: MarqueeLineProps["items"], large: boolean) {
   if (items.length === 0) return [];
 
   const copies = getCopiesPerSequence(items, large);
-  const expanded: string[] = [];
+  const expanded: MarqueeLineProps["items"] = [];
 
   for (let copy = 0; copy < copies; copy += 1) {
-    items.forEach((text) => {
-      expanded.push(text);
+    items.forEach((item) => {
+      expanded.push(item);
     });
   }
 
@@ -60,9 +56,9 @@ export default function MarqueeLine({
 
   const loopItems = useMemo(
     () =>
-      [...sequence, ...sequence].map((text, index) => ({
-        text,
-        key: `${text}-${index}`,
+      [...sequence, ...sequence].map((item, index) => ({
+        ...item,
+        key: `${item.id || item.text}-${index}`,
       })),
     [sequence]
   );
@@ -91,7 +87,7 @@ export default function MarqueeLine({
         }
       >
         {loopItems.map((item) => (
-          <span key={item.key} className="feature-marquee-item">
+          <span key={item.key} className="feature-marquee-item" style={item.style}>
             {item.text}
             <span className="feature-marquee-dot" aria-hidden>
               •

@@ -8,6 +8,17 @@ import {
 } from "framer-motion";
 
 import { normalizeImageUrl } from "../HeroSection/heroSectionUtils";
+import { sectionAppearanceStyle } from "../../shared/sectionAppearance";
+import type { ResolvedSectionAppearance, StorefrontTheme } from "../../shared/sectionAppearance";
+import {
+  resolveTextStyle,
+  resolvedTextStyleToInlineStyle,
+} from "../../shared/sectionTypography";
+import {
+  NSP_POKER_DESCRIPTION_DEFAULT,
+  NSP_POKER_EYEBROW_DEFAULT,
+  NSP_POKER_HEADING_DEFAULT,
+} from "../../shared/textStyleDefaults/nspSignatureHeroTextStyleDefaults";
 
 export type PokerRowRevealHeroBlock = {
   id?: string;
@@ -30,6 +41,8 @@ export type PokerRowRevealHeroSectionDoc = {
 
 export type PokerRowRevealHeroProps = {
   section: PokerRowRevealHeroSectionDoc;
+  appearance?: ResolvedSectionAppearance | null;
+  theme?: StorefrontTheme | null;
 };
 
 const CARD_COUNT = 5;
@@ -247,10 +260,12 @@ function PokerRowRevealHeroInner({
   section,
   sectionRef,
   scrollRoot,
+  theme,
 }: {
   section: PokerRowRevealHeroSectionDoc;
   sectionRef: React.RefObject<HTMLElement>;
   scrollRoot: ScrollRoot;
+  theme?: StorefrontTheme | null;
 }) {
   const p = section.settings?.props ?? {};
   const blocks = section.settings?.blocks ?? [];
@@ -292,6 +307,48 @@ function PokerRowRevealHeroInner({
   const description = String(p.description ?? "").trim();
   const showSparklesIcon = p.showSparklesIcon !== false;
 
+  const eyebrowStyle = useMemo(
+    () =>
+      resolvedTextStyleToInlineStyle(
+        resolveTextStyle({
+          section,
+          theme,
+          fieldId: "eyebrow",
+          role: "body",
+          defaultStyle: NSP_POKER_EYEBROW_DEFAULT,
+        })
+      ),
+    [section, theme]
+  );
+
+  const headingStyle = useMemo(
+    () =>
+      resolvedTextStyleToInlineStyle(
+        resolveTextStyle({
+          section,
+          theme,
+          fieldId: "heading",
+          role: "heading",
+          defaultStyle: NSP_POKER_HEADING_DEFAULT,
+        })
+      ),
+    [section, theme]
+  );
+
+  const descriptionStyle = useMemo(
+    () =>
+      resolvedTextStyleToInlineStyle(
+        resolveTextStyle({
+          section,
+          theme,
+          fieldId: "description",
+          role: "body",
+          defaultStyle: NSP_POKER_DESCRIPTION_DEFAULT,
+        })
+      ),
+    [section, theme]
+  );
+
   return (
     <div className="ak-nsp-poker-hero__sticky">
       <div className="ak-nsp-poker-hero__inner">
@@ -303,7 +360,7 @@ function PokerRowRevealHeroInner({
           className="ak-nsp-poker-hero__copy"
         >
           {(showSparklesIcon || eyebrow) && (
-            <div className="ak-nsp-poker-hero__eyebrow">
+            <div className="ak-nsp-poker-hero__eyebrow" style={eyebrowStyle}>
               {showSparklesIcon ? (
                 <span aria-hidden className="ak-nsp-poker-hero__eyebrowIcon">
                   *
@@ -312,9 +369,15 @@ function PokerRowRevealHeroInner({
               {eyebrow}
             </div>
           )}
-          {heading ? <h2 className="ak-nsp-poker-hero__heading">{heading}</h2> : null}
+          {heading ? (
+            <h2 className="ak-nsp-poker-hero__heading" style={headingStyle}>
+              {heading}
+            </h2>
+          ) : null}
           {description ? (
-            <p className="ak-nsp-poker-hero__description">{description}</p>
+            <p className="ak-nsp-poker-hero__description" style={descriptionStyle}>
+              {description}
+            </p>
           ) : null}
         </motion.div>
 
@@ -326,7 +389,11 @@ function PokerRowRevealHeroInner({
   );
 }
 
-export default function PokerRowRevealHero({ section }: PokerRowRevealHeroProps) {
+export default function PokerRowRevealHero({
+  section,
+  appearance,
+  theme,
+}: PokerRowRevealHeroProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const [scrollRoot, setScrollRoot] = useState<ScrollRoot | null>(null);
   const p = section.settings?.props ?? {};
@@ -347,13 +414,14 @@ export default function PokerRowRevealHero({ section }: PokerRowRevealHeroProps)
     <section
       ref={sectionRef}
       className="ak-nsp-poker-hero"
-      style={{ height: sectionHeight }}
+      style={{ height: sectionHeight, ...sectionAppearanceStyle(appearance) }}
     >
       {scrollRoot ? (
         <PokerRowRevealHeroInner
           section={section}
           sectionRef={sectionRef}
           scrollRoot={scrollRoot}
+          theme={theme}
         />
       ) : null}
     </section>

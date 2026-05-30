@@ -19,8 +19,12 @@ export type MinimalTimelineBenefitsControls = {
   showActiveRailFill?: boolean;
 };
 
+import type { ResolvedSectionAppearance, SectionAppearance, StorefrontTheme } from "../../shared/sectionAppearance";
+
 export type MinimalTimelineBenefitsSettings = {
-  props?: MinimalTimelineBenefitsControls;
+  props?: MinimalTimelineBenefitsControls & {
+    appearance?: SectionAppearance;
+  };
   blocks?: MinimalTimelineBenefitBlock[];
 };
 
@@ -33,4 +37,6 @@ export type MinimalTimelineBenefitsSectionDoc = {
 
 export type MinimalTimelineBenefitsProps = {
   section: MinimalTimelineBenefitsSectionDoc;
+  appearance?: ResolvedSectionAppearance | null;
+  theme?: StorefrontTheme | null;
 };

@@ -6,6 +6,23 @@ import {
   resolveHeaderNavActiveLabel,
   subscribeToPathname,
 } from "../HeroSection/heroSectionUtils";
+import { sectionAppearanceStyle } from "../../shared/sectionAppearance";
+import type { ResolvedSectionAppearance, StorefrontTheme } from "../../shared/sectionAppearance";
+import {
+  headerChromeStyles,
+  logoFocusedHeaderAppearanceCssVars,
+  resolveHeaderAppearance,
+} from "../../shared/headerAppearance";
+import {
+  resolveBlockGroupTextStyle,
+  resolveTextStyle,
+  resolvedTextStyleToInlineStyle,
+} from "../../shared/sectionTypography";
+import {
+  HEADER_BRAND_NAME_DEFAULT,
+  HEADER_BRAND_SUBTITLE_DEFAULT,
+  HEADER_NAV_LINK_TEXT_DEFAULT,
+} from "../../shared/textStyleDefaults/headerTextStyleDefaults";
 
 export type LogoFocusedHeaderNavBlockProps = {
   label?: string;
@@ -32,7 +49,9 @@ export type LogoFocusedHeaderControls = {
 };
 
 export type LogoFocusedHeaderSettings = {
-  props?: LogoFocusedHeaderControls;
+  props?: LogoFocusedHeaderControls & {
+    appearance?: import("../../shared/sectionAppearance").SectionAppearance;
+  };
   blocks?: LogoFocusedHeaderNavBlock[];
 };
 
@@ -45,6 +64,8 @@ export type LogoFocusedHeaderSectionDoc = {
 
 export type LogoFocusedHeaderProps = {
   section: LogoFocusedHeaderSectionDoc;
+  appearance?: ResolvedSectionAppearance | null;
+  theme?: StorefrontTheme | null;
   cartCount?: number | string;
   onSearchChnage?: (search?: string) => void;
   onProfileClick?: (data?: any) => void;
@@ -172,16 +193,37 @@ type NavToggleProps = {
   items: { label: string; link?: string }[];
   active: string;
   onSelect: (label: string) => void;
+  linkFontStyle?: React.CSSProperties;
+  navShellStyle?: React.CSSProperties;
+  inactivePillStyle?: React.CSSProperties;
+  activePillStyle?: React.CSSProperties;
 };
 
-function NavToggle({ items, active, onSelect }: NavToggleProps) {
+function NavToggle({
+  items,
+  active,
+  onSelect,
+  linkFontStyle,
+  navShellStyle,
+  inactivePillStyle,
+  activePillStyle,
+}: NavToggleProps) {
   if (items.length === 0) return null;
 
   return (
-    <div className="ak-lfh__navToggle" role="tablist" aria-label="Primary navigation">
+    <div
+      className="ak-lfh__navToggle"
+      role="tablist"
+      aria-label="Primary navigation"
+      style={navShellStyle}
+    >
       {items.map((item, idx) => {
         const isActive = active === item.label;
         const href = safeText(item.link);
+        const pillStyle = {
+          ...linkFontStyle,
+          ...(isActive ? activePillStyle : inactivePillStyle),
+        };
         return (
           href ? (
             <a
@@ -194,6 +236,7 @@ function NavToggle({ items, active, onSelect }: NavToggleProps) {
                   ? "ak-lfh__navPill ak-lfh__navPill--active"
                   : "ak-lfh__navPill"
               }
+              style={pillStyle}
               onClick={(e) => {
                 onSelect(item.label);
                 handleClientNavClick(e, href);
@@ -212,6 +255,7 @@ function NavToggle({ items, active, onSelect }: NavToggleProps) {
                   ? "ak-lfh__navPill ak-lfh__navPill--active"
                   : "ak-lfh__navPill"
               }
+              style={pillStyle}
               onClick={() => onSelect(item.label)}
             >
               {item.label}
@@ -223,7 +267,15 @@ function NavToggle({ items, active, onSelect }: NavToggleProps) {
   );
 }
 
-export default function LogoFocusedHeader({ section, cartCount, onSearchChnage, onProfileClick, onCartClick }: LogoFocusedHeaderProps) {
+export default function LogoFocusedHeader({
+  section,
+  appearance,
+  theme,
+  cartCount,
+  onSearchChnage,
+  onProfileClick,
+  onCartClick,
+}: LogoFocusedHeaderProps) {
   const props = section?.settings?.props ?? {};
   const rawBlocks = section?.settings?.blocks;
 
@@ -265,8 +317,71 @@ export default function LogoFocusedHeader({ section, cartCount, onSearchChnage, 
   const showSubtitle = props.showBrandSubtitle !== false;
   const showProfile = props.showProfileIcon !== false;
   const showCart = props.showCartIcon !== false;
-  const cartBadge = safeText(props.cartCount);
   const sticky = props.stickyHeader !== false;
+
+  const brandNameStyle = useMemo(
+    () =>
+      resolvedTextStyleToInlineStyle(
+        resolveTextStyle({
+          section,
+          theme,
+          fieldId: "brandName",
+          role: "heading",
+          defaultStyle: HEADER_BRAND_NAME_DEFAULT,
+        })
+      ),
+    [section, theme]
+  );
+
+  const brandSubtitleStyle = useMemo(
+    () =>
+      resolvedTextStyleToInlineStyle(
+        resolveTextStyle({
+          section,
+          theme,
+          fieldId: "brandSubtitle",
+          role: "body",
+          defaultStyle: HEADER_BRAND_SUBTITLE_DEFAULT,
+        })
+      ),
+    [section, theme]
+  );
+
+  const navLinkFontStyle = useMemo(
+    () => {
+      const resolved = resolveBlockGroupTextStyle({
+        section,
+        theme,
+        groupKey: "navLinkText",
+        role: "body",
+        defaultStyle: HEADER_NAV_LINK_TEXT_DEFAULT,
+      });
+      return {
+        fontFamily: resolved.fontFamily,
+        fontWeight: resolved.fontWeight,
+        fontSize: resolved.fontSize,
+      };
+    },
+    [section, theme]
+  );
+
+  const resolvedHeaderAppearance = useMemo(
+    () => resolveHeaderAppearance({ section, theme }),
+    [section, theme]
+  );
+
+  const headerChrome = useMemo(
+    () => headerChromeStyles(resolvedHeaderAppearance),
+    [resolvedHeaderAppearance]
+  );
+
+  const headerBarStyle = useMemo(
+    () => ({
+      ...sectionAppearanceStyle(appearance),
+      ...logoFocusedHeaderAppearanceCssVars(resolvedHeaderAppearance),
+    }),
+    [appearance, resolvedHeaderAppearance]
+  );
 
   const showSearch = pathname?.startsWith("/store");
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -357,7 +472,7 @@ export default function LogoFocusedHeader({ section, cartCount, onSearchChnage, 
 
   return (
     <header className={`ak-lfh ${sticky ? "ak-lfh__bar--sticky" : ""}`}>
-      <div className="ak-lfh__bar">
+      <div className="ak-lfh__bar" style={headerBarStyle}>
         <div className="ak-lfh__row">
           <div className="ak-lfh__brand">
             <div className="ak-lfh__brandMark">
@@ -383,6 +498,7 @@ export default function LogoFocusedHeader({ section, cartCount, onSearchChnage, 
                   type="button"
                   className="ak-lfh__iconBtn ak-lfh__iconBtn--profileMobile"
                   aria-label="Account"
+                  style={headerChrome.iconButton}
                   onClick={() => onProfileClick?.()}
                 >
                   <IconUser />
@@ -390,15 +506,27 @@ export default function LogoFocusedHeader({ section, cartCount, onSearchChnage, 
               ) : null}
             </div>
             <div className="ak-lfh__brandText">
-              <div className="ak-lfh__brandName">{brandName}</div>
+              <div className="ak-lfh__brandName" style={brandNameStyle}>
+                {brandName}
+              </div>
               {showSubtitle ? (
-                <div className="ak-lfh__brandSub">{brandSubtitle}</div>
+                <div className="ak-lfh__brandSub" style={brandSubtitleStyle}>
+                  {brandSubtitle}
+                </div>
               ) : null}
             </div>
           </div>
 
           <div className="ak-lfh__center">
-            <NavToggle items={navItems} active={activeLabel} onSelect={setActiveLabel} />
+            <NavToggle
+              items={navItems}
+              active={activeLabel}
+              onSelect={setActiveLabel}
+              linkFontStyle={navLinkFontStyle}
+              navShellStyle={headerChrome.navShell}
+              inactivePillStyle={headerChrome.inactivePill}
+              activePillStyle={headerChrome.activePill}
+            />
           </div>
 
           <div className="ak-lfh__actions">
@@ -413,6 +541,7 @@ export default function LogoFocusedHeader({ section, cartCount, onSearchChnage, 
                     className="ak-lfh__iconBtn"
                     aria-label="Search"
                     aria-expanded={false}
+                    style={headerChrome.iconButton}
                     onClick={() => setSearchOpen(true)}
                   >
                     <IconSearch />
@@ -468,6 +597,7 @@ export default function LogoFocusedHeader({ section, cartCount, onSearchChnage, 
                 id="profile-button"
                 className="ak-lfh__iconBtn ak-lfh__iconBtn--profileDesktop"
                 aria-label="Account"
+                style={headerChrome.iconButton}
                 onClick={() => onProfileClick?.()}
               >
                 <IconUser />
@@ -478,10 +608,13 @@ export default function LogoFocusedHeader({ section, cartCount, onSearchChnage, 
                 type="button"
                 className="ak-lfh__iconBtn"
                 aria-label="Shopping cart"
+                style={headerChrome.iconButton}
                 onClick={() => onCartClick?.()}
               >
                 <IconBag />
-                <span className="ak-lfh__badge">{cartCount ?? 0}</span>
+                <span className="ak-lfh__badge" style={headerChrome.cartBadge}>
+                  {cartCount ?? 0}
+                </span>
               </button>
             ) : null}
           </div>

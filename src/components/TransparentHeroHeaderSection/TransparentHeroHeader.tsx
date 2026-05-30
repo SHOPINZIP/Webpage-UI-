@@ -5,6 +5,24 @@ import {
   resolveHeaderNavActiveLabel,
   subscribeToPathname,
 } from "../HeroSection/heroSectionUtils";
+import { sectionAppearanceStyle } from "../../shared/sectionAppearance";
+import type { ResolvedSectionAppearance, StorefrontTheme } from "../../shared/sectionAppearance";
+import {
+  headerChromeStyles,
+  hasHeaderAppearanceOverrides,
+  resolveHeaderAppearance,
+  transparentHeroHeaderAppearanceCssVars,
+} from "../../shared/headerAppearance";
+import {
+  resolveBlockGroupTextStyle,
+  resolveTextStyle,
+  resolvedTextStyleToInlineStyle,
+} from "../../shared/sectionTypography";
+import {
+  HEADER_BRAND_NAME_DEFAULT,
+  HEADER_BRAND_SUBTITLE_DEFAULT,
+  HEADER_NAV_LINK_TEXT_LIGHT_DEFAULT,
+} from "../../shared/textStyleDefaults/headerTextStyleDefaults";
 
 export type TransparentHeroHeaderNavBlockProps = {
   label?: string;
@@ -19,6 +37,8 @@ export type TransparentHeroHeaderNavBlock = {
 
 export type TransparentHeroHeaderControls = {
   logoText?: string;
+  brandName?: string;
+  brandSubtitle?: string;
   logoImage?: string;
   showProfileIcon?: boolean;
   showCartIcon?: boolean;
@@ -31,7 +51,9 @@ export type TransparentHeroHeaderControls = {
 };
 
 export type TransparentHeroHeaderSettings = {
-  props?: TransparentHeroHeaderControls;
+  props?: TransparentHeroHeaderControls & {
+    appearance?: import("../../shared/sectionAppearance").SectionAppearance;
+  };
   blocks?: TransparentHeroHeaderNavBlock[];
 };
 
@@ -44,6 +66,8 @@ export type TransparentHeroHeaderSectionDoc = {
 
 export type TransparentHeroHeaderProps = {
   section: TransparentHeroHeaderSectionDoc;
+  appearance?: ResolvedSectionAppearance | null;
+  theme?: StorefrontTheme | null;
   cartCount?: number | string;
   onSearchChnage?: (search?: string) => void;
   onProfileClick?: (data?: any) => void;
@@ -152,9 +176,22 @@ type NavPillProps = {
   active: string;
   onSelect: (label: string) => void;
   scrolled: boolean;
+  linkFontStyle?: React.CSSProperties;
+  navShellStyle?: React.CSSProperties;
+  inactivePillStyle?: React.CSSProperties;
+  activePillStyle?: React.CSSProperties;
 };
 
-function NavPills({ items, active, onSelect, scrolled }: NavPillProps) {
+function NavPills({
+  items,
+  active,
+  onSelect,
+  scrolled,
+  linkFontStyle,
+  navShellStyle,
+  inactivePillStyle,
+  activePillStyle,
+}: NavPillProps) {
   if (items.length === 0) return null;
 
   return (
@@ -165,6 +202,7 @@ function NavPills({ items, active, onSelect, scrolled }: NavPillProps) {
       ].join(" ")}
       role="tablist"
       aria-label="Primary navigation"
+      style={navShellStyle}
     >
       {items.map((item, idx) => {
         const isActive = active === item.label;
@@ -176,6 +214,10 @@ function NavPills({ items, active, onSelect, scrolled }: NavPillProps) {
         ]
           .filter(Boolean)
           .join(" ");
+        const pillStyle = {
+          ...linkFontStyle,
+          ...(isActive ? activePillStyle : inactivePillStyle),
+        };
 
         return href ? (
           <a
@@ -184,6 +226,7 @@ function NavPills({ items, active, onSelect, scrolled }: NavPillProps) {
             role="tab"
             aria-selected={isActive}
             className={pillClass}
+            style={pillStyle}
             onClick={() => onSelect(item.label)}
           >
             {item.label}
@@ -195,6 +238,7 @@ function NavPills({ items, active, onSelect, scrolled }: NavPillProps) {
             role="tab"
             aria-selected={isActive}
             className={pillClass}
+            style={pillStyle}
             onClick={() => onSelect(item.label)}
           >
             {item.label}
@@ -205,7 +249,15 @@ function NavPills({ items, active, onSelect, scrolled }: NavPillProps) {
   );
 }
 
-export default function TransparentHeroHeader({ section, cartCount, onSearchChnage, onProfileClick, onCartClick }: TransparentHeroHeaderProps) {
+export default function TransparentHeroHeader({
+  section,
+  appearance,
+  theme,
+  cartCount,
+  onSearchChnage,
+  onProfileClick,
+  onCartClick,
+}: TransparentHeroHeaderProps) {
   const props = section?.settings?.props ?? {};
   const rawBlocks = section?.settings?.blocks;
 
@@ -284,9 +336,73 @@ export default function TransparentHeroHeader({ section, cartCount, onSearchChna
   const borderAlpha = enableTransition ? progress * 0.08 : 0;
 
   const logoText = safeText(props.logoText) || "Logo";
+  const brandSubtitle = safeText(props.brandSubtitle);
   const logoSrc = normalizeImageUrl(props.logoImage);
   const showProfile = props.showProfileIcon !== false;
   const showCart = props.showCartIcon !== false;
+
+  const brandNameStyle = useMemo(
+    () =>
+      resolvedTextStyleToInlineStyle(
+        resolveTextStyle({
+          section,
+          theme,
+          fieldId: "brandName",
+          role: "heading",
+          defaultStyle: HEADER_BRAND_NAME_DEFAULT,
+        })
+      ),
+    [section, theme]
+  );
+
+  const brandSubtitleStyle = useMemo(
+    () =>
+      resolvedTextStyleToInlineStyle(
+        resolveTextStyle({
+          section,
+          theme,
+          fieldId: "brandSubtitle",
+          role: "body",
+          defaultStyle: HEADER_BRAND_SUBTITLE_DEFAULT,
+        })
+      ),
+    [section, theme]
+  );
+
+  const navLinkFontStyle = useMemo(
+    () => {
+      const resolved = resolveBlockGroupTextStyle({
+        section,
+        theme,
+        groupKey: "navLinkText",
+        role: "body",
+        defaultStyle: HEADER_NAV_LINK_TEXT_LIGHT_DEFAULT,
+      });
+      return {
+        fontFamily: resolved.fontFamily,
+        fontWeight: resolved.fontWeight,
+        fontSize: resolved.fontSize,
+      };
+    },
+    [section, theme]
+  );
+
+  const useHeaderChrome = hasHeaderAppearanceOverrides(section);
+  const resolvedHeaderAppearance = useMemo(
+    () => resolveHeaderAppearance({ section, theme }),
+    [section, theme]
+  );
+  const headerChrome = useMemo(
+    () => (useHeaderChrome ? headerChromeStyles(resolvedHeaderAppearance) : null),
+    [useHeaderChrome, resolvedHeaderAppearance]
+  );
+  const headerChromeVars = useMemo(
+    () =>
+      useHeaderChrome
+        ? transparentHeroHeaderAppearanceCssVars(resolvedHeaderAppearance)
+        : undefined,
+    [useHeaderChrome, resolvedHeaderAppearance]
+  );
 
   const showSearch = pathname?.startsWith("/store");
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -383,11 +499,16 @@ export default function TransparentHeroHeader({ section, cartCount, onSearchChna
   const iconBtnClass = ["ak-thh__iconBtn", scrolled ? "ak-thh__iconBtn--scrolled" : "ak-thh__iconBtn--top"].join(" ");
 
   const headerStyle: React.CSSProperties = {
+    ...sectionAppearanceStyle(appearance),
+    ...headerChromeVars,
     backgroundColor: `rgba(10, 10, 12, ${bgAlpha})`,
     backdropFilter: blurPx > 0 ? `blur(${blurPx}px)` : undefined,
     WebkitBackdropFilter: blurPx > 0 ? `blur(${blurPx}px)` : undefined,
     boxShadow: `inset 0 -1px 0 rgba(255,255,255,${borderAlpha})`,
   };
+
+  const iconButtonStyle = headerChrome?.iconButton;
+  const cartBadgeStyle = headerChrome?.cartBadge;
 
   const positionClass = sticky ? "ak-thh__bar--sticky" : "ak-thh__bar--static";
 
@@ -411,9 +532,16 @@ export default function TransparentHeroHeader({ section, cartCount, onSearchChna
                   loading="lazy"
                 />
               ) : (
-                <span className="ak-thh__logoText">{logoText}</span>
+                <span className="ak-thh__logoText" style={brandNameStyle}>
+                  {logoText}
+                </span>
               )}
             </div>
+            {brandSubtitle ? (
+              <span className="ak-thh__brandSub" style={brandSubtitleStyle}>
+                {brandSubtitle}
+              </span>
+            ) : null}
           </div>
 
           <div className="ak-thh__center">
@@ -422,6 +550,10 @@ export default function TransparentHeroHeader({ section, cartCount, onSearchChna
               active={activeLabel}
               onSelect={setActiveLabel}
               scrolled={scrolled}
+              linkFontStyle={navLinkFontStyle}
+              navShellStyle={headerChrome?.navShell}
+              inactivePillStyle={headerChrome?.inactivePill}
+              activePillStyle={headerChrome?.activePill}
             />
           </div>
 
@@ -437,6 +569,7 @@ export default function TransparentHeroHeader({ section, cartCount, onSearchChna
                     className={iconBtnClass}
                     aria-label="Search"
                     aria-expanded={false}
+                    style={iconButtonStyle}
                     onClick={() => setSearchOpen(true)}
                   >
                     <IconSearch />
@@ -490,6 +623,7 @@ export default function TransparentHeroHeader({ section, cartCount, onSearchChna
                 id="profile-button"
                 className={iconBtnClass}
                 aria-label="Account"
+                style={iconButtonStyle}
                 onClick={() => onProfileClick?.()}
               >
                 <IconUser />
@@ -500,10 +634,13 @@ export default function TransparentHeroHeader({ section, cartCount, onSearchChna
                 type="button"
                 className={iconBtnClass}
                 aria-label="Shopping cart"
+                style={iconButtonStyle}
                 onClick={() => onCartClick?.()}
               >
                 <IconBag />
-                <span className="ak-thh__badge">{cartCount ?? 0}</span>
+                <span className="ak-thh__badge" style={cartBadgeStyle}>
+                  {cartCount ?? 0}
+                </span>
               </button>
             ) : null}
           </div>

@@ -96,13 +96,15 @@
 }
 
 .ak-thh__navShell--top {
-  background: rgba(255, 255, 255, 0.08);
+  background: var(--ak-thh-nav-container-bg, rgba(255, 255, 255, 0.08));
+  border: 1px solid var(--ak-thh-nav-border, transparent);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
 }
 
 .ak-thh__navShell--scrolled {
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--ak-thh-nav-container-bg, rgba(255, 255, 255, 0.1));
+  border: 1px solid var(--ak-thh-nav-border, transparent);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
 }
@@ -121,28 +123,21 @@
 }
 
 .ak-thh__navPill--top {
-  color: rgba(255, 255, 255, 0.8);
-}
-
-.ak-thh__navPill--top:hover {
-  background: rgba(255, 255, 255, 0.12);
+  color: var(--ak-thh-nav-text, rgba(255, 255, 255, 0.8));
 }
 
 .ak-thh__navPill--scrolled {
-  color: rgba(255, 255, 255, 0.8);
-}
-
-.ak-thh__navPill--scrolled:hover {
-  background: rgba(255, 255, 255, 0.1);
+  color: var(--ak-thh-nav-text, rgba(255, 255, 255, 0.8));
 }
 
 .ak-thh__navPill--active {
-  background: #fff;
-  color: #0a0a0a;
+  background: var(--ak-thh-nav-active-bg, #fff);
+  color: var(--ak-thh-nav-active-text, #0a0a0a);
 }
 
 .ak-thh__navPill--active:hover {
-  background: #fff;
+  background: var(--ak-thh-nav-active-bg, #fff);
+  color: var(--ak-thh-nav-active-text, #0a0a0a);
 }
 
 .ak-thh__actions {
@@ -170,13 +165,17 @@
 }
 
 .ak-thh__iconBtn--top {
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--ak-thh-icon-bg, rgba(255, 255, 255, 0.1));
+  color: var(--ak-thh-icon-color, #fff);
+  border: 1px solid var(--ak-thh-icon-border, transparent);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
 }
 
 .ak-thh__iconBtn--scrolled {
-  background: rgba(255, 255, 255, 0.12);
+  background: var(--ak-thh-icon-bg, rgba(255, 255, 255, 0.12));
+  color: var(--ak-thh-icon-color, #fff);
+  border: 1px solid var(--ak-thh-icon-border, transparent);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
 }
@@ -189,8 +188,8 @@
   height: 1.1rem;
   padding: 0 4px;
   border-radius: 9999px;
-  background: #fff;
-  color: #0a0a0a;
+  background: var(--ak-thh-badge-bg, #fff);
+  color: var(--ak-thh-badge-text, #0a0a0a);
   font-size: 10px;
   font-weight: 700;
   line-height: 1.1rem;

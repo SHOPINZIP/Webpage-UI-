@@ -1,5 +1,17 @@
 import React, { useMemo } from "react";
 
+import { sectionAppearanceStyle } from "../../shared/sectionAppearance";
+import {
+  resolveBlockGroupTextStyle,
+  resolveTextStyle,
+  resolvedTextStyleToInlineStyle,
+} from "../../shared/sectionTypography";
+import {
+  TESTIMONIAL_BACKGROUND_WORD_DEFAULT,
+  TESTIMONIAL_CUSTOMER_NAME_DEFAULT,
+  TESTIMONIAL_CUSTOMER_ROLE_DEFAULT,
+  TESTIMONIAL_QUOTE_TEXT_DEFAULT,
+} from "../../shared/textStyleDefaults/testimonialTextStyleDefaults";
 import { usePrefersReducedMotion } from "../MessageStyleTestimonialsSection/hooks";
 import type { StackedTestimonialsProps, StackedTestimonialItemProps } from "./types";
 
@@ -52,10 +64,16 @@ function StackedCard({
   item,
   index,
   reduceMotion,
+  quoteStyle,
+  nameStyle,
+  roleStyle,
 }: {
   item: StackedTestimonialItemProps;
   index: number;
   reduceMotion: boolean;
+  quoteStyle?: React.CSSProperties;
+  nameStyle?: React.CSSProperties;
+  roleStyle?: React.CSSProperties;
 }) {
   const name = String(item?.name ?? "").trim();
   const role = String(item?.role ?? "").trim();
@@ -76,7 +94,7 @@ function StackedCard({
         <div className="ak-stacked-t__card-inner">
           <StarRow count={stars} />
 
-          <p className="ak-stacked-t__quote">
+          <p className="ak-stacked-t__quote" style={quoteStyle}>
             {quote ? (
               <>
                 <span className="ak-stacked-t__quote-mark">“</span>
@@ -89,10 +107,10 @@ function StackedCard({
           </p>
 
           <div className="ak-stacked-t__footer">
-            <div className="ak-stacked-t__name">
+            <div className="ak-stacked-t__name" style={nameStyle}>
               {name || <span className="ak-stacked-t__placeholder">Name</span>}
             </div>
-            <div className="ak-stacked-t__role">
+            <div className="ak-stacked-t__role" style={roleStyle}>
               {role || <span className="ak-stacked-t__placeholder">Role</span>}
             </div>
           </div>
@@ -102,7 +120,11 @@ function StackedCard({
   );
 }
 
-export default function StackedTestimonials({ section }: StackedTestimonialsProps) {
+export default function StackedTestimonials({
+  section,
+  appearance,
+  theme,
+}: StackedTestimonialsProps) {
   const reduceMotion = usePrefersReducedMotion();
   const props = section?.settings?.props ?? {};
   const headingWord = String(props.backgroundWord ?? "Testimonial").trim() || "Testimonial";
@@ -126,17 +148,83 @@ export default function StackedTestimonials({ section }: StackedTestimonialsProp
     );
   });
 
+  const backgroundWordStyle = useMemo(
+    () =>
+      resolvedTextStyleToInlineStyle(
+        resolveTextStyle({
+          section,
+          theme,
+          fieldId: "backgroundWord",
+          role: "heading",
+          defaultStyle: TESTIMONIAL_BACKGROUND_WORD_DEFAULT,
+        })
+      ),
+    [section, theme]
+  );
+
+  const quoteTextStyle = useMemo(
+    () =>
+      resolvedTextStyleToInlineStyle(
+        resolveBlockGroupTextStyle({
+          section,
+          theme,
+          groupKey: "quoteText",
+          role: "body",
+          defaultStyle: TESTIMONIAL_QUOTE_TEXT_DEFAULT,
+        })
+      ),
+    [section, theme]
+  );
+
+  const customerNameStyle = useMemo(
+    () =>
+      resolvedTextStyleToInlineStyle(
+        resolveBlockGroupTextStyle({
+          section,
+          theme,
+          groupKey: "customerName",
+          role: "heading",
+          defaultStyle: TESTIMONIAL_CUSTOMER_NAME_DEFAULT,
+        })
+      ),
+    [section, theme]
+  );
+
+  const customerRoleStyle = useMemo(
+    () =>
+      resolvedTextStyleToInlineStyle(
+        resolveBlockGroupTextStyle({
+          section,
+          theme,
+          groupKey: "customerRole",
+          role: "body",
+          defaultStyle: TESTIMONIAL_CUSTOMER_ROLE_DEFAULT,
+        })
+      ),
+    [section, theme]
+  );
+
   return (
-    <section className="ak-stacked-t" aria-label={headingWord}>
+    <section
+      className="ak-stacked-t"
+      aria-label={headingWord}
+      style={sectionAppearanceStyle(appearance)}
+    >
       <div className="ak-stacked-t__bg" aria-hidden />
 
       <div className="ak-stacked-t__container">
         {showWord ? (
           <div className="ak-stacked-t__wordmark-wrap">
-            <div className="ak-stacked-t__wordmark ak-stacked-t__wordmark--sm">
+            <div
+              className="ak-stacked-t__wordmark ak-stacked-t__wordmark--sm"
+              style={backgroundWordStyle}
+            >
               {headingWord}
             </div>
-            <div className="ak-stacked-t__wordmark ak-stacked-t__wordmark--lg">
+            <div
+              className="ak-stacked-t__wordmark ak-stacked-t__wordmark--lg"
+              style={backgroundWordStyle}
+            >
               {headingWord}
             </div>
           </div>
@@ -152,6 +240,9 @@ export default function StackedTestimonials({ section }: StackedTestimonialsProp
                 item={block.props ?? {}}
                 index={index}
                 reduceMotion={reduceMotion}
+                quoteStyle={quoteTextStyle}
+                nameStyle={customerNameStyle}
+                roleStyle={customerRoleStyle}
               />
             ))
           )}

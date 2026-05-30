@@ -1,6 +1,19 @@
 import React, { useMemo } from "react";
 
 import { usePrefersReducedMotion } from "../MessageStyleTestimonialsSection/hooks";
+import { sectionAppearanceStyle } from "../../shared/sectionAppearance";
+import {
+  resolveBlockGroupTextStyle,
+  resolveTextStyle,
+  resolvedTextStyleToInlineStyle,
+} from "../../shared/sectionTypography";
+import {
+  PRODUCT_CARD_SUBTITLE_DEFAULT,
+  PRODUCT_CARD_TITLE_DEFAULT,
+  PRODUCT_MARQUEE_DESCRIPTION_DEFAULT,
+  PRODUCT_MARQUEE_EYEBROW_DEFAULT,
+  PRODUCT_MARQUEE_HEADING_DEFAULT,
+} from "../../shared/textStyleDefaults/productMarqueeTextStyleDefaults";
 import type { ProductMarqueeProps, ProductMarqueeItemProps } from "./types";
 
 function rotate<T>(items: T[], by: number): T[] {
@@ -20,7 +33,15 @@ function safeText(v: unknown): string {
   return String(v ?? "").trim();
 }
 
-function ProductCard({ item }: { item: ProductMarqueeItemProps }) {
+function ProductCard({
+  item,
+  cardTitleStyle,
+  cardSubtitleStyle,
+}: {
+  item: ProductMarqueeItemProps;
+  cardTitleStyle?: React.CSSProperties;
+  cardSubtitleStyle?: React.CSSProperties;
+}) {
   const title = safeText(item?.title);
   const subtitle = safeText(item?.subtitle);
   const image = safeText(item?.image);
@@ -35,10 +56,10 @@ function ProductCard({ item }: { item: ProductMarqueeItemProps }) {
         )}
       </div>
       <div className="ak-pmc__meta">
-        <div className="ak-pmc__title">
+        <div className="ak-pmc__title" style={cardTitleStyle}>
           {title || <span className="ak-pmc__placeholder">Title</span>}
         </div>
-        <div className="ak-pmc__subtitle">
+        <div className="ak-pmc__subtitle" style={cardSubtitleStyle}>
           {subtitle || <span className="ak-pmc__placeholder">Subtitle</span>}
         </div>
       </div>
@@ -51,11 +72,15 @@ function MarqueeRow({
   reverse = false,
   durationSec = 34,
   reduceMotion,
+  cardTitleStyle,
+  cardSubtitleStyle,
 }: {
   items: ProductMarqueeItemProps[];
   reverse?: boolean;
   durationSec?: number;
   reduceMotion: boolean;
+  cardTitleStyle?: React.CSSProperties;
+  cardSubtitleStyle?: React.CSSProperties;
 }) {
   const loopItems = items.length > 0 ? [...items, ...items] : [];
   const animClass = reverse ? "ak-pmc__track--rev" : "ak-pmc__track";
@@ -65,7 +90,12 @@ function MarqueeRow({
       <div className="ak-pmc__row">
         <div className="ak-pmc__track ak-pmc__track--static">
           {items.map((item, index) => (
-            <ProductCard key={`${safeText(item.title)}-${index}`} item={item} />
+            <ProductCard
+              key={`${safeText(item.title)}-${index}`}
+              item={item}
+              cardTitleStyle={cardTitleStyle}
+              cardSubtitleStyle={cardSubtitleStyle}
+            />
           ))}
         </div>
       </div>
@@ -76,14 +106,19 @@ function MarqueeRow({
     <div className="ak-pmc__row">
       <div className={animClass} style={{ animationDuration: `${durationSec}s` }}>
         {loopItems.map((item, index) => (
-          <ProductCard key={`${safeText(item.title)}-${index}`} item={item} />
+          <ProductCard
+            key={`${safeText(item.title)}-${index}`}
+            item={item}
+            cardTitleStyle={cardTitleStyle}
+            cardSubtitleStyle={cardSubtitleStyle}
+          />
         ))}
       </div>
     </div>
   );
 }
 
-export default function ProductCardMarquee({ section }: ProductMarqueeProps) {
+export default function ProductCardMarquee({ section, appearance, theme }: ProductMarqueeProps) {
   const reduceMotion = usePrefersReducedMotion();
   const props = section?.settings?.props ?? {};
   const eyebrow = safeText(props.eyebrow) || "Bestsellers";
@@ -96,6 +131,76 @@ export default function ProductCardMarquee({ section }: ProductMarqueeProps) {
   const showButton = props.showButton !== false;
   const buttonText = safeText(props.buttonText) || "Buy Now";
   const buttonLink = safeText(props.buttonLink);
+
+  const eyebrowStyle = useMemo(
+    () =>
+      resolvedTextStyleToInlineStyle(
+        resolveTextStyle({
+          section,
+          theme,
+          fieldId: "eyebrow",
+          role: "body",
+          defaultStyle: PRODUCT_MARQUEE_EYEBROW_DEFAULT,
+        })
+      ),
+    [section, theme]
+  );
+
+  const headingStyle = useMemo(
+    () =>
+      resolvedTextStyleToInlineStyle(
+        resolveTextStyle({
+          section,
+          theme,
+          fieldId: "heading",
+          role: "heading",
+          defaultStyle: PRODUCT_MARQUEE_HEADING_DEFAULT,
+        })
+      ),
+    [section, theme]
+  );
+
+  const descriptionStyle = useMemo(
+    () =>
+      resolvedTextStyleToInlineStyle(
+        resolveTextStyle({
+          section,
+          theme,
+          fieldId: "description",
+          role: "body",
+          defaultStyle: PRODUCT_MARQUEE_DESCRIPTION_DEFAULT,
+        })
+      ),
+    [section, theme]
+  );
+
+  const cardTitleStyle = useMemo(
+    () =>
+      resolvedTextStyleToInlineStyle(
+        resolveBlockGroupTextStyle({
+          section,
+          theme,
+          groupKey: "cardTitle",
+          role: "heading",
+          defaultStyle: PRODUCT_CARD_TITLE_DEFAULT,
+        })
+      ),
+    [section, theme]
+  );
+
+  const cardSubtitleStyle = useMemo(
+    () =>
+      resolvedTextStyleToInlineStyle(
+        resolveBlockGroupTextStyle({
+          section,
+          theme,
+          groupKey: "cardSubtitle",
+          role: "body",
+          defaultStyle: PRODUCT_CARD_SUBTITLE_DEFAULT,
+        })
+      ),
+    [section, theme]
+  );
 
   const items = useMemo(() => {
     const blocks = section?.settings?.blocks;
@@ -112,15 +217,25 @@ export default function ProductCardMarquee({ section }: ProductMarqueeProps) {
   const { row1, row2, row3 } = useMemo(() => distributeRows(items), [items]);
 
   return (
-    <section className="ak-pmc" aria-label={heading}>
+    <section className="ak-pmc" aria-label={heading} style={sectionAppearanceStyle(appearance)}>
       <div className="ak-pmc__bg" aria-hidden />
       <div className="ak-pmc__glow" aria-hidden />
 
       <div className="ak-pmc__container">
         <div className="ak-pmc__header">
-          {eyebrow ? <div className="ak-pmc__eyebrow">{eyebrow}</div> : null}
-          <h2 className="ak-pmc__heading">{heading}</h2>
-          {description ? <p className="ak-pmc__desc">{description}</p> : null}
+          {eyebrow ? (
+            <div className="ak-pmc__eyebrow" style={eyebrowStyle}>
+              {eyebrow}
+            </div>
+          ) : null}
+          <h2 className="ak-pmc__heading" style={headingStyle}>
+            {heading}
+          </h2>
+          {description ? (
+            <p className="ak-pmc__desc" style={descriptionStyle}>
+              {description}
+            </p>
+          ) : null}
         </div>
 
         <div className="ak-pmc__rows">
@@ -131,14 +246,28 @@ export default function ProductCardMarquee({ section }: ProductMarqueeProps) {
             <p className="ak-pmc__empty">No items yet.</p>
           ) : (
             <>
-              <MarqueeRow items={row1} durationSec={34} reduceMotion={reduceMotion} />
+              <MarqueeRow
+                items={row1}
+                durationSec={34}
+                reduceMotion={reduceMotion}
+                cardTitleStyle={cardTitleStyle}
+                cardSubtitleStyle={cardSubtitleStyle}
+              />
               <MarqueeRow
                 items={row2}
                 reverse
                 durationSec={38}
                 reduceMotion={reduceMotion}
+                cardTitleStyle={cardTitleStyle}
+                cardSubtitleStyle={cardSubtitleStyle}
               />
-              <MarqueeRow items={row3} durationSec={36} reduceMotion={reduceMotion} />
+              <MarqueeRow
+                items={row3}
+                durationSec={36}
+                reduceMotion={reduceMotion}
+                cardTitleStyle={cardTitleStyle}
+                cardSubtitleStyle={cardSubtitleStyle}
+              />
             </>
           )}
         </div>
