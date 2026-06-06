@@ -70,7 +70,9 @@ export default function FullImageTypingHero({
   const blocks = section.settings?.blocks ?? [];
 
   const backgroundImage = normalizeImageUrl(props.backgroundImage);
+  const backgroundMobileImage = normalizeImageUrl(props.backgroundMobileImage);
   const backgroundAlt = String(props.backgroundAlt ?? "Hero background").trim() || "Hero background";
+  const hasBackgroundImage = Boolean(backgroundImage);
   const staticHeading = String(props.staticHeading ?? "").trim();
   const description = String(props.description ?? "").trim();
   const primaryButtonText = String(props.primaryButtonText ?? "").trim();
@@ -239,13 +241,32 @@ export default function FullImageTypingHero({
 
   return (
     <section className="ak-nsp-typing-hero" style={sectionAppearanceStyle(appearance)}>
-      <div className="ak-nsp-typing-hero__bg" aria-hidden={!backgroundImage}>
-        {backgroundImage ? (
-          <img
-            className="ak-nsp-typing-hero__bg-img"
-            src={backgroundImage}
-            alt={backgroundAlt}
-          />
+      <div className="ak-nsp-typing-hero__bg" aria-hidden={!hasBackgroundImage}>
+        {hasBackgroundImage ? (
+          backgroundMobileImage ? (
+            <picture>
+              <source media="(max-width: 767px)" srcSet={backgroundMobileImage} />
+              <img
+                className="ak-nsp-typing-hero__bg-img"
+                src={backgroundImage}
+                alt={backgroundAlt}
+                loading="eager"
+                decoding="async"
+                referrerPolicy="no-referrer"
+                draggable={false}
+              />
+            </picture>
+          ) : (
+            <img
+              className="ak-nsp-typing-hero__bg-img"
+              src={backgroundImage}
+              alt={backgroundAlt}
+              loading="eager"
+              decoding="async"
+              referrerPolicy="no-referrer"
+              draggable={false}
+            />
+          )
         ) : null}
         <div className="ak-nsp-typing-hero__overlay-solid" />
         <div className="ak-nsp-typing-hero__overlay-gradient" />

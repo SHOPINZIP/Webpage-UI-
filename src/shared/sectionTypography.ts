@@ -8,6 +8,9 @@ export type TypographyRole = "heading" | "body";
 export type TextStyle = {
   fontFamily?: string;
   color?: string;
+  colorLight?: string;
+  colorOverImage?: string;
+  backgroundColor?: string;
   fontWeight?: string;
   fontSize?: string;
 };
@@ -51,6 +54,9 @@ export function normalizeTextStyle(raw?: TextStyle | null): TextStyle {
   return {
     fontFamily: pickNonEmpty(raw?.fontFamily),
     color: pickNonEmpty(raw?.color),
+    colorLight: pickNonEmpty(raw?.colorLight),
+    colorOverImage: pickNonEmpty(raw?.colorOverImage),
+    backgroundColor: pickNonEmpty(raw?.backgroundColor),
     fontWeight: pickNonEmpty(raw?.fontWeight),
     fontSize: pickNonEmpty(raw?.fontSize),
   };
@@ -98,6 +104,9 @@ export function stripFieldOverrideStyle(style?: TextStyle | null): TextStyle {
   const normalized = normalizeTextStyle(style);
   const next: TextStyle = {};
   if (normalized.color) next.color = normalized.color;
+  if (normalized.colorLight) next.colorLight = normalized.colorLight;
+  if (normalized.colorOverImage) next.colorOverImage = normalized.colorOverImage;
+  if (normalized.backgroundColor) next.backgroundColor = normalized.backgroundColor;
   if (normalized.fontWeight) next.fontWeight = normalized.fontWeight;
   return next;
 }
@@ -277,6 +286,68 @@ export function resolvedTextStyleToInlineStyle(style: ResolvedTextStyle) {
     color: style.color,
     fontWeight: style.fontWeight,
     fontSize: style.fontSize,
+  };
+}
+
+export function resolveBlockGroupSurfaceStyle({
+  section,
+  groupKey,
+  defaultStyle,
+}: {
+  section?: ResolveBlockGroupTextStyleInput["section"];
+  groupKey?: string;
+  defaultStyle?: TextStyle | null;
+}) {
+  const appearance = section?.settings?.props?.appearance ?? {};
+  const groupStyle =
+    groupKey && appearance.blockGroupStyles?.[groupKey]
+      ? stripFieldOverrideStyle(appearance.blockGroupStyles[groupKey])
+      : {};
+  const schemaDefault = normalizeTextStyle(defaultStyle);
+  return {
+    backgroundColor: pickNonEmpty(groupStyle.backgroundColor, schemaDefault.backgroundColor),
+    color: pickNonEmpty(groupStyle.color, schemaDefault.color),
+  };
+}
+
+const DEFAULT_SCROLL_REVEAL_COLOR_OVER_IMAGE = "rgba(255, 255, 255, 0.96)";
+
+export type ResolveScrollRevealColorsInput = {
+  section?: ResolveTextStyleInput["section"];
+  theme?: ResolveTextStyleInput["theme"];
+  fieldId?: string;
+  groupKey?: string;
+  role?: TypographyRole | string;
+  defaultStyle?: TextStyle | null;
+};
+
+export function resolveScrollRevealColors({
+  section,
+  theme,
+  fieldId,
+  groupKey,
+  role = "heading",
+  defaultStyle,
+}: ResolveScrollRevealColorsInput) {
+  const appearance = section?.settings?.props?.appearance ?? {};
+  const rawOverride =
+    groupKey && appearance.blockGroupStyles?.[groupKey]
+      ? appearance.blockGroupStyles[groupKey]
+      : fieldId && appearance.fieldStyles?.[fieldId]
+        ? appearance.fieldStyles[fieldId]
+        : {};
+  const override = stripFieldOverrideStyle(rawOverride);
+
+  const resolved = groupKey
+    ? resolveBlockGroupTextStyle({ section, theme, groupKey, role, defaultStyle })
+    : resolveTextStyle({ section, theme, fieldId, role, defaultStyle });
+
+  return {
+    colorLight: pickNonEmpty(override.colorLight, override.color, resolved.color),
+    colorOverImage: pickNonEmpty(
+      override.colorOverImage,
+      DEFAULT_SCROLL_REVEAL_COLOR_OVER_IMAGE
+    ),
   };
 }
 

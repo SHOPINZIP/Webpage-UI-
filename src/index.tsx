@@ -16,12 +16,14 @@ export {
   PokerRowRevealHero,
   NSPSignatureHeroMarquee,
   FloatingSnackGalleryHero,
+  ImmersiveImageRevealHero,
 } from "./components/NspSignatureHeroSection";
 export { default as MinimalTimelineBenefits } from "./components/MinimalTimelineBenefitsSection";
 export { default as MerchantFooterReveal } from "./components/MerchantFooterRevealSection";
 export { CouponTickerMinimal } from "./components/CouponStripsSection";
 export { DualLineFeatureMarquee } from "./sections/marquee-text";
 export { FeatureMarqueeBlock } from "./sections/marquee-text";
+export { MediaPresenceVideoHero, LightMediaPresencePremium } from "./sections/video-hero";
 export type { HeroScrollableSlideProps } from "./components/HeroSection/HeroScrollableSlide";
 export type {
   SubHeroImageLoopProps,
@@ -44,6 +46,10 @@ export type {
   FloatingSnackGalleryHeroProps,
   FloatingSnackGalleryHeroSectionDoc,
   FloatingSnackGalleryImageBlock,
+  ImmersiveImageRevealHeroProps,
+  ImmersiveImageRevealHeroSectionDoc,
+  ImmersiveImageRevealTypingWordBlock,
+  ImmersiveImageRevealImageBlock,
 } from "./components/NspSignatureHeroSection";
 
 export type {
@@ -137,6 +143,22 @@ export type {
   MarqueeTextSettings,
 } from "./sections/marquee-text";
 
+export type {
+  MediaPresenceVideoHeroProps,
+  VideoHeroSectionDoc,
+  VideoHeroSettings,
+  VideoCardBlock,
+  InfoCardBlock,
+  VideoHeroIconType,
+  VideoHeroInfoStyleType,
+  VideoHeroSectionPadding,
+  LightMediaPresencePremiumProps,
+  LightPremiumVideoHeroSectionDoc,
+  LightPremiumVideoHeroSettings,
+  LightPremiumVideoCardBlock,
+  LightPremiumInfoCardBlock,
+} from "./sections/video-hero";
+
 export {
   STYLE_MESSAGE_BUBBLE,
   STYLE_APPLE_MARQUEE,
@@ -168,6 +190,7 @@ export {
   resolveThemeFontKey,
   resolveTextStyle,
   resolveBlockGroupTextStyle,
+  resolveBlockGroupSurfaceStyle,
   resolvedTextStyleToInlineStyle,
   collectThemeFontIds,
 } from "./shared/sectionTypography";
@@ -243,6 +266,16 @@ export {
   TESTIMONIAL_DESCRIPTION_DEFAULT,
   TESTIMONIAL_BUTTON_TEXT_DEFAULT,
 } from "./shared/textStyleDefaults/testimonialTextStyleDefaults";
+export {
+  VIDEO_HERO_EYEBROW_DEFAULT,
+  VIDEO_HERO_HEADING_DEFAULT,
+  VIDEO_HERO_SUBHEADING_DEFAULT,
+  VIDEO_CARD_EYEBROW_DEFAULT,
+  VIDEO_CARD_TITLE_DEFAULT,
+  INFO_CARD_LIGHT_SURFACE_DEFAULT,
+  INFO_CARD_DARK_SURFACE_DEFAULT,
+  INFO_CARD_TITLE_DEFAULT,
+} from "./shared/textStyleDefaults/videoHeroTextStyleDefaults";
 export {
   NSP_SIG_HERO_EYEBROW_DEFAULT,
   NSP_SIG_HERO_HEADING_DEFAULT,
