@@ -119,3 +119,15 @@ export const NSP_FLOATING_SNACK_TITLE_DEFAULT: TextStyle = {
   fontWeight: "900",
   fontSize: "13.4rem",
 };
+
+export const NSP_IMMERSIVE_STATIC_HEADING_DEFAULT: TextStyle = {
+  color: "",
+  fontWeight: "600",
+  fontSize: "82px",
+};
+
+export const NSP_IMMERSIVE_TYPING_WORD_DEFAULT: TextStyle = {
+  color: "",
+  fontWeight: "600",
+  fontSize: "82px",
+};

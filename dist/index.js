@@ -62,12 +62,18 @@ __export(index_exports, {
   HERO_SLIDE_HEADLINE_DEFAULT: () => HERO_SLIDE_HEADLINE_DEFAULT,
   HeroScrollableSlide: () => HeroScrollableSlide,
   HeroSlider: () => HeroSlider,
+  INFO_CARD_DARK_SURFACE_DEFAULT: () => INFO_CARD_DARK_SURFACE_DEFAULT,
+  INFO_CARD_LIGHT_SURFACE_DEFAULT: () => INFO_CARD_LIGHT_SURFACE_DEFAULT,
+  INFO_CARD_TITLE_DEFAULT: () => INFO_CARD_TITLE_DEFAULT,
+  ImmersiveImageRevealHero: () => ImmersiveImageRevealHero_default,
+  LightMediaPresencePremium: () => LightMediaPresencePremium,
   LiquidFocusCategories: () => LiquidFocusCategories,
   LogoFocusedHeader: () => LogoFocusedHeader,
   MARQUEE_BOTTOM_ROW_DEFAULT: () => MARQUEE_BOTTOM_ROW_DEFAULT,
   MARQUEE_TEXT_LARGE_DEFAULT: () => MARQUEE_TEXT_LARGE_DEFAULT,
   MARQUEE_TEXT_SMALL_DEFAULT: () => MARQUEE_TEXT_SMALL_DEFAULT,
   MARQUEE_TOP_ROW_DEFAULT: () => MARQUEE_TOP_ROW_DEFAULT,
+  MediaPresenceVideoHero: () => MediaPresenceVideoHero,
   MerchantFooterReveal: () => MerchantFooterReveal,
   MessageStyleTestimonials: () => MessageStyleTestimonials,
   MinimalTimelineBenefits: () => MinimalTimelineBenefits,
@@ -125,6 +131,11 @@ __export(index_exports, {
   TESTIMONIAL_QUOTE_TEXT_DEFAULT: () => TESTIMONIAL_QUOTE_TEXT_DEFAULT,
   TESTIMONIAL_SUBHEADING_DEFAULT: () => TESTIMONIAL_SUBHEADING_DEFAULT,
   TransparentHeroHeader: () => TransparentHeroHeader,
+  VIDEO_CARD_EYEBROW_DEFAULT: () => VIDEO_CARD_EYEBROW_DEFAULT,
+  VIDEO_CARD_TITLE_DEFAULT: () => VIDEO_CARD_TITLE_DEFAULT,
+  VIDEO_HERO_EYEBROW_DEFAULT: () => VIDEO_HERO_EYEBROW_DEFAULT,
+  VIDEO_HERO_HEADING_DEFAULT: () => VIDEO_HERO_HEADING_DEFAULT,
+  VIDEO_HERO_SUBHEADING_DEFAULT: () => VIDEO_HERO_SUBHEADING_DEFAULT,
   collectStorefrontFontIdsFromDocument: () => collectStorefrontFontIdsFromDocument,
   collectThemeFontIds: () => collectThemeFontIds,
   getStorefrontFontById: () => getStorefrontFontById,
@@ -138,6 +149,7 @@ __export(index_exports, {
   normalizeTheme: () => normalizeTheme,
   normalizeThemeTypography: () => normalizeThemeTypography,
   normalizeTypography: () => normalizeTypography,
+  resolveBlockGroupSurfaceStyle: () => resolveBlockGroupSurfaceStyle,
   resolveBlockGroupTextStyle: () => resolveBlockGroupTextStyle,
   resolveSectionAppearance: () => resolveSectionAppearance,
   resolveStorefrontFontFamily: () => resolveStorefrontFontFamily,
@@ -418,6 +430,9 @@ function normalizeTextStyle(raw) {
   return {
     fontFamily: pickNonEmpty(raw == null ? void 0 : raw.fontFamily),
     color: pickNonEmpty(raw == null ? void 0 : raw.color),
+    colorLight: pickNonEmpty(raw == null ? void 0 : raw.colorLight),
+    colorOverImage: pickNonEmpty(raw == null ? void 0 : raw.colorOverImage),
+    backgroundColor: pickNonEmpty(raw == null ? void 0 : raw.backgroundColor),
     fontWeight: pickNonEmpty(raw == null ? void 0 : raw.fontWeight),
     fontSize: pickNonEmpty(raw == null ? void 0 : raw.fontSize)
   };
@@ -458,6 +473,9 @@ function stripFieldOverrideStyle(style) {
   const normalized = normalizeTextStyle(style);
   const next = {};
   if (normalized.color) next.color = normalized.color;
+  if (normalized.colorLight) next.colorLight = normalized.colorLight;
+  if (normalized.colorOverImage) next.colorOverImage = normalized.colorOverImage;
+  if (normalized.backgroundColor) next.backgroundColor = normalized.backgroundColor;
   if (normalized.fontWeight) next.fontWeight = normalized.fontWeight;
   return next;
 }
@@ -577,6 +595,42 @@ function resolvedTextStyleToInlineStyle(style) {
     color: style.color,
     fontWeight: style.fontWeight,
     fontSize: style.fontSize
+  };
+}
+function resolveBlockGroupSurfaceStyle({
+  section,
+  groupKey,
+  defaultStyle
+}) {
+  var _a, _b, _c, _d;
+  const appearance = (_c = (_b = (_a = section == null ? void 0 : section.settings) == null ? void 0 : _a.props) == null ? void 0 : _b.appearance) != null ? _c : {};
+  const groupStyle = groupKey && ((_d = appearance.blockGroupStyles) == null ? void 0 : _d[groupKey]) ? stripFieldOverrideStyle(appearance.blockGroupStyles[groupKey]) : {};
+  const schemaDefault = normalizeTextStyle(defaultStyle);
+  return {
+    backgroundColor: pickNonEmpty(groupStyle.backgroundColor, schemaDefault.backgroundColor),
+    color: pickNonEmpty(groupStyle.color, schemaDefault.color)
+  };
+}
+var DEFAULT_SCROLL_REVEAL_COLOR_OVER_IMAGE = "rgba(255, 255, 255, 0.96)";
+function resolveScrollRevealColors({
+  section,
+  theme,
+  fieldId,
+  groupKey,
+  role = "heading",
+  defaultStyle
+}) {
+  var _a, _b, _c, _d, _e;
+  const appearance = (_c = (_b = (_a = section == null ? void 0 : section.settings) == null ? void 0 : _a.props) == null ? void 0 : _b.appearance) != null ? _c : {};
+  const rawOverride = groupKey && ((_d = appearance.blockGroupStyles) == null ? void 0 : _d[groupKey]) ? appearance.blockGroupStyles[groupKey] : fieldId && ((_e = appearance.fieldStyles) == null ? void 0 : _e[fieldId]) ? appearance.fieldStyles[fieldId] : {};
+  const override = stripFieldOverrideStyle(rawOverride);
+  const resolved = groupKey ? resolveBlockGroupTextStyle({ section, theme, groupKey, role, defaultStyle }) : resolveTextStyle({ section, theme, fieldId, role, defaultStyle });
+  return {
+    colorLight: pickNonEmpty(override.colorLight, override.color, resolved.color),
+    colorOverImage: pickNonEmpty(
+      override.colorOverImage,
+      DEFAULT_SCROLL_REVEAL_COLOR_OVER_IMAGE
+    )
   };
 }
 function collectThemeFontIds(theme) {
@@ -754,6 +808,7 @@ var SYSTEM_APPEARANCE_DEFAULTS = {
 var SECTION_TYPE_APPEARANCE_DEFAULTS = {
   marquee_text: { backgroundColor: "#fbfaf7" },
   coupon_strips: { backgroundColor: "#ffffff" },
+  video_hero: { backgroundColor: "#f7f4ee" },
   messageStyleTestimonials: { backgroundColor: "#f5f5f7" },
   "benefits-points": { backgroundColor: "#ffffff" },
   footer: { backgroundColor: "#0b1f2a" }
@@ -4387,6 +4442,16 @@ var NSP_FLOATING_SNACK_TITLE_DEFAULT = {
   fontWeight: "900",
   fontSize: "13.4rem"
 };
+var NSP_IMMERSIVE_STATIC_HEADING_DEFAULT = {
+  color: "",
+  fontWeight: "600",
+  fontSize: "82px"
+};
+var NSP_IMMERSIVE_TYPING_WORD_DEFAULT = {
+  color: "",
+  fontWeight: "600",
+  fontSize: "82px"
+};
 
 // src/components/NspSignatureHeroSection/ScrollParallaxSignatureHero.tsx
 var POSITIONS = [
@@ -4897,7 +4962,9 @@ function FullImageTypingHero({
   const props = (_b = (_a = section.settings) == null ? void 0 : _a.props) != null ? _b : {};
   const blocks = (_d = (_c = section.settings) == null ? void 0 : _c.blocks) != null ? _d : [];
   const backgroundImage = normalizeImageUrl(props.backgroundImage);
+  const backgroundMobileImage = normalizeImageUrl(props.backgroundMobileImage);
   const backgroundAlt = String((_e = props.backgroundAlt) != null ? _e : "Hero background").trim() || "Hero background";
+  const hasBackgroundImage = Boolean(backgroundImage);
   const staticHeading = String((_f = props.staticHeading) != null ? _f : "").trim();
   const description = String((_g = props.description) != null ? _g : "").trim();
   const primaryButtonText = String((_h = props.primaryButtonText) != null ? _h : "").trim();
@@ -5037,12 +5104,27 @@ function FullImageTypingHero({
   }
   const primaryHref = primaryButtonLink || "#";
   const secondaryHref = secondaryButtonLink || "#";
-  return /* @__PURE__ */ import_react17.default.createElement("section", { className: "ak-nsp-typing-hero", style: sectionAppearanceStyle(appearance) }, /* @__PURE__ */ import_react17.default.createElement("div", { className: "ak-nsp-typing-hero__bg", "aria-hidden": !backgroundImage }, backgroundImage ? /* @__PURE__ */ import_react17.default.createElement(
+  return /* @__PURE__ */ import_react17.default.createElement("section", { className: "ak-nsp-typing-hero", style: sectionAppearanceStyle(appearance) }, /* @__PURE__ */ import_react17.default.createElement("div", { className: "ak-nsp-typing-hero__bg", "aria-hidden": !hasBackgroundImage }, hasBackgroundImage ? backgroundMobileImage ? /* @__PURE__ */ import_react17.default.createElement("picture", null, /* @__PURE__ */ import_react17.default.createElement("source", { media: "(max-width: 767px)", srcSet: backgroundMobileImage }), /* @__PURE__ */ import_react17.default.createElement(
     "img",
     {
       className: "ak-nsp-typing-hero__bg-img",
       src: backgroundImage,
-      alt: backgroundAlt
+      alt: backgroundAlt,
+      loading: "eager",
+      decoding: "async",
+      referrerPolicy: "no-referrer",
+      draggable: false
+    }
+  )) : /* @__PURE__ */ import_react17.default.createElement(
+    "img",
+    {
+      className: "ak-nsp-typing-hero__bg-img",
+      src: backgroundImage,
+      alt: backgroundAlt,
+      loading: "eager",
+      decoding: "async",
+      referrerPolicy: "no-referrer",
+      draggable: false
     }
   ) : null, /* @__PURE__ */ import_react17.default.createElement("div", { className: "ak-nsp-typing-hero__overlay-solid" }), /* @__PURE__ */ import_react17.default.createElement("div", { className: "ak-nsp-typing-hero__overlay-gradient" })), /* @__PURE__ */ import_react17.default.createElement("div", { className: "ak-nsp-typing-hero__inner" }, /* @__PURE__ */ import_react17.default.createElement("div", { className: "ak-nsp-typing-hero__content" }, staticHeading ? /* @__PURE__ */ import_react17.default.createElement(
     "div",
@@ -5968,8 +6050,442 @@ function FloatingSnackGalleryHero({
   );
 }
 
-// src/components/MinimalTimelineBenefitsSection/MinimalTimelineBenefits.tsx
+// src/components/NspSignatureHeroSection/ImmersiveImageRevealHero.tsx
 var import_react21 = __toESM(require("react"));
+var TYPING_WORD_BLOCK_TYPE = "typing_word";
+var REVEAL_IMAGE_BLOCK_TYPE = "reveal_image";
+var FALLBACK_SECTION_HEIGHT_VH = 680;
+var FALLBACK_HEADING_COLOR_OVER_IMAGE = "rgba(255, 255, 255, 0.96)";
+var HEADING_REVEAL_COLOR_THRESHOLD = 0.42;
+var FALLBACK_OVERLAY_OPACITY = 0.34;
+var FALLBACK_TYPING_SPEED = 58;
+var FALLBACK_DELETING_SPEED = 34;
+var FALLBACK_PAUSE_DURATION = 950;
+var LEGACY_IMAGE_CARD_BLOCK_TYPE = "imageCard";
+function readBlockFields2(block) {
+  const nested = (block == null ? void 0 : block.props) && typeof block.props === "object" ? block.props : {};
+  return { ...nested, ...block };
+}
+function resolveImmersiveBlockType(block) {
+  var _a, _b;
+  const type = String((_a = block == null ? void 0 : block.type) != null ? _a : "").trim();
+  if (type === TYPING_WORD_BLOCK_TYPE) return TYPING_WORD_BLOCK_TYPE;
+  if (type === REVEAL_IMAGE_BLOCK_TYPE) return REVEAL_IMAGE_BLOCK_TYPE;
+  if (type === LEGACY_IMAGE_CARD_BLOCK_TYPE) return REVEAL_IMAGE_BLOCK_TYPE;
+  const fields = readBlockFields2(block);
+  if (resolveBlockImageUrl(fields.image)) return REVEAL_IMAGE_BLOCK_TYPE;
+  if (String((_b = fields.text) != null ? _b : "").trim()) return TYPING_WORD_BLOCK_TYPE;
+  return "";
+}
+function normalizeSectionHeightVh(raw, fallback) {
+  if (typeof raw === "number" && Number.isFinite(raw) && raw > 0) {
+    return `${Math.round(raw)}vh`;
+  }
+  const stripped = String(raw != null ? raw : "").trim().replace(/vh$/i, "");
+  const n = Number(stripped);
+  if (Number.isFinite(n) && n > 0) return `${Math.round(n)}vh`;
+  return `${fallback}vh`;
+}
+function resolveScrollHeadingColor(strongestReveal, colorLight, colorOverImage, themeFallbackLight) {
+  const light = pickNonEmpty(colorLight, themeFallbackLight);
+  const overImage = pickNonEmpty(colorOverImage, FALLBACK_HEADING_COLOR_OVER_IMAGE);
+  return strongestReveal > HEADING_REVEAL_COLOR_THRESHOLD ? overImage : light;
+}
+function RevealSlidePicture({
+  desktopSrc,
+  mobileSrc,
+  alt,
+  loading,
+  imageStyle
+}) {
+  const sharedImgProps = {
+    alt,
+    className: "ak-immersive-image-reveal-hero__image",
+    loading,
+    decoding: "async",
+    referrerPolicy: "no-referrer",
+    draggable: false,
+    style: imageStyle
+  };
+  if (mobileSrc) {
+    return /* @__PURE__ */ import_react21.default.createElement("picture", null, /* @__PURE__ */ import_react21.default.createElement("source", { media: "(max-width: 767px)", srcSet: mobileSrc }), /* @__PURE__ */ import_react21.default.createElement("img", { src: desktopSrc, ...sharedImgProps }));
+  }
+  return /* @__PURE__ */ import_react21.default.createElement("img", { src: desktopSrc, ...sharedImgProps });
+}
+function clamp(value, min, max) {
+  return Math.min(Math.max(value, min), max);
+}
+function mapRange(value, inMin, inMax, outMin, outMax) {
+  if (inMin === inMax) return outMax;
+  const p = clamp((value - inMin) / (inMax - inMin), 0, 1);
+  return outMin + (outMax - outMin) * p;
+}
+function easeApple(value) {
+  const p = clamp(value, 0, 1);
+  return 1 - Math.pow(1 - p, 3.2);
+}
+function easeInOutApple(value) {
+  const p = clamp(value, 0, 1);
+  return p < 0.5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2;
+}
+function getImageReveal(index, progress, imageCount) {
+  if (imageCount <= 0) return 0;
+  const segmentSize = 1 / imageCount;
+  const segmentStart = index * segmentSize;
+  const segmentEnd = segmentStart + segmentSize;
+  const local = clamp((progress - segmentStart) / (segmentEnd - segmentStart), 0, 1);
+  if (progress < segmentStart || progress > segmentEnd) return 0;
+  if (index === 0 && local < 0.52) return 1;
+  if (local < 0.26) return easeApple(mapRange(local, 0, 0.26, 0, 1));
+  if (local < 0.54) return 1;
+  if (local < 0.96) return 1 - easeInOutApple(mapRange(local, 0.54, 0.96, 0, 1));
+  return 0;
+}
+function useScrollProgress(ref) {
+  const [progress, setProgress] = (0, import_react21.useState)(0);
+  (0, import_react21.useEffect)(() => {
+    let frame = null;
+    let mounted = true;
+    const update = () => {
+      frame = null;
+      const section = ref.current;
+      if (!section || !mounted) return;
+      const rect = section.getBoundingClientRect();
+      const total = section.offsetHeight - window.innerHeight;
+      const next = total <= 0 ? 0 : clamp(-rect.top / total, 0, 1);
+      setProgress((prev) => Math.abs(prev - next) > 1e-3 ? next : prev);
+    };
+    const request = () => {
+      if (frame === null) frame = window.requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener("scroll", request, { passive: true });
+    window.addEventListener("resize", request);
+    return () => {
+      mounted = false;
+      window.removeEventListener("scroll", request);
+      window.removeEventListener("resize", request);
+      if (frame !== null) window.cancelAnimationFrame(frame);
+    };
+  }, [ref]);
+  return progress;
+}
+function useTypingWords(words, enabled, typingSpeed, deletingSpeed, pauseDuration) {
+  const [wordIndex, setWordIndex] = (0, import_react21.useState)(0);
+  const [typedText, setTypedText] = (0, import_react21.useState)("");
+  const [isDeleting, setIsDeleting] = (0, import_react21.useState)(false);
+  const wordsKey = words.join("");
+  (0, import_react21.useEffect)(() => {
+    setWordIndex(0);
+    setTypedText("");
+    setIsDeleting(false);
+  }, [wordsKey]);
+  (0, import_react21.useEffect)(() => {
+    if (!enabled || words.length === 0) {
+      setTypedText("");
+      return;
+    }
+    const current = words[wordIndex % words.length] || "";
+    const isFull = typedText === current;
+    const isEmpty = typedText.length === 0;
+    const delay = isFull && !isDeleting ? pauseDuration : isDeleting ? deletingSpeed : typingSpeed;
+    const timeout = window.setTimeout(() => {
+      if (!isDeleting && !isFull) {
+        setTypedText(current.slice(0, typedText.length + 1));
+        return;
+      }
+      if (!isDeleting && isFull) {
+        setIsDeleting(true);
+        return;
+      }
+      if (isDeleting && !isEmpty) {
+        setTypedText(current.slice(0, typedText.length - 1));
+        return;
+      }
+      setIsDeleting(false);
+      setWordIndex((prev) => (prev + 1) % words.length);
+    }, delay);
+    return () => window.clearTimeout(timeout);
+  }, [
+    words,
+    wordsKey,
+    wordIndex,
+    typedText,
+    isDeleting,
+    enabled,
+    typingSpeed,
+    deletingSpeed,
+    pauseDuration
+  ]);
+  if (!enabled && words.length > 0) {
+    return words[0];
+  }
+  return typedText;
+}
+function coerceNumber(value, fallback) {
+  const n = Number(value);
+  return Number.isFinite(n) ? n : fallback;
+}
+function ImmersiveImageRevealHero({
+  section,
+  appearance,
+  theme
+}) {
+  var _a, _b, _c, _d, _e, _f, _g, _h, _i;
+  const sectionRef = (0, import_react21.useRef)(null);
+  const progress = useScrollProgress(sectionRef);
+  const props = (_b = (_a = section.settings) == null ? void 0 : _a.props) != null ? _b : {};
+  const blocks = (_d = (_c = section.settings) == null ? void 0 : _c.blocks) != null ? _d : [];
+  const staticHeading = String((_e = props.staticHeading) != null ? _e : "").trim();
+  const headingColorLight = String(
+    (_g = (_f = props.headingColorLight) != null ? _f : props.headingPrimaryColor) != null ? _g : ""
+  ).trim();
+  const headingColorOverImage = String(
+    (_i = (_h = props.headingColorOverImage) != null ? _h : props.headingSecondaryColor) != null ? _i : ""
+  ).trim();
+  const showTypingAnimation = props.showTypingAnimation !== false;
+  const showCursor = props.showCursor !== false;
+  const typingSpeed = coerceNumber(props.typingSpeed, FALLBACK_TYPING_SPEED);
+  const deletingSpeed = coerceNumber(props.deletingSpeed, FALLBACK_DELETING_SPEED);
+  const pauseDuration = coerceNumber(props.pauseDuration, FALLBACK_PAUSE_DURATION);
+  const overlayOpacityMax = coerceNumber(props.overlayOpacity, FALLBACK_OVERLAY_OPACITY);
+  const sectionHeightDesktop = normalizeSectionHeightVh(
+    props.sectionHeightDesktop,
+    FALLBACK_SECTION_HEIGHT_VH
+  );
+  const sectionHeightMobile = normalizeSectionHeightVh(
+    props.sectionHeightMobile,
+    FALLBACK_SECTION_HEIGHT_VH
+  );
+  const typingWords = (0, import_react21.useMemo)(() => {
+    return (Array.isArray(blocks) ? blocks : []).map((block) => {
+      var _a2;
+      const record = block;
+      if (resolveImmersiveBlockType(record) !== TYPING_WORD_BLOCK_TYPE) return "";
+      const fields = readBlockFields2(record);
+      return String((_a2 = fields.text) != null ? _a2 : "").trim();
+    }).filter(Boolean);
+  }, [blocks]);
+  const revealImages = (0, import_react21.useMemo)(() => {
+    const images = [];
+    (Array.isArray(blocks) ? blocks : []).forEach((block, index) => {
+      var _a2, _b2, _c2;
+      const record = block;
+      if (resolveImmersiveBlockType(record) !== REVEAL_IMAGE_BLOCK_TYPE) return;
+      const fields = readBlockFields2(record);
+      const desktopSrc = resolveBlockImageUrl(fields.image);
+      if (!desktopSrc) return;
+      const mobileRaw = resolveBlockImageUrl(fields.mobileImage);
+      const mobileSrc = mobileRaw || void 0;
+      const alt = String((_b2 = (_a2 = fields.altText) != null ? _a2 : fields.alt) != null ? _b2 : "").trim() || `Reveal image ${images.length + 1}`;
+      images.push({
+        id: String((_c2 = record.id) != null ? _c2 : `reveal-image-${index + 1}`),
+        desktopSrc,
+        mobileSrc,
+        alt
+      });
+    });
+    return images;
+  }, [blocks]);
+  const typedText = useTypingWords(
+    typingWords,
+    showTypingAnimation,
+    typingSpeed,
+    deletingSpeed,
+    pauseDuration
+  );
+  const staticHeadingTypography = (0, import_react21.useMemo)(
+    () => resolvedTextStyleToInlineStyle(
+      resolveTextStyle({
+        section,
+        theme,
+        fieldId: "staticHeading",
+        role: "heading",
+        defaultStyle: NSP_IMMERSIVE_STATIC_HEADING_DEFAULT
+      })
+    ),
+    [section, theme]
+  );
+  const typingWordTypography = (0, import_react21.useMemo)(
+    () => resolvedTextStyleToInlineStyle(
+      resolveBlockGroupTextStyle({
+        section,
+        theme,
+        groupKey: "typingWord",
+        role: "heading",
+        defaultStyle: NSP_IMMERSIVE_TYPING_WORD_DEFAULT
+      })
+    ),
+    [section, theme]
+  );
+  const staticScrollColors = (0, import_react21.useMemo)(
+    () => resolveScrollRevealColors({
+      section,
+      theme,
+      fieldId: "staticHeading",
+      role: "heading",
+      defaultStyle: NSP_IMMERSIVE_STATIC_HEADING_DEFAULT
+    }),
+    [section, theme]
+  );
+  const typingScrollColors = (0, import_react21.useMemo)(
+    () => resolveScrollRevealColors({
+      section,
+      theme,
+      groupKey: "typingWord",
+      role: "heading",
+      defaultStyle: NSP_IMMERSIVE_TYPING_WORD_DEFAULT
+    }),
+    [section, theme]
+  );
+  const values = (0, import_react21.useMemo)(() => {
+    const imageCount = revealImages.length;
+    const reveals = revealImages.map((_, index) => getImageReveal(index, progress, imageCount));
+    const strongestReveal = reveals.length > 0 ? Math.max(...reveals) : 0;
+    const longestWordLength = typingWords.reduce(
+      (max, word) => Math.max(max, word.length),
+      18
+    );
+    const dynamicScale = mapRange(typedText.length, 18, longestWordLength || 28, 1, 0.78);
+    const staticHeadingColor = resolveScrollHeadingColor(
+      strongestReveal,
+      staticScrollColors.colorLight,
+      staticScrollColors.colorOverImage,
+      staticScrollColors.colorLight
+    );
+    const typingHeadingColor = resolveScrollHeadingColor(
+      strongestReveal,
+      typingScrollColors.colorLight,
+      typingScrollColors.colorOverImage,
+      typingScrollColors.colorLight
+    );
+    return {
+      reveals,
+      strongestReveal,
+      dynamicScale,
+      staticHeadingColor,
+      typingHeadingColor,
+      titleLift: mapRange(strongestReveal, 0, 1, 0, -18),
+      titleScale: mapRange(strongestReveal, 0, 1, 1, 0.92)
+    };
+  }, [
+    progress,
+    typedText.length,
+    revealImages,
+    typingWords,
+    staticScrollColors,
+    typingScrollColors
+  ]);
+  const staticHeadingStyle = {
+    ...staticHeadingTypography,
+    color: values.staticHeadingColor,
+    transition: "color 180ms linear"
+  };
+  const typingWordStyle = {
+    ...typingWordTypography,
+    color: values.typingHeadingColor,
+    transition: "color 180ms linear"
+  };
+  if (section.enabled === false) {
+    return null;
+  }
+  const sectionStyle = {
+    ...sectionAppearanceStyle(appearance),
+    ["--ak-immersive-reveal-height-mobile"]: sectionHeightMobile,
+    ["--ak-immersive-reveal-height-desktop"]: sectionHeightDesktop
+  };
+  return /* @__PURE__ */ import_react21.default.createElement(
+    "section",
+    {
+      ref: sectionRef,
+      className: "ak-immersive-image-reveal-hero",
+      style: sectionStyle
+    },
+    /* @__PURE__ */ import_react21.default.createElement("div", { className: "ak-immersive-image-reveal-hero__sticky" }, /* @__PURE__ */ import_react21.default.createElement("div", { className: "ak-immersive-image-reveal-hero__backdrop", "aria-hidden": true }), revealImages.map((image, index) => {
+      var _a2;
+      const reveal = (_a2 = values.reveals[index]) != null ? _a2 : 0;
+      const topInset = mapRange(reveal, 0, 1, 48, 0);
+      const rightInset = mapRange(reveal, 0, 1, 18, 0);
+      const bottomInset = mapRange(reveal, 0, 1, 34, 0);
+      const leftInset = mapRange(reveal, 0, 1, 18, 0);
+      const radius = mapRange(reveal, 0, 1, 42, 0);
+      const imageScale = mapRange(reveal, 0, 1, 1.12, 1);
+      const imageY = mapRange(reveal, 0, 1, 70, 0);
+      const imageOpacity = mapRange(reveal, 0, 0.16, 0, 1);
+      const overlayOpacity = mapRange(reveal, 0.22, 1, 0, overlayOpacityMax);
+      return /* @__PURE__ */ import_react21.default.createElement(
+        "div",
+        {
+          key: image.id,
+          className: "ak-immersive-image-reveal-hero__image-layer",
+          style: {
+            clipPath: `inset(${topInset}% ${rightInset}% ${bottomInset}% ${leftInset}% round ${radius}px)`,
+            opacity: imageOpacity,
+            zIndex: index + 1
+          }
+        },
+        /* @__PURE__ */ import_react21.default.createElement(
+          RevealSlidePicture,
+          {
+            desktopSrc: image.desktopSrc,
+            mobileSrc: image.mobileSrc,
+            alt: image.alt,
+            loading: index === 0 ? "eager" : "lazy",
+            imageStyle: {
+              transform: `translate3d(0, ${imageY}px, 0) scale(${imageScale})`
+            }
+          }
+        ),
+        /* @__PURE__ */ import_react21.default.createElement(
+          "div",
+          {
+            className: "ak-immersive-image-reveal-hero__overlay",
+            style: { opacity: overlayOpacity }
+          }
+        )
+      );
+    }), (staticHeading || typingWords.length > 0) && /* @__PURE__ */ import_react21.default.createElement(
+      "div",
+      {
+        className: "ak-immersive-image-reveal-hero__heading",
+        style: {
+          transform: `translate3d(0, ${values.titleLift}px, 0) scale(${values.titleScale})`,
+          transition: "transform 180ms linear"
+        }
+      },
+      staticHeading ? /* @__PURE__ */ import_react21.default.createElement(
+        "p",
+        {
+          className: "ak-immersive-image-reveal-hero__static-line",
+          style: staticHeadingStyle
+        },
+        staticHeading
+      ) : null,
+      typingWords.length > 0 ? /* @__PURE__ */ import_react21.default.createElement("p", { className: "ak-immersive-image-reveal-hero__typing-line" }, /* @__PURE__ */ import_react21.default.createElement(
+        "span",
+        {
+          className: "ak-immersive-image-reveal-hero__typing-text",
+          style: {
+            ...typingWordStyle,
+            transform: `scale(${values.dynamicScale})`
+          }
+        },
+        typedText,
+        showCursor && showTypingAnimation ? /* @__PURE__ */ import_react21.default.createElement(
+          "span",
+          {
+            className: "ak-immersive-image-reveal-hero__cursor",
+            "aria-hidden": true
+          }
+        ) : null
+      )) : null
+    ))
+  );
+}
+var ImmersiveImageRevealHero_default = ImmersiveImageRevealHero;
+
+// src/components/MinimalTimelineBenefitsSection/MinimalTimelineBenefits.tsx
+var import_react22 = __toESM(require("react"));
 var import_framer_motion6 = require("framer-motion");
 
 // src/shared/textStyleDefaults/benefitsTextStyleDefaults.ts
@@ -6031,13 +6547,13 @@ function Row2({
     viewport: { once: true, amount: 0.45 },
     transition: { duration: 0.6, delay: index * 0.06, ease: easing }
   };
-  return /* @__PURE__ */ import_react21.default.createElement(
+  return /* @__PURE__ */ import_react22.default.createElement(
     import_framer_motion6.motion.div,
     {
       ...motionProps,
       className: "ak-mt-benefits__row"
     },
-    /* @__PURE__ */ import_react21.default.createElement("div", { className: "ak-mt-benefits__rail-wrap" }, /* @__PURE__ */ import_react21.default.createElement("div", { className: "ak-mt-benefits__rail-base", "aria-hidden": true }), !isLast && showActiveRailFill && !reduceMotion ? /* @__PURE__ */ import_react21.default.createElement(
+    /* @__PURE__ */ import_react22.default.createElement("div", { className: "ak-mt-benefits__rail-wrap" }, /* @__PURE__ */ import_react22.default.createElement("div", { className: "ak-mt-benefits__rail-base", "aria-hidden": true }), !isLast && showActiveRailFill && !reduceMotion ? /* @__PURE__ */ import_react22.default.createElement(
       import_framer_motion6.motion.div,
       {
         initial: { scaleY: 0 },
@@ -6047,7 +6563,7 @@ function Row2({
         className: "ak-mt-benefits__rail-fill",
         "aria-hidden": true
       }
-    ) : null, !isLast && showActiveRailFill && reduceMotion ? /* @__PURE__ */ import_react21.default.createElement("div", { className: "ak-mt-benefits__rail-fill ak-mt-benefits__rail-fill--static", "aria-hidden": true }) : null, /* @__PURE__ */ import_react21.default.createElement(
+    ) : null, !isLast && showActiveRailFill && reduceMotion ? /* @__PURE__ */ import_react22.default.createElement("div", { className: "ak-mt-benefits__rail-fill ak-mt-benefits__rail-fill--static", "aria-hidden": true }) : null, /* @__PURE__ */ import_react22.default.createElement(
       import_framer_motion6.motion.span,
       {
         ...reduceMotion ? { initial: false, animate: { scale: 1, opacity: 1 } } : {
@@ -6058,9 +6574,9 @@ function Row2({
         },
         className: "ak-mt-benefits__dot"
       },
-      /* @__PURE__ */ import_react21.default.createElement("span", { className: "ak-mt-benefits__dot-inner" })
+      /* @__PURE__ */ import_react22.default.createElement("span", { className: "ak-mt-benefits__dot-inner" })
     )),
-    /* @__PURE__ */ import_react21.default.createElement("div", { className: "ak-mt-benefits__row-body" }, /* @__PURE__ */ import_react21.default.createElement("div", { className: "ak-mt-benefits__row-inner" }, title ? /* @__PURE__ */ import_react21.default.createElement("h3", { className: "ak-mt-benefits__item-title", style: benefitTitleStyle }, title) : null, desc ? /* @__PURE__ */ import_react21.default.createElement("p", { className: "ak-mt-benefits__item-desc", style: benefitDescriptionStyle }, desc) : null, points.length > 0 ? /* @__PURE__ */ import_react21.default.createElement("div", { className: "ak-mt-benefits__points" }, points.map((p, i) => /* @__PURE__ */ import_react21.default.createElement(
+    /* @__PURE__ */ import_react22.default.createElement("div", { className: "ak-mt-benefits__row-body" }, /* @__PURE__ */ import_react22.default.createElement("div", { className: "ak-mt-benefits__row-inner" }, title ? /* @__PURE__ */ import_react22.default.createElement("h3", { className: "ak-mt-benefits__item-title", style: benefitTitleStyle }, title) : null, desc ? /* @__PURE__ */ import_react22.default.createElement("p", { className: "ak-mt-benefits__item-desc", style: benefitDescriptionStyle }, desc) : null, points.length > 0 ? /* @__PURE__ */ import_react22.default.createElement("div", { className: "ak-mt-benefits__points" }, points.map((p, i) => /* @__PURE__ */ import_react22.default.createElement(
       import_framer_motion6.motion.div,
       {
         key: `${index}-${p}-${i}`,
@@ -6076,8 +6592,8 @@ function Row2({
         },
         className: "ak-mt-benefits__point"
       },
-      /* @__PURE__ */ import_react21.default.createElement("span", { className: "ak-mt-benefits__point-bullet", "aria-hidden": true }),
-      /* @__PURE__ */ import_react21.default.createElement("span", { className: "ak-mt-benefits__point-text", style: benefitPointStyle }, p)
+      /* @__PURE__ */ import_react22.default.createElement("span", { className: "ak-mt-benefits__point-bullet", "aria-hidden": true }),
+      /* @__PURE__ */ import_react22.default.createElement("span", { className: "ak-mt-benefits__point-text", style: benefitPointStyle }, p)
     ))) : null))
   );
 }
@@ -6094,7 +6610,7 @@ function MinimalTimelineBenefits({
   const heading = safeText8(props.heading);
   const description = safeText8(props.description);
   const showActiveRailFill = props.showActiveRailFill !== false;
-  const eyebrowStyle = (0, import_react21.useMemo)(
+  const eyebrowStyle = (0, import_react22.useMemo)(
     () => resolvedTextStyleToInlineStyle(
       resolveTextStyle({
         section,
@@ -6106,7 +6622,7 @@ function MinimalTimelineBenefits({
     ),
     [section, theme]
   );
-  const headingStyle = (0, import_react21.useMemo)(
+  const headingStyle = (0, import_react22.useMemo)(
     () => resolvedTextStyleToInlineStyle(
       resolveTextStyle({
         section,
@@ -6118,7 +6634,7 @@ function MinimalTimelineBenefits({
     ),
     [section, theme]
   );
-  const descriptionStyle = (0, import_react21.useMemo)(
+  const descriptionStyle = (0, import_react22.useMemo)(
     () => resolvedTextStyleToInlineStyle(
       resolveTextStyle({
         section,
@@ -6130,7 +6646,7 @@ function MinimalTimelineBenefits({
     ),
     [section, theme]
   );
-  const benefitTitleStyle = (0, import_react21.useMemo)(
+  const benefitTitleStyle = (0, import_react22.useMemo)(
     () => resolvedTextStyleToInlineStyle(
       resolveBlockGroupTextStyle({
         section,
@@ -6142,7 +6658,7 @@ function MinimalTimelineBenefits({
     ),
     [section, theme]
   );
-  const benefitDescriptionStyle = (0, import_react21.useMemo)(
+  const benefitDescriptionStyle = (0, import_react22.useMemo)(
     () => resolvedTextStyleToInlineStyle(
       resolveBlockGroupTextStyle({
         section,
@@ -6154,7 +6670,7 @@ function MinimalTimelineBenefits({
     ),
     [section, theme]
   );
-  const benefitPointStyle = (0, import_react21.useMemo)(
+  const benefitPointStyle = (0, import_react22.useMemo)(
     () => resolvedTextStyleToInlineStyle(
       resolveBlockGroupTextStyle({
         section,
@@ -6166,30 +6682,30 @@ function MinimalTimelineBenefits({
     ),
     [section, theme]
   );
-  const blocks = (0, import_react21.useMemo)(() => Array.isArray(rawBlocks) ? rawBlocks : [], [rawBlocks]);
+  const blocks = (0, import_react22.useMemo)(() => Array.isArray(rawBlocks) ? rawBlocks : [], [rawBlocks]);
   const headerMotion = reduceMotion ? { initial: false, animate: { opacity: 1, y: 0 } } : {
     initial: { opacity: 0, y: 20 },
     whileInView: { opacity: 1, y: 0 },
     viewport: { once: true },
     transition: { duration: 0.6, ease: easing }
   };
-  return /* @__PURE__ */ import_react21.default.createElement("section", { className: "ak-mt-benefits", style: sectionAppearanceStyle(appearance) }, /* @__PURE__ */ import_react21.default.createElement("div", { className: "ak-mt-benefits__container" }, /* @__PURE__ */ import_react21.default.createElement(import_framer_motion6.motion.div, { ...headerMotion, className: "ak-mt-benefits__header" }, eyebrow ? /* @__PURE__ */ import_react21.default.createElement("div", { className: "ak-mt-benefits__eyebrow", style: eyebrowStyle }, eyebrow) : null, heading ? /* @__PURE__ */ import_react21.default.createElement(
+  return /* @__PURE__ */ import_react22.default.createElement("section", { className: "ak-mt-benefits", style: sectionAppearanceStyle(appearance) }, /* @__PURE__ */ import_react22.default.createElement("div", { className: "ak-mt-benefits__container" }, /* @__PURE__ */ import_react22.default.createElement(import_framer_motion6.motion.div, { ...headerMotion, className: "ak-mt-benefits__header" }, eyebrow ? /* @__PURE__ */ import_react22.default.createElement("div", { className: "ak-mt-benefits__eyebrow", style: eyebrowStyle }, eyebrow) : null, heading ? /* @__PURE__ */ import_react22.default.createElement(
     "h2",
     {
       className: "ak-mt-benefits__heading",
       style: { ...headingStyle, whiteSpace: "pre-line" }
     },
     heading
-  ) : null, description ? /* @__PURE__ */ import_react21.default.createElement(
+  ) : null, description ? /* @__PURE__ */ import_react22.default.createElement(
     "p",
     {
       className: "ak-mt-benefits__sub",
       style: { ...descriptionStyle, whiteSpace: "pre-line" }
     },
     description
-  ) : null), /* @__PURE__ */ import_react21.default.createElement("div", { className: "ak-mt-benefits__timeline" }, blocks.map((b, i) => {
+  ) : null), /* @__PURE__ */ import_react22.default.createElement("div", { className: "ak-mt-benefits__timeline" }, blocks.map((b, i) => {
     var _a2;
-    return /* @__PURE__ */ import_react21.default.createElement(
+    return /* @__PURE__ */ import_react22.default.createElement(
       Row2,
       {
         key: (b == null ? void 0 : b.id) || `benefit-${i}`,
@@ -6207,7 +6723,7 @@ function MinimalTimelineBenefits({
 }
 
 // src/components/MerchantFooterRevealSection/MerchantFooterReveal.tsx
-var import_react22 = __toESM(require("react"));
+var import_react23 = __toESM(require("react"));
 var import_framer_motion7 = require("framer-motion");
 
 // src/shared/textStyleDefaults/footerTextStyleDefaults.ts
@@ -6252,7 +6768,7 @@ function safeText9(v) {
   return String(v != null ? v : "").trim();
 }
 function ChevronRightIcon({ className }) {
-  return /* @__PURE__ */ import_react22.default.createElement(
+  return /* @__PURE__ */ import_react23.default.createElement(
     "svg",
     {
       viewBox: "0 0 24 24",
@@ -6261,7 +6777,7 @@ function ChevronRightIcon({ className }) {
       className,
       "aria-hidden": true
     },
-    /* @__PURE__ */ import_react22.default.createElement(
+    /* @__PURE__ */ import_react23.default.createElement(
       "path",
       {
         d: "M9 6l6 6-6 6",
@@ -6274,7 +6790,7 @@ function ChevronRightIcon({ className }) {
   );
 }
 function IconBase({ className, children }) {
-  return /* @__PURE__ */ import_react22.default.createElement(
+  return /* @__PURE__ */ import_react23.default.createElement(
     "svg",
     {
       viewBox: "0 0 24 24",
@@ -6287,10 +6803,10 @@ function IconBase({ className, children }) {
   );
 }
 function InstagramIcon({ className }) {
-  return /* @__PURE__ */ import_react22.default.createElement(IconBase, { className }, /* @__PURE__ */ import_react22.default.createElement("rect", { x: "4", y: "4", width: "16", height: "16", rx: "4", stroke: "currentColor", strokeWidth: "1.8" }), /* @__PURE__ */ import_react22.default.createElement("circle", { cx: "12", cy: "12", r: "3.4", stroke: "currentColor", strokeWidth: "1.8" }), /* @__PURE__ */ import_react22.default.createElement("circle", { cx: "17.2", cy: "6.8", r: "1", fill: "currentColor" }));
+  return /* @__PURE__ */ import_react23.default.createElement(IconBase, { className }, /* @__PURE__ */ import_react23.default.createElement("rect", { x: "4", y: "4", width: "16", height: "16", rx: "4", stroke: "currentColor", strokeWidth: "1.8" }), /* @__PURE__ */ import_react23.default.createElement("circle", { cx: "12", cy: "12", r: "3.4", stroke: "currentColor", strokeWidth: "1.8" }), /* @__PURE__ */ import_react23.default.createElement("circle", { cx: "17.2", cy: "6.8", r: "1", fill: "currentColor" }));
 }
 function FacebookIcon({ className }) {
-  return /* @__PURE__ */ import_react22.default.createElement(IconBase, { className }, /* @__PURE__ */ import_react22.default.createElement(
+  return /* @__PURE__ */ import_react23.default.createElement(IconBase, { className }, /* @__PURE__ */ import_react23.default.createElement(
     "path",
     {
       d: "M13.15 20V13.15H15.55L15.95 10.45H13.15V8.65C13.15 7.88 13.38 7.36 14.48 7.36H16V5.02C15.29 4.93 14.58 4.89 13.87 4.9C11.66 4.9 10.22 6.22 10.22 8.64V10.45H8V13.15H10.22V20H13.15Z",
@@ -6299,7 +6815,7 @@ function FacebookIcon({ className }) {
   ));
 }
 function WebsiteIcon({ className }) {
-  return /* @__PURE__ */ import_react22.default.createElement(IconBase, { className }, /* @__PURE__ */ import_react22.default.createElement("circle", { cx: "12", cy: "12", r: "8", stroke: "currentColor", strokeWidth: "1.8" }), /* @__PURE__ */ import_react22.default.createElement("path", { d: "M4 12H20", stroke: "currentColor", strokeWidth: "1.8", strokeLinecap: "round" }), /* @__PURE__ */ import_react22.default.createElement(
+  return /* @__PURE__ */ import_react23.default.createElement(IconBase, { className }, /* @__PURE__ */ import_react23.default.createElement("circle", { cx: "12", cy: "12", r: "8", stroke: "currentColor", strokeWidth: "1.8" }), /* @__PURE__ */ import_react23.default.createElement("path", { d: "M4 12H20", stroke: "currentColor", strokeWidth: "1.8", strokeLinecap: "round" }), /* @__PURE__ */ import_react23.default.createElement(
     "path",
     {
       d: "M12 4C14.3 6.45 15.55 9.08 15.55 12C15.55 14.92 14.3 17.55 12 20",
@@ -6307,7 +6823,7 @@ function WebsiteIcon({ className }) {
       strokeWidth: "1.8",
       strokeLinecap: "round"
     }
-  ), /* @__PURE__ */ import_react22.default.createElement(
+  ), /* @__PURE__ */ import_react23.default.createElement(
     "path",
     {
       d: "M12 4C9.7 6.45 8.45 9.08 8.45 12C8.45 14.92 9.7 17.55 12 20",
@@ -6318,7 +6834,7 @@ function WebsiteIcon({ className }) {
   ));
 }
 function MapPinIcon({ className }) {
-  return /* @__PURE__ */ import_react22.default.createElement(IconBase, { className }, /* @__PURE__ */ import_react22.default.createElement(
+  return /* @__PURE__ */ import_react23.default.createElement(IconBase, { className }, /* @__PURE__ */ import_react23.default.createElement(
     "path",
     {
       d: "M12 21s7-4.35 7-10a7 7 0 1 0-14 0c0 5.65 7 10 7 10z",
@@ -6326,10 +6842,10 @@ function MapPinIcon({ className }) {
       strokeWidth: "1.85",
       strokeLinejoin: "round"
     }
-  ), /* @__PURE__ */ import_react22.default.createElement("circle", { cx: "12", cy: "11", r: "2.2", stroke: "currentColor", strokeWidth: "1.85" }));
+  ), /* @__PURE__ */ import_react23.default.createElement("circle", { cx: "12", cy: "11", r: "2.2", stroke: "currentColor", strokeWidth: "1.85" }));
 }
 function PhoneIcon({ className }) {
-  return /* @__PURE__ */ import_react22.default.createElement(IconBase, { className }, /* @__PURE__ */ import_react22.default.createElement(
+  return /* @__PURE__ */ import_react23.default.createElement(IconBase, { className }, /* @__PURE__ */ import_react23.default.createElement(
     "path",
     {
       d: "M8.5 3h2l1.5 4-2.2 1.2a11 11 0 0 0 5 5L16 11l4 1.5v2a2 2 0 0 1-2 2h-.5C9.6 16.5 4.5 11.4 4.5 4.5V4a2 2 0 0 1 2-2z",
@@ -6340,7 +6856,7 @@ function PhoneIcon({ className }) {
   ));
 }
 function MessageCircleIcon({ className }) {
-  return /* @__PURE__ */ import_react22.default.createElement(IconBase, { className }, /* @__PURE__ */ import_react22.default.createElement(
+  return /* @__PURE__ */ import_react23.default.createElement(IconBase, { className }, /* @__PURE__ */ import_react23.default.createElement(
     "path",
     {
       d: "M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8z",
@@ -6378,7 +6894,7 @@ function InfoRow({
   style
 }) {
   if (!text) return null;
-  return /* @__PURE__ */ import_react22.default.createElement("div", { className: "ak-mf__info-row" }, /* @__PURE__ */ import_react22.default.createElement("span", { className: "ak-mf__info-icon", "aria-hidden": true }, /* @__PURE__ */ import_react22.default.createElement(Icon, { className: "ak-mf__info-icon-svg" })), /* @__PURE__ */ import_react22.default.createElement("p", { className: "ak-mf__info-text", style }, text));
+  return /* @__PURE__ */ import_react23.default.createElement("div", { className: "ak-mf__info-row" }, /* @__PURE__ */ import_react23.default.createElement("span", { className: "ak-mf__info-icon", "aria-hidden": true }, /* @__PURE__ */ import_react23.default.createElement(Icon, { className: "ak-mf__info-icon-svg" })), /* @__PURE__ */ import_react23.default.createElement("p", { className: "ak-mf__info-text", style }, text));
 }
 function collectPolicies(blocks) {
   var _a;
@@ -6397,7 +6913,7 @@ function MerchantFooterReveal({
   theme
 }) {
   var _a, _b, _c;
-  const sectionRef = (0, import_react22.useRef)(null);
+  const sectionRef = (0, import_react23.useRef)(null);
   const reduceMotion = usePrefersReducedMotion();
   const props = (_b = (_a = section == null ? void 0 : section.settings) == null ? void 0 : _a.props) != null ? _b : {};
   const rawBlocks = (_c = section == null ? void 0 : section.settings) == null ? void 0 : _c.blocks;
@@ -6417,14 +6933,14 @@ function MerchantFooterReveal({
     website: normalizeExternalHref(props.websiteLink)
   };
   const enableRevealMotion = !reduceMotion;
-  const rawPolicies = (0, import_react22.useMemo)(() => collectPolicies(rawBlocks), [rawBlocks]);
-  const policyItems = (0, import_react22.useMemo)(() => {
+  const rawPolicies = (0, import_react23.useMemo)(() => collectPolicies(rawBlocks), [rawBlocks]);
+  const policyItems = (0, import_react23.useMemo)(() => {
     return rawPolicies.map((p) => ({
       text: safeText9(p == null ? void 0 : p.text),
       link: normalizePolicyHref(p == null ? void 0 : p.link)
     })).filter((p) => p.text);
   }, [rawPolicies]);
-  const socialItems = (0, import_react22.useMemo)(() => {
+  const socialItems = (0, import_react23.useMemo)(() => {
     return FIXED_SOCIAL_ORDER.map((platform) => {
       const link = linkByPlatform[platform];
       if (!link) return null;
@@ -6449,7 +6965,7 @@ function MerchantFooterReveal({
   const brandScaleX = (0, import_framer_motion7.useTransform)(reveal, [0, 1], [1, 1.02]);
   const topLift = (0, import_framer_motion7.useTransform)(reveal, [0, 1], [0, 28]);
   const whatsappLine = whatsapp ? `WhatsApp: ${whatsapp}` : "";
-  const merchantNameStyle = (0, import_react22.useMemo)(
+  const merchantNameStyle = (0, import_react23.useMemo)(
     () => resolvedTextStyleToInlineStyle(
       resolveTextStyle({
         section,
@@ -6461,7 +6977,7 @@ function MerchantFooterReveal({
     ),
     [section, theme]
   );
-  const merchantSubLabelStyle = (0, import_react22.useMemo)(
+  const merchantSubLabelStyle = (0, import_react23.useMemo)(
     () => resolvedTextStyleToInlineStyle(
       resolveTextStyle({
         section,
@@ -6473,7 +6989,7 @@ function MerchantFooterReveal({
     ),
     [section, theme]
   );
-  const taglineStyle = (0, import_react22.useMemo)(
+  const taglineStyle = (0, import_react23.useMemo)(
     () => resolvedTextStyleToInlineStyle(
       resolveTextStyle({
         section,
@@ -6485,7 +7001,7 @@ function MerchantFooterReveal({
     ),
     [section, theme]
   );
-  const socialHeadingStyle = (0, import_react22.useMemo)(
+  const socialHeadingStyle = (0, import_react23.useMemo)(
     () => resolvedTextStyleToInlineStyle(
       resolveTextStyle({
         section,
@@ -6497,7 +7013,7 @@ function MerchantFooterReveal({
     ),
     [section, theme]
   );
-  const policiesHeadingStyle = (0, import_react22.useMemo)(
+  const policiesHeadingStyle = (0, import_react23.useMemo)(
     () => resolvedTextStyleToInlineStyle(
       resolveTextStyle({
         section,
@@ -6509,7 +7025,7 @@ function MerchantFooterReveal({
     ),
     [section, theme]
   );
-  const policyLinkTextStyle = (0, import_react22.useMemo)(
+  const policyLinkTextStyle = (0, import_react23.useMemo)(
     () => resolvedTextStyleToInlineStyle(
       resolveBlockGroupTextStyle({
         section,
@@ -6521,7 +7037,7 @@ function MerchantFooterReveal({
     ),
     [section, theme]
   );
-  const logoTextStyle = (0, import_react22.useMemo)(
+  const logoTextStyle = (0, import_react23.useMemo)(
     () => resolvedTextStyleToInlineStyle(
       resolveTextStyle({
         section,
@@ -6533,7 +7049,7 @@ function MerchantFooterReveal({
     ),
     [section, theme]
   );
-  const addressStyle = (0, import_react22.useMemo)(
+  const addressStyle = (0, import_react23.useMemo)(
     () => resolvedTextStyleToInlineStyle(
       resolveTextStyle({
         section,
@@ -6545,7 +7061,7 @@ function MerchantFooterReveal({
     ),
     [section, theme]
   );
-  const phoneStyle = (0, import_react22.useMemo)(
+  const phoneStyle = (0, import_react23.useMemo)(
     () => resolvedTextStyleToInlineStyle(
       resolveTextStyle({
         section,
@@ -6557,7 +7073,7 @@ function MerchantFooterReveal({
     ),
     [section, theme]
   );
-  const whatsappStyle = (0, import_react22.useMemo)(
+  const whatsappStyle = (0, import_react23.useMemo)(
     () => resolvedTextStyleToInlineStyle(
       resolveTextStyle({
         section,
@@ -6569,8 +7085,8 @@ function MerchantFooterReveal({
     ),
     [section, theme]
   );
-  const revealInner = /* @__PURE__ */ import_react22.default.createElement("div", { className: "ak-mf__reveal-box" }, /* @__PURE__ */ import_react22.default.createElement("div", { className: "ak-mf__powered-wrap" }, /* @__PURE__ */ import_react22.default.createElement("span", { className: "ak-mf__powered" }, "Powered by")), /* @__PURE__ */ import_react22.default.createElement("div", { className: "ak-mf__brand-big-wrap" }, /* @__PURE__ */ import_react22.default.createElement("div", { className: "ak-mf__brand-big" }, "areakart")), /* @__PURE__ */ import_react22.default.createElement("div", { className: "ak-mf__reveal-fade", "aria-hidden": true }));
-  return /* @__PURE__ */ import_react22.default.createElement("section", { ref: sectionRef, className: "ak-mf", style: sectionAppearanceStyle(appearance) }, /* @__PURE__ */ import_react22.default.createElement("div", { className: "ak-mf__ambient", "aria-hidden": true }), /* @__PURE__ */ import_react22.default.createElement("div", { className: "ak-mf__top-rule", "aria-hidden": true }), enableRevealMotion ? /* @__PURE__ */ import_react22.default.createElement(import_framer_motion7.motion.div, { style: { height: topLift }, className: "ak-mf__top-spacer", "aria-hidden": true }) : null, /* @__PURE__ */ import_react22.default.createElement("div", { className: "ak-mf__inner" }, /* @__PURE__ */ import_react22.default.createElement("div", { className: `ak-mf__grid ${gridModifier}` }, /* @__PURE__ */ import_react22.default.createElement("div", { className: "ak-mf__col ak-mf__col--brand" }, /* @__PURE__ */ import_react22.default.createElement("div", { className: "ak-mf__brand-row" }, logoImage ? /* @__PURE__ */ import_react22.default.createElement("div", { className: "ak-mf__logo-img-wrap" }, /* @__PURE__ */ import_react22.default.createElement("img", { src: logoImage, alt: "", className: "ak-mf__logo-img" })) : /* @__PURE__ */ import_react22.default.createElement("div", { className: "ak-mf__logo-fallback", "aria-hidden": true, style: logoTextStyle }, logoText.slice(0, 3)), /* @__PURE__ */ import_react22.default.createElement("div", { className: "ak-mf__brand-text" }, merchantName ? /* @__PURE__ */ import_react22.default.createElement("h2", { className: "ak-mf__merchant-name", style: merchantNameStyle }, merchantName) : null, merchantSubLabel ? /* @__PURE__ */ import_react22.default.createElement("p", { className: "ak-mf__merchant-sub", style: merchantSubLabelStyle }, merchantSubLabel) : null)), tagline ? /* @__PURE__ */ import_react22.default.createElement("p", { className: "ak-mf__tagline", style: taglineStyle }, tagline) : null, address || phone || whatsappLine ? /* @__PURE__ */ import_react22.default.createElement("div", { className: "ak-mf__contact" }, /* @__PURE__ */ import_react22.default.createElement(InfoRow, { icon: MapPinIcon, text: address, style: addressStyle }), /* @__PURE__ */ import_react22.default.createElement(InfoRow, { icon: PhoneIcon, text: phone, style: phoneStyle }), /* @__PURE__ */ import_react22.default.createElement(InfoRow, { icon: MessageCircleIcon, text: whatsappLine, style: whatsappStyle })) : null), hasSocial ? /* @__PURE__ */ import_react22.default.createElement("div", { className: "ak-mf__col ak-mf__col--social" }, /* @__PURE__ */ import_react22.default.createElement("p", { className: "ak-mf__col-heading", style: socialHeadingStyle }, socialHeading), /* @__PURE__ */ import_react22.default.createElement("div", { className: "ak-mf__link-stack" }, socialItems.map((item, idx) => /* @__PURE__ */ import_react22.default.createElement(
+  const revealInner = /* @__PURE__ */ import_react23.default.createElement("div", { className: "ak-mf__reveal-box" }, /* @__PURE__ */ import_react23.default.createElement("div", { className: "ak-mf__powered-wrap" }, /* @__PURE__ */ import_react23.default.createElement("span", { className: "ak-mf__powered" }, "Powered by")), /* @__PURE__ */ import_react23.default.createElement("div", { className: "ak-mf__brand-big-wrap" }, /* @__PURE__ */ import_react23.default.createElement("div", { className: "ak-mf__brand-big" }, "areakart")), /* @__PURE__ */ import_react23.default.createElement("div", { className: "ak-mf__reveal-fade", "aria-hidden": true }));
+  return /* @__PURE__ */ import_react23.default.createElement("section", { ref: sectionRef, className: "ak-mf", style: sectionAppearanceStyle(appearance) }, /* @__PURE__ */ import_react23.default.createElement("div", { className: "ak-mf__ambient", "aria-hidden": true }), /* @__PURE__ */ import_react23.default.createElement("div", { className: "ak-mf__top-rule", "aria-hidden": true }), enableRevealMotion ? /* @__PURE__ */ import_react23.default.createElement(import_framer_motion7.motion.div, { style: { height: topLift }, className: "ak-mf__top-spacer", "aria-hidden": true }) : null, /* @__PURE__ */ import_react23.default.createElement("div", { className: "ak-mf__inner" }, /* @__PURE__ */ import_react23.default.createElement("div", { className: `ak-mf__grid ${gridModifier}` }, /* @__PURE__ */ import_react23.default.createElement("div", { className: "ak-mf__col ak-mf__col--brand" }, /* @__PURE__ */ import_react23.default.createElement("div", { className: "ak-mf__brand-row" }, logoImage ? /* @__PURE__ */ import_react23.default.createElement("div", { className: "ak-mf__logo-img-wrap" }, /* @__PURE__ */ import_react23.default.createElement("img", { src: logoImage, alt: "", className: "ak-mf__logo-img" })) : /* @__PURE__ */ import_react23.default.createElement("div", { className: "ak-mf__logo-fallback", "aria-hidden": true, style: logoTextStyle }, logoText.slice(0, 3)), /* @__PURE__ */ import_react23.default.createElement("div", { className: "ak-mf__brand-text" }, merchantName ? /* @__PURE__ */ import_react23.default.createElement("h2", { className: "ak-mf__merchant-name", style: merchantNameStyle }, merchantName) : null, merchantSubLabel ? /* @__PURE__ */ import_react23.default.createElement("p", { className: "ak-mf__merchant-sub", style: merchantSubLabelStyle }, merchantSubLabel) : null)), tagline ? /* @__PURE__ */ import_react23.default.createElement("p", { className: "ak-mf__tagline", style: taglineStyle }, tagline) : null, address || phone || whatsappLine ? /* @__PURE__ */ import_react23.default.createElement("div", { className: "ak-mf__contact" }, /* @__PURE__ */ import_react23.default.createElement(InfoRow, { icon: MapPinIcon, text: address, style: addressStyle }), /* @__PURE__ */ import_react23.default.createElement(InfoRow, { icon: PhoneIcon, text: phone, style: phoneStyle }), /* @__PURE__ */ import_react23.default.createElement(InfoRow, { icon: MessageCircleIcon, text: whatsappLine, style: whatsappStyle })) : null), hasSocial ? /* @__PURE__ */ import_react23.default.createElement("div", { className: "ak-mf__col ak-mf__col--social" }, /* @__PURE__ */ import_react23.default.createElement("p", { className: "ak-mf__col-heading", style: socialHeadingStyle }, socialHeading), /* @__PURE__ */ import_react23.default.createElement("div", { className: "ak-mf__link-stack" }, socialItems.map((item, idx) => /* @__PURE__ */ import_react23.default.createElement(
     "a",
     {
       key: `social-${idx}-${item.platform}`,
@@ -6579,13 +7095,13 @@ function MerchantFooterReveal({
       rel: "noopener noreferrer",
       className: "ak-mf__link-row ak-mf__link-row--social"
     },
-    /* @__PURE__ */ import_react22.default.createElement("span", { className: "ak-mf__social-label" }, /* @__PURE__ */ import_react22.default.createElement("span", { className: "ak-mf__social-icon" }, /* @__PURE__ */ import_react22.default.createElement(item.Icon, { className: "ak-mf__social-icon-svg" })), item.label),
-    /* @__PURE__ */ import_react22.default.createElement(ChevronRightIcon, { className: "ak-mf__chev ak-mf__chev--social" })
-  )))) : null, hasPolicies ? /* @__PURE__ */ import_react22.default.createElement("div", { className: "ak-mf__col ak-mf__col--policies" }, /* @__PURE__ */ import_react22.default.createElement("p", { className: "ak-mf__col-heading", style: policiesHeadingStyle }, policiesHeading), /* @__PURE__ */ import_react22.default.createElement("div", { className: "ak-mf__link-stack" }, policyItems.map((item, idx) => /* @__PURE__ */ import_react22.default.createElement("div", { key: `policy-${idx}-${item.text}`, className: "ak-mf__policy-row" }, item.link ? /* @__PURE__ */ import_react22.default.createElement("a", { href: item.link, className: "ak-mf__link-row" }, /* @__PURE__ */ import_react22.default.createElement("span", { style: policyLinkTextStyle }, item.text), /* @__PURE__ */ import_react22.default.createElement(ChevronRightIcon, { className: "ak-mf__chev" })) : /* @__PURE__ */ import_react22.default.createElement("div", { className: "ak-mf__link-row ak-mf__link-row--static" }, /* @__PURE__ */ import_react22.default.createElement("span", { style: policyLinkTextStyle }, item.text), /* @__PURE__ */ import_react22.default.createElement(ChevronRightIcon, { className: "ak-mf__chev ak-mf__chev--muted" })))))) : null), /* @__PURE__ */ import_react22.default.createElement("div", { className: "ak-mf__reveal-wrap" }, enableRevealMotion ? /* @__PURE__ */ import_react22.default.createElement(import_framer_motion7.motion.div, { className: "ak-mf__reveal-motion", style: { y: brandY, scaleX: brandScaleX } }, revealInner) : /* @__PURE__ */ import_react22.default.createElement("div", { className: "ak-mf__reveal-motion" }, revealInner))));
+    /* @__PURE__ */ import_react23.default.createElement("span", { className: "ak-mf__social-label" }, /* @__PURE__ */ import_react23.default.createElement("span", { className: "ak-mf__social-icon" }, /* @__PURE__ */ import_react23.default.createElement(item.Icon, { className: "ak-mf__social-icon-svg" })), item.label),
+    /* @__PURE__ */ import_react23.default.createElement(ChevronRightIcon, { className: "ak-mf__chev ak-mf__chev--social" })
+  )))) : null, hasPolicies ? /* @__PURE__ */ import_react23.default.createElement("div", { className: "ak-mf__col ak-mf__col--policies" }, /* @__PURE__ */ import_react23.default.createElement("p", { className: "ak-mf__col-heading", style: policiesHeadingStyle }, policiesHeading), /* @__PURE__ */ import_react23.default.createElement("div", { className: "ak-mf__link-stack" }, policyItems.map((item, idx) => /* @__PURE__ */ import_react23.default.createElement("div", { key: `policy-${idx}-${item.text}`, className: "ak-mf__policy-row" }, item.link ? /* @__PURE__ */ import_react23.default.createElement("a", { href: item.link, className: "ak-mf__link-row" }, /* @__PURE__ */ import_react23.default.createElement("span", { style: policyLinkTextStyle }, item.text), /* @__PURE__ */ import_react23.default.createElement(ChevronRightIcon, { className: "ak-mf__chev" })) : /* @__PURE__ */ import_react23.default.createElement("div", { className: "ak-mf__link-row ak-mf__link-row--static" }, /* @__PURE__ */ import_react23.default.createElement("span", { style: policyLinkTextStyle }, item.text), /* @__PURE__ */ import_react23.default.createElement(ChevronRightIcon, { className: "ak-mf__chev ak-mf__chev--muted" })))))) : null), /* @__PURE__ */ import_react23.default.createElement("div", { className: "ak-mf__reveal-wrap" }, enableRevealMotion ? /* @__PURE__ */ import_react23.default.createElement(import_framer_motion7.motion.div, { className: "ak-mf__reveal-motion", style: { y: brandY, scaleX: brandScaleX } }, revealInner) : /* @__PURE__ */ import_react23.default.createElement("div", { className: "ak-mf__reveal-motion" }, revealInner))));
 }
 
 // src/components/CouponStripsSection/CouponTickerMinimal.tsx
-var import_react23 = __toESM(require("react"));
+var import_react24 = __toESM(require("react"));
 
 // src/shared/textStyleDefaults/couponTextStyleDefaults.ts
 var COUPON_HEADING_DEFAULT = {
@@ -6653,7 +7169,7 @@ function TickerRow({
   codeStyle,
   titleStyle
 }) {
-  const loopItems = (0, import_react23.useMemo)(
+  const loopItems = (0, import_react24.useMemo)(
     () => [...items, ...items].map((item, index) => ({
       ...item,
       key: `${item.key}-${index}`
@@ -6662,7 +7178,7 @@ function TickerRow({
   );
   const trackClass = secondary ? "ak-coupon-ticker__track ak-coupon-ticker__track--secondary" : "ak-coupon-ticker__track";
   const animationName = reverse ? "ak-coupon-ticker-scroll-reverse" : "ak-coupon-ticker-scroll";
-  return /* @__PURE__ */ import_react23.default.createElement("div", { className: "ak-coupon-ticker__row" }, /* @__PURE__ */ import_react23.default.createElement(
+  return /* @__PURE__ */ import_react24.default.createElement("div", { className: "ak-coupon-ticker__row" }, /* @__PURE__ */ import_react24.default.createElement(
     "div",
     {
       className: trackClass,
@@ -6671,21 +7187,21 @@ function TickerRow({
         animationDuration: `${durationSec}s`
       }
     },
-    loopItems.map((item) => /* @__PURE__ */ import_react23.default.createElement("div", { key: item.key, className: "ak-coupon-ticker__item" }, secondary ? /* @__PURE__ */ import_react23.default.createElement(
+    loopItems.map((item) => /* @__PURE__ */ import_react24.default.createElement("div", { key: item.key, className: "ak-coupon-ticker__item" }, secondary ? /* @__PURE__ */ import_react24.default.createElement(
       "span",
       {
         className: "ak-coupon-ticker__code ak-coupon-ticker__code--secondary",
         style: codeStyle
       },
       item.code
-    ) : /* @__PURE__ */ import_react23.default.createElement("span", { className: "ak-coupon-ticker__pill", style: codeStyle }, item.code), /* @__PURE__ */ import_react23.default.createElement(
+    ) : /* @__PURE__ */ import_react24.default.createElement("span", { className: "ak-coupon-ticker__pill", style: codeStyle }, item.code), /* @__PURE__ */ import_react24.default.createElement(
       "span",
       {
         className: secondary ? "ak-coupon-ticker__title ak-coupon-ticker__title--secondary" : "ak-coupon-ticker__title",
         style: titleStyle
       },
       item.title
-    ), /* @__PURE__ */ import_react23.default.createElement(
+    ), /* @__PURE__ */ import_react24.default.createElement(
       "span",
       {
         className: secondary ? "ak-coupon-ticker__divider ak-coupon-ticker__divider--secondary" : "ak-coupon-ticker__divider",
@@ -6709,7 +7225,7 @@ function CouponTickerMinimal({
   const showSecondaryStrip = props.showSecondaryStrip !== false;
   const stripSpeedPrimary = normalizeSpeed(props.stripSpeedPrimary, 20);
   const stripSpeedSecondary = normalizeSpeed(props.stripSpeedSecondary, 28);
-  const headingStyle = (0, import_react23.useMemo)(
+  const headingStyle = (0, import_react24.useMemo)(
     () => resolvedTextStyleToInlineStyle(
       resolveTextStyle({
         section,
@@ -6721,7 +7237,7 @@ function CouponTickerMinimal({
     ),
     [section, theme]
   );
-  const subheadingStyle = (0, import_react23.useMemo)(
+  const subheadingStyle = (0, import_react24.useMemo)(
     () => resolvedTextStyleToInlineStyle(
       resolveTextStyle({
         section,
@@ -6733,7 +7249,7 @@ function CouponTickerMinimal({
     ),
     [section, theme]
   );
-  const couponCodeStyle = (0, import_react23.useMemo)(
+  const couponCodeStyle = (0, import_react24.useMemo)(
     () => resolvedTextStyleToInlineStyle(
       resolveBlockGroupTextStyle({
         section,
@@ -6745,7 +7261,7 @@ function CouponTickerMinimal({
     ),
     [section, theme]
   );
-  const couponTitleStyle = (0, import_react23.useMemo)(
+  const couponTitleStyle = (0, import_react24.useMemo)(
     () => resolvedTextStyleToInlineStyle(
       resolveBlockGroupTextStyle({
         section,
@@ -6757,7 +7273,7 @@ function CouponTickerMinimal({
     ),
     [section, theme]
   );
-  const items = (0, import_react23.useMemo)(
+  const items = (0, import_react24.useMemo)(
     () => {
       var _a2;
       return buildTickerItems((_a2 = section == null ? void 0 : section.settings) == null ? void 0 : _a2.blocks);
@@ -6765,7 +7281,7 @@ function CouponTickerMinimal({
     [(_c = section == null ? void 0 : section.settings) == null ? void 0 : _c.blocks]
   );
   const showTicker = items.length > 0;
-  return /* @__PURE__ */ import_react23.default.createElement("section", { className: "ak-coupon-ticker", style: sectionAppearanceStyle(appearance) }, /* @__PURE__ */ import_react23.default.createElement("span", { className: "ak-coupon-ticker__divider-line ak-coupon-ticker__divider-line--top", "aria-hidden": true }), /* @__PURE__ */ import_react23.default.createElement("span", { className: "ak-coupon-ticker__divider-line ak-coupon-ticker__divider-line--bottom", "aria-hidden": true }), /* @__PURE__ */ import_react23.default.createElement("div", { className: "ak-coupon-ticker__header" }, /* @__PURE__ */ import_react23.default.createElement("h2", { className: "ak-coupon-ticker__heading", style: headingStyle }, heading), showSubheading && subheading ? /* @__PURE__ */ import_react23.default.createElement("p", { className: "ak-coupon-ticker__subheading", style: subheadingStyle }, subheading) : null), showTicker ? /* @__PURE__ */ import_react23.default.createElement("div", { className: "ak-coupon-ticker__strips" }, /* @__PURE__ */ import_react23.default.createElement("div", { className: "ak-coupon-ticker__fade ak-coupon-ticker__fade--left", "aria-hidden": true }), /* @__PURE__ */ import_react23.default.createElement("div", { className: "ak-coupon-ticker__fade ak-coupon-ticker__fade--right", "aria-hidden": true }), /* @__PURE__ */ import_react23.default.createElement(
+  return /* @__PURE__ */ import_react24.default.createElement("section", { className: "ak-coupon-ticker", style: sectionAppearanceStyle(appearance) }, /* @__PURE__ */ import_react24.default.createElement("span", { className: "ak-coupon-ticker__divider-line ak-coupon-ticker__divider-line--top", "aria-hidden": true }), /* @__PURE__ */ import_react24.default.createElement("span", { className: "ak-coupon-ticker__divider-line ak-coupon-ticker__divider-line--bottom", "aria-hidden": true }), /* @__PURE__ */ import_react24.default.createElement("div", { className: "ak-coupon-ticker__header" }, /* @__PURE__ */ import_react24.default.createElement("h2", { className: "ak-coupon-ticker__heading", style: headingStyle }, heading), showSubheading && subheading ? /* @__PURE__ */ import_react24.default.createElement("p", { className: "ak-coupon-ticker__subheading", style: subheadingStyle }, subheading) : null), showTicker ? /* @__PURE__ */ import_react24.default.createElement("div", { className: "ak-coupon-ticker__strips" }, /* @__PURE__ */ import_react24.default.createElement("div", { className: "ak-coupon-ticker__fade ak-coupon-ticker__fade--left", "aria-hidden": true }), /* @__PURE__ */ import_react24.default.createElement("div", { className: "ak-coupon-ticker__fade ak-coupon-ticker__fade--right", "aria-hidden": true }), /* @__PURE__ */ import_react24.default.createElement(
     TickerRow,
     {
       items,
@@ -6774,7 +7290,7 @@ function CouponTickerMinimal({
       codeStyle: couponCodeStyle,
       titleStyle: couponTitleStyle
     }
-  ), showSecondaryStrip ? /* @__PURE__ */ import_react23.default.createElement("div", { className: "ak-coupon-ticker__secondary-wrap" }, /* @__PURE__ */ import_react23.default.createElement(
+  ), showSecondaryStrip ? /* @__PURE__ */ import_react24.default.createElement("div", { className: "ak-coupon-ticker__secondary-wrap" }, /* @__PURE__ */ import_react24.default.createElement(
     TickerRow,
     {
       items,
@@ -6789,13 +7305,13 @@ function CouponTickerMinimal({
 }
 
 // src/sections/marquee-text/DualLineFeatureMarquee.tsx
-var import_react26 = __toESM(require("react"));
+var import_react27 = __toESM(require("react"));
 
 // src/sections/marquee-text/FeatureMarqueeBlock.tsx
-var import_react25 = __toESM(require("react"));
+var import_react26 = __toESM(require("react"));
 
 // src/sections/marquee-text/MarqueeLine.tsx
-var import_react24 = __toESM(require("react"));
+var import_react25 = __toESM(require("react"));
 function getCopiesPerSequence(items, large) {
   const count = items.length;
   const avgChars = items.reduce((sum, item) => sum + item.text.length, 0) / Math.max(count, 1);
@@ -6825,11 +7341,11 @@ function MarqueeLine({
   pauseOnHover = false,
   reducedMotion = false
 }) {
-  const sequence = (0, import_react24.useMemo)(
+  const sequence = (0, import_react25.useMemo)(
     () => buildMarqueeSequence(items, large),
     [items, large]
   );
-  const loopItems = (0, import_react24.useMemo)(
+  const loopItems = (0, import_react25.useMemo)(
     () => [...sequence, ...sequence].map((item, index) => ({
       ...item,
       key: `${item.id || item.text}-${index}`
@@ -6843,7 +7359,7 @@ function MarqueeLine({
     reverse ? "feature-marquee-track--reverse" : "",
     pauseOnHover ? "feature-marquee-track--pause-hover" : ""
   ].filter(Boolean).join(" ");
-  return /* @__PURE__ */ import_react24.default.createElement("div", { className: "feature-marquee-row" }, /* @__PURE__ */ import_react24.default.createElement(
+  return /* @__PURE__ */ import_react25.default.createElement("div", { className: "feature-marquee-row" }, /* @__PURE__ */ import_react25.default.createElement(
     "div",
     {
       className: trackClass,
@@ -6851,7 +7367,7 @@ function MarqueeLine({
         animationDuration: `${durationSec}s`
       }
     },
-    loopItems.map((item) => /* @__PURE__ */ import_react24.default.createElement("span", { key: item.key, className: "feature-marquee-item", style: item.style }, item.text, /* @__PURE__ */ import_react24.default.createElement("span", { className: "feature-marquee-dot", "aria-hidden": true }, "\u2022")))
+    loopItems.map((item) => /* @__PURE__ */ import_react25.default.createElement("span", { key: item.key, className: "feature-marquee-item", style: item.style }, item.text, /* @__PURE__ */ import_react25.default.createElement("span", { className: "feature-marquee-dot", "aria-hidden": true }, "\u2022")))
   ));
 }
 
@@ -6869,11 +7385,11 @@ function FeatureMarqueeBlock({
   const hasTopRow = marqueeTop.length > 0;
   const hasBottomRow = marqueeBottom.length > 0;
   if (!hasTopRow && !hasBottomRow) return null;
-  const contentKey = (0, import_react25.useMemo)(
+  const contentKey = (0, import_react26.useMemo)(
     () => `${marqueeTop.map((i) => i.text).join("|")}-${marqueeBottom.map((i) => i.text).join("|")}-marquee`,
     [marqueeTop, marqueeBottom]
   );
-  return /* @__PURE__ */ import_react25.default.createElement("div", { className: "feature-marquee-block" }, hasTopRow ? /* @__PURE__ */ import_react25.default.createElement(
+  return /* @__PURE__ */ import_react26.default.createElement("div", { className: "feature-marquee-block" }, hasTopRow ? /* @__PURE__ */ import_react26.default.createElement(
     MarqueeLine,
     {
       items: marqueeTop,
@@ -6882,7 +7398,7 @@ function FeatureMarqueeBlock({
       pauseOnHover,
       reducedMotion
     }
-  ) : null, hasBottomRow ? /* @__PURE__ */ import_react25.default.createElement(
+  ) : null, hasBottomRow ? /* @__PURE__ */ import_react26.default.createElement(
     MarqueeLine,
     {
       items: marqueeBottom,
@@ -6982,21 +7498,21 @@ function DualLineFeatureMarquee({
   const largeTopRow = props.largeTopRow !== false;
   const largeBottomRow = props.largeBottomRow === true;
   const pauseOnHover = props.pauseOnHover === true;
-  const marqueeTop = (0, import_react26.useMemo)(
+  const marqueeTop = (0, import_react27.useMemo)(
     () => buildRowItems(rawBlocks, "top", section, theme, largeTopRow),
     [rawBlocks, section, theme, largeTopRow]
   );
-  const marqueeBottom = (0, import_react26.useMemo)(
+  const marqueeBottom = (0, import_react27.useMemo)(
     () => buildRowItems(rawBlocks, "bottom", section, theme, largeBottomRow),
     [rawBlocks, section, theme, largeBottomRow]
   );
-  return /* @__PURE__ */ import_react26.default.createElement(
+  return /* @__PURE__ */ import_react27.default.createElement(
     "section",
     {
       className: "ak-dual-line-marquee",
       style: sectionAppearanceStyle(appearance)
     },
-    /* @__PURE__ */ import_react26.default.createElement(
+    /* @__PURE__ */ import_react27.default.createElement(
       FeatureMarqueeBlock,
       {
         marqueeTop,
@@ -7012,8 +7528,1199 @@ function DualLineFeatureMarquee({
   );
 }
 
+// src/sections/video-hero/MediaPresenceVideoHero.tsx
+var import_react28 = __toESM(require("react"));
+var import_framer_motion8 = require("framer-motion");
+
+// src/shared/textStyleDefaults/videoHeroTextStyleDefaults.ts
+var VIDEO_HERO_EYEBROW_DEFAULT = {
+  color: "#404040",
+  fontWeight: "500",
+  fontSize: "0.875rem"
+};
+var VIDEO_HERO_HEADING_DEFAULT = {
+  color: "#0a0a0a",
+  fontWeight: "600",
+  fontSize: "clamp(2.25rem, 5vw, 4.5rem)"
+};
+var VIDEO_HERO_SUBHEADING_DEFAULT = {
+  color: "#525252",
+  fontWeight: "400",
+  fontSize: "clamp(1rem, 1.6vw, 1.125rem)"
+};
+var VIDEO_CARD_EYEBROW_DEFAULT = {
+  color: "#ffffff",
+  fontWeight: "600",
+  fontSize: "0.75rem"
+};
+var VIDEO_CARD_TITLE_DEFAULT = {
+  color: "#ffffff",
+  fontWeight: "600",
+  fontSize: "clamp(1.25rem, 2vw, 1.5rem)"
+};
+var INFO_CARD_LIGHT_SURFACE_DEFAULT = {
+  color: "#404040",
+  backgroundColor: "rgba(255, 255, 255, 0.75)"
+};
+var INFO_CARD_DARK_SURFACE_DEFAULT = {
+  color: "rgba(255, 255, 255, 0.9)",
+  backgroundColor: "#0a0a0a"
+};
+var INFO_CARD_TITLE_DEFAULT = {
+  color: "#404040",
+  fontWeight: "500",
+  fontSize: "0.875rem"
+};
+
+// src/sections/video-hero/MediaPresenceVideoHero.tsx
+var VIDEO_CARD_TYPE = "video_card";
+var INFO_CARD_TYPE = "info_card";
+var easing2 = [0.22, 1, 0.36, 1];
+function safeText12(value) {
+  return String(value != null ? value : "").trim();
+}
+function readNestedFields(block) {
+  const nested = block.props && typeof block.props === "object" ? block.props : {};
+  return { ...nested, ...block };
+}
+function readVideoCard(block) {
+  const fields = readNestedFields(block);
+  return {
+    id: safeText12(block.id) || "",
+    eyebrow: safeText12(fields.eyebrow),
+    title: safeText12(fields.title),
+    videoUrl: normalizeImageUrl(safeText12(fields.videoUrl)),
+    posterImage: normalizeImageUrl(safeText12(fields.posterImage)),
+    statLabel: safeText12(fields.statLabel)
+  };
+}
+function readInfoCard(block) {
+  const fields = readNestedFields(block);
+  const iconRaw = safeText12(fields.iconType).toLowerCase();
+  const styleRaw = safeText12(fields.styleType).toLowerCase();
+  const iconType = iconRaw === "sparkles" || iconRaw === "newspaper" || iconRaw === "radio" || iconRaw === "badge" || iconRaw === "none" ? iconRaw : "none";
+  const styleType = styleRaw === "dark" ? "dark" : "light";
+  return {
+    id: safeText12(block.id) || "",
+    iconType,
+    title: safeText12(fields.title),
+    styleType
+  };
+}
+function paddingClass(padding) {
+  const value = safeText12(padding).toLowerCase();
+  if (value === "small") return "ak-video-hero--pad-sm";
+  if (value === "medium") return "ak-video-hero--pad-md";
+  return "ak-video-hero--pad-lg";
+}
+function SparklesIcon2() {
+  return /* @__PURE__ */ import_react28.default.createElement("svg", { viewBox: "0 0 24 24", fill: "none", "aria-hidden": true, className: "ak-video-hero__infoIconSvg" }, /* @__PURE__ */ import_react28.default.createElement(
+    "path",
+    {
+      d: "M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z",
+      stroke: "currentColor",
+      strokeWidth: "2",
+      strokeLinecap: "round",
+      strokeLinejoin: "round"
+    }
+  ));
+}
+function NewspaperIcon() {
+  return /* @__PURE__ */ import_react28.default.createElement("svg", { viewBox: "0 0 24 24", fill: "none", "aria-hidden": true, className: "ak-video-hero__infoIconSvg" }, /* @__PURE__ */ import_react28.default.createElement(
+    "path",
+    {
+      d: "M4 19.5A2.5 2.5 0 0 1 6.5 17H20",
+      stroke: "currentColor",
+      strokeWidth: "2",
+      strokeLinecap: "round",
+      strokeLinejoin: "round"
+    }
+  ), /* @__PURE__ */ import_react28.default.createElement(
+    "path",
+    {
+      d: "M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z",
+      stroke: "currentColor",
+      strokeWidth: "2",
+      strokeLinecap: "round",
+      strokeLinejoin: "round"
+    }
+  ), /* @__PURE__ */ import_react28.default.createElement("path", { d: "M8 7h8M8 11h8M8 15h5", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round" }));
+}
+function RadioIcon({ className }) {
+  return /* @__PURE__ */ import_react28.default.createElement("svg", { viewBox: "0 0 24 24", fill: "none", "aria-hidden": true, className }, /* @__PURE__ */ import_react28.default.createElement(
+    "path",
+    {
+      d: "M4.9 19.1C1 15.2 1 8.8 4.9 4.9",
+      stroke: "currentColor",
+      strokeWidth: "2",
+      strokeLinecap: "round",
+      strokeLinejoin: "round"
+    }
+  ), /* @__PURE__ */ import_react28.default.createElement(
+    "path",
+    {
+      d: "M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5",
+      stroke: "currentColor",
+      strokeWidth: "2",
+      strokeLinecap: "round",
+      strokeLinejoin: "round"
+    }
+  ), /* @__PURE__ */ import_react28.default.createElement("circle", { cx: "12", cy: "12", r: "2", stroke: "currentColor", strokeWidth: "2" }), /* @__PURE__ */ import_react28.default.createElement(
+    "path",
+    {
+      d: "M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5",
+      stroke: "currentColor",
+      strokeWidth: "2",
+      strokeLinecap: "round",
+      strokeLinejoin: "round"
+    }
+  ), /* @__PURE__ */ import_react28.default.createElement(
+    "path",
+    {
+      d: "M19.1 4.9C23 8.8 23 15.1 19.1 19",
+      stroke: "currentColor",
+      strokeWidth: "2",
+      strokeLinecap: "round",
+      strokeLinejoin: "round"
+    }
+  ));
+}
+function BadgeIcon() {
+  return /* @__PURE__ */ import_react28.default.createElement("svg", { viewBox: "0 0 24 24", fill: "none", "aria-hidden": true, className: "ak-video-hero__infoIconSvg" }, /* @__PURE__ */ import_react28.default.createElement(
+    "path",
+    {
+      d: "M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z",
+      stroke: "currentColor",
+      strokeWidth: "2",
+      strokeLinecap: "round",
+      strokeLinejoin: "round"
+    }
+  ), /* @__PURE__ */ import_react28.default.createElement("path", { d: "m9 12 2 2 4-4", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round" }));
+}
+function InfoIcon({ type }) {
+  switch (type) {
+    case "sparkles":
+      return /* @__PURE__ */ import_react28.default.createElement(SparklesIcon2, null);
+    case "newspaper":
+      return /* @__PURE__ */ import_react28.default.createElement(NewspaperIcon, null);
+    case "radio":
+      return /* @__PURE__ */ import_react28.default.createElement(RadioIcon, { className: "ak-video-hero__infoIconSvg" });
+    case "badge":
+      return /* @__PURE__ */ import_react28.default.createElement(BadgeIcon, null);
+    default:
+      return null;
+  }
+}
+function PlayIcon() {
+  return /* @__PURE__ */ import_react28.default.createElement("svg", { viewBox: "0 0 24 24", fill: "none", "aria-hidden": true }, /* @__PURE__ */ import_react28.default.createElement("path", { d: "M8 5.14v13.72L19 12 8 5.14z", fill: "currentColor" }));
+}
+function PauseIcon() {
+  return /* @__PURE__ */ import_react28.default.createElement("svg", { viewBox: "0 0 24 24", fill: "none", "aria-hidden": true }, /* @__PURE__ */ import_react28.default.createElement("rect", { x: "6", y: "5", width: "4", height: "14", rx: "1", fill: "currentColor" }), /* @__PURE__ */ import_react28.default.createElement("rect", { x: "14", y: "5", width: "4", height: "14", rx: "1", fill: "currentColor" }));
+}
+function VolumeOffIcon() {
+  return /* @__PURE__ */ import_react28.default.createElement("svg", { viewBox: "0 0 24 24", fill: "none", "aria-hidden": true }, /* @__PURE__ */ import_react28.default.createElement(
+    "path",
+    {
+      d: "M11 5 6 9H3v6h3l5 4V5z",
+      stroke: "currentColor",
+      strokeWidth: "2",
+      strokeLinecap: "round",
+      strokeLinejoin: "round"
+    }
+  ), /* @__PURE__ */ import_react28.default.createElement("path", { d: "m22 9-6 6M16 9l6 6", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round" }));
+}
+function VolumeOnIcon() {
+  return /* @__PURE__ */ import_react28.default.createElement("svg", { viewBox: "0 0 24 24", fill: "none", "aria-hidden": true }, /* @__PURE__ */ import_react28.default.createElement(
+    "path",
+    {
+      d: "M11 5 6 9H3v6h3l5 4V5z",
+      stroke: "currentColor",
+      strokeWidth: "2",
+      strokeLinecap: "round",
+      strokeLinejoin: "round"
+    }
+  ), /* @__PURE__ */ import_react28.default.createElement(
+    "path",
+    {
+      d: "M15.54 8.46a5 5 0 0 1 0 7.07M19.07 4.93a10 10 0 0 1 0 14.14",
+      stroke: "currentColor",
+      strokeWidth: "2",
+      strokeLinecap: "round",
+      strokeLinejoin: "round"
+    }
+  ));
+}
+function VideoCardItem({
+  card,
+  index,
+  total,
+  staggerMiddleCard,
+  autoPlayVideos,
+  loopVideos,
+  reduceMotion,
+  cardEyebrowStyle,
+  cardTitleStyle
+}) {
+  const videoRef = (0, import_react28.useRef)(null);
+  const [isPlaying, setIsPlaying] = (0, import_react28.useState)(autoPlayVideos);
+  const [isMuted, setIsMuted] = (0, import_react28.useState)(true);
+  const [autoplayBlocked, setAutoplayBlocked] = (0, import_react28.useState)(false);
+  const hasVideo = Boolean(card.videoUrl);
+  const showStagger = staggerMiddleCard && total === 3 && index === 1 && !reduceMotion;
+  const tryPlay = (0, import_react28.useCallback)(async () => {
+    const video = videoRef.current;
+    if (!video || !hasVideo) return;
+    try {
+      await video.play();
+      setIsPlaying(true);
+      setAutoplayBlocked(false);
+    } catch {
+      setIsPlaying(false);
+      setAutoplayBlocked(true);
+    }
+  }, [hasVideo]);
+  (0, import_react28.useEffect)(() => {
+    const video = videoRef.current;
+    if (!video || !hasVideo || !autoPlayVideos) return;
+    video.muted = isMuted;
+    const playVideo = () => {
+      tryPlay();
+    };
+    if (video.readyState >= 2) {
+      playVideo();
+    } else {
+      video.addEventListener("loadeddata", playVideo, { once: true });
+      return () => video.removeEventListener("loadeddata", playVideo);
+    }
+  }, [autoPlayVideos, hasVideo, isMuted, tryPlay]);
+  (0, import_react28.useEffect)(() => {
+    const video = videoRef.current;
+    if (!video || !hasVideo) return;
+    video.muted = isMuted;
+    if (!autoPlayVideos) {
+      video.pause();
+      setIsPlaying(false);
+    }
+  }, [autoPlayVideos, hasVideo, isMuted]);
+  const togglePlay = async () => {
+    const video = videoRef.current;
+    if (!video || !hasVideo) return;
+    if (video.paused) {
+      await tryPlay();
+    } else {
+      video.pause();
+      setIsPlaying(false);
+    }
+  };
+  const toggleMute = () => {
+    const video = videoRef.current;
+    const nextMuted = !isMuted;
+    setIsMuted(nextMuted);
+    if (video) video.muted = nextMuted;
+  };
+  const motionProps = reduceMotion ? { initial: false, animate: { opacity: 1, y: 0, scale: 1 } } : {
+    initial: { opacity: 0, y: 50, scale: 0.96 },
+    whileInView: { opacity: 1, y: 0, scale: 1 },
+    viewport: { once: true, margin: "-80px" },
+    transition: { duration: 0.8, delay: index * 0.12, ease: easing2 }
+  };
+  return /* @__PURE__ */ import_react28.default.createElement(
+    "div",
+    {
+      className: showStagger ? "ak-video-hero__cardWrap ak-video-hero__cardWrap--stagger" : "ak-video-hero__cardWrap"
+    },
+    /* @__PURE__ */ import_react28.default.createElement(
+      import_framer_motion8.motion.article,
+      {
+        ...motionProps,
+        className: "ak-video-hero__card"
+      },
+      /* @__PURE__ */ import_react28.default.createElement("div", { className: "ak-video-hero__cardMedia" }, hasVideo ? /* @__PURE__ */ import_react28.default.createElement(
+        "video",
+        {
+          ref: videoRef,
+          className: "ak-video-hero__cardVideo",
+          src: card.videoUrl,
+          poster: card.posterImage || void 0,
+          muted: isMuted,
+          loop: loopVideos,
+          playsInline: true,
+          preload: "auto",
+          onPlay: () => setIsPlaying(true),
+          onPause: () => setIsPlaying(false)
+        }
+      ) : card.posterImage ? /* @__PURE__ */ import_react28.default.createElement(
+        "img",
+        {
+          className: "ak-video-hero__cardPoster",
+          src: card.posterImage,
+          alt: card.title || "Video poster",
+          loading: "lazy",
+          decoding: "async"
+        }
+      ) : /* @__PURE__ */ import_react28.default.createElement("div", { className: "ak-video-hero__cardPlaceholder", "aria-hidden": true }), /* @__PURE__ */ import_react28.default.createElement("div", { className: "ak-video-hero__cardOverlay", "aria-hidden": true }), /* @__PURE__ */ import_react28.default.createElement("div", { className: "ak-video-hero__cardTopBar" }, card.eyebrow ? /* @__PURE__ */ import_react28.default.createElement("p", { className: "ak-video-hero__cardEyebrowPill", style: cardEyebrowStyle }, card.eyebrow) : /* @__PURE__ */ import_react28.default.createElement("span", null), card.statLabel ? /* @__PURE__ */ import_react28.default.createElement("span", { className: "ak-video-hero__cardStat", "aria-hidden": true }, card.statLabel) : null), /* @__PURE__ */ import_react28.default.createElement("div", { className: "ak-video-hero__cardBottom" }, card.title ? /* @__PURE__ */ import_react28.default.createElement("h3", { className: "ak-video-hero__cardTitle", style: cardTitleStyle }, card.title) : null, hasVideo ? /* @__PURE__ */ import_react28.default.createElement("div", { className: "ak-video-hero__cardControls" }, /* @__PURE__ */ import_react28.default.createElement(
+        "button",
+        {
+          type: "button",
+          className: "ak-video-hero__controlBtn ak-video-hero__controlBtn--play",
+          onClick: togglePlay,
+          "aria-label": isPlaying ? "Pause video" : "Play video"
+        },
+        isPlaying ? /* @__PURE__ */ import_react28.default.createElement(PauseIcon, null) : /* @__PURE__ */ import_react28.default.createElement(PlayIcon, null)
+      ), /* @__PURE__ */ import_react28.default.createElement(
+        "button",
+        {
+          type: "button",
+          className: "ak-video-hero__controlBtn ak-video-hero__controlBtn--mute",
+          onClick: toggleMute,
+          "aria-label": isMuted ? "Unmute video" : "Mute video"
+        },
+        isMuted ? /* @__PURE__ */ import_react28.default.createElement(VolumeOffIcon, null) : /* @__PURE__ */ import_react28.default.createElement(VolumeOnIcon, null)
+      )) : null), autoplayBlocked && hasVideo ? /* @__PURE__ */ import_react28.default.createElement(
+        "button",
+        {
+          type: "button",
+          className: "ak-video-hero__autoplayFallback",
+          onClick: tryPlay,
+          "aria-label": "Tap to play video"
+        },
+        /* @__PURE__ */ import_react28.default.createElement(PlayIcon, null)
+      ) : null)
+    )
+  );
+}
+function MediaPresenceVideoHero({
+  section,
+  appearance,
+  theme
+}) {
+  var _a, _b, _c;
+  const sectionRef = (0, import_react28.useRef)(null);
+  const props = (_b = (_a = section.settings) == null ? void 0 : _a.props) != null ? _b : {};
+  const rawBlocks = Array.isArray((_c = section.settings) == null ? void 0 : _c.blocks) ? section.settings.blocks : [];
+  const reduceMotion = usePrefersReducedMotion();
+  const framerReduceMotion = (0, import_framer_motion8.useReducedMotion)();
+  const motionDisabled = reduceMotion || Boolean(framerReduceMotion);
+  const { scrollYProgress } = (0, import_framer_motion8.useScroll)({
+    target: sectionRef,
+    offset: ["start end", "end start"]
+  });
+  const glowY = (0, import_framer_motion8.useTransform)(scrollYProgress, [0, 1], [80, -80]);
+  const titleY = (0, import_framer_motion8.useTransform)(scrollYProgress, [0, 0.45], [28, 0]);
+  const eyebrow = safeText12(props.eyebrow);
+  const heading = safeText12(props.heading);
+  const subheading = safeText12(props.subheading);
+  const showEyebrow = props.showEyebrow !== false;
+  const showSubheading = props.showSubheading !== false;
+  const showBottomInfoStrip = props.showBottomInfoStrip !== false;
+  const autoPlayVideos = props.autoPlayVideos !== false;
+  const loopVideos = props.loopVideos !== false;
+  const staggerMiddleCard = props.staggerMiddleCard !== false;
+  const videoCards = (0, import_react28.useMemo)(() => {
+    return rawBlocks.filter((block) => block && typeof block === "object").filter((block) => safeText12(block.type) === VIDEO_CARD_TYPE).map((block, index) => {
+      const card = readVideoCard(block);
+      return {
+        ...card,
+        key: card.id || `video-card-${index + 1}`
+      };
+    });
+  }, [rawBlocks]);
+  const infoCards = (0, import_react28.useMemo)(() => {
+    return rawBlocks.filter((block) => block && typeof block === "object").filter((block) => safeText12(block.type) === INFO_CARD_TYPE).map((block, index) => {
+      const card = readInfoCard(block);
+      return {
+        ...card,
+        key: card.id || `info-card-${index + 1}`
+      };
+    }).filter((card) => card.title);
+  }, [rawBlocks]);
+  const showVideoGrid = videoCards.length > 0;
+  const showInfoStrip = showBottomInfoStrip && infoCards.length > 0;
+  const eyebrowStyle = (0, import_react28.useMemo)(
+    () => resolvedTextStyleToInlineStyle(
+      resolveTextStyle({
+        section,
+        theme,
+        fieldId: "eyebrow",
+        role: "body",
+        defaultStyle: VIDEO_HERO_EYEBROW_DEFAULT
+      })
+    ),
+    [section, theme]
+  );
+  const headingStyle = (0, import_react28.useMemo)(
+    () => resolvedTextStyleToInlineStyle(
+      resolveTextStyle({
+        section,
+        theme,
+        fieldId: "heading",
+        role: "heading",
+        defaultStyle: VIDEO_HERO_HEADING_DEFAULT
+      })
+    ),
+    [section, theme]
+  );
+  const subheadingStyle = (0, import_react28.useMemo)(
+    () => resolvedTextStyleToInlineStyle(
+      resolveTextStyle({
+        section,
+        theme,
+        fieldId: "subheading",
+        role: "body",
+        defaultStyle: VIDEO_HERO_SUBHEADING_DEFAULT
+      })
+    ),
+    [section, theme]
+  );
+  const cardEyebrowStyle = (0, import_react28.useMemo)(
+    () => resolvedTextStyleToInlineStyle(
+      resolveBlockGroupTextStyle({
+        section,
+        theme,
+        groupKey: "videoCardEyebrow",
+        role: "body",
+        defaultStyle: VIDEO_CARD_EYEBROW_DEFAULT
+      })
+    ),
+    [section, theme]
+  );
+  const cardTitleStyle = (0, import_react28.useMemo)(
+    () => resolvedTextStyleToInlineStyle(
+      resolveBlockGroupTextStyle({
+        section,
+        theme,
+        groupKey: "videoCardTitle",
+        role: "heading",
+        defaultStyle: VIDEO_CARD_TITLE_DEFAULT
+      })
+    ),
+    [section, theme]
+  );
+  const infoLightSurface = (0, import_react28.useMemo)(
+    () => resolveBlockGroupSurfaceStyle({
+      section,
+      groupKey: "infoCardLight",
+      defaultStyle: INFO_CARD_LIGHT_SURFACE_DEFAULT
+    }),
+    [section]
+  );
+  const infoDarkSurface = (0, import_react28.useMemo)(
+    () => resolveBlockGroupSurfaceStyle({
+      section,
+      groupKey: "infoCardDark",
+      defaultStyle: INFO_CARD_DARK_SURFACE_DEFAULT
+    }),
+    [section]
+  );
+  const gridClass = videoCards.length === 3 ? "ak-video-hero__grid ak-video-hero__grid--three" : videoCards.length <= 2 ? "ak-video-hero__grid ak-video-hero__grid--compact" : "ak-video-hero__grid ak-video-hero__grid--multi";
+  if (section.enabled === false) return null;
+  const headerMotion = motionDisabled ? { initial: false, animate: { opacity: 1 } } : {
+    initial: { opacity: 0 },
+    whileInView: { opacity: 1 },
+    viewport: { once: true },
+    transition: { duration: 0.7 }
+  };
+  return /* @__PURE__ */ import_react28.default.createElement(
+    "section",
+    {
+      ref: sectionRef,
+      className: `ak-video-hero ${paddingClass(props.sectionPadding)}`,
+      style: sectionAppearanceStyle(appearance)
+    },
+    !motionDisabled ? /* @__PURE__ */ import_react28.default.createElement(import_framer_motion8.motion.div, { style: { y: glowY }, className: "ak-video-hero__glow", "aria-hidden": true }) : /* @__PURE__ */ import_react28.default.createElement("div", { className: "ak-video-hero__glow", "aria-hidden": true }),
+    /* @__PURE__ */ import_react28.default.createElement("div", { className: "ak-video-hero__topFade", "aria-hidden": true }),
+    /* @__PURE__ */ import_react28.default.createElement("div", { className: "ak-video-hero__inner" }, showEyebrow && eyebrow || heading || showSubheading && subheading ? /* @__PURE__ */ import_react28.default.createElement(
+      import_framer_motion8.motion.header,
+      {
+        ...headerMotion,
+        style: motionDisabled ? void 0 : { y: titleY },
+        className: "ak-video-hero__header"
+      },
+      showEyebrow && eyebrow ? /* @__PURE__ */ import_react28.default.createElement("div", { className: "ak-video-hero__eyebrowPill", style: eyebrowStyle }, /* @__PURE__ */ import_react28.default.createElement(RadioIcon, { className: "ak-video-hero__eyebrowPillIcon" }), /* @__PURE__ */ import_react28.default.createElement("span", null, eyebrow)) : null,
+      heading ? /* @__PURE__ */ import_react28.default.createElement("h2", { className: "ak-video-hero__heading", style: headingStyle }, heading) : null,
+      showSubheading && subheading ? /* @__PURE__ */ import_react28.default.createElement("p", { className: "ak-video-hero__subheading", style: subheadingStyle }, subheading) : null
+    ) : null, showVideoGrid ? /* @__PURE__ */ import_react28.default.createElement("div", { className: gridClass }, videoCards.map((card, index) => /* @__PURE__ */ import_react28.default.createElement(
+      VideoCardItem,
+      {
+        key: card.key,
+        card,
+        index,
+        total: videoCards.length,
+        staggerMiddleCard,
+        autoPlayVideos,
+        loopVideos,
+        reduceMotion: motionDisabled,
+        cardEyebrowStyle,
+        cardTitleStyle
+      }
+    ))) : null, showInfoStrip ? /* @__PURE__ */ import_react28.default.createElement(
+      import_framer_motion8.motion.div,
+      {
+        initial: motionDisabled ? false : { opacity: 0, y: 24 },
+        whileInView: motionDisabled ? void 0 : { opacity: 1, y: 0 },
+        viewport: { once: true },
+        transition: { duration: 0.7, delay: 0.2 },
+        className: "ak-video-hero__infoStripWrap"
+      },
+      /* @__PURE__ */ import_react28.default.createElement("div", { className: "ak-video-hero__infoStrip" }, infoCards.map((card) => {
+        const surface = card.styleType === "dark" ? infoDarkSurface : infoLightSurface;
+        return /* @__PURE__ */ import_react28.default.createElement(
+          "div",
+          {
+            key: card.key,
+            className: `ak-video-hero__infoCard ak-video-hero__infoCard--${card.styleType}`,
+            style: {
+              backgroundColor: surface.backgroundColor || void 0
+            }
+          },
+          card.iconType !== "none" ? /* @__PURE__ */ import_react28.default.createElement(
+            "div",
+            {
+              className: "ak-video-hero__infoIconWrap",
+              "aria-hidden": true,
+              style: { color: surface.color || void 0 }
+            },
+            /* @__PURE__ */ import_react28.default.createElement(InfoIcon, { type: card.iconType })
+          ) : null,
+          /* @__PURE__ */ import_react28.default.createElement("div", { className: "ak-video-hero__infoContent" }, card.title ? /* @__PURE__ */ import_react28.default.createElement(
+            "p",
+            {
+              className: "ak-video-hero__infoTitle",
+              style: {
+                color: surface.color || void 0
+              }
+            },
+            card.title
+          ) : null)
+        );
+      }))
+    ) : null)
+  );
+}
+
+// src/sections/video-hero/LightMediaPresencePremium.tsx
+var import_react29 = __toESM(require("react"));
+var import_framer_motion9 = require("framer-motion");
+
+// src/shared/textStyleDefaults/lightMediaPresencePremiumTextStyleDefaults.ts
+var LMP_EYEBROW_DEFAULT = {
+  color: "#404040",
+  fontSize: "0.75rem"
+};
+var LMP_HEADING_DEFAULT = {
+  color: "#0a0a0a",
+  fontSize: "clamp(2.25rem, 5vw, 4.5rem)"
+};
+var LMP_SUBHEADING_DEFAULT = {
+  color: "#525252",
+  fontSize: "clamp(1rem, 1.5vw, 1.25rem)"
+};
+var LMP_VIDEO_CARD_TITLE_DEFAULT = {
+  color: "#ffffff",
+  fontSize: "clamp(1.125rem, 2vw, 1.5rem)"
+};
+var LMP_VIDEO_CARD_SUBTITLE_DEFAULT = {
+  color: "rgba(255, 255, 255, 0.65)",
+  fontSize: "0.875rem"
+};
+var LMP_INFO_LIGHT_SURFACE_DEFAULT = {
+  color: "#0a0a0a",
+  backgroundColor: "rgba(255, 255, 255, 0.95)"
+};
+var LMP_INFO_DARK_SURFACE_DEFAULT = {
+  color: "rgba(255, 255, 255, 0.95)",
+  backgroundColor: "#0a0a0a"
+};
+
+// src/sections/video-hero/LightMediaPresencePremium.tsx
+var VIDEO_CARD_TYPE2 = "video_card";
+var INFO_CARD_TYPE2 = "info_card";
+var easing3 = [0.22, 1, 0.36, 1];
+function safeText13(value) {
+  return String(value != null ? value : "").trim();
+}
+function readNestedFields2(block) {
+  const nested = block.props && typeof block.props === "object" ? block.props : {};
+  return { ...nested, ...block };
+}
+function readVideoCard2(block) {
+  const fields = readNestedFields2(
+    block
+  );
+  const iconRaw = safeText13(fields.iconType).toLowerCase();
+  const iconMap = {
+    podcast: "podcast",
+    sparkles: "sparkles",
+    newspaper: "newspaper",
+    radio: "radio",
+    clapperboard: "clapperboard",
+    arrowupright: "arrowUpRight",
+    badgecheck: "badgeCheck",
+    shieldcheck: "shieldCheck",
+    play: "play",
+    none: "none"
+  };
+  const iconType = iconMap[iconRaw] || "none";
+  return {
+    id: safeText13(block.id) || "",
+    tag: safeText13(fields.tag),
+    title: safeText13(fields.title),
+    subtitle: safeText13(fields.subtitle),
+    videoUrl: normalizeImageUrl(safeText13(fields.videoUrl)),
+    posterImage: normalizeImageUrl(safeText13(fields.posterImage)),
+    iconType
+  };
+}
+function readInfoCard2(block) {
+  const fields = readNestedFields2(
+    block
+  );
+  const iconRaw = safeText13(fields.iconType).toLowerCase();
+  const validIcons = [
+    "shieldCheck",
+    "badgeCheck",
+    "newspaper",
+    "sparkles",
+    "radio",
+    "none"
+  ];
+  const iconType = validIcons.find((v) => v.toLowerCase() === iconRaw) || "none";
+  const styleType = safeText13(fields.styleType).toLowerCase() === "dark" ? "dark" : "light";
+  return {
+    id: safeText13(block.id) || "",
+    iconType,
+    eyebrow: safeText13(fields.eyebrow),
+    title: safeText13(fields.title),
+    subtitle: safeText13(fields.subtitle),
+    styleType
+  };
+}
+function paddingClass2(padding) {
+  const value = safeText13(padding).toLowerCase();
+  if (value === "small") return "ak-lmp--pad-sm";
+  if (value === "medium") return "ak-lmp--pad-md";
+  return "ak-lmp--pad-lg";
+}
+function BadgeCheckIcon2({ className }) {
+  return /* @__PURE__ */ import_react29.default.createElement("svg", { viewBox: "0 0 24 24", fill: "none", "aria-hidden": true, className }, /* @__PURE__ */ import_react29.default.createElement(
+    "path",
+    {
+      d: "M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z",
+      stroke: "currentColor",
+      strokeWidth: "2"
+    }
+  ), /* @__PURE__ */ import_react29.default.createElement("path", { d: "m9 12 2 2 4-4", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round" }));
+}
+function ShieldCheckIcon({ className }) {
+  return /* @__PURE__ */ import_react29.default.createElement("svg", { viewBox: "0 0 24 24", fill: "none", "aria-hidden": true, className }, /* @__PURE__ */ import_react29.default.createElement(
+    "path",
+    {
+      d: "M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z",
+      stroke: "currentColor",
+      strokeWidth: "2",
+      strokeLinecap: "round",
+      strokeLinejoin: "round"
+    }
+  ), /* @__PURE__ */ import_react29.default.createElement("path", { d: "m9 12 2 2 4-4", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round" }));
+}
+function PlaySmallIcon({ className }) {
+  return /* @__PURE__ */ import_react29.default.createElement("svg", { viewBox: "0 0 24 24", fill: "none", "aria-hidden": true, className }, /* @__PURE__ */ import_react29.default.createElement("path", { d: "M8 5.14v13.72L19 12 8 5.14z", fill: "currentColor" }));
+}
+function PlayIcon2() {
+  return /* @__PURE__ */ import_react29.default.createElement("svg", { viewBox: "0 0 24 24", fill: "none", "aria-hidden": true }, /* @__PURE__ */ import_react29.default.createElement("path", { d: "M8 5.14v13.72L19 12 8 5.14z", fill: "currentColor" }));
+}
+function PauseIcon2() {
+  return /* @__PURE__ */ import_react29.default.createElement("svg", { viewBox: "0 0 24 24", fill: "none", "aria-hidden": true }, /* @__PURE__ */ import_react29.default.createElement("rect", { x: "6", y: "5", width: "4", height: "14", rx: "1", fill: "currentColor" }), /* @__PURE__ */ import_react29.default.createElement("rect", { x: "14", y: "5", width: "4", height: "14", rx: "1", fill: "currentColor" }));
+}
+function VolumeOffIcon2() {
+  return /* @__PURE__ */ import_react29.default.createElement("svg", { viewBox: "0 0 24 24", fill: "none", "aria-hidden": true }, /* @__PURE__ */ import_react29.default.createElement(
+    "path",
+    {
+      d: "M11 5 6 9H3v6h3l5 4V5z",
+      stroke: "currentColor",
+      strokeWidth: "2",
+      strokeLinecap: "round"
+    }
+  ), /* @__PURE__ */ import_react29.default.createElement("path", { d: "m22 9-6 6M16 9l6 6", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round" }));
+}
+function VolumeOnIcon2() {
+  return /* @__PURE__ */ import_react29.default.createElement("svg", { viewBox: "0 0 24 24", fill: "none", "aria-hidden": true }, /* @__PURE__ */ import_react29.default.createElement(
+    "path",
+    {
+      d: "M11 5 6 9H3v6h3l5 4V5z",
+      stroke: "currentColor",
+      strokeWidth: "2",
+      strokeLinecap: "round"
+    }
+  ), /* @__PURE__ */ import_react29.default.createElement(
+    "path",
+    {
+      d: "M15.54 8.46a5 5 0 0 1 0 7.07M19.07 4.93a10 10 0 0 1 0 14.14",
+      stroke: "currentColor",
+      strokeWidth: "2",
+      strokeLinecap: "round"
+    }
+  ));
+}
+function SparklesIcon3({ className }) {
+  return /* @__PURE__ */ import_react29.default.createElement("svg", { viewBox: "0 0 24 24", fill: "none", "aria-hidden": true, className }, /* @__PURE__ */ import_react29.default.createElement(
+    "path",
+    {
+      d: "M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z",
+      stroke: "currentColor",
+      strokeWidth: "2"
+    }
+  ));
+}
+function NewspaperIcon2({ className }) {
+  return /* @__PURE__ */ import_react29.default.createElement("svg", { viewBox: "0 0 24 24", fill: "none", "aria-hidden": true, className }, /* @__PURE__ */ import_react29.default.createElement(
+    "path",
+    {
+      d: "M4 19.5A2.5 2.5 0 0 1 6.5 17H20",
+      stroke: "currentColor",
+      strokeWidth: "2",
+      strokeLinecap: "round"
+    }
+  ), /* @__PURE__ */ import_react29.default.createElement(
+    "path",
+    {
+      d: "M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z",
+      stroke: "currentColor",
+      strokeWidth: "2"
+    }
+  ), /* @__PURE__ */ import_react29.default.createElement("path", { d: "M8 7h8M8 11h8M8 15h5", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round" }));
+}
+function RadioIcon2({ className }) {
+  return /* @__PURE__ */ import_react29.default.createElement("svg", { viewBox: "0 0 24 24", fill: "none", "aria-hidden": true, className }, /* @__PURE__ */ import_react29.default.createElement(
+    "path",
+    {
+      d: "M4.9 19.1C1 15.2 1 8.8 4.9 4.9",
+      stroke: "currentColor",
+      strokeWidth: "2",
+      strokeLinecap: "round"
+    }
+  ), /* @__PURE__ */ import_react29.default.createElement(
+    "path",
+    {
+      d: "M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5",
+      stroke: "currentColor",
+      strokeWidth: "2",
+      strokeLinecap: "round"
+    }
+  ), /* @__PURE__ */ import_react29.default.createElement("circle", { cx: "12", cy: "12", r: "2", stroke: "currentColor", strokeWidth: "2" }), /* @__PURE__ */ import_react29.default.createElement(
+    "path",
+    {
+      d: "M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5",
+      stroke: "currentColor",
+      strokeWidth: "2",
+      strokeLinecap: "round"
+    }
+  ), /* @__PURE__ */ import_react29.default.createElement(
+    "path",
+    {
+      d: "M19.1 4.9C23 8.8 23 15.1 19.1 19",
+      stroke: "currentColor",
+      strokeWidth: "2",
+      strokeLinecap: "round"
+    }
+  ));
+}
+function ArrowUpRightIcon({ className }) {
+  return /* @__PURE__ */ import_react29.default.createElement("svg", { viewBox: "0 0 24 24", fill: "none", "aria-hidden": true, className }, /* @__PURE__ */ import_react29.default.createElement(
+    "path",
+    {
+      d: "M7 17 17 7M7 7h10v10",
+      stroke: "currentColor",
+      strokeWidth: "2",
+      strokeLinecap: "round",
+      strokeLinejoin: "round"
+    }
+  ));
+}
+function PodcastIcon({ className }) {
+  return /* @__PURE__ */ import_react29.default.createElement("svg", { viewBox: "0 0 24 24", fill: "none", "aria-hidden": true, className }, /* @__PURE__ */ import_react29.default.createElement(
+    "path",
+    {
+      d: "M12 14a3 3 0 0 0 3-3V5a3 3 0 1 0-6 0v6a3 3 0 0 0 3 3z",
+      stroke: "currentColor",
+      strokeWidth: "2"
+    }
+  ), /* @__PURE__ */ import_react29.default.createElement(
+    "path",
+    {
+      d: "M19 10v1a7 7 0 0 1-14 0v-1M12 18v3",
+      stroke: "currentColor",
+      strokeWidth: "2",
+      strokeLinecap: "round"
+    }
+  ));
+}
+function ClapperboardIcon({ className }) {
+  return /* @__PURE__ */ import_react29.default.createElement("svg", { viewBox: "0 0 24 24", fill: "none", "aria-hidden": true, className }, /* @__PURE__ */ import_react29.default.createElement(
+    "path",
+    {
+      d: "M4 11v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8H4z",
+      stroke: "currentColor",
+      strokeWidth: "2",
+      strokeLinejoin: "round"
+    }
+  ), /* @__PURE__ */ import_react29.default.createElement(
+    "path",
+    {
+      d: "m4 11 2.5-5 3 1.5L12 4l2.5 3.5L17.5 6 20 11",
+      stroke: "currentColor",
+      strokeWidth: "2",
+      strokeLinejoin: "round"
+    }
+  ));
+}
+function VideoCardIcon({ type }) {
+  switch (type) {
+    case "podcast":
+      return /* @__PURE__ */ import_react29.default.createElement(PodcastIcon, { className: "ak-lmp__cardIconSvg" });
+    case "sparkles":
+      return /* @__PURE__ */ import_react29.default.createElement(SparklesIcon3, { className: "ak-lmp__cardIconSvg" });
+    case "newspaper":
+      return /* @__PURE__ */ import_react29.default.createElement(NewspaperIcon2, { className: "ak-lmp__cardIconSvg" });
+    case "radio":
+      return /* @__PURE__ */ import_react29.default.createElement(RadioIcon2, { className: "ak-lmp__cardIconSvg" });
+    case "clapperboard":
+      return /* @__PURE__ */ import_react29.default.createElement(ClapperboardIcon, { className: "ak-lmp__cardIconSvg" });
+    case "arrowUpRight":
+      return /* @__PURE__ */ import_react29.default.createElement(ArrowUpRightIcon, { className: "ak-lmp__cardIconSvg" });
+    case "badgeCheck":
+      return /* @__PURE__ */ import_react29.default.createElement(BadgeCheckIcon2, { className: "ak-lmp__cardIconSvg" });
+    case "shieldCheck":
+      return /* @__PURE__ */ import_react29.default.createElement(ShieldCheckIcon, { className: "ak-lmp__cardIconSvg" });
+    case "play":
+      return /* @__PURE__ */ import_react29.default.createElement(PlaySmallIcon, { className: "ak-lmp__cardIconSvg" });
+    default:
+      return null;
+  }
+}
+function InfoCardIcon({ type }) {
+  switch (type) {
+    case "shieldCheck":
+      return /* @__PURE__ */ import_react29.default.createElement(ShieldCheckIcon, { className: "ak-lmp__infoIconSvg" });
+    case "badgeCheck":
+      return /* @__PURE__ */ import_react29.default.createElement(BadgeCheckIcon2, { className: "ak-lmp__infoIconSvg" });
+    case "newspaper":
+      return /* @__PURE__ */ import_react29.default.createElement(NewspaperIcon2, { className: "ak-lmp__infoIconSvg" });
+    case "sparkles":
+      return /* @__PURE__ */ import_react29.default.createElement(SparklesIcon3, { className: "ak-lmp__infoIconSvg" });
+    case "radio":
+      return /* @__PURE__ */ import_react29.default.createElement(RadioIcon2, { className: "ak-lmp__infoIconSvg" });
+    default:
+      return null;
+  }
+}
+function VideoTile({
+  card,
+  index,
+  featured,
+  compact,
+  autoPlayVideos,
+  loopVideos,
+  showVideoControls,
+  reduceMotion,
+  titleStyle,
+  subtitleStyle
+}) {
+  const videoRef = (0, import_react29.useRef)(null);
+  const [isPlaying, setIsPlaying] = (0, import_react29.useState)(autoPlayVideos);
+  const [isMuted, setIsMuted] = (0, import_react29.useState)(true);
+  const hasVideo = Boolean(card.videoUrl);
+  const hasPoster = Boolean(card.posterImage);
+  const tryPlay = (0, import_react29.useCallback)(async () => {
+    const video = videoRef.current;
+    if (!video || !hasVideo) return;
+    try {
+      await video.play();
+      setIsPlaying(true);
+    } catch {
+      setIsPlaying(false);
+    }
+  }, [hasVideo]);
+  (0, import_react29.useEffect)(() => {
+    const video = videoRef.current;
+    if (!video || !hasVideo || !autoPlayVideos) return;
+    video.muted = isMuted;
+    const playVideo = () => {
+      tryPlay();
+    };
+    if (video.readyState >= 2) playVideo();
+    else video.addEventListener("loadeddata", playVideo, { once: true });
+    return () => video.removeEventListener("loadeddata", playVideo);
+  }, [autoPlayVideos, hasVideo, isMuted, tryPlay]);
+  (0, import_react29.useEffect)(() => {
+    const video = videoRef.current;
+    if (!video || !hasVideo) return;
+    video.muted = isMuted;
+    if (!autoPlayVideos) {
+      video.pause();
+      setIsPlaying(false);
+    }
+  }, [autoPlayVideos, hasVideo, isMuted]);
+  const togglePlay = async () => {
+    const video = videoRef.current;
+    if (!video || !hasVideo) return;
+    if (video.paused) await tryPlay();
+    else {
+      video.pause();
+      setIsPlaying(false);
+    }
+  };
+  const toggleMute = () => {
+    const video = videoRef.current;
+    const nextMuted = !isMuted;
+    setIsMuted(nextMuted);
+    if (video) video.muted = nextMuted;
+  };
+  const motionProps = reduceMotion ? { initial: false, animate: { opacity: 1, y: 0, scale: 1 } } : {
+    initial: { opacity: 0, y: 42, scale: 0.96 },
+    whileInView: { opacity: 1, y: 0, scale: 1 },
+    viewport: { once: true, margin: "-70px" },
+    transition: { duration: 0.75, delay: index * 0.07, ease: easing3 }
+  };
+  const mediaClass = featured ? "ak-lmp__cardMedia ak-lmp__cardMedia--featured" : compact ? "ak-lmp__cardMedia ak-lmp__cardMedia--compact" : "ak-lmp__cardMedia";
+  return /* @__PURE__ */ import_react29.default.createElement(
+    import_framer_motion9.motion.article,
+    {
+      ...motionProps,
+      className: `ak-lmp__card${featured ? " ak-lmp__card--featured" : ""}`
+    },
+    /* @__PURE__ */ import_react29.default.createElement("div", { className: mediaClass }, hasVideo ? /* @__PURE__ */ import_react29.default.createElement(
+      "video",
+      {
+        ref: videoRef,
+        className: "ak-lmp__cardVideo",
+        src: card.videoUrl,
+        poster: card.posterImage || void 0,
+        muted: isMuted,
+        loop: loopVideos,
+        playsInline: true,
+        preload: "metadata",
+        onPlay: () => setIsPlaying(true),
+        onPause: () => setIsPlaying(false)
+      }
+    ) : hasPoster ? /* @__PURE__ */ import_react29.default.createElement(
+      "img",
+      {
+        className: "ak-lmp__cardPoster",
+        src: card.posterImage,
+        alt: card.title || "Video poster",
+        loading: "lazy",
+        decoding: "async"
+      }
+    ) : /* @__PURE__ */ import_react29.default.createElement("div", { className: "ak-lmp__cardPlaceholder", "aria-hidden": true }), /* @__PURE__ */ import_react29.default.createElement("div", { className: "ak-lmp__cardOverlay", "aria-hidden": true }), card.tag || card.iconType !== "none" ? /* @__PURE__ */ import_react29.default.createElement("div", { className: "ak-lmp__cardTag" }, card.iconType !== "none" ? /* @__PURE__ */ import_react29.default.createElement(VideoCardIcon, { type: card.iconType }) : null, card.tag ? /* @__PURE__ */ import_react29.default.createElement("span", null, card.tag) : null) : null, showVideoControls && hasVideo ? /* @__PURE__ */ import_react29.default.createElement("div", { className: "ak-lmp__cardControls" }, /* @__PURE__ */ import_react29.default.createElement(
+      "button",
+      {
+        type: "button",
+        className: "ak-lmp__controlBtn",
+        onClick: togglePlay,
+        "aria-label": isPlaying ? "Pause video" : "Play video"
+      },
+      isPlaying ? /* @__PURE__ */ import_react29.default.createElement(PauseIcon2, null) : /* @__PURE__ */ import_react29.default.createElement(PlayIcon2, null)
+    ), /* @__PURE__ */ import_react29.default.createElement(
+      "button",
+      {
+        type: "button",
+        className: "ak-lmp__controlBtn",
+        onClick: toggleMute,
+        "aria-label": isMuted ? "Unmute video" : "Mute video"
+      },
+      isMuted ? /* @__PURE__ */ import_react29.default.createElement(VolumeOffIcon2, null) : /* @__PURE__ */ import_react29.default.createElement(VolumeOnIcon2, null)
+    )) : null, /* @__PURE__ */ import_react29.default.createElement("div", { className: "ak-lmp__cardBottom" }, card.title ? /* @__PURE__ */ import_react29.default.createElement(
+      "h3",
+      {
+        className: `ak-lmp__cardTitle${featured ? " ak-lmp__cardTitle--featured" : ""}`,
+        style: titleStyle
+      },
+      card.title
+    ) : null, card.subtitle ? /* @__PURE__ */ import_react29.default.createElement("p", { className: "ak-lmp__cardSubtitle", style: subtitleStyle }, card.subtitle) : null))
+  );
+}
+function LightMediaPresencePremium({
+  section,
+  appearance,
+  theme
+}) {
+  var _a, _b, _c;
+  const props = (_b = (_a = section.settings) == null ? void 0 : _a.props) != null ? _b : {};
+  const rawBlocks = Array.isArray((_c = section.settings) == null ? void 0 : _c.blocks) ? section.settings.blocks : [];
+  const reduceMotion = usePrefersReducedMotion();
+  const framerReduceMotion = (0, import_framer_motion9.useReducedMotion)();
+  const motionDisabled = reduceMotion || Boolean(framerReduceMotion);
+  const showEyebrow = props.showEyebrow !== false;
+  const showSubheading = props.showSubheading !== false;
+  const showBottomInfoStrip = props.showBottomInfoStrip !== false;
+  const autoPlayVideos = props.autoPlayVideos !== false;
+  const loopVideos = props.loopVideos !== false;
+  const showVideoControls = props.showVideoControls !== false;
+  const eyebrow = safeText13(props.eyebrow);
+  const heading = safeText13(props.heading);
+  const subheading = safeText13(props.subheading);
+  const videoCards = (0, import_react29.useMemo)(() => {
+    return rawBlocks.filter((block) => block && typeof block === "object").filter((block) => safeText13(block.type) === VIDEO_CARD_TYPE2).map((block, index) => {
+      const card = readVideoCard2(block);
+      return { ...card, key: card.id || `video-card-${index + 1}` };
+    });
+  }, [rawBlocks]);
+  const infoCards = (0, import_react29.useMemo)(() => {
+    return rawBlocks.filter((block) => block && typeof block === "object").filter((block) => safeText13(block.type) === INFO_CARD_TYPE2).map((block, index) => {
+      const card = readInfoCard2(block);
+      return { ...card, key: card.id || `info-card-${index + 1}` };
+    }).filter((card) => card.title || card.eyebrow || card.subtitle);
+  }, [rawBlocks]);
+  const showVideoGrid = videoCards.length > 0;
+  const showInfoStrip = showBottomInfoStrip && infoCards.length > 0;
+  const useMultiGrid = videoCards.length > 6;
+  const eyebrowStyle = (0, import_react29.useMemo)(
+    () => resolvedTextStyleToInlineStyle(
+      resolveTextStyle({
+        section,
+        theme,
+        fieldId: "eyebrow",
+        role: "body",
+        defaultStyle: LMP_EYEBROW_DEFAULT
+      })
+    ),
+    [section, theme]
+  );
+  const headingStyle = (0, import_react29.useMemo)(
+    () => resolvedTextStyleToInlineStyle(
+      resolveTextStyle({
+        section,
+        theme,
+        fieldId: "heading",
+        role: "heading",
+        defaultStyle: LMP_HEADING_DEFAULT
+      })
+    ),
+    [section, theme]
+  );
+  const subheadingStyle = (0, import_react29.useMemo)(
+    () => resolvedTextStyleToInlineStyle(
+      resolveTextStyle({
+        section,
+        theme,
+        fieldId: "subheading",
+        role: "body",
+        defaultStyle: LMP_SUBHEADING_DEFAULT
+      })
+    ),
+    [section, theme]
+  );
+  const cardTitleStyle = (0, import_react29.useMemo)(
+    () => resolvedTextStyleToInlineStyle(
+      resolveBlockGroupTextStyle({
+        section,
+        theme,
+        groupKey: "premiumVideoCardTitle",
+        role: "heading",
+        defaultStyle: LMP_VIDEO_CARD_TITLE_DEFAULT
+      })
+    ),
+    [section, theme]
+  );
+  const cardSubtitleStyle = (0, import_react29.useMemo)(
+    () => resolvedTextStyleToInlineStyle(
+      resolveBlockGroupTextStyle({
+        section,
+        theme,
+        groupKey: "premiumVideoCardSubtitle",
+        role: "body",
+        defaultStyle: LMP_VIDEO_CARD_SUBTITLE_DEFAULT
+      })
+    ),
+    [section, theme]
+  );
+  const infoLightSurface = (0, import_react29.useMemo)(
+    () => resolveBlockGroupSurfaceStyle({
+      section,
+      groupKey: "premiumInfoCardLight",
+      defaultStyle: LMP_INFO_LIGHT_SURFACE_DEFAULT
+    }),
+    [section]
+  );
+  const infoDarkSurface = (0, import_react29.useMemo)(
+    () => resolveBlockGroupSurfaceStyle({
+      section,
+      groupKey: "premiumInfoCardDark",
+      defaultStyle: LMP_INFO_DARK_SURFACE_DEFAULT
+    }),
+    [section]
+  );
+  const tileProps = {
+    autoPlayVideos,
+    loopVideos,
+    showVideoControls,
+    reduceMotion: motionDisabled,
+    titleStyle: cardTitleStyle,
+    subtitleStyle: cardSubtitleStyle
+  };
+  if (section.enabled === false) return null;
+  const headerMotion = motionDisabled ? { initial: false, animate: { opacity: 1, y: 0 } } : {
+    initial: { opacity: 0, y: 28 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true },
+    transition: { duration: 0.75 }
+  };
+  const renderTile = (card, index, options = {}) => /* @__PURE__ */ import_react29.default.createElement(
+    VideoTile,
+    {
+      key: card.key,
+      card,
+      index,
+      featured: options.featured,
+      compact: options.compact,
+      ...tileProps
+    }
+  );
+  return /* @__PURE__ */ import_react29.default.createElement(
+    "section",
+    {
+      className: `ak-lmp ${paddingClass2(props.sectionPadding)}`,
+      style: sectionAppearanceStyle(appearance)
+    },
+    /* @__PURE__ */ import_react29.default.createElement("div", { className: "ak-lmp__inner" }, showEyebrow && eyebrow || heading || showSubheading && subheading ? /* @__PURE__ */ import_react29.default.createElement(import_framer_motion9.motion.header, { ...headerMotion, className: "ak-lmp__header" }, showEyebrow && eyebrow ? /* @__PURE__ */ import_react29.default.createElement("div", { className: "ak-lmp__eyebrowPill", style: eyebrowStyle }, /* @__PURE__ */ import_react29.default.createElement(RadioIcon2, { className: "ak-lmp__eyebrowIcon" }), /* @__PURE__ */ import_react29.default.createElement("span", null, eyebrow)) : null, heading ? /* @__PURE__ */ import_react29.default.createElement("h2", { className: "ak-lmp__heading", style: headingStyle }, heading) : null, showSubheading && subheading ? /* @__PURE__ */ import_react29.default.createElement("p", { className: "ak-lmp__subheading", style: subheadingStyle }, subheading) : null) : null, showVideoGrid ? useMultiGrid ? /* @__PURE__ */ import_react29.default.createElement("div", { className: "ak-lmp__grid ak-lmp__grid--multi" }, videoCards.map((card, index) => renderTile(card, index))) : /* @__PURE__ */ import_react29.default.createElement(import_react29.default.Fragment, null, /* @__PURE__ */ import_react29.default.createElement("div", { className: "ak-lmp__mobileStack" }, renderTile(videoCards[0], 0, { featured: true }), videoCards.length > 1 ? /* @__PURE__ */ import_react29.default.createElement("div", { className: "ak-lmp__mobileScroll" }, videoCards.slice(1).map((card, index) => /* @__PURE__ */ import_react29.default.createElement("div", { key: card.key, className: "ak-lmp__mobileScrollItem" }, renderTile(card, index + 1, { compact: true })))) : null), /* @__PURE__ */ import_react29.default.createElement("div", { className: "ak-lmp__desktopGrid" }, renderTile(videoCards[0], 0, { featured: true }), videoCards.slice(1).map(
+      (card, index) => renderTile(card, index + 1)
+    ))) : null, showInfoStrip ? /* @__PURE__ */ import_react29.default.createElement(
+      import_framer_motion9.motion.div,
+      {
+        initial: motionDisabled ? false : { opacity: 0, y: 24 },
+        whileInView: motionDisabled ? void 0 : { opacity: 1, y: 0 },
+        viewport: { once: true },
+        transition: { duration: 0.7, delay: 0.15 },
+        className: "ak-lmp__infoStrip"
+      },
+      infoCards.map((card) => {
+        const surface = card.styleType === "dark" ? infoDarkSurface : infoLightSurface;
+        return /* @__PURE__ */ import_react29.default.createElement(
+          "div",
+          {
+            key: card.key,
+            className: `ak-lmp__infoCard ak-lmp__infoCard--${card.styleType}`,
+            style: { backgroundColor: surface.backgroundColor || void 0 }
+          },
+          card.iconType !== "none" ? /* @__PURE__ */ import_react29.default.createElement(
+            "div",
+            {
+              className: "ak-lmp__infoIconWrap",
+              style: { color: surface.color || void 0 },
+              "aria-hidden": true
+            },
+            /* @__PURE__ */ import_react29.default.createElement(InfoCardIcon, { type: card.iconType })
+          ) : null,
+          /* @__PURE__ */ import_react29.default.createElement("div", { className: "ak-lmp__infoContent" }, card.eyebrow ? /* @__PURE__ */ import_react29.default.createElement("p", { className: "ak-lmp__infoEyebrow", style: { color: surface.color || void 0 } }, card.eyebrow) : null, card.title ? /* @__PURE__ */ import_react29.default.createElement("p", { className: "ak-lmp__infoTitle", style: { color: surface.color || void 0 } }, card.title) : null, card.subtitle ? /* @__PURE__ */ import_react29.default.createElement("p", { className: "ak-lmp__infoSubtitle", style: { color: surface.color || void 0 } }, card.subtitle) : null)
+        );
+      })
+    ) : null)
+  );
+}
+
 // src/shared/StorefrontFontLoader.tsx
-var import_react27 = require("react");
+var import_react30 = require("react");
 var GOOGLE_FONTS_MARKER = "data-storefront-fonts";
 function ensureGooglePreconnect() {
   const head = window.document.head;
@@ -7036,7 +8743,7 @@ function StorefrontFontLoader({
   fontIds,
   document: document2
 }) {
-  const ids = (0, import_react27.useMemo)(() => {
+  const ids = (0, import_react30.useMemo)(() => {
     const fromDoc = document2 ? collectStorefrontFontIdsFromDocument(document2) : [];
     const merged = /* @__PURE__ */ new Set([
       DEFAULT_STOREFRONT_FONT_ID,
@@ -7048,8 +8755,8 @@ function StorefrontFontLoader({
     merged.delete("system");
     return Array.from(merged);
   }, [document2, fontIds, themeFontId]);
-  const googleHref = (0, import_react27.useMemo)(() => buildGoogleFontLink(ids), [ids]);
-  (0, import_react27.useEffect)(() => {
+  const googleHref = (0, import_react30.useMemo)(() => buildGoogleFontLink(ids), [ids]);
+  (0, import_react30.useEffect)(() => {
     if (!googleHref) return void 0;
     ensureGooglePreconnect();
     const head = window.document.head;
@@ -7099,12 +8806,18 @@ function StorefrontFontLoader({
   HERO_SLIDE_HEADLINE_DEFAULT,
   HeroScrollableSlide,
   HeroSlider,
+  INFO_CARD_DARK_SURFACE_DEFAULT,
+  INFO_CARD_LIGHT_SURFACE_DEFAULT,
+  INFO_CARD_TITLE_DEFAULT,
+  ImmersiveImageRevealHero,
+  LightMediaPresencePremium,
   LiquidFocusCategories,
   LogoFocusedHeader,
   MARQUEE_BOTTOM_ROW_DEFAULT,
   MARQUEE_TEXT_LARGE_DEFAULT,
   MARQUEE_TEXT_SMALL_DEFAULT,
   MARQUEE_TOP_ROW_DEFAULT,
+  MediaPresenceVideoHero,
   MerchantFooterReveal,
   MessageStyleTestimonials,
   MinimalTimelineBenefits,
@@ -7162,6 +8875,11 @@ function StorefrontFontLoader({
   TESTIMONIAL_QUOTE_TEXT_DEFAULT,
   TESTIMONIAL_SUBHEADING_DEFAULT,
   TransparentHeroHeader,
+  VIDEO_CARD_EYEBROW_DEFAULT,
+  VIDEO_CARD_TITLE_DEFAULT,
+  VIDEO_HERO_EYEBROW_DEFAULT,
+  VIDEO_HERO_HEADING_DEFAULT,
+  VIDEO_HERO_SUBHEADING_DEFAULT,
   collectStorefrontFontIdsFromDocument,
   collectThemeFontIds,
   getStorefrontFontById,
@@ -7175,6 +8893,7 @@ function StorefrontFontLoader({
   normalizeTheme,
   normalizeThemeTypography,
   normalizeTypography,
+  resolveBlockGroupSurfaceStyle,
   resolveBlockGroupTextStyle,
   resolveSectionAppearance,
   resolveStorefrontFontFamily,

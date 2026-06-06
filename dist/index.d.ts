@@ -4,6 +4,9 @@ type TypographyRole = "heading" | "body";
 type TextStyle = {
     fontFamily?: string;
     color?: string;
+    colorLight?: string;
+    colorOverImage?: string;
+    backgroundColor?: string;
     fontWeight?: string;
     fontSize?: string;
 };
@@ -73,6 +76,14 @@ declare function resolvedTextStyleToInlineStyle(style: ResolvedTextStyle): {
     color: string;
     fontWeight: string;
     fontSize: string;
+};
+declare function resolveBlockGroupSurfaceStyle({ section, groupKey, defaultStyle, }: {
+    section?: ResolveBlockGroupTextStyleInput["section"];
+    groupKey?: string;
+    defaultStyle?: TextStyle | null;
+}): {
+    backgroundColor: string;
+    color: string;
 };
 declare function collectThemeFontIds(theme?: ResolveTextStyleInput["theme"]): string[];
 
@@ -591,6 +602,38 @@ type FloatingSnackGalleryHeroProps = {
 };
 declare function FloatingSnackGalleryHero({ section, appearance, theme, }: FloatingSnackGalleryHeroProps): React.JSX.Element | null;
 
+type ImmersiveImageRevealTypingWordBlock = {
+    id?: string;
+    type?: string;
+    props?: {
+        text?: string;
+    };
+};
+type ImmersiveImageRevealImageBlock = {
+    id?: string;
+    type?: string;
+    props?: {
+        image?: unknown;
+        mobileImage?: unknown;
+        altText?: string;
+    };
+};
+type ImmersiveImageRevealHeroSectionDoc = {
+    id?: string;
+    type?: string;
+    enabled?: boolean;
+    settings?: {
+        props?: Record<string, unknown>;
+        blocks?: Array<ImmersiveImageRevealTypingWordBlock | ImmersiveImageRevealImageBlock>;
+    };
+};
+type ImmersiveImageRevealHeroProps = {
+    section: ImmersiveImageRevealHeroSectionDoc;
+    appearance?: ResolvedSectionAppearance | null;
+    theme?: StorefrontTheme | null;
+};
+declare function ImmersiveImageRevealHero({ section, appearance, theme, }: ImmersiveImageRevealHeroProps): React.JSX.Element | null;
+
 type MinimalTimelineBenefitBlockProps = {
     title?: string;
     desc?: string;
@@ -781,6 +824,135 @@ type FeatureMarqueeBlockProps = {
 };
 declare function FeatureMarqueeBlock({ marqueeTop, marqueeBottom, speedTop, speedBottom, largeTopRow, largeBottomRow, pauseOnHover, reducedMotion, }: FeatureMarqueeBlockProps): React.JSX.Element | null;
 
+type VideoHeroIconType = "sparkles" | "newspaper" | "radio" | "badge" | "none";
+type VideoHeroInfoStyleType = "light" | "dark";
+type VideoHeroSectionPadding = "small" | "medium" | "large";
+type VideoCardBlock = {
+    id?: string;
+    type?: string;
+    eyebrow?: string;
+    title?: string;
+    videoUrl?: string;
+    posterImage?: string;
+    statLabel?: string;
+    props?: {
+        eyebrow?: string;
+        title?: string;
+        videoUrl?: string;
+        posterImage?: string;
+        statLabel?: string;
+    };
+};
+type InfoCardBlock = {
+    id?: string;
+    type?: string;
+    iconType?: VideoHeroIconType | string;
+    title?: string;
+    styleType?: VideoHeroInfoStyleType | string;
+    props?: {
+        iconType?: VideoHeroIconType | string;
+        title?: string;
+        styleType?: VideoHeroInfoStyleType | string;
+    };
+};
+type VideoHeroSettings = {
+    eyebrow?: string;
+    heading?: string;
+    subheading?: string;
+    showEyebrow?: boolean;
+    showSubheading?: boolean;
+    showBottomInfoStrip?: boolean;
+    autoPlayVideos?: boolean;
+    loopVideos?: boolean;
+    staggerMiddleCard?: boolean;
+    sectionPadding?: VideoHeroSectionPadding | string;
+    appearance?: Record<string, unknown>;
+};
+type VideoHeroSectionDoc = {
+    id?: string;
+    type?: string;
+    enabled?: boolean;
+    settings?: {
+        props?: VideoHeroSettings;
+        blocks?: Array<VideoCardBlock | InfoCardBlock>;
+    };
+};
+type MediaPresenceVideoHeroProps = {
+    section: VideoHeroSectionDoc;
+    appearance?: ResolvedSectionAppearance | null;
+    theme?: StorefrontTheme | null;
+};
+
+declare function MediaPresenceVideoHero({ section, appearance, theme, }: MediaPresenceVideoHeroProps): React.JSX.Element | null;
+
+type LightPremiumVideoIconType = "podcast" | "sparkles" | "newspaper" | "radio" | "clapperboard" | "arrowUpRight" | "badgeCheck" | "shieldCheck" | "play" | "none" | string;
+type LightPremiumInfoIconType = "shieldCheck" | "badgeCheck" | "newspaper" | "sparkles" | "radio" | "none" | string;
+type LightPremiumInfoStyleType = "light" | "dark";
+type LightPremiumSectionPadding = "small" | "medium" | "large";
+type LightPremiumVideoCardBlock = {
+    id?: string;
+    type?: string;
+    tag?: string;
+    title?: string;
+    subtitle?: string;
+    videoUrl?: string;
+    posterImage?: string;
+    iconType?: LightPremiumVideoIconType;
+    props?: {
+        tag?: string;
+        title?: string;
+        subtitle?: string;
+        videoUrl?: string;
+        posterImage?: string;
+        iconType?: LightPremiumVideoIconType;
+    };
+};
+type LightPremiumInfoCardBlock = {
+    id?: string;
+    type?: string;
+    iconType?: LightPremiumInfoIconType;
+    eyebrow?: string;
+    title?: string;
+    subtitle?: string;
+    styleType?: LightPremiumInfoStyleType | string;
+    props?: {
+        iconType?: LightPremiumInfoIconType;
+        eyebrow?: string;
+        title?: string;
+        subtitle?: string;
+        styleType?: LightPremiumInfoStyleType | string;
+    };
+};
+type LightPremiumVideoHeroSettings = {
+    eyebrow?: string;
+    heading?: string;
+    subheading?: string;
+    showEyebrow?: boolean;
+    showSubheading?: boolean;
+    showBottomInfoStrip?: boolean;
+    autoPlayVideos?: boolean;
+    loopVideos?: boolean;
+    showVideoControls?: boolean;
+    sectionPadding?: LightPremiumSectionPadding | string;
+    appearance?: Record<string, unknown>;
+};
+type LightPremiumVideoHeroSectionDoc = {
+    id?: string;
+    type?: string;
+    enabled?: boolean;
+    settings?: {
+        props?: LightPremiumVideoHeroSettings;
+        blocks?: Array<LightPremiumVideoCardBlock | LightPremiumInfoCardBlock>;
+    };
+};
+type LightMediaPresencePremiumProps = {
+    section: LightPremiumVideoHeroSectionDoc;
+    appearance?: ResolvedSectionAppearance | null;
+    theme?: StorefrontTheme | null;
+};
+
+declare function LightMediaPresencePremium({ section, appearance, theme, }: LightMediaPresencePremiumProps): React.JSX.Element | null;
+
 /**
  * Shared helpers for hero layouts (slider + scrollable).
  */
@@ -900,6 +1072,21 @@ declare const TESTIMONIAL_HIGHLIGHT_TEXT_DEFAULT: TextStyle;
 declare const TESTIMONIAL_DESCRIPTION_DEFAULT: TextStyle;
 declare const TESTIMONIAL_BUTTON_TEXT_DEFAULT: TextStyle;
 
+declare const VIDEO_HERO_EYEBROW_DEFAULT: TextStyle;
+declare const VIDEO_HERO_HEADING_DEFAULT: TextStyle;
+declare const VIDEO_HERO_SUBHEADING_DEFAULT: TextStyle;
+declare const VIDEO_CARD_EYEBROW_DEFAULT: TextStyle;
+declare const VIDEO_CARD_TITLE_DEFAULT: TextStyle;
+declare const INFO_CARD_LIGHT_SURFACE_DEFAULT: {
+    color: string;
+    backgroundColor: string;
+};
+declare const INFO_CARD_DARK_SURFACE_DEFAULT: {
+    color: string;
+    backgroundColor: string;
+};
+declare const INFO_CARD_TITLE_DEFAULT: TextStyle;
+
 declare const NSP_SIG_HERO_EYEBROW_DEFAULT: TextStyle;
 declare const NSP_SIG_HERO_HEADING_DEFAULT: TextStyle;
 declare const NSP_SIG_HERO_DESCRIPTION_DEFAULT: TextStyle;
@@ -921,4 +1108,4 @@ declare const NSP_MARQUEE_CARD_TITLE_DEFAULT: TextStyle;
 declare const NSP_MARQUEE_CARD_SUBTITLE_DEFAULT: TextStyle;
 declare const NSP_FLOATING_SNACK_TITLE_DEFAULT: TextStyle;
 
-export { BENEFITS_DESCRIPTION_DEFAULT, BENEFITS_EYEBROW_DEFAULT, BENEFITS_HEADING_DEFAULT, BENEFIT_DESCRIPTION_DEFAULT, BENEFIT_POINT_DEFAULT, BENEFIT_TITLE_DEFAULT, COUPON_CODE_DEFAULT, COUPON_HEADING_DEFAULT, COUPON_SUBHEADING_DEFAULT, COUPON_TITLE_DEFAULT, type CouponStripBlock, type CouponStripBlockProps, type CouponStripsControls, type CouponStripsSectionDoc, type CouponStripsSettings, CouponTickerMinimal, type CouponTickerMinimalProps, CreativeCategoryMarquee, DEFAULT_STOREFRONT_FONT_ID, DEFAULT_TYPOGRAPHY, DualLineFeatureMarquee, type DualLineFeatureMarqueeProps, FOOTER_COLUMN_HEADING_DEFAULT, FOOTER_MERCHANT_NAME_DEFAULT, FOOTER_MERCHANT_SUB_LABEL_DEFAULT, FOOTER_POLICY_LINK_TEXT_DEFAULT, FOOTER_TAGLINE_DEFAULT, FeatureMarqueeBlock, type FeatureMarqueeBlockProps, FloatingSnackGalleryHero, type FloatingSnackGalleryHeroProps, type FloatingSnackGalleryHeroSectionDoc, type FloatingSnackGalleryImageBlock, FullImageTypingHero, type FullImageTypingHeroProps, type FullImageTypingHeroSectionDoc, type FullImageTypingWordBlock, HEADER_BRAND_NAME_DEFAULT, HEADER_BRAND_SUBTITLE_DEFAULT, HEADER_NAV_LINK_TEXT_DEFAULT, HEADER_NAV_LINK_TEXT_LIGHT_DEFAULT, HERO_SECTION_LABEL_DEFAULT, HERO_SLIDE_DESCRIPTION_DEFAULT, HERO_SLIDE_HEADLINE_DEFAULT, HeroScrollableSlide, type HeroScrollableSlideProps, type HeroSection, type HeroSectionControls, type HeroSectionSettings, type HeroSlideAlignmentOverride, type HeroSlideBlock, type HeroSlideBlockProps, HeroSlider, type HeroSliderProps, LiquidFocusCategories, LogoFocusedHeader, type LogoFocusedHeaderControls, type LogoFocusedHeaderNavBlock, type LogoFocusedHeaderNavBlockProps, type LogoFocusedHeaderProps, type LogoFocusedHeaderSectionDoc, type LogoFocusedHeaderSettings, MARQUEE_BOTTOM_ROW_DEFAULT, MARQUEE_TEXT_LARGE_DEFAULT, MARQUEE_TEXT_SMALL_DEFAULT, MARQUEE_TOP_ROW_DEFAULT, type MarqueeLineProps, type MarqueeTextBlock, type MarqueeTextControls, type MarqueeTextRow, type MarqueeTextSectionDoc, type MarqueeTextSettings, MerchantFooterReveal, type MerchantFooterRevealBlock, type MerchantFooterRevealPolicyBlockProps, type MerchantFooterRevealProps, type MerchantFooterRevealPropsComponent, type MerchantFooterRevealSectionDoc, type MerchantFooterRevealSettings, type MerchantFooterRevealSocialPlatform, type MessageStyleTestimonialBlock, type MessageStyleTestimonialItemProps, MessageStyleTestimonials, type MessageStyleTestimonialsProps, type MessageStyleTestimonialsSectionDoc, type MessageStyleTestimonialsSettings, type MinimalTimelineBenefitBlock, type MinimalTimelineBenefitBlockProps, MinimalTimelineBenefits, type MinimalTimelineBenefitsControls, type MinimalTimelineBenefitsProps, type MinimalTimelineBenefitsSectionDoc, type MinimalTimelineBenefitsSettings, NSPSignatureHeroMarquee, type NSPSignatureHeroMarqueeBlock, type NSPSignatureHeroMarqueeProps, type NSPSignatureHeroMarqueeSectionDoc, NSP_FLOATING_SNACK_TITLE_DEFAULT, NSP_MARQUEE_CARD_SUBTITLE_DEFAULT, NSP_MARQUEE_CARD_TITLE_DEFAULT, NSP_MARQUEE_EYEBROW_DEFAULT, NSP_MARQUEE_HEADING_DEFAULT, NSP_MARQUEE_HERO_BADGE_TEXT_DEFAULT, NSP_MARQUEE_SUBHEADING_DEFAULT, NSP_POKER_DESCRIPTION_DEFAULT, NSP_POKER_EYEBROW_DEFAULT, NSP_POKER_HEADING_DEFAULT, NSP_SIG_HERO_DESCRIPTION_DEFAULT, NSP_SIG_HERO_EYEBROW_DEFAULT, NSP_SIG_HERO_HEADING_DEFAULT, NSP_SIG_HERO_PRIMARY_BUTTON_TEXT_DEFAULT, NSP_SIG_HERO_SECONDARY_BUTTON_TEXT_DEFAULT, NSP_TYPING_DESCRIPTION_DEFAULT, NSP_TYPING_PRIMARY_BUTTON_TEXT_DEFAULT, NSP_TYPING_SECONDARY_BUTTON_TEXT_DEFAULT, NSP_TYPING_STATIC_HEADING_DEFAULT, NSP_TYPING_WORD_DEFAULT, type NspSignatureHeroBlock, type NspSignatureHeroSectionDoc, PRODUCT_CARD_DESCRIPTION_DEFAULT, PRODUCT_CARD_SUBTITLE_DEFAULT, PRODUCT_CARD_TITLE_DEFAULT, PRODUCT_CARD_TITLE_OVERLAY_DEFAULT, PRODUCT_MARQUEE_DESCRIPTION_DEFAULT, PRODUCT_MARQUEE_EYEBROW_DEFAULT, PRODUCT_MARQUEE_HEADING_DEFAULT, PokerRowRevealHero, type PokerRowRevealHeroBlock, type PokerRowRevealHeroProps, type PokerRowRevealHeroSectionDoc, PortraitTestimonials, ProductCardMarquee, ProductMarquee, type ProductMarqueeBlock, type ProductMarqueeItemProps, type ProductMarqueeProps, type ProductMarqueeSectionDoc, type ProductMarqueeSettings, type ResolvedSectionAppearance, type ResolvedTextStyle, SECTION_TYPE_APPEARANCE_DEFAULTS, STOREFRONT_FONTS, STOREFRONT_FONT_OPTIONS, STYLE_APPLE_MARQUEE, STYLE_MESSAGE_BUBBLE, STYLE_PORTRAIT_TESTIMONIALS, STYLE_STACKED_TESTIMONIALS, ScrollParallaxSignatureHero, type ScrollParallaxSignatureHeroProps, type SectionAppearance, type StackedTestimonialBlock, type StackedTestimonialItemProps, StackedTestimonials, type StackedTestimonialsProps, type StackedTestimonialsSectionDoc, type StackedTestimonialsSettings, StorefrontFontLoader, type StorefrontTheme, SubHeroImageLoop, type SubHeroImageLoopProps, type SubHeroImageLoopSectionDoc, TESTIMONIAL_BACKGROUND_WORD_DEFAULT, TESTIMONIAL_BUTTON_TEXT_DEFAULT, TESTIMONIAL_CUSTOMER_NAME_DEFAULT, TESTIMONIAL_CUSTOMER_ROLE_DEFAULT, TESTIMONIAL_DESCRIPTION_DEFAULT, TESTIMONIAL_EYEBROW_DEFAULT, TESTIMONIAL_HEADING_DEFAULT, TESTIMONIAL_HIGHLIGHT_TEXT_DEFAULT, TESTIMONIAL_QUOTE_TEXT_DEFAULT, TESTIMONIAL_SUBHEADING_DEFAULT, type TextStyle, TransparentHeroHeader, type TransparentHeroHeaderControls, type TransparentHeroHeaderNavBlock, type TransparentHeroHeaderNavBlockProps, type TransparentHeroHeaderProps, type TransparentHeroHeaderSectionDoc, type TransparentHeroHeaderSettings, type TypographyRole, collectStorefrontFontIdsFromDocument, collectThemeFontIds, getStorefrontFontById, normalizeAppearance, normalizeBlockGroupStyles, normalizeFieldStyles, normalizeImageUrl, normalizeSectionTypography, normalizeSectionTypographyRole, normalizeTextStyle, normalizeTheme, normalizeThemeTypography, normalizeTypography, resolveBlockGroupTextStyle, resolveSectionAppearance, resolveStorefrontFontFamily, resolveTextStyle, resolveThemeFontKey, resolvedTextStyleToInlineStyle, sectionAppearanceStyle, stripFieldOverrideStyle };
+export { BENEFITS_DESCRIPTION_DEFAULT, BENEFITS_EYEBROW_DEFAULT, BENEFITS_HEADING_DEFAULT, BENEFIT_DESCRIPTION_DEFAULT, BENEFIT_POINT_DEFAULT, BENEFIT_TITLE_DEFAULT, COUPON_CODE_DEFAULT, COUPON_HEADING_DEFAULT, COUPON_SUBHEADING_DEFAULT, COUPON_TITLE_DEFAULT, type CouponStripBlock, type CouponStripBlockProps, type CouponStripsControls, type CouponStripsSectionDoc, type CouponStripsSettings, CouponTickerMinimal, type CouponTickerMinimalProps, CreativeCategoryMarquee, DEFAULT_STOREFRONT_FONT_ID, DEFAULT_TYPOGRAPHY, DualLineFeatureMarquee, type DualLineFeatureMarqueeProps, FOOTER_COLUMN_HEADING_DEFAULT, FOOTER_MERCHANT_NAME_DEFAULT, FOOTER_MERCHANT_SUB_LABEL_DEFAULT, FOOTER_POLICY_LINK_TEXT_DEFAULT, FOOTER_TAGLINE_DEFAULT, FeatureMarqueeBlock, type FeatureMarqueeBlockProps, FloatingSnackGalleryHero, type FloatingSnackGalleryHeroProps, type FloatingSnackGalleryHeroSectionDoc, type FloatingSnackGalleryImageBlock, FullImageTypingHero, type FullImageTypingHeroProps, type FullImageTypingHeroSectionDoc, type FullImageTypingWordBlock, HEADER_BRAND_NAME_DEFAULT, HEADER_BRAND_SUBTITLE_DEFAULT, HEADER_NAV_LINK_TEXT_DEFAULT, HEADER_NAV_LINK_TEXT_LIGHT_DEFAULT, HERO_SECTION_LABEL_DEFAULT, HERO_SLIDE_DESCRIPTION_DEFAULT, HERO_SLIDE_HEADLINE_DEFAULT, HeroScrollableSlide, type HeroScrollableSlideProps, type HeroSection, type HeroSectionControls, type HeroSectionSettings, type HeroSlideAlignmentOverride, type HeroSlideBlock, type HeroSlideBlockProps, HeroSlider, type HeroSliderProps, INFO_CARD_DARK_SURFACE_DEFAULT, INFO_CARD_LIGHT_SURFACE_DEFAULT, INFO_CARD_TITLE_DEFAULT, ImmersiveImageRevealHero, type ImmersiveImageRevealHeroProps, type ImmersiveImageRevealHeroSectionDoc, type ImmersiveImageRevealImageBlock, type ImmersiveImageRevealTypingWordBlock, type InfoCardBlock, LightMediaPresencePremium, type LightMediaPresencePremiumProps, type LightPremiumInfoCardBlock, type LightPremiumVideoCardBlock, type LightPremiumVideoHeroSectionDoc, type LightPremiumVideoHeroSettings, LiquidFocusCategories, LogoFocusedHeader, type LogoFocusedHeaderControls, type LogoFocusedHeaderNavBlock, type LogoFocusedHeaderNavBlockProps, type LogoFocusedHeaderProps, type LogoFocusedHeaderSectionDoc, type LogoFocusedHeaderSettings, MARQUEE_BOTTOM_ROW_DEFAULT, MARQUEE_TEXT_LARGE_DEFAULT, MARQUEE_TEXT_SMALL_DEFAULT, MARQUEE_TOP_ROW_DEFAULT, type MarqueeLineProps, type MarqueeTextBlock, type MarqueeTextControls, type MarqueeTextRow, type MarqueeTextSectionDoc, type MarqueeTextSettings, MediaPresenceVideoHero, type MediaPresenceVideoHeroProps, MerchantFooterReveal, type MerchantFooterRevealBlock, type MerchantFooterRevealPolicyBlockProps, type MerchantFooterRevealProps, type MerchantFooterRevealPropsComponent, type MerchantFooterRevealSectionDoc, type MerchantFooterRevealSettings, type MerchantFooterRevealSocialPlatform, type MessageStyleTestimonialBlock, type MessageStyleTestimonialItemProps, MessageStyleTestimonials, type MessageStyleTestimonialsProps, type MessageStyleTestimonialsSectionDoc, type MessageStyleTestimonialsSettings, type MinimalTimelineBenefitBlock, type MinimalTimelineBenefitBlockProps, MinimalTimelineBenefits, type MinimalTimelineBenefitsControls, type MinimalTimelineBenefitsProps, type MinimalTimelineBenefitsSectionDoc, type MinimalTimelineBenefitsSettings, NSPSignatureHeroMarquee, type NSPSignatureHeroMarqueeBlock, type NSPSignatureHeroMarqueeProps, type NSPSignatureHeroMarqueeSectionDoc, NSP_FLOATING_SNACK_TITLE_DEFAULT, NSP_MARQUEE_CARD_SUBTITLE_DEFAULT, NSP_MARQUEE_CARD_TITLE_DEFAULT, NSP_MARQUEE_EYEBROW_DEFAULT, NSP_MARQUEE_HEADING_DEFAULT, NSP_MARQUEE_HERO_BADGE_TEXT_DEFAULT, NSP_MARQUEE_SUBHEADING_DEFAULT, NSP_POKER_DESCRIPTION_DEFAULT, NSP_POKER_EYEBROW_DEFAULT, NSP_POKER_HEADING_DEFAULT, NSP_SIG_HERO_DESCRIPTION_DEFAULT, NSP_SIG_HERO_EYEBROW_DEFAULT, NSP_SIG_HERO_HEADING_DEFAULT, NSP_SIG_HERO_PRIMARY_BUTTON_TEXT_DEFAULT, NSP_SIG_HERO_SECONDARY_BUTTON_TEXT_DEFAULT, NSP_TYPING_DESCRIPTION_DEFAULT, NSP_TYPING_PRIMARY_BUTTON_TEXT_DEFAULT, NSP_TYPING_SECONDARY_BUTTON_TEXT_DEFAULT, NSP_TYPING_STATIC_HEADING_DEFAULT, NSP_TYPING_WORD_DEFAULT, type NspSignatureHeroBlock, type NspSignatureHeroSectionDoc, PRODUCT_CARD_DESCRIPTION_DEFAULT, PRODUCT_CARD_SUBTITLE_DEFAULT, PRODUCT_CARD_TITLE_DEFAULT, PRODUCT_CARD_TITLE_OVERLAY_DEFAULT, PRODUCT_MARQUEE_DESCRIPTION_DEFAULT, PRODUCT_MARQUEE_EYEBROW_DEFAULT, PRODUCT_MARQUEE_HEADING_DEFAULT, PokerRowRevealHero, type PokerRowRevealHeroBlock, type PokerRowRevealHeroProps, type PokerRowRevealHeroSectionDoc, PortraitTestimonials, ProductCardMarquee, ProductMarquee, type ProductMarqueeBlock, type ProductMarqueeItemProps, type ProductMarqueeProps, type ProductMarqueeSectionDoc, type ProductMarqueeSettings, type ResolvedSectionAppearance, type ResolvedTextStyle, SECTION_TYPE_APPEARANCE_DEFAULTS, STOREFRONT_FONTS, STOREFRONT_FONT_OPTIONS, STYLE_APPLE_MARQUEE, STYLE_MESSAGE_BUBBLE, STYLE_PORTRAIT_TESTIMONIALS, STYLE_STACKED_TESTIMONIALS, ScrollParallaxSignatureHero, type ScrollParallaxSignatureHeroProps, type SectionAppearance, type StackedTestimonialBlock, type StackedTestimonialItemProps, StackedTestimonials, type StackedTestimonialsProps, type StackedTestimonialsSectionDoc, type StackedTestimonialsSettings, StorefrontFontLoader, type StorefrontTheme, SubHeroImageLoop, type SubHeroImageLoopProps, type SubHeroImageLoopSectionDoc, TESTIMONIAL_BACKGROUND_WORD_DEFAULT, TESTIMONIAL_BUTTON_TEXT_DEFAULT, TESTIMONIAL_CUSTOMER_NAME_DEFAULT, TESTIMONIAL_CUSTOMER_ROLE_DEFAULT, TESTIMONIAL_DESCRIPTION_DEFAULT, TESTIMONIAL_EYEBROW_DEFAULT, TESTIMONIAL_HEADING_DEFAULT, TESTIMONIAL_HIGHLIGHT_TEXT_DEFAULT, TESTIMONIAL_QUOTE_TEXT_DEFAULT, TESTIMONIAL_SUBHEADING_DEFAULT, type TextStyle, TransparentHeroHeader, type TransparentHeroHeaderControls, type TransparentHeroHeaderNavBlock, type TransparentHeroHeaderNavBlockProps, type TransparentHeroHeaderProps, type TransparentHeroHeaderSectionDoc, type TransparentHeroHeaderSettings, type TypographyRole, VIDEO_CARD_EYEBROW_DEFAULT, VIDEO_CARD_TITLE_DEFAULT, VIDEO_HERO_EYEBROW_DEFAULT, VIDEO_HERO_HEADING_DEFAULT, VIDEO_HERO_SUBHEADING_DEFAULT, type VideoCardBlock, type VideoHeroIconType, type VideoHeroInfoStyleType, type VideoHeroSectionDoc, type VideoHeroSectionPadding, type VideoHeroSettings, collectStorefrontFontIdsFromDocument, collectThemeFontIds, getStorefrontFontById, normalizeAppearance, normalizeBlockGroupStyles, normalizeFieldStyles, normalizeImageUrl, normalizeSectionTypography, normalizeSectionTypographyRole, normalizeTextStyle, normalizeTheme, normalizeThemeTypography, normalizeTypography, resolveBlockGroupSurfaceStyle, resolveBlockGroupTextStyle, resolveSectionAppearance, resolveStorefrontFontFamily, resolveTextStyle, resolveThemeFontKey, resolvedTextStyleToInlineStyle, sectionAppearanceStyle, stripFieldOverrideStyle };
