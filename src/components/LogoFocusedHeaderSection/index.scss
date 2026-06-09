@@ -58,10 +58,16 @@
   cursor: pointer;
 }
 
+.ak-lfh__logoBadge--image {
+  background: transparent;
+  color: inherit;
+  box-shadow: none;
+}
+
 .ak-lfh__logoImg {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   display: block;
 }
 

@@ -478,7 +478,7 @@ export default function LogoFocusedHeader({
             <div className="ak-lfh__brandMark">
               <a
                 href="/"
-                className="ak-lfh__logoBadge"
+                className={`ak-lfh__logoBadge ${logoSrc ? "ak-lfh__logoBadge--image" : ""}`}
                 aria-label={brandName ? `Go to ${brandName} home` : "Go to home"}
                 onClick={(e) => handleClientNavClick(e, "/", { scrollToTop: true })}
               >

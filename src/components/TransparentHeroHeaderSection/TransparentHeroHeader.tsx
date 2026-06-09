@@ -520,6 +520,7 @@ export default function TransparentHeroHeader({
             <div
               className={[
                 "ak-thh__logoBadge",
+                logoSrc ? "ak-thh__logoBadge--image" : "",
                 scrolled ? "ak-thh__logoBadge--scrolled" : "ak-thh__logoBadge--top",
               ].join(" ")}
               aria-hidden={Boolean(logoSrc)}

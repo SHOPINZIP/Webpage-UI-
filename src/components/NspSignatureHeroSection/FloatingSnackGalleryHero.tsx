@@ -337,6 +337,11 @@ function renderTwoLineTitle(titleRaw: string) {
   );
 }
 
+function omitFontSize(style: React.CSSProperties): React.CSSProperties {
+  const { fontSize: _fontSize, ...rest } = style;
+  return rest;
+}
+
 function FloatingSnackGalleryHeroContent({
   section,
   sectionRef,
@@ -412,14 +417,16 @@ function FloatingSnackGalleryHeroContent({
 
   const titleStyle = useMemo(
     () =>
-      resolvedTextStyleToInlineStyle(
-        resolveTextStyle({
-          section,
-          theme,
-          fieldId: "title",
-          role: "heading",
-          defaultStyle: NSP_FLOATING_SNACK_TITLE_DEFAULT,
-        })
+      omitFontSize(
+        resolvedTextStyleToInlineStyle(
+          resolveTextStyle({
+            section,
+            theme,
+            fieldId: "title",
+            role: "heading",
+            defaultStyle: NSP_FLOATING_SNACK_TITLE_DEFAULT,
+          })
+        )
       ),
     [section, theme]
   );
