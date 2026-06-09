@@ -59,8 +59,16 @@
   right: 0;
   z-index: 0;
   overflow: hidden;
-  height: 6rem;
-  font-size: clamp(2.5rem, 12vw, 3.25rem);
+  height: 6.5rem;
+  font-size: clamp(3.2rem, 13vw, 4.25rem);
+  line-height: 0.92;
+}
+
+@media (min-width: 480px) {
+  .ak-stacked-t__wordmark--sm {
+    height: 7rem;
+    font-size: clamp(3.35rem, 12.25vw, 4.55rem);
+  }
 }
 
 @media (min-width: 1024px) {

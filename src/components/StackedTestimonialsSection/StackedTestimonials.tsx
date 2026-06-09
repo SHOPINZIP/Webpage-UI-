@@ -44,6 +44,11 @@ function StarRow({ count }: { count: number }) {
   );
 }
 
+function omitFontSize(style: React.CSSProperties): React.CSSProperties {
+  const { fontSize: _fontSize, ...rest } = style;
+  return rest;
+}
+
 const DESKTOP_OFFSETS = [
   "ak-stacked-t__card-pos--d0",
   "ak-stacked-t__card-pos--d1",
@@ -150,14 +155,16 @@ export default function StackedTestimonials({
 
   const backgroundWordStyle = useMemo(
     () =>
-      resolvedTextStyleToInlineStyle(
-        resolveTextStyle({
-          section,
-          theme,
-          fieldId: "backgroundWord",
-          role: "heading",
-          defaultStyle: TESTIMONIAL_BACKGROUND_WORD_DEFAULT,
-        })
+      omitFontSize(
+        resolvedTextStyleToInlineStyle(
+          resolveTextStyle({
+            section,
+            theme,
+            fieldId: "backgroundWord",
+            role: "heading",
+            defaultStyle: TESTIMONIAL_BACKGROUND_WORD_DEFAULT,
+          })
+        )
       ),
     [section, theme]
   );

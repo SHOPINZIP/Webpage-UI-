@@ -2073,7 +2073,7 @@ function LogoFocusedHeader({
     "a",
     {
       href: "/",
-      className: "ak-lfh__logoBadge",
+      className: `ak-lfh__logoBadge ${logoSrc ? "ak-lfh__logoBadge--image" : ""}`,
       "aria-label": brandName ? `Go to ${brandName} home` : "Go to home",
       onClick: (e) => handleClientNavClick(e, "/", { scrollToTop: true })
     },
@@ -2595,6 +2595,7 @@ function TransparentHeroHeader({
     {
       className: [
         "ak-thh__logoBadge",
+        logoSrc ? "ak-thh__logoBadge--image" : "",
         scrolled ? "ak-thh__logoBadge--scrolled" : "ak-thh__logoBadge--top"
       ].join(" "),
       "aria-hidden": Boolean(logoSrc)
@@ -3157,6 +3158,10 @@ function StarRow({ count }) {
     )
   )));
 }
+function omitFontSize(style) {
+  const { fontSize: _fontSize, ...rest } = style;
+  return rest;
+}
 var DESKTOP_OFFSETS = [
   "ak-stacked-t__card-pos--d0",
   "ak-stacked-t__card-pos--d1",
@@ -3218,14 +3223,16 @@ function StackedTestimonials({
     return String((_a2 = p.quote) != null ? _a2 : "").trim() !== "" || String((_b2 = p.name) != null ? _b2 : "").trim() !== "" || String((_c2 = p.role) != null ? _c2 : "").trim() !== "";
   });
   const backgroundWordStyle = (0, import_react9.useMemo)(
-    () => resolvedTextStyleToInlineStyle(
-      resolveTextStyle({
-        section,
-        theme,
-        fieldId: "backgroundWord",
-        role: "heading",
-        defaultStyle: TESTIMONIAL_BACKGROUND_WORD_DEFAULT
-      })
+    () => omitFontSize(
+      resolvedTextStyleToInlineStyle(
+        resolveTextStyle({
+          section,
+          theme,
+          fieldId: "backgroundWord",
+          role: "heading",
+          defaultStyle: TESTIMONIAL_BACKGROUND_WORD_DEFAULT
+        })
+      )
     ),
     [section, theme]
   );
@@ -5923,6 +5930,10 @@ function renderTwoLineTitle(titleRaw) {
   if (parts.length <= 1) return title;
   return /* @__PURE__ */ import_react20.default.createElement(import_react20.default.Fragment, null, parts[0], /* @__PURE__ */ import_react20.default.createElement("br", null), parts.slice(1).join(" "));
 }
+function omitFontSize2(style) {
+  const { fontSize: _fontSize, ...rest } = style;
+  return rest;
+}
 function FloatingSnackGalleryHeroContent({
   section,
   sectionRef,
@@ -5982,14 +5993,16 @@ function FloatingSnackGalleryHeroContent({
   });
   const titleOpacity = (0, import_framer_motion5.useTransform)(scrollYProgress, [0, 0.85], [1, 0.92]);
   const titleStyle = (0, import_react20.useMemo)(
-    () => resolvedTextStyleToInlineStyle(
-      resolveTextStyle({
-        section,
-        theme,
-        fieldId: "title",
-        role: "heading",
-        defaultStyle: NSP_FLOATING_SNACK_TITLE_DEFAULT
-      })
+    () => omitFontSize2(
+      resolvedTextStyleToInlineStyle(
+        resolveTextStyle({
+          section,
+          theme,
+          fieldId: "title",
+          role: "heading",
+          defaultStyle: NSP_FLOATING_SNACK_TITLE_DEFAULT
+        })
+      )
     ),
     [section, theme]
   );

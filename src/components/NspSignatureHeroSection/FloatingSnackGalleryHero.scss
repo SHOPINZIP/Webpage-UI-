@@ -222,7 +222,12 @@
       letter-spacing: -0.095em;
       color: #0a0a0a;
       filter: drop-shadow(0 10px 36px rgba(255, 255, 255, 0.9));
-      font-size: clamp(3.8rem, 18vw, 13.4rem);
+      font-size: clamp(3.2rem, 17.5vw, 8.1rem);
+
+      @media (max-width: 479px) {
+        letter-spacing: -0.078em;
+        line-height: 0.8;
+      }
 
       @media (min-width: 640px) {
         font-size: clamp(4.4rem, 13vw, 13.4rem);
