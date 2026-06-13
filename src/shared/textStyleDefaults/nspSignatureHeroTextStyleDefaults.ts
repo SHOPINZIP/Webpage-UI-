@@ -78,6 +78,18 @@ export const NSP_POKER_DESCRIPTION_DEFAULT: TextStyle = {
   fontSize: "17px",
 };
 
+export const NSP_POKER_FRONT_CARD_EYEBROW_DEFAULT: TextStyle = {
+  color: "rgba(255, 255, 255, 0.72)",
+  fontWeight: "600",
+  fontSize: "10px",
+};
+
+export const NSP_POKER_FRONT_CARD_TITLE_DEFAULT: TextStyle = {
+  color: "#ffffff",
+  fontWeight: "600",
+  fontSize: "16px",
+};
+
 export const NSP_MARQUEE_EYEBROW_DEFAULT: TextStyle = {
   color: "rgba(17, 17, 17, 0.68)",
   fontWeight: "600",

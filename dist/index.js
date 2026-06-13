@@ -87,6 +87,8 @@ __export(index_exports, {
   NSP_MARQUEE_SUBHEADING_DEFAULT: () => NSP_MARQUEE_SUBHEADING_DEFAULT,
   NSP_POKER_DESCRIPTION_DEFAULT: () => NSP_POKER_DESCRIPTION_DEFAULT,
   NSP_POKER_EYEBROW_DEFAULT: () => NSP_POKER_EYEBROW_DEFAULT,
+  NSP_POKER_FRONT_CARD_EYEBROW_DEFAULT: () => NSP_POKER_FRONT_CARD_EYEBROW_DEFAULT,
+  NSP_POKER_FRONT_CARD_TITLE_DEFAULT: () => NSP_POKER_FRONT_CARD_TITLE_DEFAULT,
   NSP_POKER_HEADING_DEFAULT: () => NSP_POKER_HEADING_DEFAULT,
   NSP_SIG_HERO_DESCRIPTION_DEFAULT: () => NSP_SIG_HERO_DESCRIPTION_DEFAULT,
   NSP_SIG_HERO_EYEBROW_DEFAULT: () => NSP_SIG_HERO_EYEBROW_DEFAULT,
@@ -4414,6 +4416,16 @@ var NSP_POKER_DESCRIPTION_DEFAULT = {
   fontWeight: "400",
   fontSize: "17px"
 };
+var NSP_POKER_FRONT_CARD_EYEBROW_DEFAULT = {
+  color: "rgba(255, 255, 255, 0.72)",
+  fontWeight: "600",
+  fontSize: "10px"
+};
+var NSP_POKER_FRONT_CARD_TITLE_DEFAULT = {
+  color: "#ffffff",
+  fontWeight: "600",
+  fontSize: "16px"
+};
 var NSP_MARQUEE_EYEBROW_DEFAULT = {
   color: "rgba(17, 17, 17, 0.68)",
   fontWeight: "600",
@@ -5291,7 +5303,12 @@ function SpreadCard({
 function PokerSpread({
   cards,
   progress,
-  isMobile
+  isMobile,
+  frontCardEyebrow,
+  frontCardTitle,
+  showFrontCardMeta,
+  frontCardEyebrowStyle,
+  frontCardTitleStyle
 }) {
   var _a, _b;
   const smooth = (0, import_framer_motion3.useSpring)(progress, {
@@ -5304,6 +5321,7 @@ function PokerSpread({
   const openProgress = (0, import_framer_motion3.useTransform)(smooth, [0.24, 0.58, 1], [0, 1, 1]);
   const spreadOpacity = (0, import_framer_motion3.useTransform)(openProgress, [0, 0.12, 1], [0, 1, 1]);
   const spreadScale = (0, import_framer_motion3.useTransform)(openProgress, [0, 0.2, 1], [0.95, 1, 1]);
+  const hasFrontMeta = showFrontCardMeta && (Boolean(frontCardEyebrow) || Boolean(frontCardTitle));
   return /* @__PURE__ */ import_react18.default.createElement("div", { className: "ak-nsp-poker-hero__cardStack" }, cards.map((card, index) => /* @__PURE__ */ import_react18.default.createElement(
     SpreadCard,
     {
@@ -5321,7 +5339,7 @@ function PokerSpread({
       className: "ak-nsp-poker-hero__singleFlip",
       style: { rotateY: flip, opacity: singleOpacity }
     },
-    /* @__PURE__ */ import_react18.default.createElement("div", { className: "ak-nsp-poker-hero__singleFace ak-nsp-poker-hero__singleFace--front" }, /* @__PURE__ */ import_react18.default.createElement(SafeImageCard, { image: ((_a = cards[2]) == null ? void 0 : _a.image) || "", alt: ((_b = cards[2]) == null ? void 0 : _b.alt) || "" }), /* @__PURE__ */ import_react18.default.createElement("div", { className: "ak-nsp-poker-hero__frontShade" }), /* @__PURE__ */ import_react18.default.createElement("div", { className: "ak-nsp-poker-hero__frontMeta" }, /* @__PURE__ */ import_react18.default.createElement("p", null, "FEATURED SHOWCASE"), /* @__PURE__ */ import_react18.default.createElement("h3", null, "One card flips, then opens into the row."))),
+    /* @__PURE__ */ import_react18.default.createElement("div", { className: "ak-nsp-poker-hero__singleFace ak-nsp-poker-hero__singleFace--front" }, /* @__PURE__ */ import_react18.default.createElement(SafeImageCard, { image: ((_a = cards[2]) == null ? void 0 : _a.image) || "", alt: ((_b = cards[2]) == null ? void 0 : _b.alt) || "" }), /* @__PURE__ */ import_react18.default.createElement("div", { className: "ak-nsp-poker-hero__frontShade" }), hasFrontMeta ? /* @__PURE__ */ import_react18.default.createElement("div", { className: "ak-nsp-poker-hero__frontMeta" }, frontCardEyebrow ? /* @__PURE__ */ import_react18.default.createElement("p", { style: frontCardEyebrowStyle }, frontCardEyebrow) : null, frontCardTitle ? /* @__PURE__ */ import_react18.default.createElement("h3", { style: frontCardTitleStyle }, frontCardTitle) : null) : null),
     /* @__PURE__ */ import_react18.default.createElement("div", { className: "ak-nsp-poker-hero__singleFace ak-nsp-poker-hero__singleFace--back" }, /* @__PURE__ */ import_react18.default.createElement("div", { className: "ak-nsp-poker-hero__backInner" }, /* @__PURE__ */ import_react18.default.createElement("p", null, "OPENING THE COLLECTION"), /* @__PURE__ */ import_react18.default.createElement("p", null, "Scroll down to open. Scroll up to close.")))
   ));
 }
@@ -5331,7 +5349,7 @@ function PokerRowRevealHeroInner({
   scrollRoot,
   theme
 }) {
-  var _a, _b, _c, _d, _e, _f, _g;
+  var _a, _b, _c, _d, _e, _f, _g, _h, _i;
   const p = (_b = (_a = section.settings) == null ? void 0 : _a.props) != null ? _b : {};
   const blocks = (_d = (_c = section.settings) == null ? void 0 : _c.blocks) != null ? _d : [];
   const isMobile = useIsMobile2();
@@ -5367,7 +5385,10 @@ function PokerRowRevealHeroInner({
   const eyebrow = String((_e = p.eyebrow) != null ? _e : "").trim();
   const heading = String((_f = p.heading) != null ? _f : "").trim();
   const description = String((_g = p.description) != null ? _g : "").trim();
+  const frontCardEyebrow = String((_h = p.frontCardEyebrow) != null ? _h : "").trim();
+  const frontCardTitle = String((_i = p.frontCardTitle) != null ? _i : "").trim();
   const showSparklesIcon = p.showSparklesIcon !== false;
+  const showFrontCardMeta = p.showFrontCardMeta !== false;
   const eyebrowStyle = (0, import_react18.useMemo)(
     () => resolvedTextStyleToInlineStyle(
       resolveTextStyle({
@@ -5404,6 +5425,30 @@ function PokerRowRevealHeroInner({
     ),
     [section, theme]
   );
+  const frontCardEyebrowStyle = (0, import_react18.useMemo)(
+    () => resolvedTextStyleToInlineStyle(
+      resolveTextStyle({
+        section,
+        theme,
+        fieldId: "frontCardEyebrow",
+        role: "body",
+        defaultStyle: NSP_POKER_FRONT_CARD_EYEBROW_DEFAULT
+      })
+    ),
+    [section, theme]
+  );
+  const frontCardTitleStyle = (0, import_react18.useMemo)(
+    () => resolvedTextStyleToInlineStyle(
+      resolveTextStyle({
+        section,
+        theme,
+        fieldId: "frontCardTitle",
+        role: "heading",
+        defaultStyle: NSP_POKER_FRONT_CARD_TITLE_DEFAULT
+      })
+    ),
+    [section, theme]
+  );
   return /* @__PURE__ */ import_react18.default.createElement("div", { className: "ak-nsp-poker-hero__sticky" }, /* @__PURE__ */ import_react18.default.createElement("div", { className: "ak-nsp-poker-hero__inner" }, /* @__PURE__ */ import_react18.default.createElement(
     import_framer_motion3.motion.div,
     {
@@ -5416,7 +5461,19 @@ function PokerRowRevealHeroInner({
     (showSparklesIcon || eyebrow) && /* @__PURE__ */ import_react18.default.createElement("div", { className: "ak-nsp-poker-hero__eyebrow", style: eyebrowStyle }, showSparklesIcon ? /* @__PURE__ */ import_react18.default.createElement("span", { "aria-hidden": true, className: "ak-nsp-poker-hero__eyebrowIcon" }, "*") : null, eyebrow),
     heading ? /* @__PURE__ */ import_react18.default.createElement("h2", { className: "ak-nsp-poker-hero__heading", style: headingStyle }, heading) : null,
     description ? /* @__PURE__ */ import_react18.default.createElement("p", { className: "ak-nsp-poker-hero__description", style: descriptionStyle }, description) : null
-  ), /* @__PURE__ */ import_react18.default.createElement("div", { className: "ak-nsp-poker-hero__cardsWrap" }, /* @__PURE__ */ import_react18.default.createElement(PokerSpread, { cards, progress: pinnedProgress, isMobile }))));
+  ), /* @__PURE__ */ import_react18.default.createElement("div", { className: "ak-nsp-poker-hero__cardsWrap" }, /* @__PURE__ */ import_react18.default.createElement(
+    PokerSpread,
+    {
+      cards,
+      progress: pinnedProgress,
+      isMobile,
+      frontCardEyebrow,
+      frontCardTitle,
+      showFrontCardMeta,
+      frontCardEyebrowStyle,
+      frontCardTitleStyle
+    }
+  ))));
 }
 function PokerRowRevealHero({
   section,
@@ -7542,7 +7599,7 @@ function DualLineFeatureMarquee({
 }
 
 // src/sections/video-hero/MediaPresenceVideoHero.tsx
-var import_react28 = __toESM(require("react"));
+var import_react29 = __toESM(require("react"));
 var import_framer_motion8 = require("framer-motion");
 
 // src/shared/textStyleDefaults/videoHeroTextStyleDefaults.ts
@@ -7584,6 +7641,246 @@ var INFO_CARD_TITLE_DEFAULT = {
   fontWeight: "500",
   fontSize: "0.875rem"
 };
+
+// src/sections/video-hero/inlineVideoPlayback.tsx
+var import_react28 = __toESM(require("react"));
+var IOS_SAFE_VIDEO_EXTENSIONS = /* @__PURE__ */ new Set(["mp4", "m4v", "mov"]);
+var KNOWN_UNSUPPORTED_VIDEO_EXTENSIONS = /* @__PURE__ */ new Set([
+  "avi",
+  "flv",
+  "mkv",
+  "ogg",
+  "ogv",
+  "webm",
+  "wmv"
+]);
+function extractVideoExtension(url) {
+  var _a, _b, _c;
+  const sanitized = (_b = (_a = url.split("#")[0]) == null ? void 0 : _a.split("?")[0]) != null ? _b : "";
+  const lastSegment = (_c = sanitized.split("/").pop()) != null ? _c : "";
+  const match = /\.([a-z0-9]+)$/i.exec(lastSegment);
+  return match ? match[1].toLowerCase() : "";
+}
+function resolveInlineVideoSource(videoUrl) {
+  const src = String(videoUrl != null ? videoUrl : "").trim();
+  if (!src) return null;
+  const extension = extractVideoExtension(src);
+  if (extension && KNOWN_UNSUPPORTED_VIDEO_EXTENSIONS.has(extension)) {
+    return null;
+  }
+  if (!extension || IOS_SAFE_VIDEO_EXTENSIONS.has(extension)) {
+    return { src, type: "video/mp4" };
+  }
+  return { src, type: "video/mp4" };
+}
+function applyInlineVideoAttributes(video, muted, loop) {
+  video.defaultMuted = muted;
+  video.muted = muted;
+  video.loop = loop;
+  video.playsInline = true;
+  video.preload = "metadata";
+  video.setAttribute("playsinline", "");
+  video.setAttribute("webkit-playsinline", "true");
+  if (muted) {
+    video.setAttribute("muted", "");
+  } else {
+    video.removeAttribute("muted");
+  }
+}
+function useInlineVideoPlayback({
+  videoUrl,
+  autoPlay,
+  loop,
+  mutedByDefault = true
+}) {
+  const source = (0, import_react28.useMemo)(() => resolveInlineVideoSource(videoUrl), [videoUrl]);
+  const videoRef = (0, import_react28.useRef)(null);
+  const autoplayAttemptedRef = (0, import_react28.useRef)(false);
+  const [isReady, setIsReady] = (0, import_react28.useState)(false);
+  const [isPlaying, setIsPlaying] = (0, import_react28.useState)(false);
+  const [isMuted, setIsMuted] = (0, import_react28.useState)(Boolean(mutedByDefault));
+  const [autoplayBlocked, setAutoplayBlocked] = (0, import_react28.useState)(false);
+  const [hasError, setHasError] = (0, import_react28.useState)(false);
+  const canRenderVideo = Boolean(source) && !hasError;
+  (0, import_react28.useEffect)(() => {
+    autoplayAttemptedRef.current = false;
+    setIsReady(false);
+    setIsPlaying(false);
+    setIsMuted(Boolean(mutedByDefault));
+    setAutoplayBlocked(false);
+    setHasError(false);
+  }, [mutedByDefault, source == null ? void 0 : source.src]);
+  const syncMutedState = (0, import_react28.useCallback)(
+    (nextMuted) => {
+      const video = videoRef.current;
+      if (video) {
+        applyInlineVideoAttributes(video, nextMuted, loop);
+      }
+      setIsMuted(nextMuted);
+    },
+    [loop]
+  );
+  const attemptPlayback = (0, import_react28.useCallback)(
+    async ({ forceMuted = false, userInitiated = false } = {}) => {
+      const video = videoRef.current;
+      if (!video || !source || hasError) return false;
+      const nextMuted = forceMuted ? true : video.muted;
+      applyInlineVideoAttributes(video, nextMuted, loop);
+      if (forceMuted || nextMuted !== isMuted) {
+        setIsMuted(nextMuted);
+      }
+      try {
+        const playResult = video.play();
+        if (playResult && typeof playResult.then === "function") {
+          await playResult;
+        }
+        setAutoplayBlocked(false);
+        setHasError(false);
+        return true;
+      } catch {
+        if (!userInitiated) {
+          setAutoplayBlocked(true);
+        }
+        setIsPlaying(!video.paused);
+        return false;
+      }
+    },
+    [hasError, isMuted, loop, source]
+  );
+  (0, import_react28.useEffect)(() => {
+    const video = videoRef.current;
+    if (!video || !source || hasError) return;
+    applyInlineVideoAttributes(video, mutedByDefault, loop);
+    if (!autoPlay) {
+      video.pause();
+      return;
+    }
+    const tryAutoplay = () => {
+      if (autoplayAttemptedRef.current) return;
+      if (video.readyState < 1) return;
+      autoplayAttemptedRef.current = true;
+      void attemptPlayback({ forceMuted: true });
+    };
+    if (video.readyState >= 1) {
+      tryAutoplay();
+      return;
+    }
+    video.addEventListener("loadedmetadata", tryAutoplay);
+    video.addEventListener("canplay", tryAutoplay);
+    return () => {
+      video.removeEventListener("loadedmetadata", tryAutoplay);
+      video.removeEventListener("canplay", tryAutoplay);
+    };
+  }, [attemptPlayback, autoPlay, hasError, loop, mutedByDefault, source]);
+  const togglePlay = (0, import_react28.useCallback)(async () => {
+    const video = videoRef.current;
+    if (!video || !source || hasError) return;
+    if (video.paused || video.ended) {
+      await attemptPlayback({ userInitiated: true });
+      return;
+    }
+    video.pause();
+  }, [attemptPlayback, hasError, source]);
+  const retryPlayback = (0, import_react28.useCallback)(async () => {
+    return attemptPlayback({ userInitiated: true });
+  }, [attemptPlayback]);
+  const toggleMute = (0, import_react28.useCallback)(() => {
+    const video = videoRef.current;
+    if (!video || !source || hasError) return;
+    syncMutedState(!video.muted);
+  }, [hasError, source, syncMutedState]);
+  const videoEventHandlers = (0, import_react28.useMemo)(
+    () => ({
+      onPlay: () => {
+        setIsPlaying(true);
+        setAutoplayBlocked(false);
+      },
+      onPause: () => {
+        setIsPlaying(false);
+      },
+      onVolumeChange: () => {
+        const video = videoRef.current;
+        if (!video) return;
+        setIsMuted(video.muted || video.volume === 0);
+      },
+      onLoadedMetadata: () => {
+        setIsReady(true);
+      },
+      onCanPlay: () => {
+        setIsReady(true);
+      },
+      onError: () => {
+        setHasError(true);
+        setIsReady(false);
+        setIsPlaying(false);
+        setAutoplayBlocked(false);
+      }
+    }),
+    []
+  );
+  return {
+    autoplayBlocked,
+    canRenderVideo,
+    hasError,
+    isMuted,
+    isPlaying,
+    isReady,
+    loop,
+    mutedByDefault,
+    preload: "metadata",
+    retryPlayback,
+    source,
+    toggleMute,
+    togglePlay,
+    videoEventHandlers,
+    videoRef
+  };
+}
+function InlineVideoMedia({
+  controller,
+  placeholderClassName,
+  posterClassName,
+  posterUrl,
+  title,
+  videoClassName
+}) {
+  if (controller.canRenderVideo && controller.source) {
+    return /* @__PURE__ */ import_react28.default.createElement(
+      "video",
+      {
+        key: controller.source.src,
+        ref: controller.videoRef,
+        className: videoClassName,
+        poster: posterUrl || void 0,
+        muted: controller.isMuted,
+        defaultMuted: controller.mutedByDefault,
+        loop: controller.loop,
+        playsInline: true,
+        preload: controller.preload,
+        onPlay: controller.videoEventHandlers.onPlay,
+        onPause: controller.videoEventHandlers.onPause,
+        onVolumeChange: controller.videoEventHandlers.onVolumeChange,
+        onLoadedMetadata: controller.videoEventHandlers.onLoadedMetadata,
+        onCanPlay: controller.videoEventHandlers.onCanPlay,
+        onError: controller.videoEventHandlers.onError
+      },
+      /* @__PURE__ */ import_react28.default.createElement("source", { src: controller.source.src, type: controller.source.type })
+    );
+  }
+  if (posterUrl) {
+    return /* @__PURE__ */ import_react28.default.createElement(
+      "img",
+      {
+        className: posterClassName,
+        src: posterUrl,
+        alt: title || "Video poster",
+        loading: "lazy",
+        decoding: "async"
+      }
+    );
+  }
+  return /* @__PURE__ */ import_react28.default.createElement("div", { className: placeholderClassName, "aria-hidden": true });
+}
 
 // src/sections/video-hero/MediaPresenceVideoHero.tsx
 var VIDEO_CARD_TYPE = "video_card";
@@ -7627,7 +7924,7 @@ function paddingClass(padding) {
   return "ak-video-hero--pad-lg";
 }
 function SparklesIcon2() {
-  return /* @__PURE__ */ import_react28.default.createElement("svg", { viewBox: "0 0 24 24", fill: "none", "aria-hidden": true, className: "ak-video-hero__infoIconSvg" }, /* @__PURE__ */ import_react28.default.createElement(
+  return /* @__PURE__ */ import_react29.default.createElement("svg", { viewBox: "0 0 24 24", fill: "none", "aria-hidden": true, className: "ak-video-hero__infoIconSvg" }, /* @__PURE__ */ import_react29.default.createElement(
     "path",
     {
       d: "M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z",
@@ -7639,7 +7936,7 @@ function SparklesIcon2() {
   ));
 }
 function NewspaperIcon() {
-  return /* @__PURE__ */ import_react28.default.createElement("svg", { viewBox: "0 0 24 24", fill: "none", "aria-hidden": true, className: "ak-video-hero__infoIconSvg" }, /* @__PURE__ */ import_react28.default.createElement(
+  return /* @__PURE__ */ import_react29.default.createElement("svg", { viewBox: "0 0 24 24", fill: "none", "aria-hidden": true, className: "ak-video-hero__infoIconSvg" }, /* @__PURE__ */ import_react29.default.createElement(
     "path",
     {
       d: "M4 19.5A2.5 2.5 0 0 1 6.5 17H20",
@@ -7648,7 +7945,7 @@ function NewspaperIcon() {
       strokeLinecap: "round",
       strokeLinejoin: "round"
     }
-  ), /* @__PURE__ */ import_react28.default.createElement(
+  ), /* @__PURE__ */ import_react29.default.createElement(
     "path",
     {
       d: "M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z",
@@ -7657,10 +7954,10 @@ function NewspaperIcon() {
       strokeLinecap: "round",
       strokeLinejoin: "round"
     }
-  ), /* @__PURE__ */ import_react28.default.createElement("path", { d: "M8 7h8M8 11h8M8 15h5", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round" }));
+  ), /* @__PURE__ */ import_react29.default.createElement("path", { d: "M8 7h8M8 11h8M8 15h5", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round" }));
 }
 function RadioIcon({ className }) {
-  return /* @__PURE__ */ import_react28.default.createElement("svg", { viewBox: "0 0 24 24", fill: "none", "aria-hidden": true, className }, /* @__PURE__ */ import_react28.default.createElement(
+  return /* @__PURE__ */ import_react29.default.createElement("svg", { viewBox: "0 0 24 24", fill: "none", "aria-hidden": true, className }, /* @__PURE__ */ import_react29.default.createElement(
     "path",
     {
       d: "M4.9 19.1C1 15.2 1 8.8 4.9 4.9",
@@ -7669,7 +7966,7 @@ function RadioIcon({ className }) {
       strokeLinecap: "round",
       strokeLinejoin: "round"
     }
-  ), /* @__PURE__ */ import_react28.default.createElement(
+  ), /* @__PURE__ */ import_react29.default.createElement(
     "path",
     {
       d: "M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5",
@@ -7678,7 +7975,7 @@ function RadioIcon({ className }) {
       strokeLinecap: "round",
       strokeLinejoin: "round"
     }
-  ), /* @__PURE__ */ import_react28.default.createElement("circle", { cx: "12", cy: "12", r: "2", stroke: "currentColor", strokeWidth: "2" }), /* @__PURE__ */ import_react28.default.createElement(
+  ), /* @__PURE__ */ import_react29.default.createElement("circle", { cx: "12", cy: "12", r: "2", stroke: "currentColor", strokeWidth: "2" }), /* @__PURE__ */ import_react29.default.createElement(
     "path",
     {
       d: "M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5",
@@ -7687,7 +7984,7 @@ function RadioIcon({ className }) {
       strokeLinecap: "round",
       strokeLinejoin: "round"
     }
-  ), /* @__PURE__ */ import_react28.default.createElement(
+  ), /* @__PURE__ */ import_react29.default.createElement(
     "path",
     {
       d: "M19.1 4.9C23 8.8 23 15.1 19.1 19",
@@ -7699,7 +7996,7 @@ function RadioIcon({ className }) {
   ));
 }
 function BadgeIcon() {
-  return /* @__PURE__ */ import_react28.default.createElement("svg", { viewBox: "0 0 24 24", fill: "none", "aria-hidden": true, className: "ak-video-hero__infoIconSvg" }, /* @__PURE__ */ import_react28.default.createElement(
+  return /* @__PURE__ */ import_react29.default.createElement("svg", { viewBox: "0 0 24 24", fill: "none", "aria-hidden": true, className: "ak-video-hero__infoIconSvg" }, /* @__PURE__ */ import_react29.default.createElement(
     "path",
     {
       d: "M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z",
@@ -7708,30 +8005,30 @@ function BadgeIcon() {
       strokeLinecap: "round",
       strokeLinejoin: "round"
     }
-  ), /* @__PURE__ */ import_react28.default.createElement("path", { d: "m9 12 2 2 4-4", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round" }));
+  ), /* @__PURE__ */ import_react29.default.createElement("path", { d: "m9 12 2 2 4-4", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round" }));
 }
 function InfoIcon({ type }) {
   switch (type) {
     case "sparkles":
-      return /* @__PURE__ */ import_react28.default.createElement(SparklesIcon2, null);
+      return /* @__PURE__ */ import_react29.default.createElement(SparklesIcon2, null);
     case "newspaper":
-      return /* @__PURE__ */ import_react28.default.createElement(NewspaperIcon, null);
+      return /* @__PURE__ */ import_react29.default.createElement(NewspaperIcon, null);
     case "radio":
-      return /* @__PURE__ */ import_react28.default.createElement(RadioIcon, { className: "ak-video-hero__infoIconSvg" });
+      return /* @__PURE__ */ import_react29.default.createElement(RadioIcon, { className: "ak-video-hero__infoIconSvg" });
     case "badge":
-      return /* @__PURE__ */ import_react28.default.createElement(BadgeIcon, null);
+      return /* @__PURE__ */ import_react29.default.createElement(BadgeIcon, null);
     default:
       return null;
   }
 }
 function PlayIcon() {
-  return /* @__PURE__ */ import_react28.default.createElement("svg", { viewBox: "0 0 24 24", fill: "none", "aria-hidden": true }, /* @__PURE__ */ import_react28.default.createElement("path", { d: "M8 5.14v13.72L19 12 8 5.14z", fill: "currentColor" }));
+  return /* @__PURE__ */ import_react29.default.createElement("svg", { viewBox: "0 0 24 24", fill: "none", "aria-hidden": true }, /* @__PURE__ */ import_react29.default.createElement("path", { d: "M8 5.14v13.72L19 12 8 5.14z", fill: "currentColor" }));
 }
 function PauseIcon() {
-  return /* @__PURE__ */ import_react28.default.createElement("svg", { viewBox: "0 0 24 24", fill: "none", "aria-hidden": true }, /* @__PURE__ */ import_react28.default.createElement("rect", { x: "6", y: "5", width: "4", height: "14", rx: "1", fill: "currentColor" }), /* @__PURE__ */ import_react28.default.createElement("rect", { x: "14", y: "5", width: "4", height: "14", rx: "1", fill: "currentColor" }));
+  return /* @__PURE__ */ import_react29.default.createElement("svg", { viewBox: "0 0 24 24", fill: "none", "aria-hidden": true }, /* @__PURE__ */ import_react29.default.createElement("rect", { x: "6", y: "5", width: "4", height: "14", rx: "1", fill: "currentColor" }), /* @__PURE__ */ import_react29.default.createElement("rect", { x: "14", y: "5", width: "4", height: "14", rx: "1", fill: "currentColor" }));
 }
 function VolumeOffIcon() {
-  return /* @__PURE__ */ import_react28.default.createElement("svg", { viewBox: "0 0 24 24", fill: "none", "aria-hidden": true }, /* @__PURE__ */ import_react28.default.createElement(
+  return /* @__PURE__ */ import_react29.default.createElement("svg", { viewBox: "0 0 24 24", fill: "none", "aria-hidden": true }, /* @__PURE__ */ import_react29.default.createElement(
     "path",
     {
       d: "M11 5 6 9H3v6h3l5 4V5z",
@@ -7740,10 +8037,10 @@ function VolumeOffIcon() {
       strokeLinecap: "round",
       strokeLinejoin: "round"
     }
-  ), /* @__PURE__ */ import_react28.default.createElement("path", { d: "m22 9-6 6M16 9l6 6", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round" }));
+  ), /* @__PURE__ */ import_react29.default.createElement("path", { d: "m22 9-6 6M16 9l6 6", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round" }));
 }
 function VolumeOnIcon() {
-  return /* @__PURE__ */ import_react28.default.createElement("svg", { viewBox: "0 0 24 24", fill: "none", "aria-hidden": true }, /* @__PURE__ */ import_react28.default.createElement(
+  return /* @__PURE__ */ import_react29.default.createElement("svg", { viewBox: "0 0 24 24", fill: "none", "aria-hidden": true }, /* @__PURE__ */ import_react29.default.createElement(
     "path",
     {
       d: "M11 5 6 9H3v6h3l5 4V5z",
@@ -7752,7 +8049,7 @@ function VolumeOnIcon() {
       strokeLinecap: "round",
       strokeLinejoin: "round"
     }
-  ), /* @__PURE__ */ import_react28.default.createElement(
+  ), /* @__PURE__ */ import_react29.default.createElement(
     "path",
     {
       d: "M15.54 8.46a5 5 0 0 1 0 7.07M19.07 4.93a10 10 0 0 1 0 14.14",
@@ -7774,130 +8071,68 @@ function VideoCardItem({
   cardEyebrowStyle,
   cardTitleStyle
 }) {
-  const videoRef = (0, import_react28.useRef)(null);
-  const [isPlaying, setIsPlaying] = (0, import_react28.useState)(autoPlayVideos);
-  const [isMuted, setIsMuted] = (0, import_react28.useState)(true);
-  const [autoplayBlocked, setAutoplayBlocked] = (0, import_react28.useState)(false);
-  const hasVideo = Boolean(card.videoUrl);
+  const playback = useInlineVideoPlayback({
+    videoUrl: card.videoUrl,
+    autoPlay: autoPlayVideos,
+    loop: loopVideos,
+    mutedByDefault: true
+  });
+  const hasVideo = Boolean(playback.source);
   const showStagger = staggerMiddleCard && total === 3 && index === 1 && !reduceMotion;
-  const tryPlay = (0, import_react28.useCallback)(async () => {
-    const video = videoRef.current;
-    if (!video || !hasVideo) return;
-    try {
-      await video.play();
-      setIsPlaying(true);
-      setAutoplayBlocked(false);
-    } catch {
-      setIsPlaying(false);
-      setAutoplayBlocked(true);
-    }
-  }, [hasVideo]);
-  (0, import_react28.useEffect)(() => {
-    const video = videoRef.current;
-    if (!video || !hasVideo || !autoPlayVideos) return;
-    video.muted = isMuted;
-    const playVideo = () => {
-      tryPlay();
-    };
-    if (video.readyState >= 2) {
-      playVideo();
-    } else {
-      video.addEventListener("loadeddata", playVideo, { once: true });
-      return () => video.removeEventListener("loadeddata", playVideo);
-    }
-  }, [autoPlayVideos, hasVideo, isMuted, tryPlay]);
-  (0, import_react28.useEffect)(() => {
-    const video = videoRef.current;
-    if (!video || !hasVideo) return;
-    video.muted = isMuted;
-    if (!autoPlayVideos) {
-      video.pause();
-      setIsPlaying(false);
-    }
-  }, [autoPlayVideos, hasVideo, isMuted]);
-  const togglePlay = async () => {
-    const video = videoRef.current;
-    if (!video || !hasVideo) return;
-    if (video.paused) {
-      await tryPlay();
-    } else {
-      video.pause();
-      setIsPlaying(false);
-    }
-  };
-  const toggleMute = () => {
-    const video = videoRef.current;
-    const nextMuted = !isMuted;
-    setIsMuted(nextMuted);
-    if (video) video.muted = nextMuted;
-  };
   const motionProps = reduceMotion ? { initial: false, animate: { opacity: 1, y: 0, scale: 1 } } : {
     initial: { opacity: 0, y: 50, scale: 0.96 },
     whileInView: { opacity: 1, y: 0, scale: 1 },
     viewport: { once: true, margin: "-80px" },
     transition: { duration: 0.8, delay: index * 0.12, ease: easing2 }
   };
-  return /* @__PURE__ */ import_react28.default.createElement(
+  return /* @__PURE__ */ import_react29.default.createElement(
     "div",
     {
       className: showStagger ? "ak-video-hero__cardWrap ak-video-hero__cardWrap--stagger" : "ak-video-hero__cardWrap"
     },
-    /* @__PURE__ */ import_react28.default.createElement(
+    /* @__PURE__ */ import_react29.default.createElement(
       import_framer_motion8.motion.article,
       {
         ...motionProps,
         className: "ak-video-hero__card"
       },
-      /* @__PURE__ */ import_react28.default.createElement("div", { className: "ak-video-hero__cardMedia" }, hasVideo ? /* @__PURE__ */ import_react28.default.createElement(
-        "video",
+      /* @__PURE__ */ import_react29.default.createElement("div", { className: "ak-video-hero__cardMedia" }, /* @__PURE__ */ import_react29.default.createElement(
+        InlineVideoMedia,
         {
-          ref: videoRef,
-          className: "ak-video-hero__cardVideo",
-          src: card.videoUrl,
-          poster: card.posterImage || void 0,
-          muted: isMuted,
-          loop: loopVideos,
-          playsInline: true,
-          preload: "auto",
-          onPlay: () => setIsPlaying(true),
-          onPause: () => setIsPlaying(false)
+          controller: playback,
+          videoClassName: "ak-video-hero__cardVideo",
+          posterClassName: "ak-video-hero__cardPoster",
+          placeholderClassName: "ak-video-hero__cardPlaceholder",
+          posterUrl: card.posterImage,
+          title: card.title
         }
-      ) : card.posterImage ? /* @__PURE__ */ import_react28.default.createElement(
-        "img",
-        {
-          className: "ak-video-hero__cardPoster",
-          src: card.posterImage,
-          alt: card.title || "Video poster",
-          loading: "lazy",
-          decoding: "async"
-        }
-      ) : /* @__PURE__ */ import_react28.default.createElement("div", { className: "ak-video-hero__cardPlaceholder", "aria-hidden": true }), /* @__PURE__ */ import_react28.default.createElement("div", { className: "ak-video-hero__cardOverlay", "aria-hidden": true }), /* @__PURE__ */ import_react28.default.createElement("div", { className: "ak-video-hero__cardTopBar" }, card.eyebrow ? /* @__PURE__ */ import_react28.default.createElement("p", { className: "ak-video-hero__cardEyebrowPill", style: cardEyebrowStyle }, card.eyebrow) : /* @__PURE__ */ import_react28.default.createElement("span", null), card.statLabel ? /* @__PURE__ */ import_react28.default.createElement("span", { className: "ak-video-hero__cardStat", "aria-hidden": true }, card.statLabel) : null), /* @__PURE__ */ import_react28.default.createElement("div", { className: "ak-video-hero__cardBottom" }, card.title ? /* @__PURE__ */ import_react28.default.createElement("h3", { className: "ak-video-hero__cardTitle", style: cardTitleStyle }, card.title) : null, hasVideo ? /* @__PURE__ */ import_react28.default.createElement("div", { className: "ak-video-hero__cardControls" }, /* @__PURE__ */ import_react28.default.createElement(
+      ), /* @__PURE__ */ import_react29.default.createElement("div", { className: "ak-video-hero__cardOverlay", "aria-hidden": true }), /* @__PURE__ */ import_react29.default.createElement("div", { className: "ak-video-hero__cardTopBar" }, card.eyebrow ? /* @__PURE__ */ import_react29.default.createElement("p", { className: "ak-video-hero__cardEyebrowPill", style: cardEyebrowStyle }, card.eyebrow) : /* @__PURE__ */ import_react29.default.createElement("span", null), card.statLabel ? /* @__PURE__ */ import_react29.default.createElement("span", { className: "ak-video-hero__cardStat", "aria-hidden": true }, card.statLabel) : null), /* @__PURE__ */ import_react29.default.createElement("div", { className: "ak-video-hero__cardBottom" }, card.title ? /* @__PURE__ */ import_react29.default.createElement("h3", { className: "ak-video-hero__cardTitle", style: cardTitleStyle }, card.title) : null, hasVideo ? /* @__PURE__ */ import_react29.default.createElement("div", { className: "ak-video-hero__cardControls" }, /* @__PURE__ */ import_react29.default.createElement(
         "button",
         {
           type: "button",
           className: "ak-video-hero__controlBtn ak-video-hero__controlBtn--play",
-          onClick: togglePlay,
-          "aria-label": isPlaying ? "Pause video" : "Play video"
+          onClick: () => void playback.togglePlay(),
+          "aria-label": playback.isPlaying ? "Pause video" : "Play video"
         },
-        isPlaying ? /* @__PURE__ */ import_react28.default.createElement(PauseIcon, null) : /* @__PURE__ */ import_react28.default.createElement(PlayIcon, null)
-      ), /* @__PURE__ */ import_react28.default.createElement(
+        playback.isPlaying ? /* @__PURE__ */ import_react29.default.createElement(PauseIcon, null) : /* @__PURE__ */ import_react29.default.createElement(PlayIcon, null)
+      ), /* @__PURE__ */ import_react29.default.createElement(
         "button",
         {
           type: "button",
           className: "ak-video-hero__controlBtn ak-video-hero__controlBtn--mute",
-          onClick: toggleMute,
-          "aria-label": isMuted ? "Unmute video" : "Mute video"
+          onClick: playback.toggleMute,
+          "aria-label": playback.isMuted ? "Unmute video" : "Mute video"
         },
-        isMuted ? /* @__PURE__ */ import_react28.default.createElement(VolumeOffIcon, null) : /* @__PURE__ */ import_react28.default.createElement(VolumeOnIcon, null)
-      )) : null), autoplayBlocked && hasVideo ? /* @__PURE__ */ import_react28.default.createElement(
+        playback.isMuted ? /* @__PURE__ */ import_react29.default.createElement(VolumeOffIcon, null) : /* @__PURE__ */ import_react29.default.createElement(VolumeOnIcon, null)
+      )) : null), playback.autoplayBlocked && hasVideo ? /* @__PURE__ */ import_react29.default.createElement(
         "button",
         {
           type: "button",
           className: "ak-video-hero__autoplayFallback",
-          onClick: tryPlay,
+          onClick: () => void playback.retryPlayback(),
           "aria-label": "Tap to play video"
         },
-        /* @__PURE__ */ import_react28.default.createElement(PlayIcon, null)
+        /* @__PURE__ */ import_react29.default.createElement(PlayIcon, null)
       ) : null)
     )
   );
@@ -7908,7 +8143,7 @@ function MediaPresenceVideoHero({
   theme
 }) {
   var _a, _b, _c;
-  const sectionRef = (0, import_react28.useRef)(null);
+  const sectionRef = (0, import_react29.useRef)(null);
   const props = (_b = (_a = section.settings) == null ? void 0 : _a.props) != null ? _b : {};
   const rawBlocks = Array.isArray((_c = section.settings) == null ? void 0 : _c.blocks) ? section.settings.blocks : [];
   const reduceMotion = usePrefersReducedMotion();
@@ -7929,7 +8164,7 @@ function MediaPresenceVideoHero({
   const autoPlayVideos = props.autoPlayVideos !== false;
   const loopVideos = props.loopVideos !== false;
   const staggerMiddleCard = props.staggerMiddleCard !== false;
-  const videoCards = (0, import_react28.useMemo)(() => {
+  const videoCards = (0, import_react29.useMemo)(() => {
     return rawBlocks.filter((block) => block && typeof block === "object").filter((block) => safeText12(block.type) === VIDEO_CARD_TYPE).map((block, index) => {
       const card = readVideoCard(block);
       return {
@@ -7938,7 +8173,7 @@ function MediaPresenceVideoHero({
       };
     });
   }, [rawBlocks]);
-  const infoCards = (0, import_react28.useMemo)(() => {
+  const infoCards = (0, import_react29.useMemo)(() => {
     return rawBlocks.filter((block) => block && typeof block === "object").filter((block) => safeText12(block.type) === INFO_CARD_TYPE).map((block, index) => {
       const card = readInfoCard(block);
       return {
@@ -7949,7 +8184,7 @@ function MediaPresenceVideoHero({
   }, [rawBlocks]);
   const showVideoGrid = videoCards.length > 0;
   const showInfoStrip = showBottomInfoStrip && infoCards.length > 0;
-  const eyebrowStyle = (0, import_react28.useMemo)(
+  const eyebrowStyle = (0, import_react29.useMemo)(
     () => resolvedTextStyleToInlineStyle(
       resolveTextStyle({
         section,
@@ -7961,7 +8196,7 @@ function MediaPresenceVideoHero({
     ),
     [section, theme]
   );
-  const headingStyle = (0, import_react28.useMemo)(
+  const headingStyle = (0, import_react29.useMemo)(
     () => resolvedTextStyleToInlineStyle(
       resolveTextStyle({
         section,
@@ -7973,7 +8208,7 @@ function MediaPresenceVideoHero({
     ),
     [section, theme]
   );
-  const subheadingStyle = (0, import_react28.useMemo)(
+  const subheadingStyle = (0, import_react29.useMemo)(
     () => resolvedTextStyleToInlineStyle(
       resolveTextStyle({
         section,
@@ -7985,7 +8220,7 @@ function MediaPresenceVideoHero({
     ),
     [section, theme]
   );
-  const cardEyebrowStyle = (0, import_react28.useMemo)(
+  const cardEyebrowStyle = (0, import_react29.useMemo)(
     () => resolvedTextStyleToInlineStyle(
       resolveBlockGroupTextStyle({
         section,
@@ -7997,7 +8232,7 @@ function MediaPresenceVideoHero({
     ),
     [section, theme]
   );
-  const cardTitleStyle = (0, import_react28.useMemo)(
+  const cardTitleStyle = (0, import_react29.useMemo)(
     () => resolvedTextStyleToInlineStyle(
       resolveBlockGroupTextStyle({
         section,
@@ -8009,7 +8244,7 @@ function MediaPresenceVideoHero({
     ),
     [section, theme]
   );
-  const infoLightSurface = (0, import_react28.useMemo)(
+  const infoLightSurface = (0, import_react29.useMemo)(
     () => resolveBlockGroupSurfaceStyle({
       section,
       groupKey: "infoCardLight",
@@ -8017,7 +8252,7 @@ function MediaPresenceVideoHero({
     }),
     [section]
   );
-  const infoDarkSurface = (0, import_react28.useMemo)(
+  const infoDarkSurface = (0, import_react29.useMemo)(
     () => resolveBlockGroupSurfaceStyle({
       section,
       groupKey: "infoCardDark",
@@ -8033,26 +8268,26 @@ function MediaPresenceVideoHero({
     viewport: { once: true },
     transition: { duration: 0.7 }
   };
-  return /* @__PURE__ */ import_react28.default.createElement(
+  return /* @__PURE__ */ import_react29.default.createElement(
     "section",
     {
       ref: sectionRef,
       className: `ak-video-hero ${paddingClass(props.sectionPadding)}`,
       style: sectionAppearanceStyle(appearance)
     },
-    !motionDisabled ? /* @__PURE__ */ import_react28.default.createElement(import_framer_motion8.motion.div, { style: { y: glowY }, className: "ak-video-hero__glow", "aria-hidden": true }) : /* @__PURE__ */ import_react28.default.createElement("div", { className: "ak-video-hero__glow", "aria-hidden": true }),
-    /* @__PURE__ */ import_react28.default.createElement("div", { className: "ak-video-hero__topFade", "aria-hidden": true }),
-    /* @__PURE__ */ import_react28.default.createElement("div", { className: "ak-video-hero__inner" }, showEyebrow && eyebrow || heading || showSubheading && subheading ? /* @__PURE__ */ import_react28.default.createElement(
+    !motionDisabled ? /* @__PURE__ */ import_react29.default.createElement(import_framer_motion8.motion.div, { style: { y: glowY }, className: "ak-video-hero__glow", "aria-hidden": true }) : /* @__PURE__ */ import_react29.default.createElement("div", { className: "ak-video-hero__glow", "aria-hidden": true }),
+    /* @__PURE__ */ import_react29.default.createElement("div", { className: "ak-video-hero__topFade", "aria-hidden": true }),
+    /* @__PURE__ */ import_react29.default.createElement("div", { className: "ak-video-hero__inner" }, showEyebrow && eyebrow || heading || showSubheading && subheading ? /* @__PURE__ */ import_react29.default.createElement(
       import_framer_motion8.motion.header,
       {
         ...headerMotion,
         style: motionDisabled ? void 0 : { y: titleY },
         className: "ak-video-hero__header"
       },
-      showEyebrow && eyebrow ? /* @__PURE__ */ import_react28.default.createElement("div", { className: "ak-video-hero__eyebrowPill", style: eyebrowStyle }, /* @__PURE__ */ import_react28.default.createElement(RadioIcon, { className: "ak-video-hero__eyebrowPillIcon" }), /* @__PURE__ */ import_react28.default.createElement("span", null, eyebrow)) : null,
-      heading ? /* @__PURE__ */ import_react28.default.createElement("h2", { className: "ak-video-hero__heading", style: headingStyle }, heading) : null,
-      showSubheading && subheading ? /* @__PURE__ */ import_react28.default.createElement("p", { className: "ak-video-hero__subheading", style: subheadingStyle }, subheading) : null
-    ) : null, showVideoGrid ? /* @__PURE__ */ import_react28.default.createElement("div", { className: gridClass }, videoCards.map((card, index) => /* @__PURE__ */ import_react28.default.createElement(
+      showEyebrow && eyebrow ? /* @__PURE__ */ import_react29.default.createElement("div", { className: "ak-video-hero__eyebrowPill", style: eyebrowStyle }, /* @__PURE__ */ import_react29.default.createElement(RadioIcon, { className: "ak-video-hero__eyebrowPillIcon" }), /* @__PURE__ */ import_react29.default.createElement("span", null, eyebrow)) : null,
+      heading ? /* @__PURE__ */ import_react29.default.createElement("h2", { className: "ak-video-hero__heading", style: headingStyle }, heading) : null,
+      showSubheading && subheading ? /* @__PURE__ */ import_react29.default.createElement("p", { className: "ak-video-hero__subheading", style: subheadingStyle }, subheading) : null
+    ) : null, showVideoGrid ? /* @__PURE__ */ import_react29.default.createElement("div", { className: gridClass }, videoCards.map((card, index) => /* @__PURE__ */ import_react29.default.createElement(
       VideoCardItem,
       {
         key: card.key,
@@ -8066,7 +8301,7 @@ function MediaPresenceVideoHero({
         cardEyebrowStyle,
         cardTitleStyle
       }
-    ))) : null, showInfoStrip ? /* @__PURE__ */ import_react28.default.createElement(
+    ))) : null, showInfoStrip ? /* @__PURE__ */ import_react29.default.createElement(
       import_framer_motion8.motion.div,
       {
         initial: motionDisabled ? false : { opacity: 0, y: 24 },
@@ -8075,9 +8310,9 @@ function MediaPresenceVideoHero({
         transition: { duration: 0.7, delay: 0.2 },
         className: "ak-video-hero__infoStripWrap"
       },
-      /* @__PURE__ */ import_react28.default.createElement("div", { className: "ak-video-hero__infoStrip" }, infoCards.map((card) => {
+      /* @__PURE__ */ import_react29.default.createElement("div", { className: "ak-video-hero__infoStrip" }, infoCards.map((card) => {
         const surface = card.styleType === "dark" ? infoDarkSurface : infoLightSurface;
-        return /* @__PURE__ */ import_react28.default.createElement(
+        return /* @__PURE__ */ import_react29.default.createElement(
           "div",
           {
             key: card.key,
@@ -8086,16 +8321,16 @@ function MediaPresenceVideoHero({
               backgroundColor: surface.backgroundColor || void 0
             }
           },
-          card.iconType !== "none" ? /* @__PURE__ */ import_react28.default.createElement(
+          card.iconType !== "none" ? /* @__PURE__ */ import_react29.default.createElement(
             "div",
             {
               className: "ak-video-hero__infoIconWrap",
               "aria-hidden": true,
               style: { color: surface.color || void 0 }
             },
-            /* @__PURE__ */ import_react28.default.createElement(InfoIcon, { type: card.iconType })
+            /* @__PURE__ */ import_react29.default.createElement(InfoIcon, { type: card.iconType })
           ) : null,
-          /* @__PURE__ */ import_react28.default.createElement("div", { className: "ak-video-hero__infoContent" }, card.title ? /* @__PURE__ */ import_react28.default.createElement(
+          /* @__PURE__ */ import_react29.default.createElement("div", { className: "ak-video-hero__infoContent" }, card.title ? /* @__PURE__ */ import_react29.default.createElement(
             "p",
             {
               className: "ak-video-hero__infoTitle",
@@ -8112,7 +8347,7 @@ function MediaPresenceVideoHero({
 }
 
 // src/sections/video-hero/LightMediaPresencePremium.tsx
-var import_react29 = __toESM(require("react"));
+var import_react30 = __toESM(require("react"));
 var import_framer_motion9 = require("framer-motion");
 
 // src/shared/textStyleDefaults/lightMediaPresencePremiumTextStyleDefaults.ts
@@ -8215,17 +8450,17 @@ function paddingClass2(padding) {
   return "ak-lmp--pad-lg";
 }
 function BadgeCheckIcon2({ className }) {
-  return /* @__PURE__ */ import_react29.default.createElement("svg", { viewBox: "0 0 24 24", fill: "none", "aria-hidden": true, className }, /* @__PURE__ */ import_react29.default.createElement(
+  return /* @__PURE__ */ import_react30.default.createElement("svg", { viewBox: "0 0 24 24", fill: "none", "aria-hidden": true, className }, /* @__PURE__ */ import_react30.default.createElement(
     "path",
     {
       d: "M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z",
       stroke: "currentColor",
       strokeWidth: "2"
     }
-  ), /* @__PURE__ */ import_react29.default.createElement("path", { d: "m9 12 2 2 4-4", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round" }));
+  ), /* @__PURE__ */ import_react30.default.createElement("path", { d: "m9 12 2 2 4-4", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round" }));
 }
 function ShieldCheckIcon({ className }) {
-  return /* @__PURE__ */ import_react29.default.createElement("svg", { viewBox: "0 0 24 24", fill: "none", "aria-hidden": true, className }, /* @__PURE__ */ import_react29.default.createElement(
+  return /* @__PURE__ */ import_react30.default.createElement("svg", { viewBox: "0 0 24 24", fill: "none", "aria-hidden": true, className }, /* @__PURE__ */ import_react30.default.createElement(
     "path",
     {
       d: "M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z",
@@ -8234,19 +8469,19 @@ function ShieldCheckIcon({ className }) {
       strokeLinecap: "round",
       strokeLinejoin: "round"
     }
-  ), /* @__PURE__ */ import_react29.default.createElement("path", { d: "m9 12 2 2 4-4", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round" }));
+  ), /* @__PURE__ */ import_react30.default.createElement("path", { d: "m9 12 2 2 4-4", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round" }));
 }
 function PlaySmallIcon({ className }) {
-  return /* @__PURE__ */ import_react29.default.createElement("svg", { viewBox: "0 0 24 24", fill: "none", "aria-hidden": true, className }, /* @__PURE__ */ import_react29.default.createElement("path", { d: "M8 5.14v13.72L19 12 8 5.14z", fill: "currentColor" }));
+  return /* @__PURE__ */ import_react30.default.createElement("svg", { viewBox: "0 0 24 24", fill: "none", "aria-hidden": true, className }, /* @__PURE__ */ import_react30.default.createElement("path", { d: "M8 5.14v13.72L19 12 8 5.14z", fill: "currentColor" }));
 }
 function PlayIcon2() {
-  return /* @__PURE__ */ import_react29.default.createElement("svg", { viewBox: "0 0 24 24", fill: "none", "aria-hidden": true }, /* @__PURE__ */ import_react29.default.createElement("path", { d: "M8 5.14v13.72L19 12 8 5.14z", fill: "currentColor" }));
+  return /* @__PURE__ */ import_react30.default.createElement("svg", { viewBox: "0 0 24 24", fill: "none", "aria-hidden": true }, /* @__PURE__ */ import_react30.default.createElement("path", { d: "M8 5.14v13.72L19 12 8 5.14z", fill: "currentColor" }));
 }
 function PauseIcon2() {
-  return /* @__PURE__ */ import_react29.default.createElement("svg", { viewBox: "0 0 24 24", fill: "none", "aria-hidden": true }, /* @__PURE__ */ import_react29.default.createElement("rect", { x: "6", y: "5", width: "4", height: "14", rx: "1", fill: "currentColor" }), /* @__PURE__ */ import_react29.default.createElement("rect", { x: "14", y: "5", width: "4", height: "14", rx: "1", fill: "currentColor" }));
+  return /* @__PURE__ */ import_react30.default.createElement("svg", { viewBox: "0 0 24 24", fill: "none", "aria-hidden": true }, /* @__PURE__ */ import_react30.default.createElement("rect", { x: "6", y: "5", width: "4", height: "14", rx: "1", fill: "currentColor" }), /* @__PURE__ */ import_react30.default.createElement("rect", { x: "14", y: "5", width: "4", height: "14", rx: "1", fill: "currentColor" }));
 }
 function VolumeOffIcon2() {
-  return /* @__PURE__ */ import_react29.default.createElement("svg", { viewBox: "0 0 24 24", fill: "none", "aria-hidden": true }, /* @__PURE__ */ import_react29.default.createElement(
+  return /* @__PURE__ */ import_react30.default.createElement("svg", { viewBox: "0 0 24 24", fill: "none", "aria-hidden": true }, /* @__PURE__ */ import_react30.default.createElement(
     "path",
     {
       d: "M11 5 6 9H3v6h3l5 4V5z",
@@ -8254,10 +8489,10 @@ function VolumeOffIcon2() {
       strokeWidth: "2",
       strokeLinecap: "round"
     }
-  ), /* @__PURE__ */ import_react29.default.createElement("path", { d: "m22 9-6 6M16 9l6 6", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round" }));
+  ), /* @__PURE__ */ import_react30.default.createElement("path", { d: "m22 9-6 6M16 9l6 6", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round" }));
 }
 function VolumeOnIcon2() {
-  return /* @__PURE__ */ import_react29.default.createElement("svg", { viewBox: "0 0 24 24", fill: "none", "aria-hidden": true }, /* @__PURE__ */ import_react29.default.createElement(
+  return /* @__PURE__ */ import_react30.default.createElement("svg", { viewBox: "0 0 24 24", fill: "none", "aria-hidden": true }, /* @__PURE__ */ import_react30.default.createElement(
     "path",
     {
       d: "M11 5 6 9H3v6h3l5 4V5z",
@@ -8265,7 +8500,7 @@ function VolumeOnIcon2() {
       strokeWidth: "2",
       strokeLinecap: "round"
     }
-  ), /* @__PURE__ */ import_react29.default.createElement(
+  ), /* @__PURE__ */ import_react30.default.createElement(
     "path",
     {
       d: "M15.54 8.46a5 5 0 0 1 0 7.07M19.07 4.93a10 10 0 0 1 0 14.14",
@@ -8276,7 +8511,7 @@ function VolumeOnIcon2() {
   ));
 }
 function SparklesIcon3({ className }) {
-  return /* @__PURE__ */ import_react29.default.createElement("svg", { viewBox: "0 0 24 24", fill: "none", "aria-hidden": true, className }, /* @__PURE__ */ import_react29.default.createElement(
+  return /* @__PURE__ */ import_react30.default.createElement("svg", { viewBox: "0 0 24 24", fill: "none", "aria-hidden": true, className }, /* @__PURE__ */ import_react30.default.createElement(
     "path",
     {
       d: "M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z",
@@ -8286,7 +8521,7 @@ function SparklesIcon3({ className }) {
   ));
 }
 function NewspaperIcon2({ className }) {
-  return /* @__PURE__ */ import_react29.default.createElement("svg", { viewBox: "0 0 24 24", fill: "none", "aria-hidden": true, className }, /* @__PURE__ */ import_react29.default.createElement(
+  return /* @__PURE__ */ import_react30.default.createElement("svg", { viewBox: "0 0 24 24", fill: "none", "aria-hidden": true, className }, /* @__PURE__ */ import_react30.default.createElement(
     "path",
     {
       d: "M4 19.5A2.5 2.5 0 0 1 6.5 17H20",
@@ -8294,17 +8529,17 @@ function NewspaperIcon2({ className }) {
       strokeWidth: "2",
       strokeLinecap: "round"
     }
-  ), /* @__PURE__ */ import_react29.default.createElement(
+  ), /* @__PURE__ */ import_react30.default.createElement(
     "path",
     {
       d: "M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z",
       stroke: "currentColor",
       strokeWidth: "2"
     }
-  ), /* @__PURE__ */ import_react29.default.createElement("path", { d: "M8 7h8M8 11h8M8 15h5", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round" }));
+  ), /* @__PURE__ */ import_react30.default.createElement("path", { d: "M8 7h8M8 11h8M8 15h5", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round" }));
 }
 function RadioIcon2({ className }) {
-  return /* @__PURE__ */ import_react29.default.createElement("svg", { viewBox: "0 0 24 24", fill: "none", "aria-hidden": true, className }, /* @__PURE__ */ import_react29.default.createElement(
+  return /* @__PURE__ */ import_react30.default.createElement("svg", { viewBox: "0 0 24 24", fill: "none", "aria-hidden": true, className }, /* @__PURE__ */ import_react30.default.createElement(
     "path",
     {
       d: "M4.9 19.1C1 15.2 1 8.8 4.9 4.9",
@@ -8312,7 +8547,7 @@ function RadioIcon2({ className }) {
       strokeWidth: "2",
       strokeLinecap: "round"
     }
-  ), /* @__PURE__ */ import_react29.default.createElement(
+  ), /* @__PURE__ */ import_react30.default.createElement(
     "path",
     {
       d: "M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5",
@@ -8320,7 +8555,7 @@ function RadioIcon2({ className }) {
       strokeWidth: "2",
       strokeLinecap: "round"
     }
-  ), /* @__PURE__ */ import_react29.default.createElement("circle", { cx: "12", cy: "12", r: "2", stroke: "currentColor", strokeWidth: "2" }), /* @__PURE__ */ import_react29.default.createElement(
+  ), /* @__PURE__ */ import_react30.default.createElement("circle", { cx: "12", cy: "12", r: "2", stroke: "currentColor", strokeWidth: "2" }), /* @__PURE__ */ import_react30.default.createElement(
     "path",
     {
       d: "M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5",
@@ -8328,7 +8563,7 @@ function RadioIcon2({ className }) {
       strokeWidth: "2",
       strokeLinecap: "round"
     }
-  ), /* @__PURE__ */ import_react29.default.createElement(
+  ), /* @__PURE__ */ import_react30.default.createElement(
     "path",
     {
       d: "M19.1 4.9C23 8.8 23 15.1 19.1 19",
@@ -8339,7 +8574,7 @@ function RadioIcon2({ className }) {
   ));
 }
 function ArrowUpRightIcon({ className }) {
-  return /* @__PURE__ */ import_react29.default.createElement("svg", { viewBox: "0 0 24 24", fill: "none", "aria-hidden": true, className }, /* @__PURE__ */ import_react29.default.createElement(
+  return /* @__PURE__ */ import_react30.default.createElement("svg", { viewBox: "0 0 24 24", fill: "none", "aria-hidden": true, className }, /* @__PURE__ */ import_react30.default.createElement(
     "path",
     {
       d: "M7 17 17 7M7 7h10v10",
@@ -8351,14 +8586,14 @@ function ArrowUpRightIcon({ className }) {
   ));
 }
 function PodcastIcon({ className }) {
-  return /* @__PURE__ */ import_react29.default.createElement("svg", { viewBox: "0 0 24 24", fill: "none", "aria-hidden": true, className }, /* @__PURE__ */ import_react29.default.createElement(
+  return /* @__PURE__ */ import_react30.default.createElement("svg", { viewBox: "0 0 24 24", fill: "none", "aria-hidden": true, className }, /* @__PURE__ */ import_react30.default.createElement(
     "path",
     {
       d: "M12 14a3 3 0 0 0 3-3V5a3 3 0 1 0-6 0v6a3 3 0 0 0 3 3z",
       stroke: "currentColor",
       strokeWidth: "2"
     }
-  ), /* @__PURE__ */ import_react29.default.createElement(
+  ), /* @__PURE__ */ import_react30.default.createElement(
     "path",
     {
       d: "M19 10v1a7 7 0 0 1-14 0v-1M12 18v3",
@@ -8369,7 +8604,7 @@ function PodcastIcon({ className }) {
   ));
 }
 function ClapperboardIcon({ className }) {
-  return /* @__PURE__ */ import_react29.default.createElement("svg", { viewBox: "0 0 24 24", fill: "none", "aria-hidden": true, className }, /* @__PURE__ */ import_react29.default.createElement(
+  return /* @__PURE__ */ import_react30.default.createElement("svg", { viewBox: "0 0 24 24", fill: "none", "aria-hidden": true, className }, /* @__PURE__ */ import_react30.default.createElement(
     "path",
     {
       d: "M4 11v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8H4z",
@@ -8377,7 +8612,7 @@ function ClapperboardIcon({ className }) {
       strokeWidth: "2",
       strokeLinejoin: "round"
     }
-  ), /* @__PURE__ */ import_react29.default.createElement(
+  ), /* @__PURE__ */ import_react30.default.createElement(
     "path",
     {
       d: "m4 11 2.5-5 3 1.5L12 4l2.5 3.5L17.5 6 20 11",
@@ -8390,23 +8625,23 @@ function ClapperboardIcon({ className }) {
 function VideoCardIcon({ type }) {
   switch (type) {
     case "podcast":
-      return /* @__PURE__ */ import_react29.default.createElement(PodcastIcon, { className: "ak-lmp__cardIconSvg" });
+      return /* @__PURE__ */ import_react30.default.createElement(PodcastIcon, { className: "ak-lmp__cardIconSvg" });
     case "sparkles":
-      return /* @__PURE__ */ import_react29.default.createElement(SparklesIcon3, { className: "ak-lmp__cardIconSvg" });
+      return /* @__PURE__ */ import_react30.default.createElement(SparklesIcon3, { className: "ak-lmp__cardIconSvg" });
     case "newspaper":
-      return /* @__PURE__ */ import_react29.default.createElement(NewspaperIcon2, { className: "ak-lmp__cardIconSvg" });
+      return /* @__PURE__ */ import_react30.default.createElement(NewspaperIcon2, { className: "ak-lmp__cardIconSvg" });
     case "radio":
-      return /* @__PURE__ */ import_react29.default.createElement(RadioIcon2, { className: "ak-lmp__cardIconSvg" });
+      return /* @__PURE__ */ import_react30.default.createElement(RadioIcon2, { className: "ak-lmp__cardIconSvg" });
     case "clapperboard":
-      return /* @__PURE__ */ import_react29.default.createElement(ClapperboardIcon, { className: "ak-lmp__cardIconSvg" });
+      return /* @__PURE__ */ import_react30.default.createElement(ClapperboardIcon, { className: "ak-lmp__cardIconSvg" });
     case "arrowUpRight":
-      return /* @__PURE__ */ import_react29.default.createElement(ArrowUpRightIcon, { className: "ak-lmp__cardIconSvg" });
+      return /* @__PURE__ */ import_react30.default.createElement(ArrowUpRightIcon, { className: "ak-lmp__cardIconSvg" });
     case "badgeCheck":
-      return /* @__PURE__ */ import_react29.default.createElement(BadgeCheckIcon2, { className: "ak-lmp__cardIconSvg" });
+      return /* @__PURE__ */ import_react30.default.createElement(BadgeCheckIcon2, { className: "ak-lmp__cardIconSvg" });
     case "shieldCheck":
-      return /* @__PURE__ */ import_react29.default.createElement(ShieldCheckIcon, { className: "ak-lmp__cardIconSvg" });
+      return /* @__PURE__ */ import_react30.default.createElement(ShieldCheckIcon, { className: "ak-lmp__cardIconSvg" });
     case "play":
-      return /* @__PURE__ */ import_react29.default.createElement(PlaySmallIcon, { className: "ak-lmp__cardIconSvg" });
+      return /* @__PURE__ */ import_react30.default.createElement(PlaySmallIcon, { className: "ak-lmp__cardIconSvg" });
     default:
       return null;
   }
@@ -8414,15 +8649,15 @@ function VideoCardIcon({ type }) {
 function InfoCardIcon({ type }) {
   switch (type) {
     case "shieldCheck":
-      return /* @__PURE__ */ import_react29.default.createElement(ShieldCheckIcon, { className: "ak-lmp__infoIconSvg" });
+      return /* @__PURE__ */ import_react30.default.createElement(ShieldCheckIcon, { className: "ak-lmp__infoIconSvg" });
     case "badgeCheck":
-      return /* @__PURE__ */ import_react29.default.createElement(BadgeCheckIcon2, { className: "ak-lmp__infoIconSvg" });
+      return /* @__PURE__ */ import_react30.default.createElement(BadgeCheckIcon2, { className: "ak-lmp__infoIconSvg" });
     case "newspaper":
-      return /* @__PURE__ */ import_react29.default.createElement(NewspaperIcon2, { className: "ak-lmp__infoIconSvg" });
+      return /* @__PURE__ */ import_react30.default.createElement(NewspaperIcon2, { className: "ak-lmp__infoIconSvg" });
     case "sparkles":
-      return /* @__PURE__ */ import_react29.default.createElement(SparklesIcon3, { className: "ak-lmp__infoIconSvg" });
+      return /* @__PURE__ */ import_react30.default.createElement(SparklesIcon3, { className: "ak-lmp__infoIconSvg" });
     case "radio":
-      return /* @__PURE__ */ import_react29.default.createElement(RadioIcon2, { className: "ak-lmp__infoIconSvg" });
+      return /* @__PURE__ */ import_react30.default.createElement(RadioIcon2, { className: "ak-lmp__infoIconSvg" });
     default:
       return null;
   }
@@ -8439,56 +8674,13 @@ function VideoTile({
   titleStyle,
   subtitleStyle
 }) {
-  const videoRef = (0, import_react29.useRef)(null);
-  const [isPlaying, setIsPlaying] = (0, import_react29.useState)(autoPlayVideos);
-  const [isMuted, setIsMuted] = (0, import_react29.useState)(true);
-  const hasVideo = Boolean(card.videoUrl);
-  const hasPoster = Boolean(card.posterImage);
-  const tryPlay = (0, import_react29.useCallback)(async () => {
-    const video = videoRef.current;
-    if (!video || !hasVideo) return;
-    try {
-      await video.play();
-      setIsPlaying(true);
-    } catch {
-      setIsPlaying(false);
-    }
-  }, [hasVideo]);
-  (0, import_react29.useEffect)(() => {
-    const video = videoRef.current;
-    if (!video || !hasVideo || !autoPlayVideos) return;
-    video.muted = isMuted;
-    const playVideo = () => {
-      tryPlay();
-    };
-    if (video.readyState >= 2) playVideo();
-    else video.addEventListener("loadeddata", playVideo, { once: true });
-    return () => video.removeEventListener("loadeddata", playVideo);
-  }, [autoPlayVideos, hasVideo, isMuted, tryPlay]);
-  (0, import_react29.useEffect)(() => {
-    const video = videoRef.current;
-    if (!video || !hasVideo) return;
-    video.muted = isMuted;
-    if (!autoPlayVideos) {
-      video.pause();
-      setIsPlaying(false);
-    }
-  }, [autoPlayVideos, hasVideo, isMuted]);
-  const togglePlay = async () => {
-    const video = videoRef.current;
-    if (!video || !hasVideo) return;
-    if (video.paused) await tryPlay();
-    else {
-      video.pause();
-      setIsPlaying(false);
-    }
-  };
-  const toggleMute = () => {
-    const video = videoRef.current;
-    const nextMuted = !isMuted;
-    setIsMuted(nextMuted);
-    if (video) video.muted = nextMuted;
-  };
+  const playback = useInlineVideoPlayback({
+    videoUrl: card.videoUrl,
+    autoPlay: autoPlayVideos,
+    loop: loopVideos,
+    mutedByDefault: true
+  });
+  const hasVideo = Boolean(playback.source);
   const motionProps = reduceMotion ? { initial: false, animate: { opacity: 1, y: 0, scale: 1 } } : {
     initial: { opacity: 0, y: 42, scale: 0.96 },
     whileInView: { opacity: 1, y: 0, scale: 1 },
@@ -8496,61 +8688,57 @@ function VideoTile({
     transition: { duration: 0.75, delay: index * 0.07, ease: easing3 }
   };
   const mediaClass = featured ? "ak-lmp__cardMedia ak-lmp__cardMedia--featured" : compact ? "ak-lmp__cardMedia ak-lmp__cardMedia--compact" : "ak-lmp__cardMedia";
-  return /* @__PURE__ */ import_react29.default.createElement(
+  return /* @__PURE__ */ import_react30.default.createElement(
     import_framer_motion9.motion.article,
     {
       ...motionProps,
       className: `ak-lmp__card${featured ? " ak-lmp__card--featured" : ""}`
     },
-    /* @__PURE__ */ import_react29.default.createElement("div", { className: mediaClass }, hasVideo ? /* @__PURE__ */ import_react29.default.createElement(
-      "video",
+    /* @__PURE__ */ import_react30.default.createElement("div", { className: mediaClass }, /* @__PURE__ */ import_react30.default.createElement(
+      InlineVideoMedia,
       {
-        ref: videoRef,
-        className: "ak-lmp__cardVideo",
-        src: card.videoUrl,
-        poster: card.posterImage || void 0,
-        muted: isMuted,
-        loop: loopVideos,
-        playsInline: true,
-        preload: "metadata",
-        onPlay: () => setIsPlaying(true),
-        onPause: () => setIsPlaying(false)
+        controller: playback,
+        videoClassName: "ak-lmp__cardVideo",
+        posterClassName: "ak-lmp__cardPoster",
+        placeholderClassName: "ak-lmp__cardPlaceholder",
+        posterUrl: card.posterImage,
+        title: card.title
       }
-    ) : hasPoster ? /* @__PURE__ */ import_react29.default.createElement(
-      "img",
-      {
-        className: "ak-lmp__cardPoster",
-        src: card.posterImage,
-        alt: card.title || "Video poster",
-        loading: "lazy",
-        decoding: "async"
-      }
-    ) : /* @__PURE__ */ import_react29.default.createElement("div", { className: "ak-lmp__cardPlaceholder", "aria-hidden": true }), /* @__PURE__ */ import_react29.default.createElement("div", { className: "ak-lmp__cardOverlay", "aria-hidden": true }), card.tag || card.iconType !== "none" ? /* @__PURE__ */ import_react29.default.createElement("div", { className: "ak-lmp__cardTag" }, card.iconType !== "none" ? /* @__PURE__ */ import_react29.default.createElement(VideoCardIcon, { type: card.iconType }) : null, card.tag ? /* @__PURE__ */ import_react29.default.createElement("span", null, card.tag) : null) : null, showVideoControls && hasVideo ? /* @__PURE__ */ import_react29.default.createElement("div", { className: "ak-lmp__cardControls" }, /* @__PURE__ */ import_react29.default.createElement(
+    ), /* @__PURE__ */ import_react30.default.createElement("div", { className: "ak-lmp__cardOverlay", "aria-hidden": true }), card.tag || card.iconType !== "none" ? /* @__PURE__ */ import_react30.default.createElement("div", { className: "ak-lmp__cardTag" }, card.iconType !== "none" ? /* @__PURE__ */ import_react30.default.createElement(VideoCardIcon, { type: card.iconType }) : null, card.tag ? /* @__PURE__ */ import_react30.default.createElement("span", null, card.tag) : null) : null, showVideoControls && hasVideo ? /* @__PURE__ */ import_react30.default.createElement("div", { className: "ak-lmp__cardControls" }, /* @__PURE__ */ import_react30.default.createElement(
       "button",
       {
         type: "button",
         className: "ak-lmp__controlBtn",
-        onClick: togglePlay,
-        "aria-label": isPlaying ? "Pause video" : "Play video"
+        onClick: () => void playback.togglePlay(),
+        "aria-label": playback.isPlaying ? "Pause video" : "Play video"
       },
-      isPlaying ? /* @__PURE__ */ import_react29.default.createElement(PauseIcon2, null) : /* @__PURE__ */ import_react29.default.createElement(PlayIcon2, null)
-    ), /* @__PURE__ */ import_react29.default.createElement(
+      playback.isPlaying ? /* @__PURE__ */ import_react30.default.createElement(PauseIcon2, null) : /* @__PURE__ */ import_react30.default.createElement(PlayIcon2, null)
+    ), /* @__PURE__ */ import_react30.default.createElement(
       "button",
       {
         type: "button",
         className: "ak-lmp__controlBtn",
-        onClick: toggleMute,
-        "aria-label": isMuted ? "Unmute video" : "Mute video"
+        onClick: playback.toggleMute,
+        "aria-label": playback.isMuted ? "Unmute video" : "Mute video"
       },
-      isMuted ? /* @__PURE__ */ import_react29.default.createElement(VolumeOffIcon2, null) : /* @__PURE__ */ import_react29.default.createElement(VolumeOnIcon2, null)
-    )) : null, /* @__PURE__ */ import_react29.default.createElement("div", { className: "ak-lmp__cardBottom" }, card.title ? /* @__PURE__ */ import_react29.default.createElement(
+      playback.isMuted ? /* @__PURE__ */ import_react30.default.createElement(VolumeOffIcon2, null) : /* @__PURE__ */ import_react30.default.createElement(VolumeOnIcon2, null)
+    )) : null, playback.autoplayBlocked && hasVideo ? /* @__PURE__ */ import_react30.default.createElement(
+      "button",
+      {
+        type: "button",
+        className: "ak-lmp__autoplayFallback",
+        onClick: () => void playback.retryPlayback(),
+        "aria-label": "Tap to play video"
+      },
+      /* @__PURE__ */ import_react30.default.createElement(PlayIcon2, null)
+    ) : null, /* @__PURE__ */ import_react30.default.createElement("div", { className: "ak-lmp__cardBottom" }, card.title ? /* @__PURE__ */ import_react30.default.createElement(
       "h3",
       {
         className: `ak-lmp__cardTitle${featured ? " ak-lmp__cardTitle--featured" : ""}`,
         style: titleStyle
       },
       card.title
-    ) : null, card.subtitle ? /* @__PURE__ */ import_react29.default.createElement("p", { className: "ak-lmp__cardSubtitle", style: subtitleStyle }, card.subtitle) : null))
+    ) : null, card.subtitle ? /* @__PURE__ */ import_react30.default.createElement("p", { className: "ak-lmp__cardSubtitle", style: subtitleStyle }, card.subtitle) : null))
   );
 }
 function LightMediaPresencePremium({
@@ -8573,13 +8761,13 @@ function LightMediaPresencePremium({
   const eyebrow = safeText13(props.eyebrow);
   const heading = safeText13(props.heading);
   const subheading = safeText13(props.subheading);
-  const videoCards = (0, import_react29.useMemo)(() => {
+  const videoCards = (0, import_react30.useMemo)(() => {
     return rawBlocks.filter((block) => block && typeof block === "object").filter((block) => safeText13(block.type) === VIDEO_CARD_TYPE2).map((block, index) => {
       const card = readVideoCard2(block);
       return { ...card, key: card.id || `video-card-${index + 1}` };
     });
   }, [rawBlocks]);
-  const infoCards = (0, import_react29.useMemo)(() => {
+  const infoCards = (0, import_react30.useMemo)(() => {
     return rawBlocks.filter((block) => block && typeof block === "object").filter((block) => safeText13(block.type) === INFO_CARD_TYPE2).map((block, index) => {
       const card = readInfoCard2(block);
       return { ...card, key: card.id || `info-card-${index + 1}` };
@@ -8588,7 +8776,7 @@ function LightMediaPresencePremium({
   const showVideoGrid = videoCards.length > 0;
   const showInfoStrip = showBottomInfoStrip && infoCards.length > 0;
   const useMultiGrid = videoCards.length > 6;
-  const eyebrowStyle = (0, import_react29.useMemo)(
+  const eyebrowStyle = (0, import_react30.useMemo)(
     () => resolvedTextStyleToInlineStyle(
       resolveTextStyle({
         section,
@@ -8600,7 +8788,7 @@ function LightMediaPresencePremium({
     ),
     [section, theme]
   );
-  const headingStyle = (0, import_react29.useMemo)(
+  const headingStyle = (0, import_react30.useMemo)(
     () => resolvedTextStyleToInlineStyle(
       resolveTextStyle({
         section,
@@ -8612,7 +8800,7 @@ function LightMediaPresencePremium({
     ),
     [section, theme]
   );
-  const subheadingStyle = (0, import_react29.useMemo)(
+  const subheadingStyle = (0, import_react30.useMemo)(
     () => resolvedTextStyleToInlineStyle(
       resolveTextStyle({
         section,
@@ -8624,7 +8812,7 @@ function LightMediaPresencePremium({
     ),
     [section, theme]
   );
-  const cardTitleStyle = (0, import_react29.useMemo)(
+  const cardTitleStyle = (0, import_react30.useMemo)(
     () => resolvedTextStyleToInlineStyle(
       resolveBlockGroupTextStyle({
         section,
@@ -8636,7 +8824,7 @@ function LightMediaPresencePremium({
     ),
     [section, theme]
   );
-  const cardSubtitleStyle = (0, import_react29.useMemo)(
+  const cardSubtitleStyle = (0, import_react30.useMemo)(
     () => resolvedTextStyleToInlineStyle(
       resolveBlockGroupTextStyle({
         section,
@@ -8648,7 +8836,7 @@ function LightMediaPresencePremium({
     ),
     [section, theme]
   );
-  const infoLightSurface = (0, import_react29.useMemo)(
+  const infoLightSurface = (0, import_react30.useMemo)(
     () => resolveBlockGroupSurfaceStyle({
       section,
       groupKey: "premiumInfoCardLight",
@@ -8656,7 +8844,7 @@ function LightMediaPresencePremium({
     }),
     [section]
   );
-  const infoDarkSurface = (0, import_react29.useMemo)(
+  const infoDarkSurface = (0, import_react30.useMemo)(
     () => resolveBlockGroupSurfaceStyle({
       section,
       groupKey: "premiumInfoCardDark",
@@ -8679,7 +8867,7 @@ function LightMediaPresencePremium({
     viewport: { once: true },
     transition: { duration: 0.75 }
   };
-  const renderTile = (card, index, options = {}) => /* @__PURE__ */ import_react29.default.createElement(
+  const renderTile = (card, index, options = {}) => /* @__PURE__ */ import_react30.default.createElement(
     VideoTile,
     {
       key: card.key,
@@ -8690,15 +8878,15 @@ function LightMediaPresencePremium({
       ...tileProps
     }
   );
-  return /* @__PURE__ */ import_react29.default.createElement(
+  return /* @__PURE__ */ import_react30.default.createElement(
     "section",
     {
       className: `ak-lmp ${paddingClass2(props.sectionPadding)}`,
       style: sectionAppearanceStyle(appearance)
     },
-    /* @__PURE__ */ import_react29.default.createElement("div", { className: "ak-lmp__inner" }, showEyebrow && eyebrow || heading || showSubheading && subheading ? /* @__PURE__ */ import_react29.default.createElement(import_framer_motion9.motion.header, { ...headerMotion, className: "ak-lmp__header" }, showEyebrow && eyebrow ? /* @__PURE__ */ import_react29.default.createElement("div", { className: "ak-lmp__eyebrowPill", style: eyebrowStyle }, /* @__PURE__ */ import_react29.default.createElement(RadioIcon2, { className: "ak-lmp__eyebrowIcon" }), /* @__PURE__ */ import_react29.default.createElement("span", null, eyebrow)) : null, heading ? /* @__PURE__ */ import_react29.default.createElement("h2", { className: "ak-lmp__heading", style: headingStyle }, heading) : null, showSubheading && subheading ? /* @__PURE__ */ import_react29.default.createElement("p", { className: "ak-lmp__subheading", style: subheadingStyle }, subheading) : null) : null, showVideoGrid ? useMultiGrid ? /* @__PURE__ */ import_react29.default.createElement("div", { className: "ak-lmp__grid ak-lmp__grid--multi" }, videoCards.map((card, index) => renderTile(card, index))) : /* @__PURE__ */ import_react29.default.createElement(import_react29.default.Fragment, null, /* @__PURE__ */ import_react29.default.createElement("div", { className: "ak-lmp__mobileStack" }, renderTile(videoCards[0], 0, { featured: true }), videoCards.length > 1 ? /* @__PURE__ */ import_react29.default.createElement("div", { className: "ak-lmp__mobileScroll" }, videoCards.slice(1).map((card, index) => /* @__PURE__ */ import_react29.default.createElement("div", { key: card.key, className: "ak-lmp__mobileScrollItem" }, renderTile(card, index + 1, { compact: true })))) : null), /* @__PURE__ */ import_react29.default.createElement("div", { className: "ak-lmp__desktopGrid" }, renderTile(videoCards[0], 0, { featured: true }), videoCards.slice(1).map(
+    /* @__PURE__ */ import_react30.default.createElement("div", { className: "ak-lmp__inner" }, showEyebrow && eyebrow || heading || showSubheading && subheading ? /* @__PURE__ */ import_react30.default.createElement(import_framer_motion9.motion.header, { ...headerMotion, className: "ak-lmp__header" }, showEyebrow && eyebrow ? /* @__PURE__ */ import_react30.default.createElement("div", { className: "ak-lmp__eyebrowPill", style: eyebrowStyle }, /* @__PURE__ */ import_react30.default.createElement(RadioIcon2, { className: "ak-lmp__eyebrowIcon" }), /* @__PURE__ */ import_react30.default.createElement("span", null, eyebrow)) : null, heading ? /* @__PURE__ */ import_react30.default.createElement("h2", { className: "ak-lmp__heading", style: headingStyle }, heading) : null, showSubheading && subheading ? /* @__PURE__ */ import_react30.default.createElement("p", { className: "ak-lmp__subheading", style: subheadingStyle }, subheading) : null) : null, showVideoGrid ? useMultiGrid ? /* @__PURE__ */ import_react30.default.createElement("div", { className: "ak-lmp__grid ak-lmp__grid--multi" }, videoCards.map((card, index) => renderTile(card, index))) : /* @__PURE__ */ import_react30.default.createElement(import_react30.default.Fragment, null, /* @__PURE__ */ import_react30.default.createElement("div", { className: "ak-lmp__mobileStack" }, renderTile(videoCards[0], 0, { featured: true }), videoCards.length > 1 ? /* @__PURE__ */ import_react30.default.createElement("div", { className: "ak-lmp__mobileScroll" }, videoCards.slice(1).map((card, index) => /* @__PURE__ */ import_react30.default.createElement("div", { key: card.key, className: "ak-lmp__mobileScrollItem" }, renderTile(card, index + 1, { compact: true })))) : null), /* @__PURE__ */ import_react30.default.createElement("div", { className: "ak-lmp__desktopGrid" }, renderTile(videoCards[0], 0, { featured: true }), videoCards.slice(1).map(
       (card, index) => renderTile(card, index + 1)
-    ))) : null, showInfoStrip ? /* @__PURE__ */ import_react29.default.createElement(
+    ))) : null, showInfoStrip ? /* @__PURE__ */ import_react30.default.createElement(
       import_framer_motion9.motion.div,
       {
         initial: motionDisabled ? false : { opacity: 0, y: 24 },
@@ -8709,23 +8897,23 @@ function LightMediaPresencePremium({
       },
       infoCards.map((card) => {
         const surface = card.styleType === "dark" ? infoDarkSurface : infoLightSurface;
-        return /* @__PURE__ */ import_react29.default.createElement(
+        return /* @__PURE__ */ import_react30.default.createElement(
           "div",
           {
             key: card.key,
             className: `ak-lmp__infoCard ak-lmp__infoCard--${card.styleType}`,
             style: { backgroundColor: surface.backgroundColor || void 0 }
           },
-          card.iconType !== "none" ? /* @__PURE__ */ import_react29.default.createElement(
+          card.iconType !== "none" ? /* @__PURE__ */ import_react30.default.createElement(
             "div",
             {
               className: "ak-lmp__infoIconWrap",
               style: { color: surface.color || void 0 },
               "aria-hidden": true
             },
-            /* @__PURE__ */ import_react29.default.createElement(InfoCardIcon, { type: card.iconType })
+            /* @__PURE__ */ import_react30.default.createElement(InfoCardIcon, { type: card.iconType })
           ) : null,
-          /* @__PURE__ */ import_react29.default.createElement("div", { className: "ak-lmp__infoContent" }, card.eyebrow ? /* @__PURE__ */ import_react29.default.createElement("p", { className: "ak-lmp__infoEyebrow", style: { color: surface.color || void 0 } }, card.eyebrow) : null, card.title ? /* @__PURE__ */ import_react29.default.createElement("p", { className: "ak-lmp__infoTitle", style: { color: surface.color || void 0 } }, card.title) : null, card.subtitle ? /* @__PURE__ */ import_react29.default.createElement("p", { className: "ak-lmp__infoSubtitle", style: { color: surface.color || void 0 } }, card.subtitle) : null)
+          /* @__PURE__ */ import_react30.default.createElement("div", { className: "ak-lmp__infoContent" }, card.eyebrow ? /* @__PURE__ */ import_react30.default.createElement("p", { className: "ak-lmp__infoEyebrow", style: { color: surface.color || void 0 } }, card.eyebrow) : null, card.title ? /* @__PURE__ */ import_react30.default.createElement("p", { className: "ak-lmp__infoTitle", style: { color: surface.color || void 0 } }, card.title) : null, card.subtitle ? /* @__PURE__ */ import_react30.default.createElement("p", { className: "ak-lmp__infoSubtitle", style: { color: surface.color || void 0 } }, card.subtitle) : null)
         );
       })
     ) : null)
@@ -8733,7 +8921,7 @@ function LightMediaPresencePremium({
 }
 
 // src/shared/StorefrontFontLoader.tsx
-var import_react30 = require("react");
+var import_react31 = require("react");
 var GOOGLE_FONTS_MARKER = "data-storefront-fonts";
 function ensureGooglePreconnect() {
   const head = window.document.head;
@@ -8756,7 +8944,7 @@ function StorefrontFontLoader({
   fontIds,
   document: document2
 }) {
-  const ids = (0, import_react30.useMemo)(() => {
+  const ids = (0, import_react31.useMemo)(() => {
     const fromDoc = document2 ? collectStorefrontFontIdsFromDocument(document2) : [];
     const merged = /* @__PURE__ */ new Set([
       DEFAULT_STOREFRONT_FONT_ID,
@@ -8768,8 +8956,8 @@ function StorefrontFontLoader({
     merged.delete("system");
     return Array.from(merged);
   }, [document2, fontIds, themeFontId]);
-  const googleHref = (0, import_react30.useMemo)(() => buildGoogleFontLink(ids), [ids]);
-  (0, import_react30.useEffect)(() => {
+  const googleHref = (0, import_react31.useMemo)(() => buildGoogleFontLink(ids), [ids]);
+  (0, import_react31.useEffect)(() => {
     if (!googleHref) return void 0;
     ensureGooglePreconnect();
     const head = window.document.head;
@@ -8844,6 +9032,8 @@ function StorefrontFontLoader({
   NSP_MARQUEE_SUBHEADING_DEFAULT,
   NSP_POKER_DESCRIPTION_DEFAULT,
   NSP_POKER_EYEBROW_DEFAULT,
+  NSP_POKER_FRONT_CARD_EYEBROW_DEFAULT,
+  NSP_POKER_FRONT_CARD_TITLE_DEFAULT,
   NSP_POKER_HEADING_DEFAULT,
   NSP_SIG_HERO_DESCRIPTION_DEFAULT,
   NSP_SIG_HERO_EYEBROW_DEFAULT,

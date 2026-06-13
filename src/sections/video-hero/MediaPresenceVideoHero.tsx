@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import React, { useMemo, useRef } from "react";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 
 import { normalizeImageUrl } from "../../components/HeroSection/heroSectionUtils";
@@ -27,6 +27,7 @@ import type {
   VideoHeroInfoStyleType,
   VideoHeroSectionPadding,
 } from "./types";
+import { InlineVideoMedia, useInlineVideoPlayback } from "./inlineVideoPlayback";
 
 const VIDEO_CARD_TYPE = "video_card";
 const INFO_CARD_TYPE = "info_card";
@@ -262,73 +263,15 @@ function VideoCardItem({
   cardEyebrowStyle?: React.CSSProperties;
   cardTitleStyle?: React.CSSProperties;
 }) {
-  const videoRef = useRef<HTMLVideoElement | null>(null);
-  const [isPlaying, setIsPlaying] = useState(autoPlayVideos);
-  const [isMuted, setIsMuted] = useState(true);
-  const [autoplayBlocked, setAutoplayBlocked] = useState(false);
-
-  const hasVideo = Boolean(card.videoUrl);
+  const playback = useInlineVideoPlayback({
+    videoUrl: card.videoUrl,
+    autoPlay: autoPlayVideos,
+    loop: loopVideos,
+    mutedByDefault: true,
+  });
+  const hasVideo = Boolean(playback.source);
   const showStagger =
     staggerMiddleCard && total === 3 && index === 1 && !reduceMotion;
-
-  const tryPlay = useCallback(async () => {
-    const video = videoRef.current;
-    if (!video || !hasVideo) return;
-    try {
-      await video.play();
-      setIsPlaying(true);
-      setAutoplayBlocked(false);
-    } catch {
-      setIsPlaying(false);
-      setAutoplayBlocked(true);
-    }
-  }, [hasVideo]);
-
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video || !hasVideo || !autoPlayVideos) return;
-
-    video.muted = isMuted;
-
-    const playVideo = () => {
-      tryPlay();
-    };
-
-    if (video.readyState >= 2) {
-      playVideo();
-    } else {
-      video.addEventListener("loadeddata", playVideo, { once: true });
-      return () => video.removeEventListener("loadeddata", playVideo);
-    }
-  }, [autoPlayVideos, hasVideo, isMuted, tryPlay]);
-
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video || !hasVideo) return;
-    video.muted = isMuted;
-    if (!autoPlayVideos) {
-      video.pause();
-      setIsPlaying(false);
-    }
-  }, [autoPlayVideos, hasVideo, isMuted]);
-
-  const togglePlay = async () => {
-    const video = videoRef.current;
-    if (!video || !hasVideo) return;
-    if (video.paused) {
-      await tryPlay();
-    } else {
-      video.pause();
-      setIsPlaying(false);
-    }
-  };
-
-  const toggleMute = () => {
-    const video = videoRef.current;
-    const nextMuted = !isMuted;
-    setIsMuted(nextMuted);
-    if (video) video.muted = nextMuted;
-  };
 
   const motionProps = reduceMotion
     ? { initial: false as const, animate: { opacity: 1, y: 0, scale: 1 } }
@@ -352,30 +295,14 @@ function VideoCardItem({
         className="ak-video-hero__card"
       >
       <div className="ak-video-hero__cardMedia">
-        {hasVideo ? (
-          <video
-            ref={videoRef}
-            className="ak-video-hero__cardVideo"
-            src={card.videoUrl}
-            poster={card.posterImage || undefined}
-            muted={isMuted}
-            loop={loopVideos}
-            playsInline
-            preload="auto"
-            onPlay={() => setIsPlaying(true)}
-            onPause={() => setIsPlaying(false)}
-          />
-        ) : card.posterImage ? (
-          <img
-            className="ak-video-hero__cardPoster"
-            src={card.posterImage}
-            alt={card.title || "Video poster"}
-            loading="lazy"
-            decoding="async"
-          />
-        ) : (
-          <div className="ak-video-hero__cardPlaceholder" aria-hidden />
-        )}
+        <InlineVideoMedia
+          controller={playback}
+          videoClassName="ak-video-hero__cardVideo"
+          posterClassName="ak-video-hero__cardPoster"
+          placeholderClassName="ak-video-hero__cardPlaceholder"
+          posterUrl={card.posterImage}
+          title={card.title}
+        />
 
         <div className="ak-video-hero__cardOverlay" aria-hidden />
 
@@ -406,28 +333,28 @@ function VideoCardItem({
               <button
                 type="button"
                 className="ak-video-hero__controlBtn ak-video-hero__controlBtn--play"
-                onClick={togglePlay}
-                aria-label={isPlaying ? "Pause video" : "Play video"}
+                onClick={() => void playback.togglePlay()}
+                aria-label={playback.isPlaying ? "Pause video" : "Play video"}
               >
-                {isPlaying ? <PauseIcon /> : <PlayIcon />}
+                {playback.isPlaying ? <PauseIcon /> : <PlayIcon />}
               </button>
               <button
                 type="button"
                 className="ak-video-hero__controlBtn ak-video-hero__controlBtn--mute"
-                onClick={toggleMute}
-                aria-label={isMuted ? "Unmute video" : "Mute video"}
+                onClick={playback.toggleMute}
+                aria-label={playback.isMuted ? "Unmute video" : "Mute video"}
               >
-                {isMuted ? <VolumeOffIcon /> : <VolumeOnIcon />}
+                {playback.isMuted ? <VolumeOffIcon /> : <VolumeOnIcon />}
               </button>
             </div>
           ) : null}
         </div>
 
-        {autoplayBlocked && hasVideo ? (
+        {playback.autoplayBlocked && hasVideo ? (
           <button
             type="button"
             className="ak-video-hero__autoplayFallback"
-            onClick={tryPlay}
+            onClick={() => void playback.retryPlayback()}
             aria-label="Tap to play video"
           >
             <PlayIcon />
