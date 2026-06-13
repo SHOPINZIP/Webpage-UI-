@@ -270,6 +270,10 @@ function VideoCardItem({
     mutedByDefault: true,
   });
   const hasVideo = Boolean(playback.source);
+  const showAutoplayFallback =
+    hasVideo && playback.autoplayBlocked && !playback.isPlaying;
+  const showInlineControls = hasVideo && !showAutoplayFallback;
+  const showMuteControl = playback.hasStartedPlayback;
   const showStagger =
     staggerMiddleCard && total === 3 && index === 1 && !reduceMotion;
 
@@ -328,7 +332,7 @@ function VideoCardItem({
             </h3>
           ) : null}
 
-          {hasVideo ? (
+          {showInlineControls ? (
             <div className="ak-video-hero__cardControls">
               <button
                 type="button"
@@ -338,19 +342,21 @@ function VideoCardItem({
               >
                 {playback.isPlaying ? <PauseIcon /> : <PlayIcon />}
               </button>
-              <button
-                type="button"
-                className="ak-video-hero__controlBtn ak-video-hero__controlBtn--mute"
-                onClick={playback.toggleMute}
-                aria-label={playback.isMuted ? "Unmute video" : "Mute video"}
-              >
-                {playback.isMuted ? <VolumeOffIcon /> : <VolumeOnIcon />}
-              </button>
+              {showMuteControl ? (
+                <button
+                  type="button"
+                  className="ak-video-hero__controlBtn ak-video-hero__controlBtn--mute"
+                  onClick={playback.toggleMute}
+                  aria-label={playback.isMuted ? "Unmute video" : "Mute video"}
+                >
+                  {playback.isMuted ? <VolumeOffIcon /> : <VolumeOnIcon />}
+                </button>
+              ) : null}
             </div>
           ) : null}
         </div>
 
-        {playback.autoplayBlocked && hasVideo ? (
+        {showAutoplayFallback ? (
           <button
             type="button"
             className="ak-video-hero__autoplayFallback"

@@ -7725,6 +7725,7 @@ function applyInlineVideoAttributes(video, muted, loop) {
   video.loop = loop;
   video.playsInline = true;
   video.preload = "metadata";
+  video.controls = false;
   video.setAttribute("playsinline", "");
   video.setAttribute("webkit-playsinline", "true");
   if (muted) {
@@ -7747,6 +7748,8 @@ function useInlineVideoPlayback({
   const [isMuted, setIsMuted] = (0, import_react29.useState)(Boolean(mutedByDefault));
   const [autoplayBlocked, setAutoplayBlocked] = (0, import_react29.useState)(false);
   const [hasError, setHasError] = (0, import_react29.useState)(false);
+  const [hasStartedPlayback, setHasStartedPlayback] = (0, import_react29.useState)(false);
+  const [isPlaybackPending, setIsPlaybackPending] = (0, import_react29.useState)(false);
   const canRenderVideo = Boolean(source) && !hasError;
   (0, import_react29.useEffect)(() => {
     autoplayAttemptedRef.current = false;
@@ -7755,6 +7758,8 @@ function useInlineVideoPlayback({
     setIsMuted(Boolean(mutedByDefault));
     setAutoplayBlocked(false);
     setHasError(false);
+    setHasStartedPlayback(false);
+    setIsPlaybackPending(false);
   }, [mutedByDefault, source == null ? void 0 : source.src]);
   const syncMutedState = (0, import_react29.useCallback)(
     (nextMuted) => {
@@ -7772,14 +7777,16 @@ function useInlineVideoPlayback({
       if (!video || !source || hasError) return false;
       const nextMuted = forceMuted ? true : video.muted;
       applyInlineVideoAttributes(video, nextMuted, loop);
-      if (forceMuted || nextMuted !== isMuted) {
-        setIsMuted(nextMuted);
-      }
+      setIsMuted(
+        (currentMuted) => currentMuted === nextMuted ? currentMuted : nextMuted
+      );
       try {
+        setIsPlaybackPending(true);
         const playResult = video.play();
         if (playResult && typeof playResult.then === "function") {
           await playResult;
         }
+        setIsPlaying(true);
         setAutoplayBlocked(false);
         setHasError(false);
         return true;
@@ -7789,14 +7796,20 @@ function useInlineVideoPlayback({
         }
         setIsPlaying(!video.paused);
         return false;
+      } finally {
+        setIsPlaybackPending(false);
       }
     },
-    [hasError, isMuted, loop, source]
+    [hasError, loop, source]
   );
   (0, import_react29.useEffect)(() => {
     const video = videoRef.current;
     if (!video || !source || hasError) return;
-    applyInlineVideoAttributes(video, mutedByDefault, loop);
+    applyInlineVideoAttributes(video, isMuted, loop);
+  }, [hasError, isMuted, loop, source]);
+  (0, import_react29.useEffect)(() => {
+    const video = videoRef.current;
+    if (!video || !source || hasError) return;
     if (!autoPlay) {
       video.pause();
       return;
@@ -7821,15 +7834,28 @@ function useInlineVideoPlayback({
   const togglePlay = (0, import_react29.useCallback)(async () => {
     const video = videoRef.current;
     if (!video || !source || hasError) return;
+    if (isPlaybackPending) {
+      video.pause();
+      setIsPlaybackPending(false);
+      setIsPlaying(false);
+      return;
+    }
     if (video.paused || video.ended) {
-      await attemptPlayback({ userInitiated: true });
+      await attemptPlayback({
+        forceMuted: !hasStartedPlayback,
+        userInitiated: true
+      });
       return;
     }
     video.pause();
-  }, [attemptPlayback, hasError, source]);
+    setIsPlaying(false);
+  }, [attemptPlayback, hasError, hasStartedPlayback, isPlaybackPending, source]);
   const retryPlayback = (0, import_react29.useCallback)(async () => {
-    return attemptPlayback({ userInitiated: true });
-  }, [attemptPlayback]);
+    return attemptPlayback({
+      forceMuted: autoplayBlocked || !hasStartedPlayback,
+      userInitiated: true
+    });
+  }, [attemptPlayback, autoplayBlocked, hasStartedPlayback]);
   const toggleMute = (0, import_react29.useCallback)(() => {
     const video = videoRef.current;
     if (!video || !source || hasError) return;
@@ -7839,10 +7865,20 @@ function useInlineVideoPlayback({
     () => ({
       onPlay: () => {
         setIsPlaying(true);
+        setHasStartedPlayback(true);
         setAutoplayBlocked(false);
+      },
+      onPlaying: () => {
+        setIsPlaying(true);
+        setIsPlaybackPending(false);
       },
       onPause: () => {
         setIsPlaying(false);
+        setIsPlaybackPending(false);
+      },
+      onEnded: () => {
+        setIsPlaying(false);
+        setIsPlaybackPending(false);
       },
       onVolumeChange: () => {
         const video = videoRef.current;
@@ -7860,6 +7896,8 @@ function useInlineVideoPlayback({
         setIsReady(false);
         setIsPlaying(false);
         setAutoplayBlocked(false);
+        setHasStartedPlayback(false);
+        setIsPlaybackPending(false);
       }
     }),
     []
@@ -7868,6 +7906,7 @@ function useInlineVideoPlayback({
     autoplayBlocked,
     canRenderVideo,
     hasError,
+    hasStartedPlayback,
     isMuted,
     isPlaying,
     isReady,
@@ -7891,7 +7930,7 @@ function InlineVideoMedia({
   videoClassName
 }) {
   if (controller.canRenderVideo && controller.source) {
-    return /* @__PURE__ */ import_react29.default.createElement(
+    return /* @__PURE__ */ import_react29.default.createElement(import_react29.default.Fragment, null, /* @__PURE__ */ import_react29.default.createElement(
       "video",
       {
         key: controller.source.src,
@@ -7903,15 +7942,33 @@ function InlineVideoMedia({
         loop: controller.loop,
         playsInline: true,
         preload: controller.preload,
+        controls: false,
         onPlay: controller.videoEventHandlers.onPlay,
+        onPlaying: controller.videoEventHandlers.onPlaying,
         onPause: controller.videoEventHandlers.onPause,
+        onEnded: controller.videoEventHandlers.onEnded,
         onVolumeChange: controller.videoEventHandlers.onVolumeChange,
         onLoadedMetadata: controller.videoEventHandlers.onLoadedMetadata,
         onCanPlay: controller.videoEventHandlers.onCanPlay,
         onError: controller.videoEventHandlers.onError
       },
       /* @__PURE__ */ import_react29.default.createElement("source", { src: controller.source.src, type: controller.source.type })
-    );
+    ), posterUrl && !controller.hasStartedPlayback ? /* @__PURE__ */ import_react29.default.createElement(
+      "img",
+      {
+        className: posterClassName,
+        src: posterUrl,
+        alt: title || "Video poster",
+        loading: "eager",
+        decoding: "async",
+        draggable: false,
+        style: {
+          position: "absolute",
+          inset: 0,
+          pointerEvents: "none"
+        }
+      }
+    ) : null);
   }
   if (posterUrl) {
     return /* @__PURE__ */ import_react29.default.createElement(
@@ -7921,7 +7978,8 @@ function InlineVideoMedia({
         src: posterUrl,
         alt: title || "Video poster",
         loading: "lazy",
-        decoding: "async"
+        decoding: "async",
+        draggable: false
       }
     );
   }
@@ -8124,6 +8182,9 @@ function VideoCardItem({
     mutedByDefault: true
   });
   const hasVideo = Boolean(playback.source);
+  const showAutoplayFallback = hasVideo && playback.autoplayBlocked && !playback.isPlaying;
+  const showInlineControls = hasVideo && !showAutoplayFallback;
+  const showMuteControl = playback.hasStartedPlayback;
   const showStagger = staggerMiddleCard && total === 3 && index === 1 && !reduceMotion;
   const motionProps = reduceMotion ? { initial: false, animate: { opacity: 1, y: 0, scale: 1 } } : {
     initial: { opacity: 0, y: 50, scale: 0.96 },
@@ -8152,7 +8213,7 @@ function VideoCardItem({
           posterUrl: card.posterImage,
           title: card.title
         }
-      ), /* @__PURE__ */ import_react30.default.createElement("div", { className: "ak-video-hero__cardOverlay", "aria-hidden": true }), /* @__PURE__ */ import_react30.default.createElement("div", { className: "ak-video-hero__cardTopBar" }, card.eyebrow ? /* @__PURE__ */ import_react30.default.createElement("p", { className: "ak-video-hero__cardEyebrowPill", style: cardEyebrowStyle }, card.eyebrow) : /* @__PURE__ */ import_react30.default.createElement("span", null), card.statLabel ? /* @__PURE__ */ import_react30.default.createElement("span", { className: "ak-video-hero__cardStat", "aria-hidden": true }, card.statLabel) : null), /* @__PURE__ */ import_react30.default.createElement("div", { className: "ak-video-hero__cardBottom" }, card.title ? /* @__PURE__ */ import_react30.default.createElement("h3", { className: "ak-video-hero__cardTitle", style: cardTitleStyle }, card.title) : null, hasVideo ? /* @__PURE__ */ import_react30.default.createElement("div", { className: "ak-video-hero__cardControls" }, /* @__PURE__ */ import_react30.default.createElement(
+      ), /* @__PURE__ */ import_react30.default.createElement("div", { className: "ak-video-hero__cardOverlay", "aria-hidden": true }), /* @__PURE__ */ import_react30.default.createElement("div", { className: "ak-video-hero__cardTopBar" }, card.eyebrow ? /* @__PURE__ */ import_react30.default.createElement("p", { className: "ak-video-hero__cardEyebrowPill", style: cardEyebrowStyle }, card.eyebrow) : /* @__PURE__ */ import_react30.default.createElement("span", null), card.statLabel ? /* @__PURE__ */ import_react30.default.createElement("span", { className: "ak-video-hero__cardStat", "aria-hidden": true }, card.statLabel) : null), /* @__PURE__ */ import_react30.default.createElement("div", { className: "ak-video-hero__cardBottom" }, card.title ? /* @__PURE__ */ import_react30.default.createElement("h3", { className: "ak-video-hero__cardTitle", style: cardTitleStyle }, card.title) : null, showInlineControls ? /* @__PURE__ */ import_react30.default.createElement("div", { className: "ak-video-hero__cardControls" }, /* @__PURE__ */ import_react30.default.createElement(
         "button",
         {
           type: "button",
@@ -8161,7 +8222,7 @@ function VideoCardItem({
           "aria-label": playback.isPlaying ? "Pause video" : "Play video"
         },
         playback.isPlaying ? /* @__PURE__ */ import_react30.default.createElement(PauseIcon, null) : /* @__PURE__ */ import_react30.default.createElement(PlayIcon, null)
-      ), /* @__PURE__ */ import_react30.default.createElement(
+      ), showMuteControl ? /* @__PURE__ */ import_react30.default.createElement(
         "button",
         {
           type: "button",
@@ -8170,7 +8231,7 @@ function VideoCardItem({
           "aria-label": playback.isMuted ? "Unmute video" : "Mute video"
         },
         playback.isMuted ? /* @__PURE__ */ import_react30.default.createElement(VolumeOffIcon, null) : /* @__PURE__ */ import_react30.default.createElement(VolumeOnIcon, null)
-      )) : null), playback.autoplayBlocked && hasVideo ? /* @__PURE__ */ import_react30.default.createElement(
+      ) : null) : null), showAutoplayFallback ? /* @__PURE__ */ import_react30.default.createElement(
         "button",
         {
           type: "button",
@@ -8727,6 +8788,9 @@ function VideoTile({
     mutedByDefault: true
   });
   const hasVideo = Boolean(playback.source);
+  const showAutoplayFallback = hasVideo && playback.autoplayBlocked && !playback.isPlaying;
+  const showInlineControls = showVideoControls && hasVideo && !showAutoplayFallback;
+  const showMuteControl = playback.hasStartedPlayback;
   const motionProps = reduceMotion ? { initial: false, animate: { opacity: 1, y: 0, scale: 1 } } : {
     initial: { opacity: 0, y: 42, scale: 0.96 },
     whileInView: { opacity: 1, y: 0, scale: 1 },
@@ -8750,7 +8814,7 @@ function VideoTile({
         posterUrl: card.posterImage,
         title: card.title
       }
-    ), /* @__PURE__ */ import_react31.default.createElement("div", { className: "ak-lmp__cardOverlay", "aria-hidden": true }), card.tag || card.iconType !== "none" ? /* @__PURE__ */ import_react31.default.createElement("div", { className: "ak-lmp__cardTag" }, card.iconType !== "none" ? /* @__PURE__ */ import_react31.default.createElement(VideoCardIcon, { type: card.iconType }) : null, card.tag ? /* @__PURE__ */ import_react31.default.createElement("span", null, card.tag) : null) : null, showVideoControls && hasVideo ? /* @__PURE__ */ import_react31.default.createElement("div", { className: "ak-lmp__cardControls" }, /* @__PURE__ */ import_react31.default.createElement(
+    ), /* @__PURE__ */ import_react31.default.createElement("div", { className: "ak-lmp__cardOverlay", "aria-hidden": true }), card.tag || card.iconType !== "none" ? /* @__PURE__ */ import_react31.default.createElement("div", { className: "ak-lmp__cardTag" }, card.iconType !== "none" ? /* @__PURE__ */ import_react31.default.createElement(VideoCardIcon, { type: card.iconType }) : null, card.tag ? /* @__PURE__ */ import_react31.default.createElement("span", null, card.tag) : null) : null, showInlineControls ? /* @__PURE__ */ import_react31.default.createElement("div", { className: "ak-lmp__cardControls" }, /* @__PURE__ */ import_react31.default.createElement(
       "button",
       {
         type: "button",
@@ -8759,7 +8823,7 @@ function VideoTile({
         "aria-label": playback.isPlaying ? "Pause video" : "Play video"
       },
       playback.isPlaying ? /* @__PURE__ */ import_react31.default.createElement(PauseIcon2, null) : /* @__PURE__ */ import_react31.default.createElement(PlayIcon2, null)
-    ), /* @__PURE__ */ import_react31.default.createElement(
+    ), showMuteControl ? /* @__PURE__ */ import_react31.default.createElement(
       "button",
       {
         type: "button",
@@ -8768,7 +8832,7 @@ function VideoTile({
         "aria-label": playback.isMuted ? "Unmute video" : "Mute video"
       },
       playback.isMuted ? /* @__PURE__ */ import_react31.default.createElement(VolumeOffIcon2, null) : /* @__PURE__ */ import_react31.default.createElement(VolumeOnIcon2, null)
-    )) : null, playback.autoplayBlocked && hasVideo ? /* @__PURE__ */ import_react31.default.createElement(
+    ) : null) : null, showAutoplayFallback ? /* @__PURE__ */ import_react31.default.createElement(
       "button",
       {
         type: "button",
