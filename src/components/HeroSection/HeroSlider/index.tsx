@@ -9,6 +9,7 @@ import React, {
 
 import { normalizeImageUrl } from "../heroSectionUtils";
 import { sectionAppearanceStyle } from "../../../shared/sectionAppearance";
+import StorefrontImage from "../../../shared/StorefrontImage";
 import type {
   ResolvedSectionAppearance,
   SectionAppearance,
@@ -168,53 +169,25 @@ function SlideImage({
   desktopSrc: string;
   mobileSrc?: string;
 }) {
-  const [desktop, setDesktop] = useState(desktopSrc);
-  const [mobile, setMobile] = useState(mobileSrc || "");
-
-  useEffect(() => {
-    setDesktop(desktopSrc);
-  }, [desktopSrc]);
-
-  useEffect(() => {
-    setMobile(mobileSrc || "");
-  }, [mobileSrc]);
-
-  if (!desktop) {
+  if (!desktopSrc) {
     return null;
   }
 
-  if (mobile) {
+  if (mobileSrc) {
     return (
-      <>
-        <img
-          src={desktop}
-          alt=""
-          decoding="async"
-          draggable={false}
-          onError={() => setDesktop("")}
-          className="ak-hero__img ak-hero__img--desktop"
-        />
-        <img
-          src={mobile}
-          alt=""
-          decoding="async"
-          draggable={false}
-          onError={() => setMobile("")}
-          className="ak-hero__img ak-hero__img--mobile"
-        />
-      </>
+      <StorefrontImage
+        desktopSrc={desktopSrc}
+        mobileSrc={mobileSrc}
+        mobileMedia="(max-width: 639px)"
+        pictureClassName="ak-hero__picture"
+        className="ak-hero__img"
+        alt=""
+      />
     );
   }
 
   return (
-    <img
-      src={desktop}
-      alt=""
-      decoding="async"
-      draggable={false}
-      onError={() => setDesktop("")}
-      className="ak-hero__img"
-    />
+    <StorefrontImage desktopSrc={desktopSrc} className="ak-hero__img" alt="" />
   );
 }
 
@@ -328,22 +301,32 @@ export default function HeroSlider({ section, appearance, theme }: HeroSliderPro
     return () => observer.disconnect();
   }, []);
 
+  const activeIndex = hasMultipleSlides
+    ? ((index - 1) % baseSlides.length + baseSlides.length) % baseSlides.length
+    : 0;
+
   useEffect(() => {
-    baseSlides.forEach((slide) => {
+    if (!baseSlides.length) return;
+
+    const indexesToPreload = new Set<number>([activeIndex]);
+    if (baseSlides.length > 1) {
+      indexesToPreload.add((activeIndex + 1) % baseSlides.length);
+      indexesToPreload.add((activeIndex - 1 + baseSlides.length) % baseSlides.length);
+    }
+
+    indexesToPreload.forEach((slideIndex) => {
+      const slide = baseSlides[slideIndex];
+      if (!slide) return;
       preloadImage(slide.image);
       preloadImage(slide.imageMobile);
     });
-  }, [baseSlides]);
+  }, [activeIndex, baseSlides]);
 
   useEffect(() => {
     setIndex(hasMultipleSlides ? 1 : 0);
     setTransitionEnabled(true);
     setIsAnimating(false);
   }, [slideSignature, hasMultipleSlides]);
-
-  const activeIndex = hasMultipleSlides
-    ? ((index - 1) % baseSlides.length + baseSlides.length) % baseSlides.length
-    : 0;
 
   const currentSlide = baseSlides[activeIndex] || baseSlides[0];
 

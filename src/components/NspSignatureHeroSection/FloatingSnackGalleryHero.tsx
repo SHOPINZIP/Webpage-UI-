@@ -15,6 +15,7 @@ import {
   resolvedTextStyleToInlineStyle,
 } from "../../shared/sectionTypography";
 import { NSP_FLOATING_SNACK_TITLE_DEFAULT } from "../../shared/textStyleDefaults/nspSignatureHeroTextStyleDefaults";
+import StorefrontImage from "../../shared/StorefrontImage";
 
 export type FloatingSnackGalleryImageBlock = {
   id?: string;
@@ -134,6 +135,22 @@ function findScrollContainer(el: HTMLElement | null): HTMLElement | null {
   return null;
 }
 
+function useIsMobile(breakpoint = 640) {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useLayoutEffect(() => {
+    const update = () => {
+      setIsMobile(window.innerWidth < breakpoint);
+    };
+
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, [breakpoint]);
+
+  return isMobile;
+}
+
 function readBlockFields(block: FloatingSnackGalleryImageBlock | undefined) {
   const nested = block?.props && typeof block.props === "object" ? block.props : {};
   return {
@@ -245,7 +262,12 @@ const TileShell = memo(function TileShell({
       }}
       className={`tile-shell ${isMobile ? "mobile" : "desktop"}`}
     >
-      <img src={src} alt={alt} loading={index < 4 ? "eager" : "lazy"} decoding="async" />
+      <StorefrontImage
+        desktopSrc={src}
+        alt={alt}
+        loading={index < 4 ? "eager" : "lazy"}
+        fallback={<div className="tile-image-fallback" aria-hidden />}
+      />
       <div className="tile-overlay" />
       <div className="tile-ring" />
       {!isMobile ? <div className="tile-line" /> : null}
@@ -260,6 +282,7 @@ function FloatingTile({
   progress,
   containerWidth,
   containerHeight,
+  isMobile,
 }: {
   src: string;
   alt: string;
@@ -267,46 +290,29 @@ function FloatingTile({
   progress: MotionValue<number>;
   containerWidth: number;
   containerHeight: number;
+  isMobile: boolean;
 }) {
-  const desktopTarget = desktopLayouts[index] ?? desktopLayouts[desktopLayouts.length - 1];
-  const mobileTarget = mobileLayouts[index] ?? mobileLayouts[mobileLayouts.length - 1];
-  const desktopMotion = useTileMotion(
+  const target = isMobile
+    ? mobileLayouts[index] ?? mobileLayouts[mobileLayouts.length - 1]
+    : desktopLayouts[index] ?? desktopLayouts[desktopLayouts.length - 1];
+  const tileMotion = useTileMotion(
     progress,
     index,
-    desktopTarget,
-    containerWidth,
-    containerHeight
-  );
-  const mobileMotion = useTileMotion(
-    progress,
-    index,
-    mobileTarget,
+    target,
     containerWidth,
     containerHeight
   );
 
   return (
-    <>
-      <motion.div
-        style={desktopMotion}
-        className="floating-tile desktop-tile"
-        transformTemplate={(_transform, generatedTransform) =>
-          `${TILE_CENTER_TRANSFORM} ${generatedTransform}`.trim()
-        }
-      >
-        <TileShell src={src} alt={alt} index={index} />
-      </motion.div>
-
-      <motion.div
-        style={mobileMotion}
-        className="floating-tile mobile-tile"
-        transformTemplate={(_transform, generatedTransform) =>
-          `${TILE_CENTER_TRANSFORM} ${generatedTransform}`.trim()
-        }
-      >
-        <TileShell src={src} alt={alt} index={index} isMobile />
-      </motion.div>
-    </>
+    <motion.div
+      style={tileMotion}
+      className="floating-tile"
+      transformTemplate={(_transform: Record<string, string | number>, generatedTransform: string) =>
+        `${TILE_CENTER_TRANSFORM} ${generatedTransform}`.trim()
+      }
+    >
+      <TileShell src={src} alt={alt} index={index} isMobile={isMobile} />
+    </motion.div>
   );
 }
 
@@ -361,6 +367,7 @@ function FloatingSnackGalleryHeroContent({
 
   const tiles = useMemo(() => buildGalleryTiles(blocks), [blocks]);
   const [containerSize, setContainerSize] = useState({ width: 1366, height: 768 });
+  const isMobile = useIsMobile();
 
   useLayoutEffect(() => {
     const readSize = () => {
@@ -455,6 +462,7 @@ function FloatingSnackGalleryHeroContent({
             progress={scrollYProgress}
             containerWidth={containerSize.width}
             containerHeight={containerSize.height}
+            isMobile={isMobile}
           />
         ))}
       </div>

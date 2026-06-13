@@ -129,22 +129,13 @@
   object-fit: cover;
 }
 
-.ak-hero__img--desktop {
-  display: none;
-}
-
-.ak-hero__img--mobile {
+.ak-hero__picture {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
   display: block;
-}
-
-@media (min-width: 640px) {
-  .ak-hero__img--desktop {
-    display: block;
-  }
-
-  .ak-hero__img--mobile {
-    display: none;
-  }
+  height: 100%;
+  width: 100%;
 }
 
 .ak-hero__overlay,
