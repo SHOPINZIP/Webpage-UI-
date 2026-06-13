@@ -25,6 +25,7 @@ export type InlineVideoPlaybackController = {
   autoplayBlocked: boolean;
   canRenderVideo: boolean;
   hasError: boolean;
+  hasStartedPlayback: boolean;
   isMuted: boolean;
   isPlaying: boolean;
   isReady: boolean;
@@ -39,9 +40,11 @@ export type InlineVideoPlaybackController = {
   videoEventHandlers: {
     onCanPlay: () => void;
     onError: () => void;
+    onEnded: () => void;
     onLoadedMetadata: () => void;
     onPause: () => void;
     onPlay: () => void;
+    onPlaying: () => void;
     onVolumeChange: () => void;
   };
 };
@@ -97,6 +100,7 @@ function applyInlineVideoAttributes(
   video.loop = loop;
   video.playsInline = true;
   video.preload = "metadata";
+  video.controls = false;
   video.setAttribute("playsinline", "");
   video.setAttribute("webkit-playsinline", "true");
   if (muted) {
@@ -120,6 +124,8 @@ export function useInlineVideoPlayback({
   const [isMuted, setIsMuted] = useState(Boolean(mutedByDefault));
   const [autoplayBlocked, setAutoplayBlocked] = useState(false);
   const [hasError, setHasError] = useState(false);
+  const [hasStartedPlayback, setHasStartedPlayback] = useState(false);
+  const [isPlaybackPending, setIsPlaybackPending] = useState(false);
 
   const canRenderVideo = Boolean(source) && !hasError;
 
@@ -130,6 +136,8 @@ export function useInlineVideoPlayback({
     setIsMuted(Boolean(mutedByDefault));
     setAutoplayBlocked(false);
     setHasError(false);
+    setHasStartedPlayback(false);
+    setIsPlaybackPending(false);
   }, [mutedByDefault, source?.src]);
 
   const syncMutedState = useCallback(
@@ -150,15 +158,17 @@ export function useInlineVideoPlayback({
 
       const nextMuted = forceMuted ? true : video.muted;
       applyInlineVideoAttributes(video, nextMuted, loop);
-      if (forceMuted || nextMuted !== isMuted) {
-        setIsMuted(nextMuted);
-      }
+      setIsMuted((currentMuted) =>
+        currentMuted === nextMuted ? currentMuted : nextMuted
+      );
 
       try {
+        setIsPlaybackPending(true);
         const playResult = video.play();
         if (playResult && typeof playResult.then === "function") {
           await playResult;
         }
+        setIsPlaying(true);
         setAutoplayBlocked(false);
         setHasError(false);
         return true;
@@ -168,16 +178,23 @@ export function useInlineVideoPlayback({
         }
         setIsPlaying(!video.paused);
         return false;
+      } finally {
+        setIsPlaybackPending(false);
       }
     },
-    [hasError, isMuted, loop, source]
+    [hasError, loop, source]
   );
 
   useEffect(() => {
     const video = videoRef.current;
     if (!video || !source || hasError) return;
 
-    applyInlineVideoAttributes(video, mutedByDefault, loop);
+    applyInlineVideoAttributes(video, isMuted, loop);
+  }, [hasError, isMuted, loop, source]);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video || !source || hasError) return;
 
     if (!autoPlay) {
       video.pause();
@@ -209,17 +226,31 @@ export function useInlineVideoPlayback({
     const video = videoRef.current;
     if (!video || !source || hasError) return;
 
+    if (isPlaybackPending) {
+      video.pause();
+      setIsPlaybackPending(false);
+      setIsPlaying(false);
+      return;
+    }
+
     if (video.paused || video.ended) {
-      await attemptPlayback({ userInitiated: true });
+      await attemptPlayback({
+        forceMuted: !hasStartedPlayback,
+        userInitiated: true,
+      });
       return;
     }
 
     video.pause();
-  }, [attemptPlayback, hasError, source]);
+    setIsPlaying(false);
+  }, [attemptPlayback, hasError, hasStartedPlayback, isPlaybackPending, source]);
 
   const retryPlayback = useCallback(async () => {
-    return attemptPlayback({ userInitiated: true });
-  }, [attemptPlayback]);
+    return attemptPlayback({
+      forceMuted: autoplayBlocked || !hasStartedPlayback,
+      userInitiated: true,
+    });
+  }, [attemptPlayback, autoplayBlocked, hasStartedPlayback]);
 
   const toggleMute = useCallback(() => {
     const video = videoRef.current;
@@ -231,10 +262,20 @@ export function useInlineVideoPlayback({
     () => ({
       onPlay: () => {
         setIsPlaying(true);
+        setHasStartedPlayback(true);
         setAutoplayBlocked(false);
+      },
+      onPlaying: () => {
+        setIsPlaying(true);
+        setIsPlaybackPending(false);
       },
       onPause: () => {
         setIsPlaying(false);
+        setIsPlaybackPending(false);
+      },
+      onEnded: () => {
+        setIsPlaying(false);
+        setIsPlaybackPending(false);
       },
       onVolumeChange: () => {
         const video = videoRef.current;
@@ -252,6 +293,8 @@ export function useInlineVideoPlayback({
         setIsReady(false);
         setIsPlaying(false);
         setAutoplayBlocked(false);
+        setHasStartedPlayback(false);
+        setIsPlaybackPending(false);
       },
     }),
     []
@@ -261,6 +304,7 @@ export function useInlineVideoPlayback({
     autoplayBlocked,
     canRenderVideo,
     hasError,
+    hasStartedPlayback,
     isMuted,
     isPlaying,
     isReady,
@@ -286,25 +330,45 @@ export function InlineVideoMedia({
 }: InlineVideoMediaProps) {
   if (controller.canRenderVideo && controller.source) {
     return (
-      <video
-        key={controller.source.src}
-        ref={controller.videoRef}
-        className={videoClassName}
-        poster={posterUrl || undefined}
-        muted={controller.isMuted}
-        defaultMuted={controller.mutedByDefault}
-        loop={controller.loop}
-        playsInline
-        preload={controller.preload}
-        onPlay={controller.videoEventHandlers.onPlay}
-        onPause={controller.videoEventHandlers.onPause}
-        onVolumeChange={controller.videoEventHandlers.onVolumeChange}
-        onLoadedMetadata={controller.videoEventHandlers.onLoadedMetadata}
-        onCanPlay={controller.videoEventHandlers.onCanPlay}
-        onError={controller.videoEventHandlers.onError}
-      >
-        <source src={controller.source.src} type={controller.source.type} />
-      </video>
+      <>
+        <video
+          key={controller.source.src}
+          ref={controller.videoRef}
+          className={videoClassName}
+          poster={posterUrl || undefined}
+          muted={controller.isMuted}
+          defaultMuted={controller.mutedByDefault}
+          loop={controller.loop}
+          playsInline
+          preload={controller.preload}
+          controls={false}
+          onPlay={controller.videoEventHandlers.onPlay}
+          onPlaying={controller.videoEventHandlers.onPlaying}
+          onPause={controller.videoEventHandlers.onPause}
+          onEnded={controller.videoEventHandlers.onEnded}
+          onVolumeChange={controller.videoEventHandlers.onVolumeChange}
+          onLoadedMetadata={controller.videoEventHandlers.onLoadedMetadata}
+          onCanPlay={controller.videoEventHandlers.onCanPlay}
+          onError={controller.videoEventHandlers.onError}
+        >
+          <source src={controller.source.src} type={controller.source.type} />
+        </video>
+        {posterUrl && !controller.hasStartedPlayback ? (
+          <img
+            className={posterClassName}
+            src={posterUrl}
+            alt={title || "Video poster"}
+            loading="eager"
+            decoding="async"
+            draggable={false}
+            style={{
+              position: "absolute",
+              inset: 0,
+              pointerEvents: "none",
+            }}
+          />
+        ) : null}
+      </>
     );
   }
 
@@ -316,6 +380,7 @@ export function InlineVideoMedia({
         alt={title || "Video poster"}
         loading="lazy"
         decoding="async"
+        draggable={false}
       />
     );
   }

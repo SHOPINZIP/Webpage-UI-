@@ -384,6 +384,10 @@ function VideoTile({
     mutedByDefault: true,
   });
   const hasVideo = Boolean(playback.source);
+  const showAutoplayFallback =
+    hasVideo && playback.autoplayBlocked && !playback.isPlaying;
+  const showInlineControls = showVideoControls && hasVideo && !showAutoplayFallback;
+  const showMuteControl = playback.hasStartedPlayback;
   const motionProps = reduceMotion
     ? { initial: false as const, animate: { opacity: 1, y: 0, scale: 1 } }
     : {
@@ -423,7 +427,7 @@ function VideoTile({
           </div>
         ) : null}
 
-        {showVideoControls && hasVideo ? (
+        {showInlineControls ? (
           <div className="ak-lmp__cardControls">
             <button
               type="button"
@@ -433,18 +437,20 @@ function VideoTile({
             >
               {playback.isPlaying ? <PauseIcon /> : <PlayIcon />}
             </button>
-            <button
-              type="button"
-              className="ak-lmp__controlBtn"
-              onClick={playback.toggleMute}
-              aria-label={playback.isMuted ? "Unmute video" : "Mute video"}
-            >
-              {playback.isMuted ? <VolumeOffIcon /> : <VolumeOnIcon />}
-            </button>
+            {showMuteControl ? (
+              <button
+                type="button"
+                className="ak-lmp__controlBtn"
+                onClick={playback.toggleMute}
+                aria-label={playback.isMuted ? "Unmute video" : "Mute video"}
+              >
+                {playback.isMuted ? <VolumeOffIcon /> : <VolumeOnIcon />}
+              </button>
+            ) : null}
           </div>
         ) : null}
 
-        {playback.autoplayBlocked && hasVideo ? (
+        {showAutoplayFallback ? (
           <button
             type="button"
             className="ak-lmp__autoplayFallback"
