@@ -301,6 +301,7 @@
   border: 0;
   border-radius: 999px;
   cursor: pointer;
+  touch-action: manipulation;
   transition: transform 0.2s ease;
 }
 
@@ -341,6 +342,7 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  touch-action: manipulation;
 }
 
 .ak-video-hero__autoplayFallback svg {

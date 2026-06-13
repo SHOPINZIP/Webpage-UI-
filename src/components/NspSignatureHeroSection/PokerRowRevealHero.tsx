@@ -17,6 +17,8 @@ import {
 import {
   NSP_POKER_DESCRIPTION_DEFAULT,
   NSP_POKER_EYEBROW_DEFAULT,
+  NSP_POKER_FRONT_CARD_EYEBROW_DEFAULT,
+  NSP_POKER_FRONT_CARD_TITLE_DEFAULT,
   NSP_POKER_HEADING_DEFAULT,
 } from "../../shared/textStyleDefaults/nspSignatureHeroTextStyleDefaults";
 
@@ -201,10 +203,20 @@ function PokerSpread({
   cards,
   progress,
   isMobile,
+  frontCardEyebrow,
+  frontCardTitle,
+  showFrontCardMeta,
+  frontCardEyebrowStyle,
+  frontCardTitleStyle,
 }: {
   cards: CardData[];
   progress: MotionValue<number>;
   isMobile: boolean;
+  frontCardEyebrow: string;
+  frontCardTitle: string;
+  showFrontCardMeta: boolean;
+  frontCardEyebrowStyle?: React.CSSProperties;
+  frontCardTitleStyle?: React.CSSProperties;
 }) {
   const smooth = useSpring(progress, {
     stiffness: 130,
@@ -217,6 +229,8 @@ function PokerSpread({
   const openProgress = useTransform(smooth, [0.24, 0.58, 1], [0, 1, 1]);
   const spreadOpacity = useTransform(openProgress, [0, 0.12, 1], [0, 1, 1]);
   const spreadScale = useTransform(openProgress, [0, 0.2, 1], [0.95, 1, 1]);
+  const hasFrontMeta =
+    showFrontCardMeta && (Boolean(frontCardEyebrow) || Boolean(frontCardTitle));
 
   return (
     <div className="ak-nsp-poker-hero__cardStack">
@@ -239,10 +253,12 @@ function PokerSpread({
         <div className="ak-nsp-poker-hero__singleFace ak-nsp-poker-hero__singleFace--front">
           <SafeImageCard image={cards[2]?.image || ""} alt={cards[2]?.alt || ""} />
           <div className="ak-nsp-poker-hero__frontShade" />
-          <div className="ak-nsp-poker-hero__frontMeta">
-            <p>FEATURED SHOWCASE</p>
-            <h3>One card flips, then opens into the row.</h3>
-          </div>
+          {hasFrontMeta ? (
+            <div className="ak-nsp-poker-hero__frontMeta">
+              {frontCardEyebrow ? <p style={frontCardEyebrowStyle}>{frontCardEyebrow}</p> : null}
+              {frontCardTitle ? <h3 style={frontCardTitleStyle}>{frontCardTitle}</h3> : null}
+            </div>
+          ) : null}
         </div>
 
         <div className="ak-nsp-poker-hero__singleFace ak-nsp-poker-hero__singleFace--back">
@@ -305,7 +321,10 @@ function PokerRowRevealHeroInner({
   const eyebrow = String(p.eyebrow ?? "").trim();
   const heading = String(p.heading ?? "").trim();
   const description = String(p.description ?? "").trim();
+  const frontCardEyebrow = String(p.frontCardEyebrow ?? "").trim();
+  const frontCardTitle = String(p.frontCardTitle ?? "").trim();
   const showSparklesIcon = p.showSparklesIcon !== false;
+  const showFrontCardMeta = p.showFrontCardMeta !== false;
 
   const eyebrowStyle = useMemo(
     () =>
@@ -349,6 +368,34 @@ function PokerRowRevealHeroInner({
     [section, theme]
   );
 
+  const frontCardEyebrowStyle = useMemo(
+    () =>
+      resolvedTextStyleToInlineStyle(
+        resolveTextStyle({
+          section,
+          theme,
+          fieldId: "frontCardEyebrow",
+          role: "body",
+          defaultStyle: NSP_POKER_FRONT_CARD_EYEBROW_DEFAULT,
+        })
+      ),
+    [section, theme]
+  );
+
+  const frontCardTitleStyle = useMemo(
+    () =>
+      resolvedTextStyleToInlineStyle(
+        resolveTextStyle({
+          section,
+          theme,
+          fieldId: "frontCardTitle",
+          role: "heading",
+          defaultStyle: NSP_POKER_FRONT_CARD_TITLE_DEFAULT,
+        })
+      ),
+    [section, theme]
+  );
+
   return (
     <div className="ak-nsp-poker-hero__sticky">
       <div className="ak-nsp-poker-hero__inner">
@@ -382,7 +429,16 @@ function PokerRowRevealHeroInner({
         </motion.div>
 
         <div className="ak-nsp-poker-hero__cardsWrap">
-          <PokerSpread cards={cards} progress={pinnedProgress} isMobile={isMobile} />
+          <PokerSpread
+            cards={cards}
+            progress={pinnedProgress}
+            isMobile={isMobile}
+            frontCardEyebrow={frontCardEyebrow}
+            frontCardTitle={frontCardTitle}
+            showFrontCardMeta={showFrontCardMeta}
+            frontCardEyebrowStyle={frontCardEyebrowStyle}
+            frontCardTitleStyle={frontCardTitleStyle}
+          />
         </div>
       </div>
     </div>

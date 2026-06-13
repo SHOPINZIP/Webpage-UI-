@@ -96,6 +96,7 @@
   gap: 0.75rem;
   margin-top: 1rem;
   overflow-x: auto;
+  overflow-y: hidden;
   padding-bottom: 0.75rem;
   scrollbar-width: none;
 }
@@ -270,6 +271,7 @@
   color: #fff;
   backdrop-filter: blur(16px);
   cursor: pointer;
+  touch-action: manipulation;
   transition: transform 0.2s ease;
 }
 
@@ -280,6 +282,26 @@
 .ak-lmp__controlBtn svg {
   width: 1rem;
   height: 1rem;
+}
+
+.ak-lmp__autoplayFallback {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  background: rgba(0, 0, 0, 0.2);
+  color: #fff;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.ak-lmp__autoplayFallback svg {
+  width: 2.35rem;
+  height: 2.35rem;
+  filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.35));
 }
 
 .ak-lmp__cardBottom {

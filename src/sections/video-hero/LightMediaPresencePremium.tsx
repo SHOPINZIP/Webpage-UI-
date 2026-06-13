@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import React, { useMemo } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 
 import { normalizeImageUrl } from "../../components/HeroSection/heroSectionUtils";
@@ -28,6 +28,7 @@ import type {
   LightPremiumVideoCardBlock,
   LightPremiumVideoIconType,
 } from "./lightMediaPresencePremiumTypes";
+import { InlineVideoMedia, useInlineVideoPlayback } from "./inlineVideoPlayback";
 
 const VIDEO_CARD_TYPE = "video_card";
 const INFO_CARD_TYPE = "info_card";
@@ -376,62 +377,13 @@ function VideoTile({
   titleStyle?: React.CSSProperties;
   subtitleStyle?: React.CSSProperties;
 }) {
-  const videoRef = useRef<HTMLVideoElement | null>(null);
-  const [isPlaying, setIsPlaying] = useState(autoPlayVideos);
-  const [isMuted, setIsMuted] = useState(true);
-  const hasVideo = Boolean(card.videoUrl);
-  const hasPoster = Boolean(card.posterImage);
-
-  const tryPlay = useCallback(async () => {
-    const video = videoRef.current;
-    if (!video || !hasVideo) return;
-    try {
-      await video.play();
-      setIsPlaying(true);
-    } catch {
-      setIsPlaying(false);
-    }
-  }, [hasVideo]);
-
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video || !hasVideo || !autoPlayVideos) return;
-    video.muted = isMuted;
-    const playVideo = () => {
-      tryPlay();
-    };
-    if (video.readyState >= 2) playVideo();
-    else video.addEventListener("loadeddata", playVideo, { once: true });
-    return () => video.removeEventListener("loadeddata", playVideo);
-  }, [autoPlayVideos, hasVideo, isMuted, tryPlay]);
-
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video || !hasVideo) return;
-    video.muted = isMuted;
-    if (!autoPlayVideos) {
-      video.pause();
-      setIsPlaying(false);
-    }
-  }, [autoPlayVideos, hasVideo, isMuted]);
-
-  const togglePlay = async () => {
-    const video = videoRef.current;
-    if (!video || !hasVideo) return;
-    if (video.paused) await tryPlay();
-    else {
-      video.pause();
-      setIsPlaying(false);
-    }
-  };
-
-  const toggleMute = () => {
-    const video = videoRef.current;
-    const nextMuted = !isMuted;
-    setIsMuted(nextMuted);
-    if (video) video.muted = nextMuted;
-  };
-
+  const playback = useInlineVideoPlayback({
+    videoUrl: card.videoUrl,
+    autoPlay: autoPlayVideos,
+    loop: loopVideos,
+    mutedByDefault: true,
+  });
+  const hasVideo = Boolean(playback.source);
   const motionProps = reduceMotion
     ? { initial: false as const, animate: { opacity: 1, y: 0, scale: 1 } }
     : {
@@ -453,30 +405,14 @@ function VideoTile({
       className={`ak-lmp__card${featured ? " ak-lmp__card--featured" : ""}`}
     >
       <div className={mediaClass}>
-        {hasVideo ? (
-          <video
-            ref={videoRef}
-            className="ak-lmp__cardVideo"
-            src={card.videoUrl}
-            poster={card.posterImage || undefined}
-            muted={isMuted}
-            loop={loopVideos}
-            playsInline
-            preload="metadata"
-            onPlay={() => setIsPlaying(true)}
-            onPause={() => setIsPlaying(false)}
-          />
-        ) : hasPoster ? (
-          <img
-            className="ak-lmp__cardPoster"
-            src={card.posterImage}
-            alt={card.title || "Video poster"}
-            loading="lazy"
-            decoding="async"
-          />
-        ) : (
-          <div className="ak-lmp__cardPlaceholder" aria-hidden />
-        )}
+        <InlineVideoMedia
+          controller={playback}
+          videoClassName="ak-lmp__cardVideo"
+          posterClassName="ak-lmp__cardPoster"
+          placeholderClassName="ak-lmp__cardPlaceholder"
+          posterUrl={card.posterImage}
+          title={card.title}
+        />
 
         <div className="ak-lmp__cardOverlay" aria-hidden />
 
@@ -492,20 +428,31 @@ function VideoTile({
             <button
               type="button"
               className="ak-lmp__controlBtn"
-              onClick={togglePlay}
-              aria-label={isPlaying ? "Pause video" : "Play video"}
+              onClick={() => void playback.togglePlay()}
+              aria-label={playback.isPlaying ? "Pause video" : "Play video"}
             >
-              {isPlaying ? <PauseIcon /> : <PlayIcon />}
+              {playback.isPlaying ? <PauseIcon /> : <PlayIcon />}
             </button>
             <button
               type="button"
               className="ak-lmp__controlBtn"
-              onClick={toggleMute}
-              aria-label={isMuted ? "Unmute video" : "Mute video"}
+              onClick={playback.toggleMute}
+              aria-label={playback.isMuted ? "Unmute video" : "Mute video"}
             >
-              {isMuted ? <VolumeOffIcon /> : <VolumeOnIcon />}
+              {playback.isMuted ? <VolumeOffIcon /> : <VolumeOnIcon />}
             </button>
           </div>
+        ) : null}
+
+        {playback.autoplayBlocked && hasVideo ? (
+          <button
+            type="button"
+            className="ak-lmp__autoplayFallback"
+            onClick={() => void playback.retryPlayback()}
+            aria-label="Tap to play video"
+          >
+            <PlayIcon />
+          </button>
         ) : null}
 
         <div className="ak-lmp__cardBottom">
