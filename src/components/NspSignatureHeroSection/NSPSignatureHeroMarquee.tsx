@@ -9,6 +9,7 @@ import {
   resolveTextStyle,
   resolvedTextStyleToInlineStyle,
 } from "../../shared/sectionTypography";
+import StorefrontImage from "../../shared/StorefrontImage";
 import {
   NSP_MARQUEE_CARD_SUBTITLE_DEFAULT,
   NSP_MARQUEE_CARD_TITLE_DEFAULT,
@@ -51,6 +52,7 @@ type MarqueeCardModel = {
   subtitle: string;
   image: string;
   link: string;
+  isClone?: boolean;
 };
 
 function SparklesIcon() {
@@ -112,16 +114,11 @@ function MarqueeCard({
     >
       <div className="ak-nsp-marquee-hero__marqueeMediaWrap">
         {item.image ? (
-          <img
-            src={item.image}
+          <StorefrontImage
+            desktopSrc={item.image}
             alt={item.title || ""}
             className="ak-nsp-marquee-hero__marqueeImage"
-            decoding="async"
-            loading="lazy"
-            draggable={false}
-            onError={(e) => {
-              e.currentTarget.removeAttribute("src");
-            }}
+            fallback={<div className="ak-nsp-marquee-hero__marqueeImagePlaceholder" aria-hidden />}
           />
         ) : (
           <div className="ak-nsp-marquee-hero__marqueeImagePlaceholder" aria-hidden />
@@ -194,6 +191,7 @@ export default function NSPSignatureHeroMarquee({
     return [...minimumLoopCards, ...minimumLoopCards].map((item, index) => ({
       ...item,
       key: `${item.key}-${index}`,
+      isClone: index >= minimumLoopCards.length,
     }));
   }, [rawBlocks]);
 
@@ -320,15 +318,11 @@ export default function NSPSignatureHeroMarquee({
           className="ak-nsp-marquee-hero__heroMedia"
         >
           {heroImage ? (
-            <img
-              src={heroImage}
+            <StorefrontImage
+              desktopSrc={heroImage}
               alt={heroImageAlt}
               className="ak-nsp-marquee-hero__heroImage"
-              decoding="async"
-              loading="lazy"
-              onError={(e) => {
-                e.currentTarget.removeAttribute("src");
-              }}
+              fallback={<div className="ak-nsp-marquee-hero__heroImagePlaceholder" aria-hidden />}
             />
           ) : (
             <div className="ak-nsp-marquee-hero__heroImagePlaceholder" aria-hidden />

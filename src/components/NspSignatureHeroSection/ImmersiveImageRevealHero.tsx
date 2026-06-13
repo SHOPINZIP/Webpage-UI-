@@ -14,6 +14,7 @@ import {
   NSP_IMMERSIVE_STATIC_HEADING_DEFAULT,
   NSP_IMMERSIVE_TYPING_WORD_DEFAULT,
 } from "../../shared/textStyleDefaults/nspSignatureHeroTextStyleDefaults";
+import StorefrontImage from "../../shared/StorefrontImage";
 
 const TYPING_WORD_BLOCK_TYPE = "typing_word";
 const REVEAL_IMAGE_BLOCK_TYPE = "reveal_image";
@@ -136,14 +137,24 @@ function RevealSlidePicture({
 
   if (mobileSrc) {
     return (
-      <picture>
-        <source media="(max-width: 767px)" srcSet={mobileSrc} />
-        <img src={desktopSrc} {...sharedImgProps} />
-      </picture>
+      <StorefrontImage
+        desktopSrc={desktopSrc}
+        mobileSrc={mobileSrc}
+        mobileMedia="(max-width: 767px)"
+        pictureClassName="ak-immersive-image-reveal-hero__picture"
+        fallback={<div className="ak-immersive-image-reveal-hero__image ak-immersive-image-reveal-hero__image--fallback" aria-hidden />}
+        {...sharedImgProps}
+      />
     );
   }
 
-  return <img src={desktopSrc} {...sharedImgProps} />;
+  return (
+    <StorefrontImage
+      desktopSrc={desktopSrc}
+      fallback={<div className="ak-immersive-image-reveal-hero__image ak-immersive-image-reveal-hero__image--fallback" aria-hidden />}
+      {...sharedImgProps}
+    />
+  );
 }
 
 function clamp(value: number, min: number, max: number) {
@@ -183,6 +194,17 @@ function getImageReveal(index: number, progress: number, imageCount: number) {
   if (local < 0.96) return 1 - easeInOutApple(mapRange(local, 0.54, 0.96, 0, 1));
 
   return 0;
+}
+
+function shouldMountImageLayer(index: number, progress: number, imageCount: number) {
+  if (imageCount <= 0) return false;
+  if (index === 0) return true;
+
+  const segmentSize = 1 / imageCount;
+  const segmentStart = index * segmentSize;
+  const segmentEnd = segmentStart + segmentSize;
+
+  return progress >= segmentStart - segmentSize * 0.75 && progress <= segmentEnd + segmentSize * 0.2;
 }
 
 function useScrollProgress(ref: React.RefObject<HTMLElement | null>) {
@@ -506,6 +528,7 @@ function ImmersiveImageRevealHero({
 
         {revealImages.map((image, index) => {
           const reveal = values.reveals[index] ?? 0;
+          const shouldMount = shouldMountImageLayer(index, progress, revealImages.length);
           const topInset = mapRange(reveal, 0, 1, 48, 0);
           const rightInset = mapRange(reveal, 0, 1, 18, 0);
           const bottomInset = mapRange(reveal, 0, 1, 34, 0);
@@ -526,15 +549,17 @@ function ImmersiveImageRevealHero({
                 zIndex: index + 1,
               }}
             >
-              <RevealSlidePicture
-                desktopSrc={image.desktopSrc}
-                mobileSrc={image.mobileSrc}
-                alt={image.alt}
-                loading={index === 0 ? "eager" : "lazy"}
-                imageStyle={{
-                  transform: `translate3d(0, ${imageY}px, 0) scale(${imageScale})`,
-                }}
-              />
+              {shouldMount ? (
+                <RevealSlidePicture
+                  desktopSrc={image.desktopSrc}
+                  mobileSrc={image.mobileSrc}
+                  alt={image.alt}
+                  loading={index === 0 ? "eager" : "lazy"}
+                  imageStyle={{
+                    transform: `translate3d(0, ${imageY}px, 0) scale(${imageScale})`,
+                  }}
+                />
+              ) : null}
 
               <div
                 className="ak-immersive-image-reveal-hero__overlay"
