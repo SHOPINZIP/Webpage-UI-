@@ -49,6 +49,7 @@ export const SECTION_TYPE_APPEARANCE_DEFAULTS: Record<string, SectionAppearance>
   marquee_text: { backgroundColor: "#fbfaf7" },
   coupon_strips: { backgroundColor: "#ffffff" },
   video_hero: { backgroundColor: "#f7f4ee" },
+  reels_section: { backgroundColor: "#f8f3ed" },
   messageStyleTestimonials: { backgroundColor: "#f5f5f7" },
   "benefits-points": { backgroundColor: "#ffffff" },
   footer: { backgroundColor: "#0b1f2a" },

@@ -4,6 +4,8 @@ export { default as SubHeroImageLoop } from "./components/HeroSection/SubHeroIma
 export { default as LogoFocusedHeader } from "./components/LogoFocusedHeaderSection";
 export { default as TransparentHeroHeader } from "./components/TransparentHeroHeaderSection";
 export { default as MessageStyleTestimonials } from "./components/MessageStyleTestimonialsSection";
+export { AppleFlipCardTestimonials } from "./components/MessageStyleTestimonialsSection";
+export { AppleMessageTestimonials } from "./components/MessageStyleTestimonialsSection";
 export { default as StackedTestimonials } from "./components/StackedTestimonialsSection";
 export { default as ProductMarquee } from "./components/ProductMarqueeSection";
 export { ProductCardMarquee } from "./components/ProductMarqueeSection";
@@ -24,6 +26,7 @@ export { CouponTickerMinimal } from "./components/CouponStripsSection";
 export { DualLineFeatureMarquee } from "./sections/marquee-text";
 export { FeatureMarqueeBlock } from "./sections/marquee-text";
 export { MediaPresenceVideoHero, LightMediaPresencePremium } from "./sections/video-hero";
+export { FannedPhoneReels } from "./sections/reels-section";
 export type { HeroScrollableSlideProps } from "./components/HeroSection/HeroScrollableSlide";
 export type {
   SubHeroImageLoopProps,
@@ -158,6 +161,14 @@ export type {
   LightPremiumVideoCardBlock,
   LightPremiumInfoCardBlock,
 } from "./sections/video-hero";
+export type {
+  FannedPhoneReelsProps,
+  ReelItemBlock,
+  ReelsSectionControls,
+  ReelsSectionDoc,
+  ReelsSectionPadding,
+  ReelsSectionSettings,
+} from "./sections/reels-section";
 
 export {
   STYLE_MESSAGE_BUBBLE,
