@@ -41,7 +41,7 @@ function StarRating({
   visible: boolean;
 }) {
   if (!visible) return null;
-  const r = Math.min(5, Math.max(1, Math.round(rating || 5)));
+  const r = Math.min(5, Math.max(0, Math.round(rating || 0)));
   return (
     <div className="ak-mst-apple__stars" aria-hidden>
       {Array.from({ length: 5 }, (_, i) => (

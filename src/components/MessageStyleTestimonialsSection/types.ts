@@ -7,10 +7,15 @@ import type {
 export type MessageStyleTestimonialItemProps = {
   name?: string;
   role?: string;
+  post?: string;
   quote?: string;
+  message?: string;
+  description?: string;
+  borderColor?: string;
+  border?: string;
   /** Hide from storefront when false (default true). */
   isVisible?: boolean;
-  /** 1–5, default 5. */
+  /** 0-5, default 5. */
   rating?: number;
 };
 
@@ -21,11 +26,26 @@ export type MessageStyleTestimonialBlock = {
 };
 
 export type MessageStyleTestimonialsSectionProps = {
+  kicker?: string;
   heading?: string;
   /** @deprecated use heading */
   header?: string;
   subheading?: string;
   testimonialStyle?: string;
+  showKicker?: boolean;
+  showSubheading?: boolean;
+  cardsPerGroup?: number | string;
+  autoRotate?: boolean;
+  rotationDuration?: number | string;
+  showDots?: boolean;
+  showRating?: boolean;
+  showFooter?: boolean;
+  footerLabel?: string;
+  sectionPadding?: "small" | "medium" | "large" | string;
+  autoAnimate?: boolean;
+  animationInterval?: number | string;
+  showCardNumber?: boolean;
+  showCardBorder?: boolean;
   backgroundColor?: string;
   rowOneSpeed?: number | string;
   rowTwoSpeed?: number | string;
@@ -45,6 +65,7 @@ export type MessageStyleTestimonialsSectionDoc = {
   id: string;
   type: "messageStyleTestimonials";
   enabled?: boolean;
+  variant?: string;
   settings: MessageStyleTestimonialsSettings;
 };
 
