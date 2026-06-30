@@ -214,7 +214,7 @@
   .ak-mst-flip--pad-sm,
   .ak-mst-flip--pad-md,
   .ak-mst-flip--pad-lg {
-    padding: 48px 12px 42px;
+    padding: 48px 16px 42px;
   }
 
   .ak-mst-flip__header {
@@ -239,28 +239,48 @@
     line-height: 1.48;
   }
 
+  /* Mobile: 3 compact flip cards in a row (matching the BrandingWhale
+     reference). Each card auto-sizes to its content — both faces are
+     stacked in the same grid cell so the card hugs its text (no empty
+     gap) while the 3D flip still renders. */
   .ak-mst-flip__grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 8px;
-    perspective: 900px;
+    perspective: 1200px;
     overflow: visible;
+    align-items: start;
   }
 
+  /* Only the first three testimonials are shown in the compact row. */
   .ak-mst-flip__outer:nth-child(n + 4) {
     display: none;
   }
 
-  .ak-mst-flip__outer,
-  .ak-mst-flip__card {
-    min-height: 224px;
-    height: 224px;
+  .ak-mst-flip__outer {
+    min-height: 0;
+    height: auto;
     min-width: 0;
   }
 
+  .ak-mst-flip__card {
+    min-height: 0;
+    height: auto;
+    display: grid;
+  }
+
   .ak-mst-flip__face {
-    padding: 10px;
+    position: relative;
+    inset: auto;
+    grid-area: 1 / 1;
+    padding: 11px;
     border-radius: 16px;
     box-shadow: 0 14px 34px rgba(0, 0, 0, 0.04);
+  }
+
+  .ak-mst-flip__content {
+    padding-top: 10px;
+    flex: 0 0 auto;
+    overflow: hidden;
   }
 
   .ak-mst-flip__number {
@@ -269,63 +289,66 @@
     font-size: 8px;
   }
 
-  .ak-mst-flip__content {
-    padding-top: 10px;
-  }
-
+  /* The component sets font-size inline (style={quoteStyle} etc.), so these
+     must use !important to take effect on mobile. */
   .ak-mst-flip__quote {
-    font-size: 11.2px;
-    line-height: 1.08;
-    letter-spacing: -0.025em;
+    font-size: 12px !important;
+    line-height: 1.3 !important;
+    letter-spacing: -0.01em;
     display: -webkit-box;
-    -webkit-line-clamp: 4;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
+    flex: 0 0 auto;
   }
 
   .ak-mst-flip__description {
-    margin-top: 7px;
-    font-size: 8.4px;
-    line-height: 1.28;
+    margin-top: 6px;
+    font-size: 10px !important;
+    line-height: 1.38 !important;
     display: -webkit-box;
-    -webkit-line-clamp: 5;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
+    flex: 0 0 auto;
   }
 
+  /* Sit right under the content (no auto-push) so there is no empty gap. */
   .ak-mst-flip__person {
-    padding-top: 6px;
+    margin-top: 12px;
+    padding-top: 0;
   }
 
   .ak-mst-flip__line {
-    margin-bottom: 5px;
+    margin-bottom: 7px;
   }
 
   .ak-mst-flip__name {
-    font-size: 9px;
-    line-height: 1.12;
+    font-size: 11px !important;
+    line-height: 1.16 !important;
+    white-space: nowrap;
   }
 
   .ak-mst-flip__role {
-    margin-top: 2px;
-    font-size: 7.6px;
-    line-height: 1.1;
+    margin-top: 3px;
+    font-size: 9px !important;
+    line-height: 1.2 !important;
     display: -webkit-box;
     -webkit-line-clamp: 2;
+    line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
-
-  .ak-mst-flip__card.is-flipped {
-    transform: rotateY(180deg);
-  }
 }
 
-@media (max-width: 390px) {
+/* Small phones: tighten spacing and card height a touch. */
+@media (max-width: 430px) {
   .ak-mst-flip--pad-sm,
   .ak-mst-flip--pad-md,
   .ak-mst-flip--pad-lg {
-    padding: 44px 10px 38px;
+    padding: 44px 12px 38px;
   }
 
   .ak-mst-flip__grid {
@@ -334,49 +357,28 @@
 
   .ak-mst-flip__outer,
   .ak-mst-flip__card {
-    min-height: 216px;
-    height: 216px;
+    min-height: 0;
+    height: auto;
   }
 
   .ak-mst-flip__face {
-    padding: 9px;
-    border-radius: 15px;
-  }
-
-  .ak-mst-flip__number {
-    width: 20px;
-    height: 20px;
-    font-size: 7.4px;
-  }
-
-  .ak-mst-flip__content {
-    padding-top: 9px;
+    padding: 10px;
+    border-radius: 14px;
   }
 
   .ak-mst-flip__quote {
-    font-size: 10.6px;
+    font-size: 11px !important;
   }
 
   .ak-mst-flip__description {
-    margin-top: 6px;
-    font-size: 7.9px;
-    line-height: 1.26;
-    -webkit-line-clamp: 4;
-  }
-
-  .ak-mst-flip__person {
-    padding-top: 5px;
-  }
-
-  .ak-mst-flip__line {
-    margin-bottom: 5px;
+    font-size: 9px !important;
   }
 
   .ak-mst-flip__name {
-    font-size: 8.6px;
+    font-size: 10px !important;
   }
 
   .ak-mst-flip__role {
-    font-size: 7.2px;
+    font-size: 8.5px !important;
   }
 }

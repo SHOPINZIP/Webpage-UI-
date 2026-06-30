@@ -3696,6 +3696,8 @@ function StackedCard({
   item,
   index,
   reduceMotion,
+  isActive,
+  onActivate,
   quoteStyle,
   nameStyle,
   roleStyle
@@ -3709,8 +3711,18 @@ function StackedCard({
   return /* @__PURE__ */ import_react12.default.createElement(
     "div",
     {
-      className: `ak-stacked-t__card-wrap ${posClass} ${reduceMotion ? "ak-stacked-t__card-wrap--static" : ""}`,
-      style: { zIndex: 10 + index }
+      className: `ak-stacked-t__card-wrap ${posClass} ${reduceMotion ? "ak-stacked-t__card-wrap--static" : ""} ${isActive ? "ak-stacked-t__card-wrap--active" : ""}`,
+      style: { zIndex: isActive ? 50 : 10 + index },
+      role: "button",
+      tabIndex: 0,
+      "aria-pressed": isActive,
+      onClick: onActivate,
+      onKeyDown: (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          onActivate();
+        }
+      }
     },
     /* @__PURE__ */ import_react12.default.createElement("div", { className: "ak-stacked-t__card" }, /* @__PURE__ */ import_react12.default.createElement("div", { className: "ak-stacked-t__card-shine", "aria-hidden": true }), /* @__PURE__ */ import_react12.default.createElement("div", { className: "ak-stacked-t__card-inner" }, /* @__PURE__ */ import_react12.default.createElement(StarRow, { count: stars }), /* @__PURE__ */ import_react12.default.createElement("p", { className: "ak-stacked-t__quote", style: quoteStyle }, quote ? /* @__PURE__ */ import_react12.default.createElement(import_react12.default.Fragment, null, /* @__PURE__ */ import_react12.default.createElement("span", { className: "ak-stacked-t__quote-mark" }, "\u201C"), quote, /* @__PURE__ */ import_react12.default.createElement("span", { className: "ak-stacked-t__quote-mark" }, "\u201D")) : /* @__PURE__ */ import_react12.default.createElement("span", { className: "ak-stacked-t__placeholder" }, "Add a quote")), /* @__PURE__ */ import_react12.default.createElement("div", { className: "ak-stacked-t__footer" }, /* @__PURE__ */ import_react12.default.createElement("div", { className: "ak-stacked-t__name", style: nameStyle }, name || /* @__PURE__ */ import_react12.default.createElement("span", { className: "ak-stacked-t__placeholder" }, "Name")), /* @__PURE__ */ import_react12.default.createElement("div", { className: "ak-stacked-t__role", style: roleStyle }, role || /* @__PURE__ */ import_react12.default.createElement("span", { className: "ak-stacked-t__placeholder" }, "Role")))))
   );
@@ -3725,6 +3737,7 @@ function StackedTestimonials({
   const props = (_b = (_a = section == null ? void 0 : section.settings) == null ? void 0 : _a.props) != null ? _b : {};
   const headingWord = String((_c = props.backgroundWord) != null ? _c : "Testimonial").trim() || "Testimonial";
   const showWord = props.showBackgroundWord !== false;
+  const [activeIndex, setActiveIndex] = (0, import_react12.useState)(null);
   const blocks = (0, import_react12.useMemo)(
     () => {
       var _a2;
@@ -3819,6 +3832,8 @@ function StackedTestimonials({
           item: (_b2 = block.props) != null ? _b2 : {},
           index,
           reduceMotion,
+          isActive: activeIndex === index,
+          onActivate: () => setActiveIndex((prev) => prev === index ? null : index),
           quoteStyle: quoteTextStyle,
           nameStyle: customerNameStyle,
           roleStyle: customerRoleStyle
