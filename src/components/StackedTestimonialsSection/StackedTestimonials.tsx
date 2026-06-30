@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 
 import { sectionAppearanceStyle } from "../../shared/sectionAppearance";
 import {
@@ -69,6 +69,8 @@ function StackedCard({
   item,
   index,
   reduceMotion,
+  isActive,
+  onActivate,
   quoteStyle,
   nameStyle,
   roleStyle,
@@ -76,6 +78,8 @@ function StackedCard({
   item: StackedTestimonialItemProps;
   index: number;
   reduceMotion: boolean;
+  isActive: boolean;
+  onActivate: () => void;
   quoteStyle?: React.CSSProperties;
   nameStyle?: React.CSSProperties;
   roleStyle?: React.CSSProperties;
@@ -91,8 +95,18 @@ function StackedCard({
     <div
       className={`ak-stacked-t__card-wrap ${posClass} ${
         reduceMotion ? "ak-stacked-t__card-wrap--static" : ""
-      }`}
-      style={{ zIndex: 10 + index }}
+      } ${isActive ? "ak-stacked-t__card-wrap--active" : ""}`}
+      style={{ zIndex: isActive ? 50 : 10 + index }}
+      role="button"
+      tabIndex={0}
+      aria-pressed={isActive}
+      onClick={onActivate}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          onActivate();
+        }
+      }}
     >
       <div className="ak-stacked-t__card">
         <div className="ak-stacked-t__card-shine" aria-hidden />
@@ -134,6 +148,7 @@ export default function StackedTestimonials({
   const props = section?.settings?.props ?? {};
   const headingWord = String(props.backgroundWord ?? "Testimonial").trim() || "Testimonial";
   const showWord = props.showBackgroundWord !== false;
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
   const blocks = useMemo(
     () =>
@@ -247,6 +262,10 @@ export default function StackedTestimonials({
                 item={block.props ?? {}}
                 index={index}
                 reduceMotion={reduceMotion}
+                isActive={activeIndex === index}
+                onActivate={() =>
+                  setActiveIndex((prev) => (prev === index ? null : index))
+                }
                 quoteStyle={quoteTextStyle}
                 nameStyle={customerNameStyle}
                 roleStyle={customerRoleStyle}
