@@ -27,6 +27,7 @@ export { DualLineFeatureMarquee } from "./sections/marquee-text";
 export { FeatureMarqueeBlock } from "./sections/marquee-text";
 export { MediaPresenceVideoHero, LightMediaPresencePremium } from "./sections/video-hero";
 export { FannedPhoneReels } from "./sections/reels-section";
+export { RakhiGiftFestival } from "./sections/festival";
 export type { HeroScrollableSlideProps } from "./components/HeroSection/HeroScrollableSlide";
 export type {
   SubHeroImageLoopProps,
@@ -169,6 +170,17 @@ export type {
   ReelsSectionPadding,
   ReelsSectionSettings,
 } from "./sections/reels-section";
+export type {
+  RakhiGiftFestivalProps,
+  FestivalSectionDoc,
+  FestivalSectionSettings,
+  FestivalSectionControls,
+  FestivalSectionPadding,
+  FestivalIllustrationType,
+  FestivalBlock,
+  FestivalCardBlock,
+  FestivalPetalBlock,
+} from "./sections/festival";
 
 export {
   STYLE_MESSAGE_BUBBLE,
