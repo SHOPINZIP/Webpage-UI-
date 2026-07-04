@@ -1095,6 +1095,135 @@ type RakhiGiftFestivalProps = {
 
 declare const RakhiGiftFestival: (props: RakhiGiftFestivalProps) => JSX.Element;
 
+type PublicFormFieldDataType = "TEXT" | "TEXTAREA" | "EMAIL" | "PHONE" | "URL" | "DATE" | "TIME" | "DATETIME" | "NUMBER" | "DECIMAL" | "BOOLEAN" | "DROPDOWN" | "COUNTRY_CODE" | "MULTISELECT" | "MOBILE_WITH_COUNTRY_CODE" | "APPOINTMENT_SLOT" | string;
+type PublicFormField = {
+    fieldKey: string;
+    label?: string;
+    placeholder?: string;
+    required?: boolean;
+    sortOrder?: number;
+    options?: string[];
+    dataType: PublicFormFieldDataType;
+    /** e.g. APPOINTMENT_SLOT's { dayStartTime, dayEndTime, slotDurationMinutes, availableWeekdays, ... } */
+    config?: Record<string, unknown>;
+    validation?: Record<string, unknown>;
+};
+type PublicFormSchema = {
+    name?: string;
+    description?: string;
+    redirectUrl?: string;
+    thankYouMessage?: string;
+    fields?: PublicFormField[];
+};
+type PublicFormSlotOption = {
+    value: string;
+    start: string;
+    end: string;
+    available: boolean;
+};
+type PublicFormMobileValue = {
+    countryCode: string;
+    number: string;
+};
+type PublicFormSubmitBody = {
+    data: Record<string, unknown>;
+    hp: string;
+};
+
+type ShowcaseItemBlockProps = {
+    title?: string;
+    image?: string;
+    altText?: string;
+};
+type ShowcaseItemBlock = {
+    id: string;
+    type: "showcase_item";
+    props: ShowcaseItemBlockProps;
+};
+type ChecklistItemBlockProps = {
+    text?: string;
+    iconType?: "check" | "sparkle" | "shield" | "none" | string;
+};
+type ChecklistItemBlock = {
+    id: string;
+    type: "checklist_item";
+    text?: string;
+    iconType?: ChecklistItemBlockProps["iconType"];
+};
+type LeadFormBlock = ShowcaseItemBlock | ChecklistItemBlock;
+type LeadFormSectionProps = {
+    eyebrow?: string;
+    heading?: string;
+    subheading?: string;
+    showEyebrow?: boolean;
+    showSubheading?: boolean;
+    showcaseEyebrow?: string;
+    showShowcaseCard?: boolean;
+    autoRotateShowcase?: boolean;
+    showcaseRotationDuration?: number | string;
+    formSubmitButtonText?: string;
+    loadingButtonText?: string;
+    successMessage?: string;
+    errorMessage?: string;
+    formActionType?: string;
+    /** Numeric Form Builder form id (admin reference only — the storefront uses `formBuilderPublicId`). */
+    formBuilderFormId?: string;
+    /** Public Form Builder form id — the storefront always renders that form's own fields. */
+    formBuilderPublicId?: string;
+    /** Which field-rendering layout to use; unset/unknown values fall back to "standard". */
+    formLayoutStyle?: string;
+    enableSubmit?: boolean;
+    showSubmitMessage?: boolean;
+    sectionPadding?: "small" | "medium" | "large" | string;
+    showChecklist?: boolean;
+    checklistTitle?: string;
+    formTitle?: string;
+    showFormTitle?: boolean;
+    /** JourneySplitLeadForm's own submit-button-text prop (distinct name from formSubmitButtonText above — matches this variant's schema exactly). */
+    submitButtonText?: string;
+    enableMotion?: boolean;
+    appearance?: SectionAppearance;
+};
+type LeadFormSettings = {
+    props?: LeadFormSectionProps;
+    blocks?: LeadFormBlock[];
+};
+type LeadFormSectionDoc = {
+    id: string;
+    type: "lead_form";
+    enabled?: boolean;
+    variant?: string;
+    settings: LeadFormSettings;
+};
+type ServiceInquiryFormProps = {
+    section: LeadFormSectionDoc;
+    appearance?: ResolvedSectionAppearance | null;
+    theme?: StorefrontTheme | null;
+    /**
+     * This package does no networking itself — the host app owns fetching the
+     * linked Form Builder form's schema and submitting to it, and supplies the
+     * results here. This component only renders from what it's given.
+     */
+    formBuilderSchema?: PublicFormSchema | null;
+    formBuilderLoading?: boolean;
+    formBuilderError?: string;
+    onSubmitDynamicForm?: (payload: PublicFormSubmitBody) => Promise<{
+        redirectUrl?: string;
+    } | void>;
+    /**
+     * APPOINTMENT_SLOT fields submit an opaque `value` the backend itself
+     * generates — the client cannot construct a valid one from date+time alone.
+     * Same no-networking rule: the host fetches, this component only renders.
+     */
+    onFetchFormSlots?: (fieldKey: string, date: string) => Promise<PublicFormSlotOption[]>;
+};
+/** Same host-supplied contract as ServiceInquiryForm — every `lead_form` variant shares it. */
+type JourneySplitLeadFormProps = ServiceInquiryFormProps;
+
+declare function ServiceInquiryForm({ section, appearance, theme, formBuilderSchema, formBuilderLoading, formBuilderError, onSubmitDynamicForm, onFetchFormSlots, }: ServiceInquiryFormProps): React.JSX.Element;
+
+declare function JourneySplitLeadForm({ section, appearance, theme, formBuilderSchema, formBuilderLoading, formBuilderError, onSubmitDynamicForm, onFetchFormSlots, }: JourneySplitLeadFormProps): React.JSX.Element;
+
 /**
  * Shared helpers for hero layouts (slider + scrollable).
  */
@@ -1252,4 +1381,4 @@ declare const NSP_MARQUEE_CARD_TITLE_DEFAULT: TextStyle;
 declare const NSP_MARQUEE_CARD_SUBTITLE_DEFAULT: TextStyle;
 declare const NSP_FLOATING_SNACK_TITLE_DEFAULT: TextStyle;
 
-export { AppleFlipCardTestimonials, AppleMessageTestimonials, BENEFITS_DESCRIPTION_DEFAULT, BENEFITS_EYEBROW_DEFAULT, BENEFITS_HEADING_DEFAULT, BENEFIT_DESCRIPTION_DEFAULT, BENEFIT_POINT_DEFAULT, BENEFIT_TITLE_DEFAULT, COUPON_CODE_DEFAULT, COUPON_HEADING_DEFAULT, COUPON_SUBHEADING_DEFAULT, COUPON_TITLE_DEFAULT, type CouponStripBlock, type CouponStripBlockProps, type CouponStripsControls, type CouponStripsSectionDoc, type CouponStripsSettings, CouponTickerMinimal, type CouponTickerMinimalProps, CreativeCategoryMarquee, DEFAULT_STOREFRONT_FONT_ID, DEFAULT_TYPOGRAPHY, DualLineFeatureMarquee, type DualLineFeatureMarqueeProps, FOOTER_COLUMN_HEADING_DEFAULT, FOOTER_MERCHANT_NAME_DEFAULT, FOOTER_MERCHANT_SUB_LABEL_DEFAULT, FOOTER_POLICY_LINK_TEXT_DEFAULT, FOOTER_TAGLINE_DEFAULT, FannedPhoneReels, type FannedPhoneReelsProps, FeatureMarqueeBlock, type FeatureMarqueeBlockProps, type FestivalBlock, type FestivalCardBlock, type FestivalIllustrationType, type FestivalPetalBlock, type FestivalSectionControls, type FestivalSectionDoc, type FestivalSectionPadding, type FestivalSectionSettings, FloatingSnackGalleryHero, type FloatingSnackGalleryHeroProps, type FloatingSnackGalleryHeroSectionDoc, type FloatingSnackGalleryImageBlock, FullImageTypingHero, type FullImageTypingHeroProps, type FullImageTypingHeroSectionDoc, type FullImageTypingWordBlock, HEADER_BRAND_NAME_DEFAULT, HEADER_BRAND_SUBTITLE_DEFAULT, HEADER_NAV_LINK_TEXT_DEFAULT, HEADER_NAV_LINK_TEXT_LIGHT_DEFAULT, HERO_SECTION_LABEL_DEFAULT, HERO_SLIDE_DESCRIPTION_DEFAULT, HERO_SLIDE_HEADLINE_DEFAULT, HeroScrollableSlide, type HeroScrollableSlideProps, type HeroSection, type HeroSectionControls, type HeroSectionSettings, type HeroSlideAlignmentOverride, type HeroSlideBlock, type HeroSlideBlockProps, HeroSlider, type HeroSliderProps, INFO_CARD_DARK_SURFACE_DEFAULT, INFO_CARD_LIGHT_SURFACE_DEFAULT, INFO_CARD_TITLE_DEFAULT, ImmersiveImageRevealHero, type ImmersiveImageRevealHeroProps, type ImmersiveImageRevealHeroSectionDoc, type ImmersiveImageRevealImageBlock, type ImmersiveImageRevealTypingWordBlock, type InfoCardBlock, LightMediaPresencePremium, type LightMediaPresencePremiumProps, type LightPremiumInfoCardBlock, type LightPremiumVideoCardBlock, type LightPremiumVideoHeroSectionDoc, type LightPremiumVideoHeroSettings, LiquidFocusCategories, LogoFocusedHeader, type LogoFocusedHeaderControls, type LogoFocusedHeaderNavBlock, type LogoFocusedHeaderNavBlockProps, type LogoFocusedHeaderProps, type LogoFocusedHeaderSectionDoc, type LogoFocusedHeaderSettings, MARQUEE_BOTTOM_ROW_DEFAULT, MARQUEE_TEXT_LARGE_DEFAULT, MARQUEE_TEXT_SMALL_DEFAULT, MARQUEE_TOP_ROW_DEFAULT, type MarqueeLineProps, type MarqueeTextBlock, type MarqueeTextControls, type MarqueeTextRow, type MarqueeTextSectionDoc, type MarqueeTextSettings, MediaPresenceVideoHero, type MediaPresenceVideoHeroProps, MerchantFooterReveal, type MerchantFooterRevealBlock, type MerchantFooterRevealPolicyBlockProps, type MerchantFooterRevealProps, type MerchantFooterRevealPropsComponent, type MerchantFooterRevealSectionDoc, type MerchantFooterRevealSettings, type MerchantFooterRevealSocialPlatform, type MessageStyleTestimonialBlock, type MessageStyleTestimonialItemProps, MessageStyleTestimonials, type MessageStyleTestimonialsProps, type MessageStyleTestimonialsSectionDoc, type MessageStyleTestimonialsSettings, type MinimalTimelineBenefitBlock, type MinimalTimelineBenefitBlockProps, MinimalTimelineBenefits, type MinimalTimelineBenefitsControls, type MinimalTimelineBenefitsProps, type MinimalTimelineBenefitsSectionDoc, type MinimalTimelineBenefitsSettings, NSPSignatureHeroMarquee, type NSPSignatureHeroMarqueeBlock, type NSPSignatureHeroMarqueeProps, type NSPSignatureHeroMarqueeSectionDoc, NSP_FLOATING_SNACK_TITLE_DEFAULT, NSP_MARQUEE_CARD_SUBTITLE_DEFAULT, NSP_MARQUEE_CARD_TITLE_DEFAULT, NSP_MARQUEE_EYEBROW_DEFAULT, NSP_MARQUEE_HEADING_DEFAULT, NSP_MARQUEE_HERO_BADGE_TEXT_DEFAULT, NSP_MARQUEE_SUBHEADING_DEFAULT, NSP_POKER_DESCRIPTION_DEFAULT, NSP_POKER_EYEBROW_DEFAULT, NSP_POKER_FRONT_CARD_EYEBROW_DEFAULT, NSP_POKER_FRONT_CARD_TITLE_DEFAULT, NSP_POKER_HEADING_DEFAULT, NSP_SIG_HERO_DESCRIPTION_DEFAULT, NSP_SIG_HERO_EYEBROW_DEFAULT, NSP_SIG_HERO_HEADING_DEFAULT, NSP_SIG_HERO_PRIMARY_BUTTON_TEXT_DEFAULT, NSP_SIG_HERO_SECONDARY_BUTTON_TEXT_DEFAULT, NSP_TYPING_DESCRIPTION_DEFAULT, NSP_TYPING_PRIMARY_BUTTON_TEXT_DEFAULT, NSP_TYPING_SECONDARY_BUTTON_TEXT_DEFAULT, NSP_TYPING_STATIC_HEADING_DEFAULT, NSP_TYPING_WORD_DEFAULT, type NspSignatureHeroBlock, type NspSignatureHeroSectionDoc, PRODUCT_CARD_DESCRIPTION_DEFAULT, PRODUCT_CARD_SUBTITLE_DEFAULT, PRODUCT_CARD_TITLE_DEFAULT, PRODUCT_CARD_TITLE_OVERLAY_DEFAULT, PRODUCT_MARQUEE_DESCRIPTION_DEFAULT, PRODUCT_MARQUEE_EYEBROW_DEFAULT, PRODUCT_MARQUEE_HEADING_DEFAULT, PokerRowRevealHero, type PokerRowRevealHeroBlock, type PokerRowRevealHeroProps, type PokerRowRevealHeroSectionDoc, PortraitTestimonials, ProductCardMarquee, ProductMarquee, type ProductMarqueeBlock, type ProductMarqueeItemProps, type ProductMarqueeProps, type ProductMarqueeSectionDoc, type ProductMarqueeSettings, RakhiGiftFestival, type RakhiGiftFestivalProps, type ReelItemBlock, type ReelsSectionControls, type ReelsSectionDoc, type ReelsSectionPadding, type ReelsSectionSettings, type ResolvedSectionAppearance, type ResolvedTextStyle, SECTION_TYPE_APPEARANCE_DEFAULTS, STOREFRONT_FONTS, STOREFRONT_FONT_OPTIONS, STYLE_APPLE_MARQUEE, STYLE_MESSAGE_BUBBLE, STYLE_PORTRAIT_TESTIMONIALS, STYLE_STACKED_TESTIMONIALS, ScrollParallaxSignatureHero, type ScrollParallaxSignatureHeroProps, type SectionAppearance, type StackedTestimonialBlock, type StackedTestimonialItemProps, StackedTestimonials, type StackedTestimonialsProps, type StackedTestimonialsSectionDoc, type StackedTestimonialsSettings, StorefrontFontLoader, type StorefrontTheme, SubHeroImageLoop, type SubHeroImageLoopProps, type SubHeroImageLoopSectionDoc, TESTIMONIAL_BACKGROUND_WORD_DEFAULT, TESTIMONIAL_BUTTON_TEXT_DEFAULT, TESTIMONIAL_CUSTOMER_NAME_DEFAULT, TESTIMONIAL_CUSTOMER_ROLE_DEFAULT, TESTIMONIAL_DESCRIPTION_DEFAULT, TESTIMONIAL_EYEBROW_DEFAULT, TESTIMONIAL_HEADING_DEFAULT, TESTIMONIAL_HIGHLIGHT_TEXT_DEFAULT, TESTIMONIAL_QUOTE_TEXT_DEFAULT, TESTIMONIAL_SUBHEADING_DEFAULT, type TextStyle, TransparentHeroHeader, type TransparentHeroHeaderControls, type TransparentHeroHeaderNavBlock, type TransparentHeroHeaderNavBlockProps, type TransparentHeroHeaderProps, type TransparentHeroHeaderSectionDoc, type TransparentHeroHeaderSettings, type TypographyRole, VIDEO_CARD_EYEBROW_DEFAULT, VIDEO_CARD_TITLE_DEFAULT, VIDEO_HERO_EYEBROW_DEFAULT, VIDEO_HERO_HEADING_DEFAULT, VIDEO_HERO_SUBHEADING_DEFAULT, type VideoCardBlock, type VideoHeroIconType, type VideoHeroInfoStyleType, type VideoHeroSectionDoc, type VideoHeroSectionPadding, type VideoHeroSettings, collectStorefrontFontIdsFromDocument, collectThemeFontIds, getStorefrontFontById, normalizeAppearance, normalizeBlockGroupStyles, normalizeFieldStyles, normalizeImageUrl, normalizeSectionTypography, normalizeSectionTypographyRole, normalizeTextStyle, normalizeTheme, normalizeThemeTypography, normalizeTypography, resolveBlockGroupSurfaceStyle, resolveBlockGroupTextStyle, resolveSectionAppearance, resolveStorefrontFontFamily, resolveTextStyle, resolveThemeFontKey, resolvedTextStyleToInlineStyle, sectionAppearanceStyle, stripFieldOverrideStyle };
+export { AppleFlipCardTestimonials, AppleMessageTestimonials, BENEFITS_DESCRIPTION_DEFAULT, BENEFITS_EYEBROW_DEFAULT, BENEFITS_HEADING_DEFAULT, BENEFIT_DESCRIPTION_DEFAULT, BENEFIT_POINT_DEFAULT, BENEFIT_TITLE_DEFAULT, COUPON_CODE_DEFAULT, COUPON_HEADING_DEFAULT, COUPON_SUBHEADING_DEFAULT, COUPON_TITLE_DEFAULT, type ChecklistItemBlock, type ChecklistItemBlockProps, type CouponStripBlock, type CouponStripBlockProps, type CouponStripsControls, type CouponStripsSectionDoc, type CouponStripsSettings, CouponTickerMinimal, type CouponTickerMinimalProps, CreativeCategoryMarquee, DEFAULT_STOREFRONT_FONT_ID, DEFAULT_TYPOGRAPHY, DualLineFeatureMarquee, type DualLineFeatureMarqueeProps, FOOTER_COLUMN_HEADING_DEFAULT, FOOTER_MERCHANT_NAME_DEFAULT, FOOTER_MERCHANT_SUB_LABEL_DEFAULT, FOOTER_POLICY_LINK_TEXT_DEFAULT, FOOTER_TAGLINE_DEFAULT, FannedPhoneReels, type FannedPhoneReelsProps, FeatureMarqueeBlock, type FeatureMarqueeBlockProps, type FestivalBlock, type FestivalCardBlock, type FestivalIllustrationType, type FestivalPetalBlock, type FestivalSectionControls, type FestivalSectionDoc, type FestivalSectionPadding, type FestivalSectionSettings, FloatingSnackGalleryHero, type FloatingSnackGalleryHeroProps, type FloatingSnackGalleryHeroSectionDoc, type FloatingSnackGalleryImageBlock, FullImageTypingHero, type FullImageTypingHeroProps, type FullImageTypingHeroSectionDoc, type FullImageTypingWordBlock, HEADER_BRAND_NAME_DEFAULT, HEADER_BRAND_SUBTITLE_DEFAULT, HEADER_NAV_LINK_TEXT_DEFAULT, HEADER_NAV_LINK_TEXT_LIGHT_DEFAULT, HERO_SECTION_LABEL_DEFAULT, HERO_SLIDE_DESCRIPTION_DEFAULT, HERO_SLIDE_HEADLINE_DEFAULT, HeroScrollableSlide, type HeroScrollableSlideProps, type HeroSection, type HeroSectionControls, type HeroSectionSettings, type HeroSlideAlignmentOverride, type HeroSlideBlock, type HeroSlideBlockProps, HeroSlider, type HeroSliderProps, INFO_CARD_DARK_SURFACE_DEFAULT, INFO_CARD_LIGHT_SURFACE_DEFAULT, INFO_CARD_TITLE_DEFAULT, ImmersiveImageRevealHero, type ImmersiveImageRevealHeroProps, type ImmersiveImageRevealHeroSectionDoc, type ImmersiveImageRevealImageBlock, type ImmersiveImageRevealTypingWordBlock, type InfoCardBlock, JourneySplitLeadForm, type JourneySplitLeadFormProps, type LeadFormBlock, type LeadFormSectionDoc, type LeadFormSectionProps, type LeadFormSettings, LightMediaPresencePremium, type LightMediaPresencePremiumProps, type LightPremiumInfoCardBlock, type LightPremiumVideoCardBlock, type LightPremiumVideoHeroSectionDoc, type LightPremiumVideoHeroSettings, LiquidFocusCategories, LogoFocusedHeader, type LogoFocusedHeaderControls, type LogoFocusedHeaderNavBlock, type LogoFocusedHeaderNavBlockProps, type LogoFocusedHeaderProps, type LogoFocusedHeaderSectionDoc, type LogoFocusedHeaderSettings, MARQUEE_BOTTOM_ROW_DEFAULT, MARQUEE_TEXT_LARGE_DEFAULT, MARQUEE_TEXT_SMALL_DEFAULT, MARQUEE_TOP_ROW_DEFAULT, type MarqueeLineProps, type MarqueeTextBlock, type MarqueeTextControls, type MarqueeTextRow, type MarqueeTextSectionDoc, type MarqueeTextSettings, MediaPresenceVideoHero, type MediaPresenceVideoHeroProps, MerchantFooterReveal, type MerchantFooterRevealBlock, type MerchantFooterRevealPolicyBlockProps, type MerchantFooterRevealProps, type MerchantFooterRevealPropsComponent, type MerchantFooterRevealSectionDoc, type MerchantFooterRevealSettings, type MerchantFooterRevealSocialPlatform, type MessageStyleTestimonialBlock, type MessageStyleTestimonialItemProps, MessageStyleTestimonials, type MessageStyleTestimonialsProps, type MessageStyleTestimonialsSectionDoc, type MessageStyleTestimonialsSettings, type MinimalTimelineBenefitBlock, type MinimalTimelineBenefitBlockProps, MinimalTimelineBenefits, type MinimalTimelineBenefitsControls, type MinimalTimelineBenefitsProps, type MinimalTimelineBenefitsSectionDoc, type MinimalTimelineBenefitsSettings, NSPSignatureHeroMarquee, type NSPSignatureHeroMarqueeBlock, type NSPSignatureHeroMarqueeProps, type NSPSignatureHeroMarqueeSectionDoc, NSP_FLOATING_SNACK_TITLE_DEFAULT, NSP_MARQUEE_CARD_SUBTITLE_DEFAULT, NSP_MARQUEE_CARD_TITLE_DEFAULT, NSP_MARQUEE_EYEBROW_DEFAULT, NSP_MARQUEE_HEADING_DEFAULT, NSP_MARQUEE_HERO_BADGE_TEXT_DEFAULT, NSP_MARQUEE_SUBHEADING_DEFAULT, NSP_POKER_DESCRIPTION_DEFAULT, NSP_POKER_EYEBROW_DEFAULT, NSP_POKER_FRONT_CARD_EYEBROW_DEFAULT, NSP_POKER_FRONT_CARD_TITLE_DEFAULT, NSP_POKER_HEADING_DEFAULT, NSP_SIG_HERO_DESCRIPTION_DEFAULT, NSP_SIG_HERO_EYEBROW_DEFAULT, NSP_SIG_HERO_HEADING_DEFAULT, NSP_SIG_HERO_PRIMARY_BUTTON_TEXT_DEFAULT, NSP_SIG_HERO_SECONDARY_BUTTON_TEXT_DEFAULT, NSP_TYPING_DESCRIPTION_DEFAULT, NSP_TYPING_PRIMARY_BUTTON_TEXT_DEFAULT, NSP_TYPING_SECONDARY_BUTTON_TEXT_DEFAULT, NSP_TYPING_STATIC_HEADING_DEFAULT, NSP_TYPING_WORD_DEFAULT, type NspSignatureHeroBlock, type NspSignatureHeroSectionDoc, PRODUCT_CARD_DESCRIPTION_DEFAULT, PRODUCT_CARD_SUBTITLE_DEFAULT, PRODUCT_CARD_TITLE_DEFAULT, PRODUCT_CARD_TITLE_OVERLAY_DEFAULT, PRODUCT_MARQUEE_DESCRIPTION_DEFAULT, PRODUCT_MARQUEE_EYEBROW_DEFAULT, PRODUCT_MARQUEE_HEADING_DEFAULT, PokerRowRevealHero, type PokerRowRevealHeroBlock, type PokerRowRevealHeroProps, type PokerRowRevealHeroSectionDoc, PortraitTestimonials, ProductCardMarquee, ProductMarquee, type ProductMarqueeBlock, type ProductMarqueeItemProps, type ProductMarqueeProps, type ProductMarqueeSectionDoc, type ProductMarqueeSettings, type PublicFormField, type PublicFormFieldDataType, type PublicFormMobileValue, type PublicFormSchema, type PublicFormSlotOption, type PublicFormSubmitBody, RakhiGiftFestival, type RakhiGiftFestivalProps, type ReelItemBlock, type ReelsSectionControls, type ReelsSectionDoc, type ReelsSectionPadding, type ReelsSectionSettings, type ResolvedSectionAppearance, type ResolvedTextStyle, SECTION_TYPE_APPEARANCE_DEFAULTS, STOREFRONT_FONTS, STOREFRONT_FONT_OPTIONS, STYLE_APPLE_MARQUEE, STYLE_MESSAGE_BUBBLE, STYLE_PORTRAIT_TESTIMONIALS, STYLE_STACKED_TESTIMONIALS, ScrollParallaxSignatureHero, type ScrollParallaxSignatureHeroProps, type SectionAppearance, ServiceInquiryForm, type ServiceInquiryFormProps, type ShowcaseItemBlock, type ShowcaseItemBlockProps, type StackedTestimonialBlock, type StackedTestimonialItemProps, StackedTestimonials, type StackedTestimonialsProps, type StackedTestimonialsSectionDoc, type StackedTestimonialsSettings, StorefrontFontLoader, type StorefrontTheme, SubHeroImageLoop, type SubHeroImageLoopProps, type SubHeroImageLoopSectionDoc, TESTIMONIAL_BACKGROUND_WORD_DEFAULT, TESTIMONIAL_BUTTON_TEXT_DEFAULT, TESTIMONIAL_CUSTOMER_NAME_DEFAULT, TESTIMONIAL_CUSTOMER_ROLE_DEFAULT, TESTIMONIAL_DESCRIPTION_DEFAULT, TESTIMONIAL_EYEBROW_DEFAULT, TESTIMONIAL_HEADING_DEFAULT, TESTIMONIAL_HIGHLIGHT_TEXT_DEFAULT, TESTIMONIAL_QUOTE_TEXT_DEFAULT, TESTIMONIAL_SUBHEADING_DEFAULT, type TextStyle, TransparentHeroHeader, type TransparentHeroHeaderControls, type TransparentHeroHeaderNavBlock, type TransparentHeroHeaderNavBlockProps, type TransparentHeroHeaderProps, type TransparentHeroHeaderSectionDoc, type TransparentHeroHeaderSettings, type TypographyRole, VIDEO_CARD_EYEBROW_DEFAULT, VIDEO_CARD_TITLE_DEFAULT, VIDEO_HERO_EYEBROW_DEFAULT, VIDEO_HERO_HEADING_DEFAULT, VIDEO_HERO_SUBHEADING_DEFAULT, type VideoCardBlock, type VideoHeroIconType, type VideoHeroInfoStyleType, type VideoHeroSectionDoc, type VideoHeroSectionPadding, type VideoHeroSettings, collectStorefrontFontIdsFromDocument, collectThemeFontIds, getStorefrontFontById, normalizeAppearance, normalizeBlockGroupStyles, normalizeFieldStyles, normalizeImageUrl, normalizeSectionTypography, normalizeSectionTypographyRole, normalizeTextStyle, normalizeTheme, normalizeThemeTypography, normalizeTypography, resolveBlockGroupSurfaceStyle, resolveBlockGroupTextStyle, resolveSectionAppearance, resolveStorefrontFontFamily, resolveTextStyle, resolveThemeFontKey, resolvedTextStyleToInlineStyle, sectionAppearanceStyle, stripFieldOverrideStyle };
