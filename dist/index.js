@@ -69,6 +69,7 @@ __export(index_exports, {
   INFO_CARD_LIGHT_SURFACE_DEFAULT: () => INFO_CARD_LIGHT_SURFACE_DEFAULT,
   INFO_CARD_TITLE_DEFAULT: () => INFO_CARD_TITLE_DEFAULT,
   ImmersiveImageRevealHero: () => ImmersiveImageRevealHero_default,
+  JourneySplitLeadForm: () => JourneySplitLeadForm,
   LightMediaPresencePremium: () => LightMediaPresencePremium,
   LiquidFocusCategories: () => LiquidFocusCategories,
   LogoFocusedHeader: () => LogoFocusedHeader,
@@ -123,6 +124,7 @@ __export(index_exports, {
   STYLE_PORTRAIT_TESTIMONIALS: () => STYLE_PORTRAIT_TESTIMONIALS,
   STYLE_STACKED_TESTIMONIALS: () => STYLE_STACKED_TESTIMONIALS,
   ScrollParallaxSignatureHero: () => ScrollParallaxSignatureHero,
+  ServiceInquiryForm: () => ServiceInquiryForm,
   StackedTestimonials: () => StackedTestimonials,
   StorefrontFontLoader: () => StorefrontFontLoader,
   SubHeroImageLoop: () => SubHeroImageLoop,
@@ -7520,12 +7522,12 @@ function normalizePolicyHref(raw) {
   return s;
 }
 function InfoRow({
-  icon: Icon,
+  icon: Icon3,
   text,
   style
 }) {
   if (!text) return null;
-  return /* @__PURE__ */ import_react26.default.createElement("div", { className: "ak-mf__info-row" }, /* @__PURE__ */ import_react26.default.createElement("span", { className: "ak-mf__info-icon", "aria-hidden": true }, /* @__PURE__ */ import_react26.default.createElement(Icon, { className: "ak-mf__info-icon-svg" })), /* @__PURE__ */ import_react26.default.createElement("p", { className: "ak-mf__info-text", style }, text));
+  return /* @__PURE__ */ import_react26.default.createElement("div", { className: "ak-mf__info-row" }, /* @__PURE__ */ import_react26.default.createElement("span", { className: "ak-mf__info-icon", "aria-hidden": true }, /* @__PURE__ */ import_react26.default.createElement(Icon3, { className: "ak-mf__info-icon-svg" })), /* @__PURE__ */ import_react26.default.createElement("p", { className: "ak-mf__info-text", style }, text));
 }
 function collectPolicies(blocks) {
   var _a;
@@ -10253,36 +10255,747 @@ function safeText17(value) {
 function safeUrl(value) {
   return String(value != null ? value : "").trim();
 }
-var IllRakhi = () => /* @__PURE__ */ import_react35.default.createElement("svg", { viewBox: "0 0 300 300", width: "100%", height: "100%", preserveAspectRatio: "xMidYMid slice", style: { display: "block" } }, /* @__PURE__ */ import_react35.default.createElement("rect", { width: "300", height: "300", fill: "#100904" }), /* @__PURE__ */ import_react35.default.createElement("ellipse", { cx: "150", cy: "198", rx: "90", ry: "10", fill: "#000", opacity: "0.55" }), /* @__PURE__ */ import_react35.default.createElement("path", { d: "M0 100 C55 92 105 95 142 104", fill: "none", stroke: "#8B001A", strokeWidth: "6", strokeLinecap: "round" }), /* @__PURE__ */ import_react35.default.createElement("path", { d: "M0 106 C55 98 105 101 142 110", fill: "none", stroke: "#C8960C", strokeWidth: "2.5", strokeLinecap: "round", opacity: "0.8" }), /* @__PURE__ */ import_react35.default.createElement("path", { d: "M300 100 C245 92 195 95 158 104", fill: "none", stroke: "#8B001A", strokeWidth: "6", strokeLinecap: "round" }), /* @__PURE__ */ import_react35.default.createElement("path", { d: "M300 106 C245 98 195 101 158 110", fill: "none", stroke: "#C8960C", strokeWidth: "2.5", strokeLinecap: "round", opacity: "0.8" }), [[22, 102], [52, 97], [82, 95], [112, 98]].map(([x, y], i) => /* @__PURE__ */ import_react35.default.createElement("g", { key: i }, /* @__PURE__ */ import_react35.default.createElement("circle", { cx: x, cy: y, r: "5.5", fill: i % 2 === 0 ? "#FFD700" : "#D4145A", stroke: "#7A3B00", strokeWidth: "0.8" }), /* @__PURE__ */ import_react35.default.createElement("circle", { cx: x - 1.5, cy: y - 1.5, r: "1.5", fill: "#fff", opacity: "0.4" }))), [[278, 102], [248, 97], [218, 95], [188, 98]].map(([x, y], i) => /* @__PURE__ */ import_react35.default.createElement("g", { key: i }, /* @__PURE__ */ import_react35.default.createElement("circle", { cx: x, cy: y, r: "5.5", fill: i % 2 === 0 ? "#FFD700" : "#D4145A", stroke: "#7A3B00", strokeWidth: "0.8" }), /* @__PURE__ */ import_react35.default.createElement("circle", { cx: x - 1.5, cy: y - 1.5, r: "1.5", fill: "#fff", opacity: "0.4" }))), Array.from({ length: 12 }).map((_, i) => {
-  const a = i / 12 * Math.PI * 2, px = 150 + 60 * Math.cos(a), py = 107 + 60 * Math.sin(a);
-  return /* @__PURE__ */ import_react35.default.createElement("ellipse", { key: i, cx: px, cy: py, rx: "5.5", ry: "8.5", fill: i % 2 === 0 ? "#FFD700" : "#FF6B35", opacity: "0.92", transform: `rotate(${i * 30},${px},${py})` });
-}), /* @__PURE__ */ import_react35.default.createElement("circle", { cx: "150", cy: "107", r: "52", fill: "#1A0C04", stroke: "#C8960C", strokeWidth: "2.5" }), Array.from({ length: 8 }).map((_, i) => {
-  const a = i / 8 * Math.PI * 2, px = 150 + 33 * Math.cos(a), py = 107 + 33 * Math.sin(a);
-  return /* @__PURE__ */ import_react35.default.createElement("ellipse", { key: i, cx: px, cy: py, rx: "8", ry: "13", fill: i % 2 === 0 ? "#FF6B35" : "#C8001E", opacity: "0.88", transform: `rotate(${i * 45 + 90},${px},${py})` });
-}), Array.from({ length: 8 }).map((_, i) => {
-  const a = i / 8 * Math.PI * 2 + Math.PI / 8, px = 150 + 19 * Math.cos(a), py = 107 + 19 * Math.sin(a);
-  return /* @__PURE__ */ import_react35.default.createElement("ellipse", { key: i, cx: px, cy: py, rx: "4.5", ry: "8", fill: i % 2 === 0 ? "#FFD700" : "#FFB347", opacity: "0.82", transform: `rotate(${i * 45 + 90},${px},${py})` });
-}), /* @__PURE__ */ import_react35.default.createElement("circle", { cx: "150", cy: "107", r: "13", fill: "#1A0C04", stroke: "#FFD700", strokeWidth: "1.5" }), /* @__PURE__ */ import_react35.default.createElement("circle", { cx: "150", cy: "107", r: "9", fill: "#6A1B9A" }), /* @__PURE__ */ import_react35.default.createElement("circle", { cx: "150", cy: "107", r: "5.5", fill: "#C8001E" }), /* @__PURE__ */ import_react35.default.createElement("circle", { cx: "150", cy: "107", r: "2.5", fill: "#FFD700" }), /* @__PURE__ */ import_react35.default.createElement("circle", { cx: "148", cy: "105", r: "1.3", fill: "#fff", opacity: "0.65" }));
-var IllMithai = () => /* @__PURE__ */ import_react35.default.createElement("svg", { viewBox: "0 0 300 300", width: "100%", height: "100%", preserveAspectRatio: "xMidYMid slice", style: { display: "block" } }, /* @__PURE__ */ import_react35.default.createElement("rect", { width: "300", height: "300", fill: "#110509" }), /* @__PURE__ */ import_react35.default.createElement("ellipse", { cx: "150", cy: "208", rx: "95", ry: "8", fill: "#000", opacity: "0.6" }), /* @__PURE__ */ import_react35.default.createElement("rect", { x: "28", y: "110", width: "244", height: "90", rx: "10", fill: "#4A1E08", stroke: "#7A3B10", strokeWidth: "1.2" }), /* @__PURE__ */ import_react35.default.createElement("rect", { x: "28", y: "38", width: "244", height: "84", rx: "10", fill: "#5C2A0C", stroke: "#7A3B10", strokeWidth: "1.2", transform: "rotate(-12,28,38)" }), /* @__PURE__ */ import_react35.default.createElement("rect", { x: "32", y: "114", width: "236", height: "82", rx: "8", fill: "#2A0808" }), [[65, 140], [110, 140], [155, 140], [200, 140], [245, 140], [87, 165], [132, 165], [177, 165], [222, 165]].map(([x, y], i) => /* @__PURE__ */ import_react35.default.createElement("g", { key: i }, /* @__PURE__ */ import_react35.default.createElement("polygon", { points: `${x},${y - 13} ${x + 18},${y} ${x},${y + 13} ${x - 18},${y}`, fill: ["#EDD9A3", "#F5E6C8", "#E8D090", "#F0E0B0"][i % 4] }), /* @__PURE__ */ import_react35.default.createElement("polygon", { points: `${x},${y - 13} ${x + 18},${y} ${x},${y + 13} ${x - 18},${y}`, fill: "none", stroke: "#B8860B", strokeWidth: "0.8", opacity: "0.5" }))), [[42, 148], [258, 148], [42, 182], [258, 182]].map(([x, y], i) => /* @__PURE__ */ import_react35.default.createElement("g", { key: i }, /* @__PURE__ */ import_react35.default.createElement("circle", { cx: x, cy: y, r: "11", fill: ["#FF8C00", "#FFA500", "#FF7F00", "#FFB347"][i] }), /* @__PURE__ */ import_react35.default.createElement("circle", { cx: x - 3, cy: y - 3, r: "4", fill: "#FFC56B", opacity: "0.4" }))), /* @__PURE__ */ import_react35.default.createElement("circle", { cx: "150", cy: "110", r: "6", fill: "#FFD700", stroke: "#B8860B", strokeWidth: "1" }), /* @__PURE__ */ import_react35.default.createElement("rect", { x: "92", y: "52", width: "96", height: "26", rx: "4", fill: "#FFD700", transform: "rotate(-12,92,52)" }), /* @__PURE__ */ import_react35.default.createElement("text", { x: "140", y: "70", textAnchor: "middle", fontSize: "9", fontWeight: "700", fill: "#3A1500", fontFamily: "sans-serif", transform: "rotate(-12,140,70)" }, "PREMIUM MITHAI"));
-var IllPuja = () => /* @__PURE__ */ import_react35.default.createElement("svg", { viewBox: "0 0 300 300", width: "100%", height: "100%", preserveAspectRatio: "xMidYMid slice", style: { display: "block" } }, /* @__PURE__ */ import_react35.default.createElement("rect", { width: "300", height: "300", fill: "#08060F" }), /* @__PURE__ */ import_react35.default.createElement("ellipse", { cx: "150", cy: "208", rx: "95", ry: "7", fill: "#000", opacity: "0.65" }), /* @__PURE__ */ import_react35.default.createElement("ellipse", { cx: "150", cy: "171", rx: "112", ry: "19", fill: "#B8960C", stroke: "#FFD700", strokeWidth: "1" }), /* @__PURE__ */ import_react35.default.createElement("ellipse", { cx: "150", cy: "167", rx: "108", ry: "16", fill: "#120F22" }), /* @__PURE__ */ import_react35.default.createElement("path", { d: "M126 167 Q123 153 127 143 Q135 129 150 124 Q165 129 173 143 Q177 153 174 167Z", fill: "#C87210" }), /* @__PURE__ */ import_react35.default.createElement("ellipse", { cx: "150", cy: "167", rx: "24", ry: "8", fill: "#D4890C" }), /* @__PURE__ */ import_react35.default.createElement("path", { d: "M143 143 Q140 131 143 119 Q146 108 150 96 Q154 108 157 119 Q160 131 157 143Z", fill: "#FF8C00", opacity: "0.92" }), /* @__PURE__ */ import_react35.default.createElement("path", { d: "M146 141 Q143 130 146 119 Q148 111 150 101 Q152 111 154 119 Q157 130 154 141Z", fill: "#FFD700" }), /* @__PURE__ */ import_react35.default.createElement("path", { d: "M148 139 Q147 128 149 118 Q149.5 112 150 104 Q150.5 112 151 118 Q153 128 152 139Z", fill: "#fff", opacity: "0.85" }), [[-88, 167], [-62, 160], [62, 160], [88, 167]].map(([x, y], i) => /* @__PURE__ */ import_react35.default.createElement("g", { key: i }, /* @__PURE__ */ import_react35.default.createElement("circle", { cx: 150 + x, cy: y, r: "7", fill: ["#FF69B4", "#FFD700", "#FF6B35", "#FF69B4"][i], opacity: "0.65" }), /* @__PURE__ */ import_react35.default.createElement("circle", { cx: 150 + x, cy: y, r: "2.5", fill: "#fff", opacity: "0.5" }))), /* @__PURE__ */ import_react35.default.createElement("circle", { cx: "150", cy: "167", r: "5", fill: "#C8001E", opacity: "0.6" }));
-var IllSilver = () => /* @__PURE__ */ import_react35.default.createElement("svg", { viewBox: "0 0 300 300", width: "100%", height: "100%", preserveAspectRatio: "xMidYMid slice", style: { display: "block" } }, /* @__PURE__ */ import_react35.default.createElement("rect", { width: "300", height: "300", fill: "#060A0E" }), /* @__PURE__ */ import_react35.default.createElement("ellipse", { cx: "150", cy: "202", rx: "88", ry: "8", fill: "#000", opacity: "0.6" }), /* @__PURE__ */ import_react35.default.createElement("path", { d: "M0 105 C55 97 105 100 142 108", fill: "none", stroke: "#78909C", strokeWidth: "5.5", strokeLinecap: "round" }), /* @__PURE__ */ import_react35.default.createElement("path", { d: "M300 105 C245 97 195 100 158 108", fill: "none", stroke: "#78909C", strokeWidth: "5.5", strokeLinecap: "round" }), [[22, 106], [52, 101], [82, 99], [112, 102]].map(([x, y], i) => /* @__PURE__ */ import_react35.default.createElement("g", { key: i }, /* @__PURE__ */ import_react35.default.createElement("circle", { cx: x, cy: y, r: "5.5", fill: i % 2 === 0 ? "#E0E0E0" : "#B0BEC5", stroke: "#90A4AE", strokeWidth: "0.8" }), /* @__PURE__ */ import_react35.default.createElement("circle", { cx: x - 1.5, cy: y - 1.5, r: "1.8", fill: "#fff", opacity: "0.6" }))), [[278, 106], [248, 101], [218, 99], [188, 102]].map(([x, y], i) => /* @__PURE__ */ import_react35.default.createElement("g", { key: i }, /* @__PURE__ */ import_react35.default.createElement("circle", { cx: x, cy: y, r: "5.5", fill: i % 2 === 0 ? "#E0E0E0" : "#B0BEC5", stroke: "#90A4AE", strokeWidth: "0.8" }), /* @__PURE__ */ import_react35.default.createElement("circle", { cx: x - 1.5, cy: y - 1.5, r: "1.8", fill: "#fff", opacity: "0.6" }))), Array.from({ length: 12 }).map((_, i) => {
-  const a = i / 12 * Math.PI * 2, px = 150 + 60 * Math.cos(a), py = 107 + 60 * Math.sin(a);
-  return /* @__PURE__ */ import_react35.default.createElement("ellipse", { key: i, cx: px, cy: py, rx: "5", ry: "8", fill: i % 2 === 0 ? "#E0E0E0" : "#90A4AE", opacity: "0.88", transform: `rotate(${i * 30},${px},${py})` });
-}), /* @__PURE__ */ import_react35.default.createElement("circle", { cx: "150", cy: "107", r: "52", fill: "#0D1217", stroke: "#78909C", strokeWidth: "2.5" }), Array.from({ length: 8 }).map((_, i) => {
-  const a = i / 8 * Math.PI * 2, px = 150 + 32 * Math.cos(a), py = 107 + 32 * Math.sin(a);
-  return /* @__PURE__ */ import_react35.default.createElement("ellipse", { key: i, cx: px, cy: py, rx: "7.5", ry: "13", fill: i % 2 === 0 ? "#B0BEC5" : "#78909C", opacity: "0.85", transform: `rotate(${i * 45 + 90},${px},${py})` });
-}), Array.from({ length: 8 }).map((_, i) => {
-  const a = i / 8 * Math.PI * 2 + Math.PI / 8, px = 150 + 18 * Math.cos(a), py = 107 + 18 * Math.sin(a);
-  return /* @__PURE__ */ import_react35.default.createElement("ellipse", { key: i, cx: px, cy: py, rx: "4", ry: "7.5", fill: i % 2 === 0 ? "#CFD8DC" : "#B0BEC5", opacity: "0.8", transform: `rotate(${i * 45 + 90},${px},${py})` });
-}), /* @__PURE__ */ import_react35.default.createElement("circle", { cx: "150", cy: "107", r: "13", fill: "#0D1217", stroke: "#CFD8DC", strokeWidth: "1.5" }), /* @__PURE__ */ import_react35.default.createElement("circle", { cx: "150", cy: "107", r: "9", fill: "#263238" }), /* @__PURE__ */ import_react35.default.createElement("circle", { cx: "150", cy: "107", r: "5.5", fill: "#78909C" }), /* @__PURE__ */ import_react35.default.createElement("circle", { cx: "150", cy: "107", r: "3", fill: "#CFD8DC" }), /* @__PURE__ */ import_react35.default.createElement("circle", { cx: "148", cy: "105", r: "1.8", fill: "#fff", opacity: "0.7" }));
-var IllHamper = () => /* @__PURE__ */ import_react35.default.createElement("svg", { viewBox: "0 0 300 300", width: "100%", height: "100%", preserveAspectRatio: "xMidYMid slice", style: { display: "block" } }, /* @__PURE__ */ import_react35.default.createElement("rect", { width: "300", height: "300", fill: "#080D05" }), /* @__PURE__ */ import_react35.default.createElement("ellipse", { cx: "150", cy: "208", rx: "95", ry: "8", fill: "#000", opacity: "0.6" }), /* @__PURE__ */ import_react35.default.createElement("rect", { x: "30", y: "130", width: "240", height: "75", rx: "14", fill: "#4A2E0A" }), Array.from({ length: 5 }).map((_, i) => /* @__PURE__ */ import_react35.default.createElement("rect", { key: i, x: "30", y: 130 + i * 15, width: "240", height: "8", rx: "3", fill: "#5C3A12", opacity: "0.55" })), Array.from({ length: 9 }).map((_, i) => /* @__PURE__ */ import_react35.default.createElement("line", { key: i, x1: 30 + i * 28, y1: "130", x2: 30 + i * 28, y2: "205", stroke: "#7A4E20", strokeWidth: "1", opacity: "0.4" })), /* @__PURE__ */ import_react35.default.createElement("rect", { x: "25", y: "124", width: "250", height: "14", rx: "7", fill: "#7A4E20", stroke: "#C8960C", strokeWidth: "1" }), /* @__PURE__ */ import_react35.default.createElement("rect", { x: "45", y: "82", width: "60", height: "48", rx: "7", fill: "#7B2D8B" }), /* @__PURE__ */ import_react35.default.createElement("rect", { x: "45", y: "82", width: "60", height: "14", rx: "7", fill: "#9C27B0" }), /* @__PURE__ */ import_react35.default.createElement("text", { x: "75", y: "113", textAnchor: "middle", fontSize: "8", fontWeight: "700", fill: "#FFD700", fontFamily: "sans-serif" }, "RAKHI SET"), /* @__PURE__ */ import_react35.default.createElement("rect", { x: "115", y: "78", width: "70", height: "52", rx: "7", fill: "#8B3A00" }), /* @__PURE__ */ import_react35.default.createElement("rect", { x: "115", y: "78", width: "70", height: "14", rx: "7", fill: "#A34500" }), /* @__PURE__ */ import_react35.default.createElement("text", { x: "150", y: "109", textAnchor: "middle", fontSize: "8", fontWeight: "700", fill: "#FFD700", fontFamily: "sans-serif" }, "DRY FRUITS"), /* @__PURE__ */ import_react35.default.createElement("rect", { x: "195", y: "82", width: "68", height: "48", rx: "7", fill: "#C8001E" }), /* @__PURE__ */ import_react35.default.createElement("rect", { x: "195", y: "82", width: "68", height: "14", rx: "7", fill: "#E8001E" }), /* @__PURE__ */ import_react35.default.createElement("text", { x: "229", y: "113", textAnchor: "middle", fontSize: "8", fontWeight: "700", fill: "#FFD700", fontFamily: "sans-serif" }, "MITHAI BOX"), /* @__PURE__ */ import_react35.default.createElement("circle", { cx: "150", cy: "124", r: "7", fill: "#FFD700", stroke: "#B8860B", strokeWidth: "1.2" }), /* @__PURE__ */ import_react35.default.createElement("rect", { x: "155", y: "74", width: "58", height: "24", rx: "3", fill: "#FFD700" }), /* @__PURE__ */ import_react35.default.createElement("text", { x: "184", y: "90", textAnchor: "middle", fontSize: "8", fill: "#3A1500", fontFamily: "sans-serif", fontWeight: "700" }, "PREMIUM"));
-var IllFloral = () => /* @__PURE__ */ import_react35.default.createElement("svg", { viewBox: "0 0 300 300", width: "100%", height: "100%", preserveAspectRatio: "xMidYMid slice", style: { display: "block" } }, /* @__PURE__ */ import_react35.default.createElement("rect", { width: "300", height: "300", fill: "#100614" }), /* @__PURE__ */ import_react35.default.createElement("ellipse", { cx: "150", cy: "206", rx: "90", ry: "8", fill: "#000", opacity: "0.6" }), /* @__PURE__ */ import_react35.default.createElement("rect", { x: "45", y: "120", width: "210", height: "80", rx: "10", fill: "#1A0A28", stroke: "#9C27B0", strokeWidth: "1.2" }), /* @__PURE__ */ import_react35.default.createElement("rect", { x: "45", y: "120", width: "210", height: "20", rx: "10", fill: "#7B1FA2", opacity: "0.6" }), [[80, 115], [120, 108], [150, 105], [180, 108], [220, 115]].map(([x, y], i) => {
-  const cols = ["#FF69B4", "#FFD700", "#FF6B35", "#FF69B4", "#FFD700"];
-  return /* @__PURE__ */ import_react35.default.createElement("g", { key: i }, Array.from({ length: 5 }).map((_, j) => {
-    const a = j / 5 * Math.PI * 2;
-    return /* @__PURE__ */ import_react35.default.createElement("ellipse", { key: j, cx: x + 9 * Math.cos(a), cy: y + 7 * Math.sin(a), rx: "7", ry: "5", fill: cols[i], opacity: "0.8", transform: `rotate(${j * 72},${x + 9 * Math.cos(a)},${y + 7 * Math.sin(a)})` });
-  }), /* @__PURE__ */ import_react35.default.createElement("circle", { cx: x, cy: y, r: "5", fill: i % 2 === 0 ? "#FFD700" : "#FF6B35" }));
-}), /* @__PURE__ */ import_react35.default.createElement("line", { x1: "150", y1: "120", x2: "150", y2: "200", stroke: "#E91E63", strokeWidth: "4", opacity: "0.7" }), /* @__PURE__ */ import_react35.default.createElement("line", { x1: "45", y1: "160", x2: "255", y2: "160", stroke: "#E91E63", strokeWidth: "4", opacity: "0.7" }), /* @__PURE__ */ import_react35.default.createElement("circle", { cx: "150", cy: "120", r: "9", fill: "#FFD700", stroke: "#FF8F00", strokeWidth: "1.5" }), /* @__PURE__ */ import_react35.default.createElement("text", { x: "150", y: "147", textAnchor: "middle", fontSize: "11", fontWeight: "700", fill: "#E1BEE7", fontFamily: "serif", fontStyle: "italic" }, "With Love"), /* @__PURE__ */ import_react35.default.createElement("text", { x: "150", y: "165", textAnchor: "middle", fontSize: "9", fill: "#CE93D8", fontFamily: "sans-serif", letterSpacing: "2" }, "RAKSHA BANDHAN"));
+var IllRakhi = () => /* @__PURE__ */ import_react35.default.createElement(
+  "svg",
+  {
+    viewBox: "0 0 300 300",
+    width: "100%",
+    height: "100%",
+    preserveAspectRatio: "xMidYMid slice",
+    style: { display: "block" }
+  },
+  /* @__PURE__ */ import_react35.default.createElement("rect", { width: "300", height: "300", fill: "#100904" }),
+  /* @__PURE__ */ import_react35.default.createElement("ellipse", { cx: "150", cy: "198", rx: "90", ry: "10", fill: "#000", opacity: "0.55" }),
+  /* @__PURE__ */ import_react35.default.createElement(
+    "path",
+    {
+      d: "M0 100 C55 92 105 95 142 104",
+      fill: "none",
+      stroke: "#8B001A",
+      strokeWidth: "6",
+      strokeLinecap: "round"
+    }
+  ),
+  /* @__PURE__ */ import_react35.default.createElement(
+    "path",
+    {
+      d: "M0 106 C55 98 105 101 142 110",
+      fill: "none",
+      stroke: "#C8960C",
+      strokeWidth: "2.5",
+      strokeLinecap: "round",
+      opacity: "0.8"
+    }
+  ),
+  /* @__PURE__ */ import_react35.default.createElement(
+    "path",
+    {
+      d: "M300 100 C245 92 195 95 158 104",
+      fill: "none",
+      stroke: "#8B001A",
+      strokeWidth: "6",
+      strokeLinecap: "round"
+    }
+  ),
+  /* @__PURE__ */ import_react35.default.createElement(
+    "path",
+    {
+      d: "M300 106 C245 98 195 101 158 110",
+      fill: "none",
+      stroke: "#C8960C",
+      strokeWidth: "2.5",
+      strokeLinecap: "round",
+      opacity: "0.8"
+    }
+  ),
+  [
+    [22, 102],
+    [52, 97],
+    [82, 95],
+    [112, 98]
+  ].map(([x, y], i) => /* @__PURE__ */ import_react35.default.createElement("g", { key: i }, /* @__PURE__ */ import_react35.default.createElement(
+    "circle",
+    {
+      cx: x,
+      cy: y,
+      r: "5.5",
+      fill: i % 2 === 0 ? "#FFD700" : "#D4145A",
+      stroke: "#7A3B00",
+      strokeWidth: "0.8"
+    }
+  ), /* @__PURE__ */ import_react35.default.createElement("circle", { cx: x - 1.5, cy: y - 1.5, r: "1.5", fill: "#fff", opacity: "0.4" }))),
+  [
+    [278, 102],
+    [248, 97],
+    [218, 95],
+    [188, 98]
+  ].map(([x, y], i) => /* @__PURE__ */ import_react35.default.createElement("g", { key: i }, /* @__PURE__ */ import_react35.default.createElement(
+    "circle",
+    {
+      cx: x,
+      cy: y,
+      r: "5.5",
+      fill: i % 2 === 0 ? "#FFD700" : "#D4145A",
+      stroke: "#7A3B00",
+      strokeWidth: "0.8"
+    }
+  ), /* @__PURE__ */ import_react35.default.createElement("circle", { cx: x - 1.5, cy: y - 1.5, r: "1.5", fill: "#fff", opacity: "0.4" }))),
+  Array.from({ length: 12 }).map((_, i) => {
+    const a = i / 12 * Math.PI * 2, px = 150 + 60 * Math.cos(a), py = 107 + 60 * Math.sin(a);
+    return /* @__PURE__ */ import_react35.default.createElement(
+      "ellipse",
+      {
+        key: i,
+        cx: px,
+        cy: py,
+        rx: "5.5",
+        ry: "8.5",
+        fill: i % 2 === 0 ? "#FFD700" : "#FF6B35",
+        opacity: "0.92",
+        transform: `rotate(${i * 30},${px},${py})`
+      }
+    );
+  }),
+  /* @__PURE__ */ import_react35.default.createElement(
+    "circle",
+    {
+      cx: "150",
+      cy: "107",
+      r: "52",
+      fill: "#1A0C04",
+      stroke: "#C8960C",
+      strokeWidth: "2.5"
+    }
+  ),
+  Array.from({ length: 8 }).map((_, i) => {
+    const a = i / 8 * Math.PI * 2, px = 150 + 33 * Math.cos(a), py = 107 + 33 * Math.sin(a);
+    return /* @__PURE__ */ import_react35.default.createElement(
+      "ellipse",
+      {
+        key: i,
+        cx: px,
+        cy: py,
+        rx: "8",
+        ry: "13",
+        fill: i % 2 === 0 ? "#FF6B35" : "#C8001E",
+        opacity: "0.88",
+        transform: `rotate(${i * 45 + 90},${px},${py})`
+      }
+    );
+  }),
+  Array.from({ length: 8 }).map((_, i) => {
+    const a = i / 8 * Math.PI * 2 + Math.PI / 8, px = 150 + 19 * Math.cos(a), py = 107 + 19 * Math.sin(a);
+    return /* @__PURE__ */ import_react35.default.createElement(
+      "ellipse",
+      {
+        key: i,
+        cx: px,
+        cy: py,
+        rx: "4.5",
+        ry: "8",
+        fill: i % 2 === 0 ? "#FFD700" : "#FFB347",
+        opacity: "0.82",
+        transform: `rotate(${i * 45 + 90},${px},${py})`
+      }
+    );
+  }),
+  /* @__PURE__ */ import_react35.default.createElement(
+    "circle",
+    {
+      cx: "150",
+      cy: "107",
+      r: "13",
+      fill: "#1A0C04",
+      stroke: "#FFD700",
+      strokeWidth: "1.5"
+    }
+  ),
+  /* @__PURE__ */ import_react35.default.createElement("circle", { cx: "150", cy: "107", r: "9", fill: "#6A1B9A" }),
+  /* @__PURE__ */ import_react35.default.createElement("circle", { cx: "150", cy: "107", r: "5.5", fill: "#C8001E" }),
+  /* @__PURE__ */ import_react35.default.createElement("circle", { cx: "150", cy: "107", r: "2.5", fill: "#FFD700" }),
+  /* @__PURE__ */ import_react35.default.createElement("circle", { cx: "148", cy: "105", r: "1.3", fill: "#fff", opacity: "0.65" })
+);
+var IllMithai = () => /* @__PURE__ */ import_react35.default.createElement(
+  "svg",
+  {
+    viewBox: "0 0 300 300",
+    width: "100%",
+    height: "100%",
+    preserveAspectRatio: "xMidYMid slice",
+    style: { display: "block" }
+  },
+  /* @__PURE__ */ import_react35.default.createElement("rect", { width: "300", height: "300", fill: "#110509" }),
+  /* @__PURE__ */ import_react35.default.createElement("ellipse", { cx: "150", cy: "208", rx: "95", ry: "8", fill: "#000", opacity: "0.6" }),
+  /* @__PURE__ */ import_react35.default.createElement(
+    "rect",
+    {
+      x: "28",
+      y: "110",
+      width: "244",
+      height: "90",
+      rx: "10",
+      fill: "#4A1E08",
+      stroke: "#7A3B10",
+      strokeWidth: "1.2"
+    }
+  ),
+  /* @__PURE__ */ import_react35.default.createElement(
+    "rect",
+    {
+      x: "28",
+      y: "38",
+      width: "244",
+      height: "84",
+      rx: "10",
+      fill: "#5C2A0C",
+      stroke: "#7A3B10",
+      strokeWidth: "1.2",
+      transform: "rotate(-12,28,38)"
+    }
+  ),
+  /* @__PURE__ */ import_react35.default.createElement("rect", { x: "32", y: "114", width: "236", height: "82", rx: "8", fill: "#2A0808" }),
+  [
+    [65, 140],
+    [110, 140],
+    [155, 140],
+    [200, 140],
+    [245, 140],
+    [87, 165],
+    [132, 165],
+    [177, 165],
+    [222, 165]
+  ].map(([x, y], i) => /* @__PURE__ */ import_react35.default.createElement("g", { key: i }, /* @__PURE__ */ import_react35.default.createElement(
+    "polygon",
+    {
+      points: `${x},${y - 13} ${x + 18},${y} ${x},${y + 13} ${x - 18},${y}`,
+      fill: ["#EDD9A3", "#F5E6C8", "#E8D090", "#F0E0B0"][i % 4]
+    }
+  ), /* @__PURE__ */ import_react35.default.createElement(
+    "polygon",
+    {
+      points: `${x},${y - 13} ${x + 18},${y} ${x},${y + 13} ${x - 18},${y}`,
+      fill: "none",
+      stroke: "#B8860B",
+      strokeWidth: "0.8",
+      opacity: "0.5"
+    }
+  ))),
+  [
+    [42, 148],
+    [258, 148],
+    [42, 182],
+    [258, 182]
+  ].map(([x, y], i) => /* @__PURE__ */ import_react35.default.createElement("g", { key: i }, /* @__PURE__ */ import_react35.default.createElement(
+    "circle",
+    {
+      cx: x,
+      cy: y,
+      r: "11",
+      fill: ["#FF8C00", "#FFA500", "#FF7F00", "#FFB347"][i]
+    }
+  ), /* @__PURE__ */ import_react35.default.createElement("circle", { cx: x - 3, cy: y - 3, r: "4", fill: "#FFC56B", opacity: "0.4" }))),
+  /* @__PURE__ */ import_react35.default.createElement(
+    "circle",
+    {
+      cx: "150",
+      cy: "110",
+      r: "6",
+      fill: "#FFD700",
+      stroke: "#B8860B",
+      strokeWidth: "1"
+    }
+  ),
+  /* @__PURE__ */ import_react35.default.createElement(
+    "rect",
+    {
+      x: "92",
+      y: "52",
+      width: "96",
+      height: "26",
+      rx: "4",
+      fill: "#FFD700",
+      transform: "rotate(-12,92,52)"
+    }
+  ),
+  /* @__PURE__ */ import_react35.default.createElement(
+    "text",
+    {
+      x: "140",
+      y: "70",
+      textAnchor: "middle",
+      fontSize: "9",
+      fontWeight: "700",
+      fill: "#3A1500",
+      fontFamily: "sans-serif",
+      transform: "rotate(-12,140,70)"
+    },
+    "PREMIUM MITHAI"
+  )
+);
+var IllPuja = () => /* @__PURE__ */ import_react35.default.createElement(
+  "svg",
+  {
+    viewBox: "0 0 300 300",
+    width: "100%",
+    height: "100%",
+    preserveAspectRatio: "xMidYMid slice",
+    style: { display: "block" }
+  },
+  /* @__PURE__ */ import_react35.default.createElement("rect", { width: "300", height: "300", fill: "#08060F" }),
+  /* @__PURE__ */ import_react35.default.createElement("ellipse", { cx: "150", cy: "208", rx: "95", ry: "7", fill: "#000", opacity: "0.65" }),
+  /* @__PURE__ */ import_react35.default.createElement(
+    "ellipse",
+    {
+      cx: "150",
+      cy: "171",
+      rx: "112",
+      ry: "19",
+      fill: "#B8960C",
+      stroke: "#FFD700",
+      strokeWidth: "1"
+    }
+  ),
+  /* @__PURE__ */ import_react35.default.createElement("ellipse", { cx: "150", cy: "167", rx: "108", ry: "16", fill: "#120F22" }),
+  /* @__PURE__ */ import_react35.default.createElement(
+    "path",
+    {
+      d: "M126 167 Q123 153 127 143 Q135 129 150 124 Q165 129 173 143 Q177 153 174 167Z",
+      fill: "#C87210"
+    }
+  ),
+  /* @__PURE__ */ import_react35.default.createElement("ellipse", { cx: "150", cy: "167", rx: "24", ry: "8", fill: "#D4890C" }),
+  /* @__PURE__ */ import_react35.default.createElement(
+    "path",
+    {
+      d: "M143 143 Q140 131 143 119 Q146 108 150 96 Q154 108 157 119 Q160 131 157 143Z",
+      fill: "#FF8C00",
+      opacity: "0.92"
+    }
+  ),
+  /* @__PURE__ */ import_react35.default.createElement(
+    "path",
+    {
+      d: "M146 141 Q143 130 146 119 Q148 111 150 101 Q152 111 154 119 Q157 130 154 141Z",
+      fill: "#FFD700"
+    }
+  ),
+  /* @__PURE__ */ import_react35.default.createElement(
+    "path",
+    {
+      d: "M148 139 Q147 128 149 118 Q149.5 112 150 104 Q150.5 112 151 118 Q153 128 152 139Z",
+      fill: "#fff",
+      opacity: "0.85"
+    }
+  ),
+  [
+    [-88, 167],
+    [-62, 160],
+    [62, 160],
+    [88, 167]
+  ].map(([x, y], i) => /* @__PURE__ */ import_react35.default.createElement("g", { key: i }, /* @__PURE__ */ import_react35.default.createElement(
+    "circle",
+    {
+      cx: 150 + x,
+      cy: y,
+      r: "7",
+      fill: ["#FF69B4", "#FFD700", "#FF6B35", "#FF69B4"][i],
+      opacity: "0.65"
+    }
+  ), /* @__PURE__ */ import_react35.default.createElement("circle", { cx: 150 + x, cy: y, r: "2.5", fill: "#fff", opacity: "0.5" }))),
+  /* @__PURE__ */ import_react35.default.createElement("circle", { cx: "150", cy: "167", r: "5", fill: "#C8001E", opacity: "0.6" })
+);
+var IllSilver = () => /* @__PURE__ */ import_react35.default.createElement(
+  "svg",
+  {
+    viewBox: "0 0 300 300",
+    width: "100%",
+    height: "100%",
+    preserveAspectRatio: "xMidYMid slice",
+    style: { display: "block" }
+  },
+  /* @__PURE__ */ import_react35.default.createElement("rect", { width: "300", height: "300", fill: "#060A0E" }),
+  /* @__PURE__ */ import_react35.default.createElement("ellipse", { cx: "150", cy: "202", rx: "88", ry: "8", fill: "#000", opacity: "0.6" }),
+  /* @__PURE__ */ import_react35.default.createElement(
+    "path",
+    {
+      d: "M0 105 C55 97 105 100 142 108",
+      fill: "none",
+      stroke: "#78909C",
+      strokeWidth: "5.5",
+      strokeLinecap: "round"
+    }
+  ),
+  /* @__PURE__ */ import_react35.default.createElement(
+    "path",
+    {
+      d: "M300 105 C245 97 195 100 158 108",
+      fill: "none",
+      stroke: "#78909C",
+      strokeWidth: "5.5",
+      strokeLinecap: "round"
+    }
+  ),
+  [
+    [22, 106],
+    [52, 101],
+    [82, 99],
+    [112, 102]
+  ].map(([x, y], i) => /* @__PURE__ */ import_react35.default.createElement("g", { key: i }, /* @__PURE__ */ import_react35.default.createElement(
+    "circle",
+    {
+      cx: x,
+      cy: y,
+      r: "5.5",
+      fill: i % 2 === 0 ? "#E0E0E0" : "#B0BEC5",
+      stroke: "#90A4AE",
+      strokeWidth: "0.8"
+    }
+  ), /* @__PURE__ */ import_react35.default.createElement("circle", { cx: x - 1.5, cy: y - 1.5, r: "1.8", fill: "#fff", opacity: "0.6" }))),
+  [
+    [278, 106],
+    [248, 101],
+    [218, 99],
+    [188, 102]
+  ].map(([x, y], i) => /* @__PURE__ */ import_react35.default.createElement("g", { key: i }, /* @__PURE__ */ import_react35.default.createElement(
+    "circle",
+    {
+      cx: x,
+      cy: y,
+      r: "5.5",
+      fill: i % 2 === 0 ? "#E0E0E0" : "#B0BEC5",
+      stroke: "#90A4AE",
+      strokeWidth: "0.8"
+    }
+  ), /* @__PURE__ */ import_react35.default.createElement("circle", { cx: x - 1.5, cy: y - 1.5, r: "1.8", fill: "#fff", opacity: "0.6" }))),
+  Array.from({ length: 12 }).map((_, i) => {
+    const a = i / 12 * Math.PI * 2, px = 150 + 60 * Math.cos(a), py = 107 + 60 * Math.sin(a);
+    return /* @__PURE__ */ import_react35.default.createElement(
+      "ellipse",
+      {
+        key: i,
+        cx: px,
+        cy: py,
+        rx: "5",
+        ry: "8",
+        fill: i % 2 === 0 ? "#E0E0E0" : "#90A4AE",
+        opacity: "0.88",
+        transform: `rotate(${i * 30},${px},${py})`
+      }
+    );
+  }),
+  /* @__PURE__ */ import_react35.default.createElement(
+    "circle",
+    {
+      cx: "150",
+      cy: "107",
+      r: "52",
+      fill: "#0D1217",
+      stroke: "#78909C",
+      strokeWidth: "2.5"
+    }
+  ),
+  Array.from({ length: 8 }).map((_, i) => {
+    const a = i / 8 * Math.PI * 2, px = 150 + 32 * Math.cos(a), py = 107 + 32 * Math.sin(a);
+    return /* @__PURE__ */ import_react35.default.createElement(
+      "ellipse",
+      {
+        key: i,
+        cx: px,
+        cy: py,
+        rx: "7.5",
+        ry: "13",
+        fill: i % 2 === 0 ? "#B0BEC5" : "#78909C",
+        opacity: "0.85",
+        transform: `rotate(${i * 45 + 90},${px},${py})`
+      }
+    );
+  }),
+  Array.from({ length: 8 }).map((_, i) => {
+    const a = i / 8 * Math.PI * 2 + Math.PI / 8, px = 150 + 18 * Math.cos(a), py = 107 + 18 * Math.sin(a);
+    return /* @__PURE__ */ import_react35.default.createElement(
+      "ellipse",
+      {
+        key: i,
+        cx: px,
+        cy: py,
+        rx: "4",
+        ry: "7.5",
+        fill: i % 2 === 0 ? "#CFD8DC" : "#B0BEC5",
+        opacity: "0.8",
+        transform: `rotate(${i * 45 + 90},${px},${py})`
+      }
+    );
+  }),
+  /* @__PURE__ */ import_react35.default.createElement(
+    "circle",
+    {
+      cx: "150",
+      cy: "107",
+      r: "13",
+      fill: "#0D1217",
+      stroke: "#CFD8DC",
+      strokeWidth: "1.5"
+    }
+  ),
+  /* @__PURE__ */ import_react35.default.createElement("circle", { cx: "150", cy: "107", r: "9", fill: "#263238" }),
+  /* @__PURE__ */ import_react35.default.createElement("circle", { cx: "150", cy: "107", r: "5.5", fill: "#78909C" }),
+  /* @__PURE__ */ import_react35.default.createElement("circle", { cx: "150", cy: "107", r: "3", fill: "#CFD8DC" }),
+  /* @__PURE__ */ import_react35.default.createElement("circle", { cx: "148", cy: "105", r: "1.8", fill: "#fff", opacity: "0.7" })
+);
+var IllHamper = () => /* @__PURE__ */ import_react35.default.createElement(
+  "svg",
+  {
+    viewBox: "0 0 300 300",
+    width: "100%",
+    height: "100%",
+    preserveAspectRatio: "xMidYMid slice",
+    style: { display: "block" }
+  },
+  /* @__PURE__ */ import_react35.default.createElement("rect", { width: "300", height: "300", fill: "#080D05" }),
+  /* @__PURE__ */ import_react35.default.createElement("ellipse", { cx: "150", cy: "208", rx: "95", ry: "8", fill: "#000", opacity: "0.6" }),
+  /* @__PURE__ */ import_react35.default.createElement("rect", { x: "30", y: "130", width: "240", height: "75", rx: "14", fill: "#4A2E0A" }),
+  Array.from({ length: 5 }).map((_, i) => /* @__PURE__ */ import_react35.default.createElement(
+    "rect",
+    {
+      key: i,
+      x: "30",
+      y: 130 + i * 15,
+      width: "240",
+      height: "8",
+      rx: "3",
+      fill: "#5C3A12",
+      opacity: "0.55"
+    }
+  )),
+  Array.from({ length: 9 }).map((_, i) => /* @__PURE__ */ import_react35.default.createElement(
+    "line",
+    {
+      key: i,
+      x1: 30 + i * 28,
+      y1: "130",
+      x2: 30 + i * 28,
+      y2: "205",
+      stroke: "#7A4E20",
+      strokeWidth: "1",
+      opacity: "0.4"
+    }
+  )),
+  /* @__PURE__ */ import_react35.default.createElement(
+    "rect",
+    {
+      x: "25",
+      y: "124",
+      width: "250",
+      height: "14",
+      rx: "7",
+      fill: "#7A4E20",
+      stroke: "#C8960C",
+      strokeWidth: "1"
+    }
+  ),
+  /* @__PURE__ */ import_react35.default.createElement("rect", { x: "45", y: "82", width: "60", height: "48", rx: "7", fill: "#7B2D8B" }),
+  /* @__PURE__ */ import_react35.default.createElement("rect", { x: "45", y: "82", width: "60", height: "14", rx: "7", fill: "#9C27B0" }),
+  /* @__PURE__ */ import_react35.default.createElement(
+    "text",
+    {
+      x: "75",
+      y: "113",
+      textAnchor: "middle",
+      fontSize: "8",
+      fontWeight: "700",
+      fill: "#FFD700",
+      fontFamily: "sans-serif"
+    },
+    "RAKHI SET"
+  ),
+  /* @__PURE__ */ import_react35.default.createElement("rect", { x: "115", y: "78", width: "70", height: "52", rx: "7", fill: "#8B3A00" }),
+  /* @__PURE__ */ import_react35.default.createElement("rect", { x: "115", y: "78", width: "70", height: "14", rx: "7", fill: "#A34500" }),
+  /* @__PURE__ */ import_react35.default.createElement(
+    "text",
+    {
+      x: "150",
+      y: "109",
+      textAnchor: "middle",
+      fontSize: "8",
+      fontWeight: "700",
+      fill: "#FFD700",
+      fontFamily: "sans-serif"
+    },
+    "DRY FRUITS"
+  ),
+  /* @__PURE__ */ import_react35.default.createElement("rect", { x: "195", y: "82", width: "68", height: "48", rx: "7", fill: "#C8001E" }),
+  /* @__PURE__ */ import_react35.default.createElement("rect", { x: "195", y: "82", width: "68", height: "14", rx: "7", fill: "#E8001E" }),
+  /* @__PURE__ */ import_react35.default.createElement(
+    "text",
+    {
+      x: "229",
+      y: "113",
+      textAnchor: "middle",
+      fontSize: "8",
+      fontWeight: "700",
+      fill: "#FFD700",
+      fontFamily: "sans-serif"
+    },
+    "MITHAI BOX"
+  ),
+  /* @__PURE__ */ import_react35.default.createElement(
+    "circle",
+    {
+      cx: "150",
+      cy: "124",
+      r: "7",
+      fill: "#FFD700",
+      stroke: "#B8860B",
+      strokeWidth: "1.2"
+    }
+  ),
+  /* @__PURE__ */ import_react35.default.createElement("rect", { x: "155", y: "74", width: "58", height: "24", rx: "3", fill: "#FFD700" }),
+  /* @__PURE__ */ import_react35.default.createElement(
+    "text",
+    {
+      x: "184",
+      y: "90",
+      textAnchor: "middle",
+      fontSize: "8",
+      fill: "#3A1500",
+      fontFamily: "sans-serif",
+      fontWeight: "700"
+    },
+    "PREMIUM"
+  )
+);
+var IllFloral = () => /* @__PURE__ */ import_react35.default.createElement(
+  "svg",
+  {
+    viewBox: "0 0 300 300",
+    width: "100%",
+    height: "100%",
+    preserveAspectRatio: "xMidYMid slice",
+    style: { display: "block" }
+  },
+  /* @__PURE__ */ import_react35.default.createElement("rect", { width: "300", height: "300", fill: "#100614" }),
+  /* @__PURE__ */ import_react35.default.createElement("ellipse", { cx: "150", cy: "206", rx: "90", ry: "8", fill: "#000", opacity: "0.6" }),
+  /* @__PURE__ */ import_react35.default.createElement(
+    "rect",
+    {
+      x: "45",
+      y: "120",
+      width: "210",
+      height: "80",
+      rx: "10",
+      fill: "#1A0A28",
+      stroke: "#9C27B0",
+      strokeWidth: "1.2"
+    }
+  ),
+  /* @__PURE__ */ import_react35.default.createElement(
+    "rect",
+    {
+      x: "45",
+      y: "120",
+      width: "210",
+      height: "20",
+      rx: "10",
+      fill: "#7B1FA2",
+      opacity: "0.6"
+    }
+  ),
+  [
+    [80, 115],
+    [120, 108],
+    [150, 105],
+    [180, 108],
+    [220, 115]
+  ].map(([x, y], i) => {
+    const cols = ["#FF69B4", "#FFD700", "#FF6B35", "#FF69B4", "#FFD700"];
+    return /* @__PURE__ */ import_react35.default.createElement("g", { key: i }, Array.from({ length: 5 }).map((_, j) => {
+      const a = j / 5 * Math.PI * 2;
+      return /* @__PURE__ */ import_react35.default.createElement(
+        "ellipse",
+        {
+          key: j,
+          cx: x + 9 * Math.cos(a),
+          cy: y + 7 * Math.sin(a),
+          rx: "7",
+          ry: "5",
+          fill: cols[i],
+          opacity: "0.8",
+          transform: `rotate(${j * 72},${x + 9 * Math.cos(a)},${y + 7 * Math.sin(a)})`
+        }
+      );
+    }), /* @__PURE__ */ import_react35.default.createElement(
+      "circle",
+      {
+        cx: x,
+        cy: y,
+        r: "5",
+        fill: i % 2 === 0 ? "#FFD700" : "#FF6B35"
+      }
+    ));
+  }),
+  /* @__PURE__ */ import_react35.default.createElement(
+    "line",
+    {
+      x1: "150",
+      y1: "120",
+      x2: "150",
+      y2: "200",
+      stroke: "#E91E63",
+      strokeWidth: "4",
+      opacity: "0.7"
+    }
+  ),
+  /* @__PURE__ */ import_react35.default.createElement(
+    "line",
+    {
+      x1: "45",
+      y1: "160",
+      x2: "255",
+      y2: "160",
+      stroke: "#E91E63",
+      strokeWidth: "4",
+      opacity: "0.7"
+    }
+  ),
+  /* @__PURE__ */ import_react35.default.createElement(
+    "circle",
+    {
+      cx: "150",
+      cy: "120",
+      r: "9",
+      fill: "#FFD700",
+      stroke: "#FF8F00",
+      strokeWidth: "1.5"
+    }
+  ),
+  /* @__PURE__ */ import_react35.default.createElement(
+    "text",
+    {
+      x: "150",
+      y: "147",
+      textAnchor: "middle",
+      fontSize: "11",
+      fontWeight: "700",
+      fill: "#E1BEE7",
+      fontFamily: "serif",
+      fontStyle: "italic"
+    },
+    "With Love"
+  ),
+  /* @__PURE__ */ import_react35.default.createElement(
+    "text",
+    {
+      x: "150",
+      y: "165",
+      textAnchor: "middle",
+      fontSize: "9",
+      fill: "#CE93D8",
+      fontFamily: "sans-serif",
+      letterSpacing: "2"
+    },
+    "RAKSHA BANDHAN"
+  )
+);
 var ILLUSTRATIONS = {
   rakhi: IllRakhi,
   mithai: IllMithai,
@@ -10300,14 +11013,38 @@ function CardIllustration({ type, image, title }) {
         src,
         alt: title || "Festival product",
         loading: "lazy",
-        style: { width: "100%", height: "100%", objectFit: "cover", display: "block" }
+        style: {
+          width: "100%",
+          height: "100%",
+          objectFit: "cover",
+          display: "block"
+        }
       }
     );
   }
   const Ill = ILLUSTRATIONS[type] || IllRakhi;
   return /* @__PURE__ */ import_react35.default.createElement(Ill, null);
 }
-var Diya = () => /* @__PURE__ */ import_react35.default.createElement("svg", { viewBox: "0 0 48 66", width: "40", height: "55" }, /* @__PURE__ */ import_react35.default.createElement("ellipse", { cx: "24", cy: "57", rx: "16", ry: "5", fill: "#C8001E", opacity: "0.2" }), /* @__PURE__ */ import_react35.default.createElement("path", { d: "M18 52 Q15 49 14 42 Q12 34 18 28 Q21 24 24 18 Q27 24 30 28 Q36 34 34 42 Q33 49 30 52 Q27 54 24 54 Q21 54 18 52Z", fill: "#FF8C00" }), /* @__PURE__ */ import_react35.default.createElement("path", { d: "M20 50 Q18 46 17 40 Q16 33 21 27 Q22.5 24 24 19 Q25.5 24 27 27 Q32 33 31 40 Q30 46 28 50 Q26.5 52 24 52 Q21.5 52 20 50Z", fill: "#FFD700" }), /* @__PURE__ */ import_react35.default.createElement("path", { d: "M22 48 Q21 43 20 37 Q19 31 23 26 Q23.5 24 24 20 Q24.5 24 25 26 Q29 31 28 37 Q27 43 26 48 Q25.2 50 24 50 Q22.8 50 22 48Z", fill: "#fff", opacity: "0.85" }), /* @__PURE__ */ import_react35.default.createElement("ellipse", { cx: "24", cy: "53", rx: "11", ry: "4", fill: "#FF8C00" }), /* @__PURE__ */ import_react35.default.createElement("ellipse", { cx: "24", cy: "53", rx: "7.5", ry: "2.8", fill: "#E65100" }), /* @__PURE__ */ import_react35.default.createElement("ellipse", { cx: "24", cy: "54", rx: "3.5", ry: "1.6", fill: "#1A0800" }), /* @__PURE__ */ import_react35.default.createElement("line", { x1: "24", y1: "52", x2: "24", y2: "56", stroke: "#555", strokeWidth: "1.2" }));
+var Diya = () => /* @__PURE__ */ import_react35.default.createElement("svg", { viewBox: "0 0 48 66", width: "40", height: "55" }, /* @__PURE__ */ import_react35.default.createElement("ellipse", { cx: "24", cy: "57", rx: "16", ry: "5", fill: "#C8001E", opacity: "0.2" }), /* @__PURE__ */ import_react35.default.createElement(
+  "path",
+  {
+    d: "M18 52 Q15 49 14 42 Q12 34 18 28 Q21 24 24 18 Q27 24 30 28 Q36 34 34 42 Q33 49 30 52 Q27 54 24 54 Q21 54 18 52Z",
+    fill: "#FF8C00"
+  }
+), /* @__PURE__ */ import_react35.default.createElement(
+  "path",
+  {
+    d: "M20 50 Q18 46 17 40 Q16 33 21 27 Q22.5 24 24 19 Q25.5 24 27 27 Q32 33 31 40 Q30 46 28 50 Q26.5 52 24 52 Q21.5 52 20 50Z",
+    fill: "#FFD700"
+  }
+), /* @__PURE__ */ import_react35.default.createElement(
+  "path",
+  {
+    d: "M22 48 Q21 43 20 37 Q19 31 23 26 Q23.5 24 24 20 Q24.5 24 25 26 Q29 31 28 37 Q27 43 26 48 Q25.2 50 24 50 Q22.8 50 22 48Z",
+    fill: "#fff",
+    opacity: "0.85"
+  }
+), /* @__PURE__ */ import_react35.default.createElement("ellipse", { cx: "24", cy: "53", rx: "11", ry: "4", fill: "#FF8C00" }), /* @__PURE__ */ import_react35.default.createElement("ellipse", { cx: "24", cy: "53", rx: "7.5", ry: "2.8", fill: "#E65100" }), /* @__PURE__ */ import_react35.default.createElement("ellipse", { cx: "24", cy: "54", rx: "3.5", ry: "1.6", fill: "#1A0800" }), /* @__PURE__ */ import_react35.default.createElement("line", { x1: "24", y1: "52", x2: "24", y2: "56", stroke: "#555", strokeWidth: "1.2" }));
 function paddingClass6(padding) {
   const v = safeText17(padding).toLowerCase();
   if (v === "small") return "akf-festival--pad-sm";
@@ -10355,7 +11092,9 @@ function RakhiGiftFestival({ section, theme }) {
   var _a, _b;
   const props = ((_a = section == null ? void 0 : section.settings) == null ? void 0 : _a.props) || {};
   const rawBlocks = Array.isArray((_b = section == null ? void 0 : section.settings) == null ? void 0 : _b.blocks) ? section.settings.blocks : [];
-  const bodyFont = resolveStorefrontFontFamily(resolveThemeFontKey("body", theme));
+  const bodyFont = resolveStorefrontFontFamily(
+    resolveThemeFontKey("body", theme)
+  );
   const color = (key) => {
     const v = safeText17(props[key]);
     return v || COLOR_FALLBACKS[key];
@@ -10367,9 +11106,19 @@ function RakhiGiftFestival({ section, theme }) {
   const flag = (key) => props[key] !== false;
   const textStyle = (fieldId, role) => {
     const s = resolvedTextStyleToInlineStyle(
-      resolveTextStyle({ section, theme, fieldId, role, defaultStyle: TEXT_DEFAULTS[fieldId] })
+      resolveTextStyle({
+        section,
+        theme,
+        fieldId,
+        role,
+        defaultStyle: TEXT_DEFAULTS[fieldId]
+      })
     );
-    return { fontFamily: s.fontFamily, color: s.color, fontWeight: s.fontWeight };
+    return {
+      fontFamily: s.fontFamily,
+      color: s.color,
+      fontWeight: s.fontWeight
+    };
   };
   const groupStyle = (groupKey, role) => {
     const s = resolvedTextStyleToInlineStyle(
@@ -10381,7 +11130,11 @@ function RakhiGiftFestival({ section, theme }) {
         defaultStyle: CARD_TEXT_DEFAULTS[groupKey]
       })
     );
-    return { fontFamily: s.fontFamily, color: s.color, fontWeight: s.fontWeight };
+    return {
+      fontFamily: s.fontFamily,
+      color: s.color,
+      fontWeight: s.fontWeight
+    };
   };
   const petalPalette = (0, import_react35.useMemo)(
     () => [
@@ -10393,14 +11146,25 @@ function RakhiGiftFestival({ section, theme }) {
       color("petalColorSix")
     ],
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [props.petalColorOne, props.petalColorTwo, props.petalColorThree, props.petalColorFour, props.petalColorFive, props.petalColorSix]
+    [
+      props.petalColorOne,
+      props.petalColorTwo,
+      props.petalColorThree,
+      props.petalColorFour,
+      props.petalColorFive,
+      props.petalColorSix
+    ]
   );
   const cards = (0, import_react35.useMemo)(
-    () => rawBlocks.filter((b) => b && typeof b === "object" && safeText17(b.type) !== PETAL_BLOCK_TYPE).map((b, i) => readCardBlock(b, i)),
+    () => rawBlocks.filter(
+      (b) => b && typeof b === "object" && safeText17(b.type) !== PETAL_BLOCK_TYPE
+    ).map((b, i) => readCardBlock(b, i)),
     [rawBlocks]
   );
   const petalBlocks = (0, import_react35.useMemo)(
-    () => rawBlocks.filter((b) => b && typeof b === "object" && safeText17(b.type) === PETAL_BLOCK_TYPE),
+    () => rawBlocks.filter(
+      (b) => b && typeof b === "object" && safeText17(b.type) === PETAL_BLOCK_TYPE
+    ),
     [rawBlocks]
   );
   const petals = (0, import_react35.useMemo)(() => {
@@ -10427,34 +11191,146 @@ function RakhiGiftFestival({ section, theme }) {
     {
       className: "akf-card",
       key: card.key,
-      style: { background: color("cardBackgroundColor"), border: `1px solid ${card.accent || color("cardBorderFallbackColor")}` }
+      style: {
+        background: color("cardBackgroundColor"),
+        border: `1px solid ${card.accent || color("cardBorderFallbackColor")}`
+      }
     },
-    /* @__PURE__ */ import_react35.default.createElement("div", { className: "akf-img-box", style: { background: color("cardImageBackgroundColor") } }, /* @__PURE__ */ import_react35.default.createElement(CardIllustration, { type: card.illustration, image: card.image, title: card.title }), /* @__PURE__ */ import_react35.default.createElement(
+    /* @__PURE__ */ import_react35.default.createElement(
       "div",
       {
-        className: "akf-img-hover-overlay",
-        style: { background: `linear-gradient(135deg,${color("cardHoverOverlayColor")} 0%,transparent 60%)` }
-      }
-    )),
-    card.tag ? /* @__PURE__ */ import_react35.default.createElement("div", { style: { padding: "14px 18px 0", display: "flex", alignItems: "center", gap: 8 } }, /* @__PURE__ */ import_react35.default.createElement(
-      "span",
+        className: "akf-img-box",
+        style: { background: color("cardImageBackgroundColor") }
+      },
+      /* @__PURE__ */ import_react35.default.createElement(
+        CardIllustration,
+        {
+          type: card.illustration,
+          image: card.image,
+          title: card.title
+        }
+      ),
+      /* @__PURE__ */ import_react35.default.createElement(
+        "div",
+        {
+          className: "akf-img-hover-overlay",
+          style: {
+            background: `linear-gradient(135deg,${color("cardHoverOverlayColor")} 0%,transparent 60%)`
+          }
+        }
+      )
+    ),
+    card.tag ? /* @__PURE__ */ import_react35.default.createElement(
+      "div",
       {
         style: {
-          display: "inline-flex",
+          padding: "14px 18px 0",
+          display: "flex",
           alignItems: "center",
-          fontSize: 9,
-          fontWeight: 800,
-          letterSpacing: "2.5px",
-          padding: "5px 14px",
-          borderRadius: 20,
-          color: "#fff",
-          textTransform: "uppercase",
-          background: card.tagBg
+          gap: 8
         }
       },
-      card.tag
-    )) : null,
-    /* @__PURE__ */ import_react35.default.createElement("div", { style: { padding: "10px 22px 22px", display: "flex", flexDirection: "column", flex: 1 } }, card.title ? /* @__PURE__ */ import_react35.default.createElement("h3", { style: { ...cardTitleStyle, fontSize: 21, margin: 0 } }, card.title) : null, card.subtitle ? /* @__PURE__ */ import_react35.default.createElement("p", { style: { ...cardSubtitleStyle, fontSize: 12, letterSpacing: 1, textTransform: "uppercase", margin: "4px 0 0" } }, card.subtitle) : null, card.description ? /* @__PURE__ */ import_react35.default.createElement("p", { style: { ...cardDescriptionStyle, fontSize: 13.5, lineHeight: 1.55, margin: "12px 0 0" } }, card.description) : null, /* @__PURE__ */ import_react35.default.createElement("div", { style: { display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12, marginTop: "auto", paddingTop: 16 } }, card.price ? /* @__PURE__ */ import_react35.default.createElement("span", { style: { ...cardPriceStyle, fontSize: 28, letterSpacing: "-.5px" } }, card.price) : /* @__PURE__ */ import_react35.default.createElement("span", null), card.productLink ? /* @__PURE__ */ import_react35.default.createElement("a", { className: "akf-add-btn", href: card.productLink, style: { background: card.accent || color("cardBorderFallbackColor") } }, card.buttonText) : /* @__PURE__ */ import_react35.default.createElement("button", { type: "button", className: "akf-add-btn", style: { background: card.accent || color("cardBorderFallbackColor") } }, card.buttonText)))
+      /* @__PURE__ */ import_react35.default.createElement(
+        "span",
+        {
+          style: {
+            display: "inline-flex",
+            alignItems: "center",
+            fontSize: 9,
+            fontWeight: 800,
+            letterSpacing: "2.5px",
+            padding: "5px 14px",
+            borderRadius: 20,
+            color: "#fff",
+            textTransform: "uppercase",
+            background: card.tagBg
+          }
+        },
+        card.tag
+      )
+    ) : null,
+    /* @__PURE__ */ import_react35.default.createElement(
+      "div",
+      {
+        style: {
+          padding: "10px 22px 22px",
+          display: "flex",
+          flexDirection: "column",
+          flex: 1
+        }
+      },
+      card.title ? /* @__PURE__ */ import_react35.default.createElement("h3", { style: { ...cardTitleStyle, fontSize: 21, margin: 0 } }, card.title) : null,
+      card.subtitle ? /* @__PURE__ */ import_react35.default.createElement(
+        "p",
+        {
+          style: {
+            ...cardSubtitleStyle,
+            fontSize: 12,
+            letterSpacing: 1,
+            textTransform: "uppercase",
+            margin: "4px 0 0"
+          }
+        },
+        card.subtitle
+      ) : null,
+      card.description ? /* @__PURE__ */ import_react35.default.createElement(
+        "p",
+        {
+          style: {
+            ...cardDescriptionStyle,
+            fontSize: 13.5,
+            lineHeight: 1.55,
+            margin: "12px 0 0"
+          }
+        },
+        card.description
+      ) : null,
+      /* @__PURE__ */ import_react35.default.createElement(
+        "div",
+        {
+          style: {
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            gap: 12,
+            marginTop: "auto",
+            paddingTop: 16
+          }
+        },
+        card.price ? /* @__PURE__ */ import_react35.default.createElement(
+          "span",
+          {
+            style: {
+              ...cardPriceStyle,
+              fontSize: 28,
+              letterSpacing: "-.5px"
+            }
+          },
+          card.price
+        ) : /* @__PURE__ */ import_react35.default.createElement("span", null),
+        card.productLink ? /* @__PURE__ */ import_react35.default.createElement(
+          "a",
+          {
+            className: "akf-add-btn",
+            href: card.productLink,
+            style: {
+              background: card.accent || color("cardBorderFallbackColor")
+            }
+          },
+          card.buttonText
+        ) : /* @__PURE__ */ import_react35.default.createElement(
+          "button",
+          {
+            type: "button",
+            className: "akf-add-btn",
+            style: {
+              background: card.accent || color("cardBorderFallbackColor")
+            }
+          },
+          card.buttonText
+        )
+      )
+    )
   );
   if ((section == null ? void 0 : section.enabled) === false) return null;
   return /* @__PURE__ */ import_react35.default.createElement(
@@ -10462,28 +11338,91 @@ function RakhiGiftFestival({ section, theme }) {
     {
       className: `akf-festival ${paddingClass6(props.sectionPadding)}`,
       "data-ak-section": "festival",
-      style: { fontFamily: bodyFont, background: color("sectionBackgroundColor") }
+      style: {
+        fontFamily: bodyFont,
+        background: color("sectionBackgroundColor")
+      }
     },
-    flag("showGlowBlobs") ? /* @__PURE__ */ import_react35.default.createElement(import_react35.default.Fragment, null, /* @__PURE__ */ import_react35.default.createElement("div", { style: { position: "absolute", top: "6%", left: "2%", width: 440, height: 440, borderRadius: "50%", background: `radial-gradient(circle,${color("glowBlobOneColor")} 0%,transparent 68%)`, animation: "akf-glow 4.8s ease-in-out infinite", pointerEvents: "none", zIndex: 1 } }), /* @__PURE__ */ import_react35.default.createElement("div", { style: { position: "absolute", top: "44%", right: "2%", width: 370, height: 370, borderRadius: "50%", background: `radial-gradient(circle,${color("glowBlobTwoColor")} 0%,transparent 68%)`, animation: "akf-glow 5.8s ease-in-out infinite 1.3s", pointerEvents: "none", zIndex: 1 } }), /* @__PURE__ */ import_react35.default.createElement("div", { style: { position: "absolute", bottom: "12%", left: "26%", width: 540, height: 290, borderRadius: "50%", background: `radial-gradient(circle,${color("glowBlobThreeColor")} 0%,transparent 68%)`, animation: "akf-glow 7.2s ease-in-out infinite 2.6s", pointerEvents: "none", zIndex: 1 } })) : null,
-    flag("showPetals") ? /* @__PURE__ */ import_react35.default.createElement("div", { style: { position: "absolute", inset: 0, pointerEvents: "none", zIndex: 2, overflow: "hidden" } }, petals.map((p) => /* @__PURE__ */ import_react35.default.createElement(
+    flag("showGlowBlobs") ? /* @__PURE__ */ import_react35.default.createElement(import_react35.default.Fragment, null, /* @__PURE__ */ import_react35.default.createElement(
       "div",
       {
-        key: p.key,
         style: {
           position: "absolute",
-          left: `${p.l}%`,
-          top: "-28px",
-          width: p.s,
-          height: p.s * 1.45,
-          borderRadius: "50% 50% 50% 0",
-          background: p.c,
-          opacity: 0.7,
-          animation: `akf-petal ${p.dur}s ${p.d}s infinite linear`,
-          transform: `rotate(${p.r}deg)`,
-          filter: "blur(.4px)"
+          top: "6%",
+          left: "2%",
+          width: 440,
+          height: 440,
+          borderRadius: "50%",
+          background: `radial-gradient(circle,${color("glowBlobOneColor")} 0%,transparent 68%)`,
+          animation: "akf-glow 4.8s ease-in-out infinite",
+          pointerEvents: "none",
+          zIndex: 1
         }
       }
-    ))) : null,
+    ), /* @__PURE__ */ import_react35.default.createElement(
+      "div",
+      {
+        style: {
+          position: "absolute",
+          top: "44%",
+          right: "2%",
+          width: 370,
+          height: 370,
+          borderRadius: "50%",
+          background: `radial-gradient(circle,${color("glowBlobTwoColor")} 0%,transparent 68%)`,
+          animation: "akf-glow 5.8s ease-in-out infinite 1.3s",
+          pointerEvents: "none",
+          zIndex: 1
+        }
+      }
+    ), /* @__PURE__ */ import_react35.default.createElement(
+      "div",
+      {
+        style: {
+          position: "absolute",
+          bottom: "12%",
+          left: "26%",
+          width: 540,
+          height: 290,
+          borderRadius: "50%",
+          background: `radial-gradient(circle,${color("glowBlobThreeColor")} 0%,transparent 68%)`,
+          animation: "akf-glow 7.2s ease-in-out infinite 2.6s",
+          pointerEvents: "none",
+          zIndex: 1
+        }
+      }
+    )) : null,
+    flag("showPetals") ? /* @__PURE__ */ import_react35.default.createElement(
+      "div",
+      {
+        style: {
+          position: "absolute",
+          inset: 0,
+          pointerEvents: "none",
+          zIndex: 2,
+          overflow: "hidden"
+        }
+      },
+      petals.map((p) => /* @__PURE__ */ import_react35.default.createElement(
+        "div",
+        {
+          key: p.key,
+          style: {
+            position: "absolute",
+            left: `${p.l}%`,
+            top: "-28px",
+            width: p.s,
+            height: p.s * 1.45,
+            borderRadius: "50% 50% 50% 0",
+            background: p.c,
+            opacity: 0.7,
+            animation: `akf-petal ${p.dur}s ${p.d}s infinite linear`,
+            transform: `rotate(${p.r}deg)`,
+            filter: "blur(.4px)"
+          }
+        }
+      ))
+    ) : null,
     /* @__PURE__ */ import_react35.default.createElement(
       "div",
       {
@@ -10501,36 +11440,1553 @@ function RakhiGiftFestival({ section, theme }) {
           animation: mounted ? "akf-fadeUp .95s ease forwards" : "none"
         }
       },
-      /* @__PURE__ */ import_react35.default.createElement("div", { style: { display: "flex", alignItems: "center", gap: 16, marginBottom: 34, flexWrap: "wrap", justifyContent: "center" } }, /* @__PURE__ */ import_react35.default.createElement("div", { style: { height: 1, width: 68, background: `linear-gradient(to right,transparent,${color("eyebrowLineColor")})` } }), /* @__PURE__ */ import_react35.default.createElement("div", { className: "akf-diya-flame" }, /* @__PURE__ */ import_react35.default.createElement(Diya, null)), /* @__PURE__ */ import_react35.default.createElement("span", { style: { ...textStyle("festivalLabel", "body"), fontSize: 13, letterSpacing: 6, textTransform: "uppercase" } }, content("festivalLabel")), /* @__PURE__ */ import_react35.default.createElement("div", { className: "akf-diya-flame" }, /* @__PURE__ */ import_react35.default.createElement(Diya, null)), /* @__PURE__ */ import_react35.default.createElement("div", { style: { height: 1, width: 68, background: `linear-gradient(to left,transparent,${color("eyebrowLineColor")})` } })),
-      /* @__PURE__ */ import_react35.default.createElement("h1", { style: { fontSize: "clamp(54px,9vw,112px)", lineHeight: 0.9, marginBottom: 10, letterSpacing: -2 } }, /* @__PURE__ */ import_react35.default.createElement("span", { style: textStyle("heroTitleLineOne", "heading") }, content("heroTitleLineOne")), /* @__PURE__ */ import_react35.default.createElement("br", null), /* @__PURE__ */ import_react35.default.createElement("span", { style: { ...textStyle("heroTitleLineTwo", "heading"), fontStyle: "italic" } }, content("heroTitleLineTwo"))),
-      /* @__PURE__ */ import_react35.default.createElement("p", { style: { ...textStyle("heroSubtitle", "body"), fontSize: "clamp(16px,2.4vw,24px)", marginBottom: 52, letterSpacing: 1.5 } }, content("heroSubtitle")),
-      /* @__PURE__ */ import_react35.default.createElement("div", { style: { display: "flex", gap: 14, flexWrap: "wrap", justifyContent: "center" } }, content("primaryButtonText") ? /* @__PURE__ */ import_react35.default.createElement(
-        "a",
+      /* @__PURE__ */ import_react35.default.createElement(
+        "div",
         {
-          className: "akf-cta",
-          href: safeUrl(props.primaryButtonLink) || void 0,
-          style: { background: `linear-gradient(135deg,${color("primaryButtonGradientStart")},${color("primaryButtonGradientEnd")})`, color: color("primaryButtonTextColor") }
+          style: {
+            display: "flex",
+            alignItems: "center",
+            gap: 16,
+            marginBottom: 34,
+            flexWrap: "wrap",
+            justifyContent: "center"
+          }
         },
-        content("primaryButtonText")
-      ) : null, content("secondaryButtonText") ? /* @__PURE__ */ import_react35.default.createElement(
-        "a",
+        /* @__PURE__ */ import_react35.default.createElement(
+          "div",
+          {
+            style: {
+              height: 1,
+              width: 68,
+              background: `linear-gradient(to right,transparent,${color("eyebrowLineColor")})`
+            }
+          }
+        ),
+        /* @__PURE__ */ import_react35.default.createElement("div", { className: "akf-diya-flame" }, /* @__PURE__ */ import_react35.default.createElement(Diya, null)),
+        /* @__PURE__ */ import_react35.default.createElement(
+          "span",
+          {
+            style: {
+              ...textStyle("festivalLabel", "body"),
+              fontSize: 13,
+              letterSpacing: 6,
+              textTransform: "uppercase"
+            }
+          },
+          content("festivalLabel")
+        ),
+        /* @__PURE__ */ import_react35.default.createElement("div", { className: "akf-diya-flame" }, /* @__PURE__ */ import_react35.default.createElement(Diya, null)),
+        /* @__PURE__ */ import_react35.default.createElement(
+          "div",
+          {
+            style: {
+              height: 1,
+              width: 68,
+              background: `linear-gradient(to left,transparent,${color("eyebrowLineColor")})`
+            }
+          }
+        )
+      ),
+      /* @__PURE__ */ import_react35.default.createElement(
+        "h1",
         {
-          className: "akf-outline",
-          href: safeUrl(props.secondaryButtonLink) || void 0,
-          style: { border: `1px solid ${color("secondaryButtonBorderColor")}`, color: color("secondaryButtonTextColor") }
+          style: {
+            fontSize: "clamp(54px,9vw,112px)",
+            lineHeight: 0.9,
+            marginBottom: 10,
+            letterSpacing: -2
+          }
         },
-        content("secondaryButtonText")
-      ) : null)
+        /* @__PURE__ */ import_react35.default.createElement("span", { style: textStyle("heroTitleLineOne", "heading") }, content("heroTitleLineOne")),
+        /* @__PURE__ */ import_react35.default.createElement("br", null),
+        /* @__PURE__ */ import_react35.default.createElement(
+          "span",
+          {
+            style: {
+              ...textStyle("heroTitleLineTwo", "heading"),
+              fontStyle: "italic"
+            }
+          },
+          content("heroTitleLineTwo")
+        )
+      ),
+      /* @__PURE__ */ import_react35.default.createElement(
+        "p",
+        {
+          style: {
+            ...textStyle("heroSubtitle", "body"),
+            fontSize: "clamp(16px,2.4vw,24px)",
+            marginBottom: 52,
+            letterSpacing: 1.5
+          }
+        },
+        content("heroSubtitle")
+      ),
+      /* @__PURE__ */ import_react35.default.createElement(
+        "div",
+        {
+          style: {
+            display: "flex",
+            gap: 14,
+            flexWrap: "wrap",
+            justifyContent: "center"
+          }
+        },
+        content("primaryButtonText") ? /* @__PURE__ */ import_react35.default.createElement(
+          "a",
+          {
+            className: "akf-cta",
+            href: safeUrl(props.primaryButtonLink) || void 0,
+            style: {
+              background: `linear-gradient(135deg,${color("primaryButtonGradientStart")},${color("primaryButtonGradientEnd")})`,
+              color: color("primaryButtonTextColor")
+            }
+          },
+          content("primaryButtonText")
+        ) : null,
+        content("secondaryButtonText") ? /* @__PURE__ */ import_react35.default.createElement(
+          "a",
+          {
+            className: "akf-outline",
+            href: safeUrl(props.secondaryButtonLink) || void 0,
+            style: {
+              border: `1px solid ${color("secondaryButtonBorderColor")}`,
+              color: color("secondaryButtonTextColor")
+            }
+          },
+          content("secondaryButtonText")
+        ) : null
+      )
     ),
-    /* @__PURE__ */ import_react35.default.createElement("div", { style: { position: "relative", zIndex: 3, textAlign: "center", margin: "40px 0 18px" } }, /* @__PURE__ */ import_react35.default.createElement("svg", { viewBox: "0 0 700 40", width: "100%", height: "40", style: { maxWidth: 700, margin: "0 auto" } }, /* @__PURE__ */ import_react35.default.createElement("line", { x1: "0", y1: "20", x2: "296", y2: "20", stroke: color("dividerColor"), strokeWidth: ".5", strokeDasharray: "4 7" }), /* @__PURE__ */ import_react35.default.createElement("polygon", { points: "350,7 366,20 350,33 334,20", fill: "none", stroke: color("dividerColor"), strokeWidth: "1" }), /* @__PURE__ */ import_react35.default.createElement("circle", { cx: "350", cy: "20", r: "4.5", fill: color("dividerAccentColor") }), [322, 378].map((x, i) => /* @__PURE__ */ import_react35.default.createElement("circle", { key: i, cx: x, cy: "20", r: "2.8", fill: color("dividerColor"), opacity: ".5" })), /* @__PURE__ */ import_react35.default.createElement("line", { x1: "404", y1: "20", x2: "700", y2: "20", stroke: color("dividerColor"), strokeWidth: ".5", strokeDasharray: "4 7" }))),
-    flag("showQuote") ? /* @__PURE__ */ import_react35.default.createElement("div", { style: { position: "relative", zIndex: 3, textAlign: "center", marginBottom: 60 } }, /* @__PURE__ */ import_react35.default.createElement("p", { style: { ...textStyle("quoteText", "body"), fontSize: "clamp(16px,2.4vw,23px)", fontStyle: "italic", letterSpacing: ".8px" } }, "\u201C", content("quoteText"), "\u201D"), content("quoteSubText") ? /* @__PURE__ */ import_react35.default.createElement("p", { style: { ...textStyle("quoteSubText", "body"), fontSize: 10, marginTop: 8, letterSpacing: 4, textTransform: "uppercase" } }, content("quoteSubText")) : null) : null,
-    cards.length > 0 ? /* @__PURE__ */ import_react35.default.createElement("div", { style: { position: "relative", zIndex: 3, maxWidth: 1200, margin: "0 auto" } }, /* @__PURE__ */ import_react35.default.createElement("div", { style: { textAlign: "center", marginBottom: 44 } }, content("collectionLabel") ? /* @__PURE__ */ import_react35.default.createElement("span", { style: { ...textStyle("collectionLabel", "body"), fontSize: 11, letterSpacing: 4, textTransform: "uppercase" } }, content("collectionLabel")) : null, /* @__PURE__ */ import_react35.default.createElement("h2", { style: { fontSize: "clamp(32px,5vw,56px)", lineHeight: 1, margin: "12px 0 0", letterSpacing: -1 } }, /* @__PURE__ */ import_react35.default.createElement("span", { style: textStyle("collectionHeadingLineOne", "heading") }, content("collectionHeadingLineOne"), " "), /* @__PURE__ */ import_react35.default.createElement("span", { style: { ...textStyle("collectionHeadingLineTwo", "heading"), fontStyle: "italic" } }, content("collectionHeadingLineTwo")))), /* @__PURE__ */ import_react35.default.createElement("div", { className: "akf-cardgrid" }, cards.map((card) => renderCard(card))), content("collectionHintText") ? /* @__PURE__ */ import_react35.default.createElement("p", { style: { ...textStyle("collectionHintText", "body"), textAlign: "center", marginTop: 40, fontSize: 11, letterSpacing: 3 } }, content("collectionHintText")) : null) : null,
-    flag("showFooter") ? /* @__PURE__ */ import_react35.default.createElement("footer", { style: { position: "relative", zIndex: 3, textAlign: "center", marginTop: 64, paddingTop: 32, borderTop: `1px solid ${color("footerBorderColor")}`, maxWidth: 900, marginLeft: "auto", marginRight: "auto" } }, /* @__PURE__ */ import_react35.default.createElement("div", { className: "akf-diya-flame", style: { display: "inline-flex", justifyContent: "center", color: color("footerIconColor") } }, /* @__PURE__ */ import_react35.default.createElement(Diya, null)), /* @__PURE__ */ import_react35.default.createElement("p", { style: { ...textStyle("footerText", "body"), fontSize: "clamp(14px,2vw,18px)", fontStyle: "italic", marginTop: 12 } }, content("footerText"))) : null
+    /* @__PURE__ */ import_react35.default.createElement(
+      "div",
+      {
+        style: {
+          position: "relative",
+          zIndex: 3,
+          textAlign: "center",
+          margin: "40px 0 18px"
+        }
+      },
+      /* @__PURE__ */ import_react35.default.createElement(
+        "svg",
+        {
+          viewBox: "0 0 700 40",
+          width: "100%",
+          height: "40",
+          style: { maxWidth: 700, margin: "0 auto" }
+        },
+        /* @__PURE__ */ import_react35.default.createElement(
+          "line",
+          {
+            x1: "0",
+            y1: "20",
+            x2: "296",
+            y2: "20",
+            stroke: color("dividerColor"),
+            strokeWidth: ".5",
+            strokeDasharray: "4 7"
+          }
+        ),
+        /* @__PURE__ */ import_react35.default.createElement(
+          "polygon",
+          {
+            points: "350,7 366,20 350,33 334,20",
+            fill: "none",
+            stroke: color("dividerColor"),
+            strokeWidth: "1"
+          }
+        ),
+        /* @__PURE__ */ import_react35.default.createElement("circle", { cx: "350", cy: "20", r: "4.5", fill: color("dividerAccentColor") }),
+        [322, 378].map((x, i) => /* @__PURE__ */ import_react35.default.createElement(
+          "circle",
+          {
+            key: i,
+            cx: x,
+            cy: "20",
+            r: "2.8",
+            fill: color("dividerColor"),
+            opacity: ".5"
+          }
+        )),
+        /* @__PURE__ */ import_react35.default.createElement(
+          "line",
+          {
+            x1: "404",
+            y1: "20",
+            x2: "700",
+            y2: "20",
+            stroke: color("dividerColor"),
+            strokeWidth: ".5",
+            strokeDasharray: "4 7"
+          }
+        )
+      )
+    ),
+    flag("showQuote") ? /* @__PURE__ */ import_react35.default.createElement(
+      "div",
+      {
+        style: {
+          position: "relative",
+          zIndex: 3,
+          textAlign: "center",
+          marginBottom: 60
+        }
+      },
+      /* @__PURE__ */ import_react35.default.createElement(
+        "p",
+        {
+          style: {
+            ...textStyle("quoteText", "body"),
+            fontSize: "clamp(16px,2.4vw,23px)",
+            fontStyle: "italic",
+            letterSpacing: ".8px"
+          }
+        },
+        "\u201C",
+        content("quoteText"),
+        "\u201D"
+      ),
+      content("quoteSubText") ? /* @__PURE__ */ import_react35.default.createElement(
+        "p",
+        {
+          style: {
+            ...textStyle("quoteSubText", "body"),
+            fontSize: 10,
+            marginTop: 8,
+            letterSpacing: 4,
+            textTransform: "uppercase"
+          }
+        },
+        content("quoteSubText")
+      ) : null
+    ) : null,
+    cards.length > 0 ? /* @__PURE__ */ import_react35.default.createElement(
+      "div",
+      {
+        style: {
+          position: "relative",
+          zIndex: 3,
+          maxWidth: 1200,
+          margin: "0 auto"
+        }
+      },
+      /* @__PURE__ */ import_react35.default.createElement("div", { style: { textAlign: "center", marginBottom: 44 } }, content("collectionLabel") ? /* @__PURE__ */ import_react35.default.createElement(
+        "span",
+        {
+          style: {
+            ...textStyle("collectionLabel", "body"),
+            fontSize: 11,
+            letterSpacing: 4,
+            textTransform: "uppercase"
+          }
+        },
+        content("collectionLabel")
+      ) : null, /* @__PURE__ */ import_react35.default.createElement(
+        "h2",
+        {
+          style: {
+            fontSize: "clamp(32px,5vw,56px)",
+            lineHeight: 1,
+            margin: "12px 0 0",
+            letterSpacing: -1
+          }
+        },
+        /* @__PURE__ */ import_react35.default.createElement("span", { style: textStyle("collectionHeadingLineOne", "heading") }, content("collectionHeadingLineOne"), " "),
+        /* @__PURE__ */ import_react35.default.createElement(
+          "span",
+          {
+            style: {
+              ...textStyle("collectionHeadingLineTwo", "heading"),
+              fontStyle: "italic"
+            }
+          },
+          content("collectionHeadingLineTwo")
+        )
+      )),
+      /* @__PURE__ */ import_react35.default.createElement("div", { className: "akf-cardgrid" }, cards.map((card) => renderCard(card))),
+      content("collectionHintText") ? /* @__PURE__ */ import_react35.default.createElement(
+        "p",
+        {
+          style: {
+            ...textStyle("collectionHintText", "body"),
+            textAlign: "center",
+            marginTop: 40,
+            fontSize: 11,
+            letterSpacing: 3
+          }
+        },
+        content("collectionHintText")
+      ) : null
+    ) : null,
+    flag("showFooter") ? /* @__PURE__ */ import_react35.default.createElement(
+      "footer",
+      {
+        style: {
+          position: "relative",
+          zIndex: 3,
+          textAlign: "center",
+          marginTop: 64,
+          paddingTop: 32,
+          borderTop: `1px solid ${color("footerBorderColor")}`,
+          maxWidth: 900,
+          marginLeft: "auto",
+          marginRight: "auto"
+        }
+      },
+      /* @__PURE__ */ import_react35.default.createElement(
+        "div",
+        {
+          className: "akf-diya-flame",
+          style: {
+            display: "inline-flex",
+            justifyContent: "center",
+            color: color("footerIconColor")
+          }
+        },
+        /* @__PURE__ */ import_react35.default.createElement(Diya, null)
+      ),
+      /* @__PURE__ */ import_react35.default.createElement(
+        "p",
+        {
+          style: {
+            ...textStyle("footerText", "body"),
+            fontSize: "clamp(14px,2vw,18px)",
+            fontStyle: "italic",
+            marginTop: 12
+          }
+        },
+        content("footerText")
+      )
+    ) : null
+  );
+}
+
+// src/components/LeadFormSection/ServiceInquiryForm.tsx
+var import_react39 = __toESM(require("react"));
+var import_framer_motion11 = require("framer-motion");
+
+// src/shared/formBuilder/useDynamicFormBuilderState.ts
+var import_react36 = require("react");
+var MOBILE_TYPE = "MOBILE_WITH_COUNTRY_CODE";
+function safeText18(value) {
+  return String(value != null ? value : "").trim();
+}
+function emptyDynamicValue(field) {
+  switch (field.dataType) {
+    case "BOOLEAN":
+      return false;
+    case "MULTISELECT":
+      return [];
+    case MOBILE_TYPE:
+      return { countryCode: "+91", number: "" };
+    default:
+      return "";
+  }
+}
+function hasDynamicValue(field, value) {
+  if (value === void 0 || value === null) return false;
+  if (field.dataType === "BOOLEAN") return value === true;
+  if (field.dataType === "MULTISELECT") return Array.isArray(value) && value.length > 0;
+  if (field.dataType === MOBILE_TYPE) {
+    const mv = value;
+    return Boolean(mv) && safeText18(mv.number) !== "";
+  }
+  return safeText18(value) !== "";
+}
+function useDynamicFormBuilderState({
+  schema,
+  enableSubmit,
+  onSubmitDynamicForm
+}) {
+  const orderedFields = (0, import_react36.useMemo)(
+    () => {
+      var _a;
+      return ((_a = schema == null ? void 0 : schema.fields) != null ? _a : []).slice().sort((a, b) => (a.sortOrder || 0) - (b.sortOrder || 0));
+    },
+    [schema]
+  );
+  const [values, setValues] = (0, import_react36.useState)({});
+  const [hp, setHp] = (0, import_react36.useState)("");
+  const [submitState, setSubmitState] = (0, import_react36.useState)("idle");
+  const [formError, setFormError] = (0, import_react36.useState)("");
+  const [resetKey, setResetKey] = (0, import_react36.useState)(0);
+  const resetValues = () => {
+    const init = {};
+    orderedFields.forEach((field) => {
+      init[field.fieldKey] = emptyDynamicValue(field);
+    });
+    setValues(init);
+    setHp("");
+    setResetKey((k) => k + 1);
+  };
+  (0, import_react36.useEffect)(() => {
+    resetValues();
+    setSubmitState("idle");
+    setFormError("");
+  }, [schema]);
+  const setValue = (key, value) => setValues((prev) => ({ ...prev, [key]: value }));
+  const toggleMulti = (key, option, checked) => setValues((prev) => {
+    const cur = Array.isArray(prev[key]) ? prev[key] : [];
+    return {
+      ...prev,
+      [key]: checked ? [...cur, option] : cur.filter((o) => o !== option)
+    };
+  });
+  const buildData = () => {
+    const data = {};
+    orderedFields.forEach((field) => {
+      const v = values[field.fieldKey];
+      if (!hasDynamicValue(field, v)) return;
+      if (field.dataType === MOBILE_TYPE) {
+        const mv = v;
+        data[field.fieldKey] = {
+          countryCode: mv.countryCode || "+91",
+          number: safeText18(mv.number)
+        };
+      } else if (field.dataType === "NUMBER" || field.dataType === "DECIMAL") {
+        data[field.fieldKey] = Number(v);
+      } else if (field.dataType === "BOOLEAN") {
+        data[field.fieldKey] = true;
+      } else if (field.dataType === "MULTISELECT") {
+        data[field.fieldKey] = v;
+      } else {
+        data[field.fieldKey] = safeText18(v);
+      }
+    });
+    return data;
+  };
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    if (!enableSubmit || submitState === "loading" || !onSubmitDynamicForm) return;
+    setFormError("");
+    const missing = orderedFields.find(
+      (field) => field.required && !hasDynamicValue(field, values[field.fieldKey])
+    );
+    if (missing) {
+      setSubmitState("error");
+      setFormError(`Please fill "${missing.label || missing.fieldKey}".`);
+      return;
+    }
+    setSubmitState("loading");
+    try {
+      const result = await onSubmitDynamicForm({ data: buildData(), hp });
+      const redirect = safeText18(
+        result == null ? void 0 : result.redirectUrl
+      );
+      if (/^https?:\/\//i.test(redirect) && typeof window !== "undefined") {
+        window.location.href = redirect;
+        return;
+      }
+      setSubmitState("success");
+      resetValues();
+    } catch (err) {
+      setSubmitState("error");
+      const status = err == null ? void 0 : err.status;
+      setFormError(
+        status === 429 ? "Too many attempts. Please try again in a little while." : (err == null ? void 0 : err.message) || ""
+      );
+    }
+  };
+  return {
+    orderedFields,
+    values,
+    setValue,
+    toggleMulti,
+    hp,
+    setHp,
+    submitState,
+    formError,
+    handleSubmit,
+    resetKey
+  };
+}
+
+// src/components/LeadFormSection/variants/StandardFieldsLayout.tsx
+var import_react38 = __toESM(require("react"));
+var import_framer_motion10 = require("framer-motion");
+
+// src/components/LeadFormSection/fieldPrimitives.tsx
+var import_react37 = __toESM(require("react"));
+function Icon({ name, className = "" }) {
+  const common = {
+    className,
+    width: 18,
+    height: 18,
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: 1.8,
+    strokeLinecap: "round",
+    strokeLinejoin: "round"
+  };
+  const icons = {
+    user: /* @__PURE__ */ import_react37.default.createElement("svg", { ...common }, /* @__PURE__ */ import_react37.default.createElement("path", { d: "M20 21a8 8 0 0 0-16 0" }), /* @__PURE__ */ import_react37.default.createElement("circle", { cx: "12", cy: "7", r: "4" })),
+    phone: /* @__PURE__ */ import_react37.default.createElement("svg", { ...common }, /* @__PURE__ */ import_react37.default.createElement("path", { d: "M22 16.92v3a2 2 0 0 1-2.18 2A19.8 19.8 0 0 1 3.08 5.18 2 2 0 0 1 5.06 3h3a2 2 0 0 1 2 1.72c.12.9.33 1.77.63 2.6a2 2 0 0 1-.45 2.11L9 10.67a16 16 0 0 0 4.33 4.33l1.24-1.24a2 2 0 0 1 2.11-.45c.83.3 1.7.51 2.6.63A2 2 0 0 1 22 16.92z" })),
+    mail: /* @__PURE__ */ import_react37.default.createElement("svg", { ...common }, /* @__PURE__ */ import_react37.default.createElement("rect", { x: "3", y: "5", width: "18", height: "14", rx: "2" }), /* @__PURE__ */ import_react37.default.createElement("path", { d: "m3 7 9 6 9-6" })),
+    message: /* @__PURE__ */ import_react37.default.createElement("svg", { ...common }, /* @__PURE__ */ import_react37.default.createElement("path", { d: "M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z" })),
+    layers: /* @__PURE__ */ import_react37.default.createElement("svg", { ...common }, /* @__PURE__ */ import_react37.default.createElement("path", { d: "m12 2 9 5-9 5-9-5 9-5Z" }), /* @__PURE__ */ import_react37.default.createElement("path", { d: "m3 12 9 5 9-5" }), /* @__PURE__ */ import_react37.default.createElement("path", { d: "m3 17 9 5 9-5" })),
+    calendar: /* @__PURE__ */ import_react37.default.createElement("svg", { ...common }, /* @__PURE__ */ import_react37.default.createElement("rect", { x: "3", y: "4", width: "18", height: "18", rx: "2" }), /* @__PURE__ */ import_react37.default.createElement("path", { d: "M16 2v4M8 2v4M3 10h18" })),
+    arrowRight: /* @__PURE__ */ import_react37.default.createElement("svg", { ...common }, /* @__PURE__ */ import_react37.default.createElement("path", { d: "M5 12h14" }), /* @__PURE__ */ import_react37.default.createElement("path", { d: "m12 5 7 7-7 7" })),
+    chevronDown: /* @__PURE__ */ import_react37.default.createElement("svg", { ...common }, /* @__PURE__ */ import_react37.default.createElement("path", { d: "m6 9 6 6 6-6" }))
+  };
+  return icons[name] || icons.user;
+}
+var MOBILE_TYPE2 = "MOBILE_WITH_COUNTRY_CODE";
+var APPOINTMENT_TYPE = "APPOINTMENT_SLOT";
+function fieldIconFor(dataType) {
+  switch (dataType) {
+    case "EMAIL":
+      return "mail";
+    case "PHONE":
+    case MOBILE_TYPE2:
+      return "phone";
+    case "TEXTAREA":
+      return "message";
+    case "DROPDOWN":
+    case "COUNTRY_CODE":
+    case "MULTISELECT":
+    case "BOOLEAN":
+      return "layers";
+    case "DATE":
+    case "TIME":
+    case "DATETIME":
+    case APPOINTMENT_TYPE:
+      return "calendar";
+    default:
+      return "user";
+  }
+}
+function FieldShell({ iconName, compactMobile, children }) {
+  return /* @__PURE__ */ import_react37.default.createElement(
+    "div",
+    {
+      className: `ak-lead-form__field${compactMobile ? " ak-lead-form__field--compact" : ""}`
+    },
+    /* @__PURE__ */ import_react37.default.createElement("div", { className: "ak-lead-form__field-icon" }, /* @__PURE__ */ import_react37.default.createElement(Icon, { name: iconName, className: "ak-lead-form__field-icon-svg" })),
+    children
+  );
+}
+function InputField({
+  iconName,
+  compactMobile,
+  ...props
+}) {
+  return /* @__PURE__ */ import_react37.default.createElement(FieldShell, { iconName, compactMobile }, /* @__PURE__ */ import_react37.default.createElement("input", { ...props, className: "ak-lead-form__input" }));
+}
+function TextareaField({
+  iconName,
+  ...props
+}) {
+  return /* @__PURE__ */ import_react37.default.createElement("div", { className: "ak-lead-form__field ak-lead-form__field--textarea" }, /* @__PURE__ */ import_react37.default.createElement("div", { className: "ak-lead-form__field-icon ak-lead-form__field-icon--top" }, /* @__PURE__ */ import_react37.default.createElement(Icon, { name: iconName, className: "ak-lead-form__field-icon-svg" })), /* @__PURE__ */ import_react37.default.createElement("textarea", { ...props, className: "ak-lead-form__input" }));
+}
+function SelectField({
+  iconName,
+  compactMobile,
+  value,
+  onChange,
+  options,
+  placeholder
+}) {
+  return /* @__PURE__ */ import_react37.default.createElement(FieldShell, { iconName, compactMobile }, /* @__PURE__ */ import_react37.default.createElement("div", { className: "ak-lead-form__field-chevron" }, /* @__PURE__ */ import_react37.default.createElement(Icon, { name: "chevronDown", className: "ak-lead-form__field-icon-svg" })), /* @__PURE__ */ import_react37.default.createElement(
+    "select",
+    {
+      value,
+      onChange,
+      className: "ak-lead-form__input ak-lead-form__input--select"
+    },
+    placeholder ? /* @__PURE__ */ import_react37.default.createElement("option", { value: "" }, placeholder) : null,
+    options.map((option, index) => /* @__PURE__ */ import_react37.default.createElement("option", { key: `${option.value}-${index}`, value: option.value }, option.label))
+  ));
+}
+
+// src/components/LeadFormSection/variants/StandardFieldsLayout.tsx
+function inputValue(value) {
+  return String(value != null ? value : "");
+}
+var MOBILE_TYPE3 = "MOBILE_WITH_COUNTRY_CODE";
+var APPOINTMENT_TYPE2 = "APPOINTMENT_SLOT";
+var WEEKDAY_CODES = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+function addDays(base, days) {
+  const d = new Date(base);
+  d.setDate(d.getDate() + days);
+  return d.toISOString().slice(0, 10);
+}
+function AppointmentSlotField({
+  field,
+  value,
+  onChange,
+  onFetchFormSlots
+}) {
+  const config = field.config || {};
+  const [date, setDate] = (0, import_react38.useState)("");
+  const [slotState, setSlotState] = (0, import_react38.useState)({ options: [], loading: false });
+  const [weekdayError, setWeekdayError] = (0, import_react38.useState)("");
+  const today = /* @__PURE__ */ new Date();
+  const minDate = addDays(today, 0);
+  const maxAdvanceDays = Number(config.maxAdvanceDays);
+  const maxDate = Number.isFinite(maxAdvanceDays) && maxAdvanceDays > 0 ? addDays(today, maxAdvanceDays) : void 0;
+  const allowedWeekdays = Array.isArray(config.availableWeekdays) ? config.availableWeekdays : null;
+  const selected = inputValue(value);
+  const handleDateChange = async (nextDate) => {
+    onChange("");
+    setWeekdayError("");
+    setSlotState({ options: [], loading: false });
+    if (!nextDate) {
+      setDate("");
+      return;
+    }
+    if (allowedWeekdays && allowedWeekdays.length > 0) {
+      const weekday = WEEKDAY_CODES[(/* @__PURE__ */ new Date(`${nextDate}T00:00:00`)).getDay()];
+      if (!allowedWeekdays.includes(weekday)) {
+        setWeekdayError("This date isn't available \u2014 please pick another day.");
+        setDate("");
+        return;
+      }
+    }
+    setDate(nextDate);
+    if (!onFetchFormSlots) return;
+    setSlotState({ options: [], loading: true });
+    try {
+      const opts = await onFetchFormSlots(field.fieldKey, nextDate);
+      setSlotState({ options: opts || [], loading: false });
+    } catch {
+      setSlotState({ options: [], loading: false });
+    }
+  };
+  return /* @__PURE__ */ import_react38.default.createElement("div", { className: "ak-lead-form__slot" }, /* @__PURE__ */ import_react38.default.createElement(
+    InputField,
+    {
+      iconName: "calendar",
+      type: "date",
+      min: minDate,
+      max: maxDate,
+      value: date,
+      onChange: (e) => handleDateChange(e.target.value)
+    }
+  ), weekdayError ? /* @__PURE__ */ import_react38.default.createElement("div", { className: "ak-lead-form__slot-note" }, weekdayError) : !date ? null : slotState.loading ? /* @__PURE__ */ import_react38.default.createElement("div", { className: "ak-lead-form__slot-note" }, "Loading times\u2026") : slotState.options.length === 0 ? /* @__PURE__ */ import_react38.default.createElement("div", { className: "ak-lead-form__slot-note" }, "No times available on this day.") : /* @__PURE__ */ import_react38.default.createElement("div", { className: "ak-lead-form__slot-grid" }, slotState.options.map((opt) => /* @__PURE__ */ import_react38.default.createElement(
+    "button",
+    {
+      type: "button",
+      key: opt.value,
+      disabled: !opt.available,
+      className: `ak-lead-form__slot-btn${selected === opt.value ? " is-active" : ""}`,
+      onClick: () => onChange(opt.value)
+    },
+    opt.start,
+    "\u2013",
+    opt.end,
+    opt.available ? "" : " \xB7 full"
+  ))));
+}
+function StandardFieldsLayout({
+  schema,
+  loading,
+  loadError,
+  orderedFields,
+  values,
+  setValue,
+  toggleMulti,
+  hp,
+  setHp,
+  submitState,
+  formError,
+  handleSubmit,
+  resetKey,
+  submitButtonText,
+  loadingButtonText,
+  successMessage,
+  errorMessage,
+  showSubmitMessage,
+  enableSubmit,
+  onFetchFormSlots
+}) {
+  var _a;
+  const renderControl = (field) => {
+    const key = field.fieldKey;
+    const v = values[key];
+    const options = field.options || [];
+    const dt = field.dataType;
+    const iconName = fieldIconFor(dt);
+    if (dt === "TEXTAREA") {
+      return /* @__PURE__ */ import_react38.default.createElement(
+        TextareaField,
+        {
+          iconName,
+          value: inputValue(v),
+          placeholder: field.placeholder || field.label || "",
+          onChange: (e) => setValue(key, e.target.value),
+          rows: 3
+        }
+      );
+    }
+    if (dt === "BOOLEAN") {
+      return /* @__PURE__ */ import_react38.default.createElement("label", { className: "ak-lead-form__checkbox" }, /* @__PURE__ */ import_react38.default.createElement(
+        "input",
+        {
+          type: "checkbox",
+          checked: Boolean(v),
+          onChange: (e) => setValue(key, e.target.checked)
+        }
+      ), /* @__PURE__ */ import_react38.default.createElement("span", null, field.placeholder || field.label || "Yes"));
+    }
+    if (dt === "DROPDOWN" || dt === "COUNTRY_CODE") {
+      return /* @__PURE__ */ import_react38.default.createElement(
+        SelectField,
+        {
+          iconName,
+          value: inputValue(v),
+          onChange: (e) => setValue(key, e.target.value),
+          options: options.map((o) => ({ value: o, label: o })),
+          placeholder: field.placeholder || "Select\u2026"
+        }
+      );
+    }
+    if (dt === "MULTISELECT") {
+      const arr = Array.isArray(v) ? v : [];
+      return /* @__PURE__ */ import_react38.default.createElement("div", { className: "ak-lead-form__multi" }, options.map((option) => /* @__PURE__ */ import_react38.default.createElement("label", { key: option, className: "ak-lead-form__checkbox" }, /* @__PURE__ */ import_react38.default.createElement(
+        "input",
+        {
+          type: "checkbox",
+          checked: arr.includes(option),
+          onChange: (e) => toggleMulti(key, option, e.target.checked)
+        }
+      ), /* @__PURE__ */ import_react38.default.createElement("span", null, option))));
+    }
+    if (dt === MOBILE_TYPE3) {
+      const mv = v || { countryCode: "+91", number: "" };
+      return /* @__PURE__ */ import_react38.default.createElement("div", { className: "ak-lead-form__phone-row" }, /* @__PURE__ */ import_react38.default.createElement(
+        InputField,
+        {
+          iconName: "phone",
+          compactMobile: true,
+          value: mv.countryCode || "",
+          placeholder: "+91",
+          onChange: (e) => setValue(key, { ...mv, countryCode: e.target.value })
+        }
+      ), /* @__PURE__ */ import_react38.default.createElement(
+        InputField,
+        {
+          iconName: "phone",
+          compactMobile: true,
+          value: mv.number || "",
+          placeholder: field.placeholder || "Mobile number",
+          inputMode: "numeric",
+          onChange: (e) => setValue(key, { ...mv, number: e.target.value })
+        }
+      ));
+    }
+    if (dt === APPOINTMENT_TYPE2) {
+      return /* @__PURE__ */ import_react38.default.createElement(
+        AppointmentSlotField,
+        {
+          field,
+          value: v,
+          onChange: (next) => setValue(key, next),
+          onFetchFormSlots
+        }
+      );
+    }
+    const typeMap = {
+      EMAIL: "email",
+      PHONE: "tel",
+      URL: "url",
+      DATE: "date",
+      TIME: "time",
+      DATETIME: "datetime-local",
+      NUMBER: "number",
+      DECIMAL: "number"
+    };
+    const step = dt === "DECIMAL" ? "any" : dt === "TIME" || dt === "DATETIME" ? "1" : void 0;
+    return /* @__PURE__ */ import_react38.default.createElement(
+      InputField,
+      {
+        iconName,
+        type: typeMap[dt] || "text",
+        value: inputValue(v),
+        placeholder: field.placeholder || field.label || "",
+        step,
+        onChange: (e) => setValue(key, e.target.value)
+      }
+    );
+  };
+  if (loading) {
+    return /* @__PURE__ */ import_react38.default.createElement("div", { className: "ak-lead-form__form-state" }, "Loading form\u2026");
+  }
+  if (loadError) {
+    return /* @__PURE__ */ import_react38.default.createElement("div", { className: "ak-lead-form__form-state" }, loadError);
+  }
+  if (!schema) {
+    return /* @__PURE__ */ import_react38.default.createElement("div", { className: "ak-lead-form__form-state" }, "No form selected yet. Choose a Form Builder form in the section editor.");
+  }
+  return /* @__PURE__ */ import_react38.default.createElement(
+    import_framer_motion10.motion.form,
+    {
+      onSubmit: handleSubmit,
+      initial: { opacity: 0, y: 20 },
+      whileInView: { opacity: 1, y: 0 },
+      viewport: { once: true },
+      transition: { duration: 0.6 },
+      className: "ak-lead-form__form"
+    },
+    orderedFields.map((field) => /* @__PURE__ */ import_react38.default.createElement("div", { key: `${field.fieldKey}-${resetKey}` }, renderControl(field))),
+    /* @__PURE__ */ import_react38.default.createElement("div", { className: "ak-lead-form__honeypot", "aria-hidden": "true" }, /* @__PURE__ */ import_react38.default.createElement("label", null, "Leave this field empty", /* @__PURE__ */ import_react38.default.createElement("input", { tabIndex: -1, autoComplete: "off", value: hp, onChange: (e) => setHp(e.target.value) }))),
+    /* @__PURE__ */ import_react38.default.createElement(
+      "button",
+      {
+        type: "submit",
+        disabled: !enableSubmit || submitState === "loading",
+        className: "ak-lead-form__submit"
+      },
+      submitState === "loading" ? loadingButtonText : submitButtonText,
+      /* @__PURE__ */ import_react38.default.createElement(Icon, { name: "arrowRight", className: "ak-lead-form__submit-icon" })
+    ),
+    showSubmitMessage && submitState === "success" ? /* @__PURE__ */ import_react38.default.createElement("p", { className: "ak-lead-form__message ak-lead-form__message--success" }, successMessage || ((_a = schema.thankYouMessage) != null ? _a : "").trim() || "Thank you!") : null,
+    showSubmitMessage && submitState === "error" ? /* @__PURE__ */ import_react38.default.createElement("p", { className: "ak-lead-form__message ak-lead-form__message--error" }, formError || errorMessage) : null
+  );
+}
+
+// src/components/LeadFormSection/ServiceInquiryForm.tsx
+function safeText19(value) {
+  return String(value != null ? value : "").trim();
+}
+function usePrefersReducedMotion3() {
+  const [reduced, setReduced] = (0, import_react39.useState)(false);
+  (0, import_react39.useEffect)(() => {
+    if (typeof window === "undefined" || !window.matchMedia) return void 0;
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const update = () => setReduced(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
+  return reduced;
+}
+function paddingClass7(value) {
+  const raw = safeText19(value).toLowerCase();
+  if (raw === "small") return "ak-lead-form--pad-sm";
+  if (raw === "medium") return "ak-lead-form--pad-md";
+  return "ak-lead-form--pad-lg";
+}
+function clampRotationDuration(value) {
+  const numeric = Number(value);
+  if (!Number.isFinite(numeric)) return 3500;
+  return Math.min(2e4, Math.max(1500, Math.round(numeric)));
+}
+function textColorStyle(resolved) {
+  const { fontFamily, color, fontWeight } = resolved;
+  return { fontFamily, color, fontWeight };
+}
+function resolveFieldsLayoutComponent(_formLayoutStyle) {
+  return StandardFieldsLayout;
+}
+function ServiceInquiryForm({
+  section,
+  appearance,
+  theme,
+  formBuilderSchema,
+  formBuilderLoading,
+  formBuilderError,
+  onSubmitDynamicForm,
+  onFetchFormSlots
+}) {
+  var _a, _b, _c, _d;
+  const reduceMotion = usePrefersReducedMotion3();
+  const props = (_b = (_a = section == null ? void 0 : section.settings) == null ? void 0 : _a.props) != null ? _b : {};
+  const eyebrow = safeText19(props.eyebrow);
+  const heading = safeText19(props.heading);
+  const subheading = safeText19(props.subheading);
+  const showEyebrow = props.showEyebrow !== false;
+  const showSubheading = props.showSubheading !== false;
+  const showcaseEyebrow = safeText19(props.showcaseEyebrow);
+  const showShowcaseCardPref = props.showShowcaseCard !== false;
+  const autoRotateShowcase = !reduceMotion && props.autoRotateShowcase !== false;
+  const rotationDuration = clampRotationDuration(props.showcaseRotationDuration);
+  const submitButtonText = safeText19(props.formSubmitButtonText) || "Submit";
+  const loadingButtonText = safeText19(props.loadingButtonText) || "Submitting...";
+  const successMessage = safeText19(props.successMessage);
+  const errorMessage = safeText19(props.errorMessage);
+  const enableSubmit = props.enableSubmit !== false;
+  const showSubmitMessage = props.showSubmitMessage !== false;
+  const blocks = (0, import_react39.useMemo)(
+    () => {
+      var _a2;
+      return Array.isArray((_a2 = section == null ? void 0 : section.settings) == null ? void 0 : _a2.blocks) ? section.settings.blocks : [];
+    },
+    [(_c = section == null ? void 0 : section.settings) == null ? void 0 : _c.blocks]
+  );
+  const showcaseItems = (0, import_react39.useMemo)(
+    () => blocks.filter((block) => (block == null ? void 0 : block.type) === "showcase_item").map((block) => {
+      var _a2;
+      return (_a2 = block == null ? void 0 : block.props) != null ? _a2 : {};
+    }).filter((item) => safeText19(item.title) || safeText19(item.image)),
+    [blocks]
+  );
+  const showShowcaseCard = showShowcaseCardPref && showcaseItems.length > 0;
+  const [activeIndex, setActiveIndex] = (0, import_react39.useState)(0);
+  const activeItem = (_d = showcaseItems[activeIndex]) != null ? _d : showcaseItems[0];
+  (0, import_react39.useEffect)(() => {
+    setActiveIndex(0);
+  }, [showcaseItems.length]);
+  (0, import_react39.useEffect)(() => {
+    if (!autoRotateShowcase || showcaseItems.length <= 1) return void 0;
+    const timer = window.setInterval(() => {
+      setActiveIndex((current) => (current + 1) % showcaseItems.length);
+    }, rotationDuration);
+    return () => window.clearInterval(timer);
+  }, [autoRotateShowcase, rotationDuration, showcaseItems.length]);
+  const eyebrowStyle = (0, import_react39.useMemo)(
+    () => textColorStyle(
+      resolvedTextStyleToInlineStyle(
+        resolveTextStyle({
+          section,
+          theme,
+          fieldId: "eyebrow",
+          role: "body",
+          defaultStyle: { color: "#6e6e73", fontWeight: "600" }
+        })
+      )
+    ),
+    [section, theme]
+  );
+  const headingStyle = (0, import_react39.useMemo)(
+    () => textColorStyle(
+      resolvedTextStyleToInlineStyle(
+        resolveTextStyle({
+          section,
+          theme,
+          fieldId: "heading",
+          role: "heading",
+          defaultStyle: { color: "#111111", fontWeight: "700" }
+        })
+      )
+    ),
+    [section, theme]
+  );
+  const subheadingStyle = (0, import_react39.useMemo)(
+    () => textColorStyle(
+      resolvedTextStyleToInlineStyle(
+        resolveTextStyle({
+          section,
+          theme,
+          fieldId: "subheading",
+          role: "body",
+          defaultStyle: { color: "#444444", fontWeight: "400" }
+        })
+      )
+    ),
+    [section, theme]
+  );
+  const showcaseEyebrowStyle = (0, import_react39.useMemo)(
+    () => textColorStyle(
+      resolvedTextStyleToInlineStyle(
+        resolveTextStyle({
+          section,
+          theme,
+          fieldId: "showcaseEyebrow",
+          role: "body",
+          defaultStyle: { color: "#6e6e73", fontWeight: "600" }
+        })
+      )
+    ),
+    [section, theme]
+  );
+  const formState = useDynamicFormBuilderState({
+    schema: formBuilderSchema,
+    enableSubmit,
+    onSubmitDynamicForm
+  });
+  const formLayoutStyle = safeText19(props.formLayoutStyle) || "standard";
+  const FieldsLayout = resolveFieldsLayoutComponent(formLayoutStyle);
+  return /* @__PURE__ */ import_react39.default.createElement(
+    "section",
+    {
+      className: `ak-lead-form ${paddingClass7(props.sectionPadding)}`,
+      style: sectionAppearanceStyle(appearance),
+      "aria-label": heading || eyebrow || "Contact form"
+    },
+    /* @__PURE__ */ import_react39.default.createElement("div", { className: "ak-lead-form__wrap" }, showEyebrow && eyebrow || heading || showSubheading && subheading ? /* @__PURE__ */ import_react39.default.createElement("div", { className: "ak-lead-form__header" }, showEyebrow && eyebrow ? /* @__PURE__ */ import_react39.default.createElement("span", { className: "ak-lead-form__eyebrow", style: eyebrowStyle }, eyebrow) : null, heading ? /* @__PURE__ */ import_react39.default.createElement("h2", { className: "ak-lead-form__heading", style: headingStyle }, heading) : null, showSubheading && subheading ? /* @__PURE__ */ import_react39.default.createElement("p", { className: "ak-lead-form__subheading", style: subheadingStyle }, subheading) : null) : null, /* @__PURE__ */ import_react39.default.createElement(
+      "div",
+      {
+        className: `ak-lead-form__grid${showShowcaseCard ? "" : " ak-lead-form__grid--single"}`
+      },
+      showShowcaseCard && activeItem ? /* @__PURE__ */ import_react39.default.createElement("div", { className: "ak-lead-form__showcase" }, showcaseEyebrow ? /* @__PURE__ */ import_react39.default.createElement(
+        "span",
+        {
+          className: "ak-lead-form__showcase-eyebrow",
+          style: showcaseEyebrowStyle
+        },
+        showcaseEyebrow
+      ) : null, /* @__PURE__ */ import_react39.default.createElement("div", { className: "ak-lead-form__showcase-card" }, /* @__PURE__ */ import_react39.default.createElement("div", { className: "ak-lead-form__showcase-title-wrap" }, /* @__PURE__ */ import_react39.default.createElement(import_framer_motion11.AnimatePresence, { exitBeforeEnter: true }, /* @__PURE__ */ import_react39.default.createElement(
+        import_framer_motion11.motion.h3,
+        {
+          key: activeItem.title,
+          className: "ak-lead-form__showcase-title",
+          initial: { opacity: 0, y: 10 },
+          animate: { opacity: 1, y: 0 },
+          exit: { opacity: 0, y: -8 },
+          transition: { duration: 0.35 }
+        },
+        safeText19(activeItem.title)
+      ))), /* @__PURE__ */ import_react39.default.createElement("div", { className: "ak-lead-form__showcase-image-wrap" }, /* @__PURE__ */ import_react39.default.createElement(import_framer_motion11.AnimatePresence, { exitBeforeEnter: true }, /* @__PURE__ */ import_react39.default.createElement(
+        import_framer_motion11.motion.div,
+        {
+          key: activeItem.image || activeItem.title,
+          className: "ak-lead-form__showcase-image",
+          initial: { opacity: 0, scale: 1.04 },
+          animate: { opacity: 1, scale: 1 },
+          exit: { opacity: 0, scale: 0.98 },
+          transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] }
+        },
+        /* @__PURE__ */ import_react39.default.createElement(
+          StorefrontImage,
+          {
+            desktopSrc: safeText19(activeItem.image),
+            alt: safeText19(activeItem.altText) || safeText19(activeItem.title),
+            className: "ak-lead-form__showcase-image-el",
+            fallback: /* @__PURE__ */ import_react39.default.createElement("div", { className: "ak-lead-form__showcase-image-fallback" })
+          }
+        )
+      ))))) : null,
+      /* @__PURE__ */ import_react39.default.createElement("div", { className: "ak-lead-form__form-card" }, /* @__PURE__ */ import_react39.default.createElement(
+        FieldsLayout,
+        {
+          ...formState,
+          schema: formBuilderSchema,
+          loading: Boolean(formBuilderLoading),
+          loadError: formBuilderError,
+          submitButtonText,
+          loadingButtonText,
+          successMessage,
+          errorMessage,
+          showSubmitMessage,
+          enableSubmit,
+          onFetchFormSlots
+        }
+      ))
+    ))
+  );
+}
+
+// src/components/LeadFormSection/variants/JourneySplitLeadForm.tsx
+var import_react40 = __toESM(require("react"));
+var import_framer_motion12 = require("framer-motion");
+function safeText20(value) {
+  return String(value != null ? value : "").trim();
+}
+function inputValue2(value) {
+  return String(value != null ? value : "");
+}
+function usePrefersReducedMotion4() {
+  const [reduced, setReduced] = (0, import_react40.useState)(false);
+  (0, import_react40.useEffect)(() => {
+    if (typeof window === "undefined" || !window.matchMedia) return void 0;
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const update = () => setReduced(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
+  return reduced;
+}
+function textColorStyle2(resolved) {
+  const { fontFamily, color, fontWeight } = resolved;
+  return { fontFamily, color, fontWeight };
+}
+function paddingClass8(value) {
+  const raw = safeText20(value).toLowerCase();
+  if (raw === "small") return "ak-lead-form-journey--pad-sm";
+  if (raw === "medium") return "ak-lead-form-journey--pad-md";
+  return "ak-lead-form-journey--pad-lg";
+}
+var MOBILE_TYPE4 = "MOBILE_WITH_COUNTRY_CODE";
+var APPOINTMENT_TYPE3 = "APPOINTMENT_SLOT";
+var WEEKDAY_CODES2 = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+function addDays2(base, days) {
+  const d = new Date(base);
+  d.setDate(d.getDate() + days);
+  return d.toISOString().slice(0, 10);
+}
+function Icon2({ name, className = "" }) {
+  const common = {
+    className,
+    width: 16,
+    height: 16,
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: 2,
+    strokeLinecap: "round",
+    strokeLinejoin: "round"
+  };
+  const icons = {
+    arrowRight: /* @__PURE__ */ import_react40.default.createElement("svg", { ...common, viewBox: "0 0 16 16", width: 16, height: 16 }, /* @__PURE__ */ import_react40.default.createElement("path", { d: "M6 12L10 8L6 4" })),
+    chevronDown: /* @__PURE__ */ import_react40.default.createElement("svg", { ...common }, /* @__PURE__ */ import_react40.default.createElement("path", { d: "m6 9 6 6 6-6" })),
+    calendar: /* @__PURE__ */ import_react40.default.createElement("svg", { ...common }, /* @__PURE__ */ import_react40.default.createElement("rect", { x: "3", y: "4", width: "18", height: "18", rx: "2" }), /* @__PURE__ */ import_react40.default.createElement("path", { d: "M16 2v4M8 2v4M3 10h18" }))
+  };
+  return icons[name] || null;
+}
+function ChecklistIcon({ type }) {
+  if (type === "none") return null;
+  const common = {
+    width: 14,
+    height: 14,
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: 2.4,
+    strokeLinecap: "round",
+    strokeLinejoin: "round"
+  };
+  if (type === "sparkle") {
+    return /* @__PURE__ */ import_react40.default.createElement("svg", { ...common }, /* @__PURE__ */ import_react40.default.createElement("path", { d: "M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3Z" }));
+  }
+  if (type === "shield") {
+    return /* @__PURE__ */ import_react40.default.createElement("svg", { ...common }, /* @__PURE__ */ import_react40.default.createElement("path", { d: "M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3Z" }));
+  }
+  return /* @__PURE__ */ import_react40.default.createElement("svg", { ...common }, /* @__PURE__ */ import_react40.default.createElement("path", { d: "M20 6 9 17l-5-5" }));
+}
+function FieldShell2({ iconName, compactMobile, children }) {
+  return /* @__PURE__ */ import_react40.default.createElement(
+    "div",
+    {
+      className: `ak-lead-form-journey__field${compactMobile ? " ak-lead-form-journey__field--compact" : ""}`
+    },
+    iconName ? /* @__PURE__ */ import_react40.default.createElement("div", { className: "ak-lead-form-journey__field-icon" }, /* @__PURE__ */ import_react40.default.createElement(Icon2, { name: iconName, className: "ak-lead-form-journey__field-icon-svg" })) : null,
+    children
+  );
+}
+function JInputField({
+  iconName,
+  compactMobile,
+  ...props
+}) {
+  return /* @__PURE__ */ import_react40.default.createElement(FieldShell2, { iconName, compactMobile }, /* @__PURE__ */ import_react40.default.createElement("input", { ...props, className: "ak-lead-form-journey__input" }));
+}
+function JTextareaField({
+  iconName,
+  ...props
+}) {
+  return /* @__PURE__ */ import_react40.default.createElement(FieldShell2, { iconName }, /* @__PURE__ */ import_react40.default.createElement("textarea", { ...props, className: "ak-lead-form-journey__input ak-lead-form-journey__input--textarea" }));
+}
+function JSelectField({
+  iconName,
+  compactMobile,
+  value,
+  onChange,
+  options,
+  placeholder
+}) {
+  return /* @__PURE__ */ import_react40.default.createElement(FieldShell2, { iconName, compactMobile }, /* @__PURE__ */ import_react40.default.createElement("div", { className: "ak-lead-form-journey__field-chevron" }, /* @__PURE__ */ import_react40.default.createElement(Icon2, { name: "chevronDown", className: "ak-lead-form-journey__field-icon-svg" })), /* @__PURE__ */ import_react40.default.createElement(
+    "select",
+    {
+      value,
+      onChange,
+      className: "ak-lead-form-journey__input ak-lead-form-journey__input--select"
+    },
+    placeholder ? /* @__PURE__ */ import_react40.default.createElement("option", { value: "" }, placeholder) : null,
+    options.map((option, index) => /* @__PURE__ */ import_react40.default.createElement("option", { key: `${option.value}-${index}`, value: option.value }, option.label))
+  ));
+}
+function AppointmentSlotField2({
+  field,
+  value,
+  onChange,
+  onFetchFormSlots
+}) {
+  const config = field.config || {};
+  const [date, setDate] = (0, import_react40.useState)("");
+  const [slotState, setSlotState] = (0, import_react40.useState)({
+    options: [],
+    loading: false
+  });
+  const [weekdayError, setWeekdayError] = (0, import_react40.useState)("");
+  const today = /* @__PURE__ */ new Date();
+  const minDate = addDays2(today, 0);
+  const maxAdvanceDays = Number(config.maxAdvanceDays);
+  const maxDate = Number.isFinite(maxAdvanceDays) && maxAdvanceDays > 0 ? addDays2(today, maxAdvanceDays) : void 0;
+  const allowedWeekdays = Array.isArray(config.availableWeekdays) ? config.availableWeekdays : null;
+  const selected = inputValue2(value);
+  const handleDateChange = async (nextDate) => {
+    onChange("");
+    setWeekdayError("");
+    setSlotState({ options: [], loading: false });
+    if (!nextDate) {
+      setDate("");
+      return;
+    }
+    if (allowedWeekdays && allowedWeekdays.length > 0) {
+      const weekday = WEEKDAY_CODES2[(/* @__PURE__ */ new Date(`${nextDate}T00:00:00`)).getDay()];
+      if (!allowedWeekdays.includes(weekday)) {
+        setWeekdayError("This date isn't available \u2014 please pick another day.");
+        setDate("");
+        return;
+      }
+    }
+    setDate(nextDate);
+    if (!onFetchFormSlots) return;
+    setSlotState({ options: [], loading: true });
+    try {
+      const opts = await onFetchFormSlots(field.fieldKey, nextDate);
+      setSlotState({ options: opts || [], loading: false });
+    } catch {
+      setSlotState({ options: [], loading: false });
+    }
+  };
+  return /* @__PURE__ */ import_react40.default.createElement("div", { className: "ak-lead-form-journey__slot" }, /* @__PURE__ */ import_react40.default.createElement(
+    JInputField,
+    {
+      iconName: "calendar",
+      type: "date",
+      min: minDate,
+      max: maxDate,
+      value: date,
+      onChange: (e) => handleDateChange(e.target.value)
+    }
+  ), weekdayError ? /* @__PURE__ */ import_react40.default.createElement("div", { className: "ak-lead-form-journey__slot-note" }, weekdayError) : !date ? null : slotState.loading ? /* @__PURE__ */ import_react40.default.createElement("div", { className: "ak-lead-form-journey__slot-note" }, "Loading times\u2026") : slotState.options.length === 0 ? /* @__PURE__ */ import_react40.default.createElement("div", { className: "ak-lead-form-journey__slot-note" }, "No times available on this day.") : /* @__PURE__ */ import_react40.default.createElement("div", { className: "ak-lead-form-journey__slot-grid" }, slotState.options.map((opt) => /* @__PURE__ */ import_react40.default.createElement(
+    "button",
+    {
+      type: "button",
+      key: opt.value,
+      disabled: !opt.available,
+      className: `ak-lead-form-journey__slot-btn${selected === opt.value ? " is-active" : ""}`,
+      onClick: () => onChange(opt.value)
+    },
+    opt.start,
+    "\u2013",
+    opt.end,
+    opt.available ? "" : " \xB7 full"
+  ))));
+}
+function JourneyFieldsForm({
+  schema,
+  loading,
+  loadError,
+  orderedFields,
+  values,
+  setValue,
+  toggleMulti,
+  hp,
+  setHp,
+  submitState,
+  formError,
+  handleSubmit,
+  submitButtonText,
+  loadingButtonText,
+  successMessage,
+  errorMessage,
+  onFetchFormSlots
+}) {
+  const renderControl = (field) => {
+    const key = field.fieldKey;
+    const v = values[key];
+    const options = field.options || [];
+    const dt = field.dataType;
+    if (dt === "TEXTAREA") {
+      return /* @__PURE__ */ import_react40.default.createElement(
+        JTextareaField,
+        {
+          iconName: "",
+          value: inputValue2(v),
+          placeholder: field.placeholder || field.label || "",
+          onChange: (e) => setValue(key, e.target.value),
+          rows: 4
+        }
+      );
+    }
+    if (dt === "BOOLEAN") {
+      return /* @__PURE__ */ import_react40.default.createElement("label", { className: "ak-lead-form-journey__checkbox" }, /* @__PURE__ */ import_react40.default.createElement(
+        "input",
+        {
+          type: "checkbox",
+          checked: Boolean(v),
+          onChange: (e) => setValue(key, e.target.checked)
+        }
+      ), /* @__PURE__ */ import_react40.default.createElement("span", null, field.placeholder || field.label || "Yes"));
+    }
+    if (dt === "DROPDOWN" || dt === "COUNTRY_CODE") {
+      return /* @__PURE__ */ import_react40.default.createElement(
+        JSelectField,
+        {
+          iconName: "",
+          value: inputValue2(v),
+          onChange: (e) => setValue(key, e.target.value),
+          options: options.map((o) => ({ value: o, label: o })),
+          placeholder: field.placeholder || "Select\u2026"
+        }
+      );
+    }
+    if (dt === "MULTISELECT") {
+      const arr = Array.isArray(v) ? v : [];
+      return /* @__PURE__ */ import_react40.default.createElement("div", { className: "ak-lead-form-journey__multi" }, options.map((option) => /* @__PURE__ */ import_react40.default.createElement("label", { key: option, className: "ak-lead-form-journey__checkbox" }, /* @__PURE__ */ import_react40.default.createElement(
+        "input",
+        {
+          type: "checkbox",
+          checked: arr.includes(option),
+          onChange: (e) => toggleMulti(key, option, e.target.checked)
+        }
+      ), /* @__PURE__ */ import_react40.default.createElement("span", null, option))));
+    }
+    if (dt === MOBILE_TYPE4) {
+      const mv = v || { countryCode: "+91", number: "" };
+      return /* @__PURE__ */ import_react40.default.createElement("div", { className: "ak-lead-form-journey__phone-row" }, /* @__PURE__ */ import_react40.default.createElement(
+        JInputField,
+        {
+          iconName: "",
+          compactMobile: true,
+          value: mv.countryCode || "",
+          placeholder: "+91",
+          onChange: (e) => setValue(key, { ...mv, countryCode: e.target.value })
+        }
+      ), /* @__PURE__ */ import_react40.default.createElement(
+        JInputField,
+        {
+          iconName: "",
+          compactMobile: true,
+          value: mv.number || "",
+          placeholder: field.placeholder || "Mobile number",
+          inputMode: "numeric",
+          onChange: (e) => setValue(key, { ...mv, number: e.target.value })
+        }
+      ));
+    }
+    if (dt === APPOINTMENT_TYPE3) {
+      return /* @__PURE__ */ import_react40.default.createElement(
+        AppointmentSlotField2,
+        {
+          field,
+          value: v,
+          onChange: (next) => setValue(key, next),
+          onFetchFormSlots
+        }
+      );
+    }
+    const typeMap = {
+      EMAIL: "email",
+      PHONE: "tel",
+      URL: "url",
+      DATE: "date",
+      TIME: "time",
+      DATETIME: "datetime-local",
+      NUMBER: "number",
+      DECIMAL: "number"
+    };
+    const step = dt === "DECIMAL" ? "any" : dt === "TIME" || dt === "DATETIME" ? "1" : void 0;
+    return /* @__PURE__ */ import_react40.default.createElement(
+      JInputField,
+      {
+        iconName: "",
+        type: typeMap[dt] || "text",
+        value: inputValue2(v),
+        placeholder: field.placeholder || field.label || "",
+        step,
+        onChange: (e) => setValue(key, e.target.value)
+      }
+    );
+  };
+  if (loading) {
+    return /* @__PURE__ */ import_react40.default.createElement("div", { className: "ak-lead-form-journey__form-state" }, "Loading form\u2026");
+  }
+  if (loadError) {
+    return /* @__PURE__ */ import_react40.default.createElement("div", { className: "ak-lead-form-journey__form-state" }, loadError);
+  }
+  if (!schema) {
+    return /* @__PURE__ */ import_react40.default.createElement("div", { className: "ak-lead-form-journey__form-state" }, "Select a Form Builder form to display this form.");
+  }
+  return /* @__PURE__ */ import_react40.default.createElement("form", { onSubmit: handleSubmit, className: "ak-lead-form-journey__form" }, orderedFields.map((field) => /* @__PURE__ */ import_react40.default.createElement("div", { key: field.fieldKey }, /* @__PURE__ */ import_react40.default.createElement("label", { className: "ak-lead-form-journey__label" }, field.label || field.fieldKey), renderControl(field))), /* @__PURE__ */ import_react40.default.createElement("div", { className: "ak-lead-form-journey__honeypot", "aria-hidden": "true" }, /* @__PURE__ */ import_react40.default.createElement("label", null, "Leave this field empty", /* @__PURE__ */ import_react40.default.createElement("input", { tabIndex: -1, autoComplete: "off", value: hp, onChange: (e) => setHp(e.target.value) }))), submitState === "success" ? /* @__PURE__ */ import_react40.default.createElement("p", { className: "ak-lead-form-journey__message ak-lead-form-journey__message--success" }, successMessage || "Thank you!") : null, submitState === "error" ? /* @__PURE__ */ import_react40.default.createElement("p", { className: "ak-lead-form-journey__message ak-lead-form-journey__message--error" }, formError || errorMessage) : null, /* @__PURE__ */ import_react40.default.createElement(
+    "button",
+    {
+      type: "submit",
+      disabled: submitState === "loading",
+      className: "ak-lead-form-journey__submit"
+    },
+    /* @__PURE__ */ import_react40.default.createElement("span", { className: "ak-lead-form-journey__submit-bg" }),
+    /* @__PURE__ */ import_react40.default.createElement("span", { className: "ak-lead-form-journey__submit-shine" }),
+    /* @__PURE__ */ import_react40.default.createElement("span", { className: "ak-lead-form-journey__submit-content" }, submitState === "loading" ? /* @__PURE__ */ import_react40.default.createElement(import_react40.default.Fragment, null, /* @__PURE__ */ import_react40.default.createElement("span", { className: "ak-lead-form-journey__spinner" }), loadingButtonText) : /* @__PURE__ */ import_react40.default.createElement(import_react40.default.Fragment, null, submitButtonText, /* @__PURE__ */ import_react40.default.createElement(Icon2, { name: "arrowRight", className: "ak-lead-form-journey__submit-icon" })))
+  ));
+}
+function JourneySplitLeadForm({
+  section,
+  appearance,
+  theme,
+  formBuilderSchema,
+  formBuilderLoading,
+  formBuilderError,
+  onSubmitDynamicForm,
+  onFetchFormSlots
+}) {
+  var _a, _b, _c;
+  const reduceMotion = usePrefersReducedMotion4();
+  const props = (_b = (_a = section == null ? void 0 : section.settings) == null ? void 0 : _a.props) != null ? _b : {};
+  const enableMotion = props.enableMotion !== false && !reduceMotion;
+  const eyebrow = safeText20(props.eyebrow);
+  const heading = safeText20(props.heading) || "Let's Start Your Journey Today";
+  const subheading = safeText20(props.subheading);
+  const showEyebrow = props.showEyebrow === true;
+  const showSubheading = props.showSubheading !== false;
+  const showChecklist = props.showChecklist !== false;
+  const checklistTitle = safeText20(props.checklistTitle);
+  const formTitle = safeText20(props.formTitle);
+  const showFormTitle = props.showFormTitle === true;
+  const submitButtonText = safeText20(props.submitButtonText) || "Submit Request";
+  const loadingButtonText = safeText20(props.loadingButtonText) || "Submitting...";
+  const successMessage = safeText20(props.successMessage);
+  const errorMessage = safeText20(props.errorMessage);
+  const blocks = (0, import_react40.useMemo)(
+    () => {
+      var _a2;
+      return Array.isArray((_a2 = section == null ? void 0 : section.settings) == null ? void 0 : _a2.blocks) ? section.settings.blocks : [];
+    },
+    [(_c = section == null ? void 0 : section.settings) == null ? void 0 : _c.blocks]
+  );
+  const checklistItems = (0, import_react40.useMemo)(
+    () => blocks.filter((block) => (block == null ? void 0 : block.type) === "checklist_item").filter((block) => safeText20(block.text)),
+    [blocks]
+  );
+  const formState = useDynamicFormBuilderState({
+    schema: formBuilderSchema,
+    enableSubmit: true,
+    onSubmitDynamicForm
+  });
+  const eyebrowStyle = (0, import_react40.useMemo)(
+    () => textColorStyle2(
+      resolvedTextStyleToInlineStyle(
+        resolveTextStyle({
+          section,
+          theme,
+          fieldId: "eyebrow",
+          role: "body",
+          defaultStyle: { color: "rgba(255,255,255,0.6)", fontWeight: "600" }
+        })
+      )
+    ),
+    [section, theme]
+  );
+  const headingStyle = (0, import_react40.useMemo)(
+    () => textColorStyle2(
+      resolvedTextStyleToInlineStyle(
+        resolveTextStyle({
+          section,
+          theme,
+          fieldId: "heading",
+          role: "heading",
+          defaultStyle: { color: "#ffffff", fontWeight: "600" }
+        })
+      )
+    ),
+    [section, theme]
+  );
+  const subheadingStyle = (0, import_react40.useMemo)(
+    () => textColorStyle2(
+      resolvedTextStyleToInlineStyle(
+        resolveTextStyle({
+          section,
+          theme,
+          fieldId: "subheading",
+          role: "body",
+          defaultStyle: { color: "rgba(255,255,255,0.6)", fontWeight: "400" }
+        })
+      )
+    ),
+    [section, theme]
+  );
+  const checklistTitleStyle = (0, import_react40.useMemo)(
+    () => textColorStyle2(
+      resolvedTextStyleToInlineStyle(
+        resolveTextStyle({
+          section,
+          theme,
+          fieldId: "checklistTitle",
+          role: "body",
+          defaultStyle: { color: "rgba(255,255,255,0.6)", fontWeight: "600" }
+        })
+      )
+    ),
+    [section, theme]
+  );
+  const checklistItemStyle = (0, import_react40.useMemo)(
+    () => textColorStyle2(
+      resolvedTextStyleToInlineStyle(
+        resolveTextStyle({
+          section,
+          theme,
+          fieldId: "checklistItem",
+          role: "body",
+          defaultStyle: { color: "rgba(255,255,255,0.82)", fontWeight: "400" }
+        })
+      )
+    ),
+    [section, theme]
+  );
+  const formTitleStyle = (0, import_react40.useMemo)(
+    () => textColorStyle2(
+      resolvedTextStyleToInlineStyle(
+        resolveTextStyle({
+          section,
+          theme,
+          fieldId: "formTitle",
+          role: "heading",
+          defaultStyle: { color: "#ffffff", fontWeight: "600" }
+        })
+      )
+    ),
+    [section, theme]
+  );
+  const headlineMotion = enableMotion ? {
+    initial: { opacity: 0, y: 40 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true },
+    transition: { duration: 0.8 }
+  } : {};
+  const formMotion = enableMotion ? {
+    initial: { opacity: 0, y: 40 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true },
+    transition: { duration: 0.8, delay: 0.2 }
+  } : {};
+  return /* @__PURE__ */ import_react40.default.createElement(
+    "section",
+    {
+      className: `ak-lead-form-journey ${paddingClass8(props.sectionPadding)}`,
+      style: sectionAppearanceStyle(appearance),
+      "aria-label": heading
+    },
+    /* @__PURE__ */ import_react40.default.createElement("div", { className: "ak-lead-form-journey__wrap" }, /* @__PURE__ */ import_react40.default.createElement("div", { className: "ak-lead-form-journey__grid" }, /* @__PURE__ */ import_react40.default.createElement(import_framer_motion12.motion.div, { className: "ak-lead-form-journey__content", ...headlineMotion }, showEyebrow && eyebrow ? /* @__PURE__ */ import_react40.default.createElement("span", { className: "ak-lead-form-journey__eyebrow", style: eyebrowStyle }, eyebrow) : null, /* @__PURE__ */ import_react40.default.createElement("h2", { className: "ak-lead-form-journey__heading", style: headingStyle }, heading), showSubheading && subheading ? /* @__PURE__ */ import_react40.default.createElement("p", { className: "ak-lead-form-journey__subheading", style: subheadingStyle }, subheading) : null, showChecklist && checklistItems.length > 0 ? /* @__PURE__ */ import_react40.default.createElement("div", { className: "ak-lead-form-journey__checklist" }, checklistTitle ? /* @__PURE__ */ import_react40.default.createElement("p", { className: "ak-lead-form-journey__checklist-title", style: checklistTitleStyle }, checklistTitle) : null, checklistItems.map((item, index) => {
+      var _a2;
+      const itemProps = item;
+      return /* @__PURE__ */ import_react40.default.createElement(
+        import_framer_motion12.motion.p,
+        {
+          key: (_a2 = itemProps.id) != null ? _a2 : index,
+          className: "ak-lead-form-journey__checklist-item",
+          style: checklistItemStyle,
+          initial: enableMotion ? { opacity: 0, x: -20 } : false,
+          whileInView: enableMotion ? { opacity: 1, x: 0 } : void 0,
+          viewport: { once: true },
+          transition: { duration: 0.5, delay: index * 0.15, ease: [0.22, 1, 0.36, 1] }
+        },
+        /* @__PURE__ */ import_react40.default.createElement(ChecklistIcon, { type: itemProps.iconType }),
+        /* @__PURE__ */ import_react40.default.createElement("span", null, safeText20(itemProps.text))
+      );
+    })) : null), /* @__PURE__ */ import_react40.default.createElement(import_framer_motion12.motion.div, { className: "ak-lead-form-journey__form-wrap", ...formMotion }, /* @__PURE__ */ import_react40.default.createElement("div", { className: "ak-lead-form-journey__card" }, showFormTitle && formTitle ? /* @__PURE__ */ import_react40.default.createElement("h3", { className: "ak-lead-form-journey__form-title", style: formTitleStyle }, formTitle) : null, /* @__PURE__ */ import_react40.default.createElement(
+      JourneyFieldsForm,
+      {
+        schema: formBuilderSchema,
+        loading: Boolean(formBuilderLoading),
+        loadError: formBuilderError,
+        onFetchFormSlots,
+        submitButtonText,
+        loadingButtonText,
+        successMessage,
+        errorMessage,
+        ...formState
+      }
+    )))))
   );
 }
 
 // src/shared/StorefrontFontLoader.tsx
-var import_react36 = require("react");
+var import_react41 = require("react");
 var GOOGLE_FONTS_MARKER = "data-storefront-fonts";
 function ensureGooglePreconnect() {
   const head = window.document.head;
@@ -10553,7 +13009,7 @@ function StorefrontFontLoader({
   fontIds,
   document: document2
 }) {
-  const ids = (0, import_react36.useMemo)(() => {
+  const ids = (0, import_react41.useMemo)(() => {
     const fromDoc = document2 ? collectStorefrontFontIdsFromDocument(document2) : [];
     const merged = /* @__PURE__ */ new Set([
       DEFAULT_STOREFRONT_FONT_ID,
@@ -10565,8 +13021,8 @@ function StorefrontFontLoader({
     merged.delete("system");
     return Array.from(merged);
   }, [document2, fontIds, themeFontId]);
-  const googleHref = (0, import_react36.useMemo)(() => buildGoogleFontLink(ids), [ids]);
-  (0, import_react36.useEffect)(() => {
+  const googleHref = (0, import_react41.useMemo)(() => buildGoogleFontLink(ids), [ids]);
+  (0, import_react41.useEffect)(() => {
     if (!googleHref) return void 0;
     ensureGooglePreconnect();
     const head = window.document.head;
@@ -10623,6 +13079,7 @@ function StorefrontFontLoader({
   INFO_CARD_LIGHT_SURFACE_DEFAULT,
   INFO_CARD_TITLE_DEFAULT,
   ImmersiveImageRevealHero,
+  JourneySplitLeadForm,
   LightMediaPresencePremium,
   LiquidFocusCategories,
   LogoFocusedHeader,
@@ -10677,6 +13134,7 @@ function StorefrontFontLoader({
   STYLE_PORTRAIT_TESTIMONIALS,
   STYLE_STACKED_TESTIMONIALS,
   ScrollParallaxSignatureHero,
+  ServiceInquiryForm,
   StackedTestimonials,
   StorefrontFontLoader,
   SubHeroImageLoop,

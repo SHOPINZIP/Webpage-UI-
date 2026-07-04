@@ -28,6 +28,8 @@ export { FeatureMarqueeBlock } from "./sections/marquee-text";
 export { MediaPresenceVideoHero, LightMediaPresencePremium } from "./sections/video-hero";
 export { FannedPhoneReels } from "./sections/reels-section";
 export { RakhiGiftFestival } from "./sections/festival";
+export { default as ServiceInquiryForm } from "./components/LeadFormSection";
+export { JourneySplitLeadForm } from "./components/LeadFormSection";
 export type { HeroScrollableSlideProps } from "./components/HeroSection/HeroScrollableSlide";
 export type {
   SubHeroImageLoopProps,
@@ -181,6 +183,26 @@ export type {
   FestivalCardBlock,
   FestivalPetalBlock,
 } from "./sections/festival";
+export type {
+  ServiceInquiryFormProps,
+  JourneySplitLeadFormProps,
+  LeadFormSectionDoc,
+  LeadFormSettings,
+  LeadFormSectionProps,
+  LeadFormBlock,
+  ShowcaseItemBlock,
+  ShowcaseItemBlockProps,
+  ChecklistItemBlock,
+  ChecklistItemBlockProps,
+} from "./components/LeadFormSection";
+export type {
+  PublicFormField,
+  PublicFormFieldDataType,
+  PublicFormSchema,
+  PublicFormSlotOption,
+  PublicFormMobileValue,
+  PublicFormSubmitBody,
+} from "./shared/publicFormTypes";
 
 export {
   STYLE_MESSAGE_BUBBLE,
