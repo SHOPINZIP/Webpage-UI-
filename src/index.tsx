@@ -28,6 +28,7 @@ export { FeatureMarqueeBlock } from "./sections/marquee-text";
 export { MediaPresenceVideoHero, LightMediaPresencePremium } from "./sections/video-hero";
 export { FannedPhoneReels } from "./sections/reels-section";
 export { RakhiGiftFestival } from "./sections/festival";
+export { NavratriDandiyaHero } from "./sections/festival";
 export { default as ServiceInquiryForm } from "./components/LeadFormSection";
 export { JourneySplitLeadForm } from "./components/LeadFormSection";
 export type { HeroScrollableSlideProps } from "./components/HeroSection/HeroScrollableSlide";
@@ -182,6 +183,14 @@ export type {
   FestivalBlock,
   FestivalCardBlock,
   FestivalPetalBlock,
+  NavratriDandiyaHeroProps,
+  NavratriSectionDoc,
+  NavratriSectionSettings,
+  NavratriSectionControls,
+  NavratriBlock,
+  NavratriWordBlock,
+  NavratriFeatureBlock,
+  NavratriBadgeBlock,
 } from "./sections/festival";
 export type {
   ServiceInquiryFormProps,

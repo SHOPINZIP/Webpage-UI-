@@ -1,0 +1,860 @@
+.akn-hero {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  min-height: 100vh;
+  padding: 7rem 1.25rem 3rem;
+  min-width: 100%;
+
+  @media (min-width: 640px) {
+    padding: 7rem 2rem 4rem;
+  }
+
+  @media (min-width: 1024px) {
+    padding: 5rem 2.5rem;
+  }
+}
+
+.akn-hero__gradient,
+.akn-hero__glow,
+.akn-hero__sparkle,
+.akn-hero__bg,
+.akn-hero__bg-overlay,
+.akn-hero__vignette {
+  position: absolute;
+  inset: 0;
+}
+
+.akn-hero__glow {
+  opacity: 0.55;
+}
+
+.akn-hero__vignette {
+  background: radial-gradient(circle at center, transparent 18%, rgba(0, 0, 0, 0.12) 100%);
+}
+
+.akn-hero__sparkle {
+  opacity: 0.16;
+  background-image: radial-gradient(circle, rgba(255, 235, 198, 0.9) 1.15px, transparent 1.8px);
+  background-size: 28px 28px;
+  mask-image: linear-gradient(to bottom, transparent, black 16%, black 84%, transparent);
+  -webkit-mask-image: linear-gradient(to bottom, transparent, black 16%, black 84%, transparent);
+}
+
+.akn-hero__bg {
+  background-size: cover;
+  background-position: center;
+  mix-blend-mode: screen;
+  opacity: 0.32;
+}
+
+.akn-hero__inner {
+  position: relative;
+  z-index: 3;
+  margin: 0 auto;
+  max-width: 1440px;
+  display: flex;
+  // min-height: calc(100vh - 10rem);
+  align-items: center;
+}
+
+.akn-grid {
+  display: grid;
+  width: 100%;
+  gap: 3rem;
+  grid-template-columns: minmax(0, 1fr);
+
+  @media (min-width: 768px) {
+    grid-template-columns: 0.97fr 1.03fr;
+    gap: 4rem;
+  }
+}
+
+.akn-copy {
+  position: relative;
+  z-index: 10;
+  max-width: 700px;
+}
+
+.akn-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid;
+  border-radius: 9999px;
+  backdrop-filter: blur(10px);
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-size: 11px;
+}
+
+/* The design's tight leading and negative tracking are measured against a
+   geometric sans. A theme font with taller metrics or connected letterforms
+   needs looser values or its lines touch and its glyphs collide, so both are
+   driven by the "Heading Spacing" control; the fallbacks are the design's. */
+.akn-heading {
+  margin: 0;
+  max-width: 780px;
+  font-weight: 500;
+  font-size: clamp(3.3rem, 8vw, 7.35rem);
+  line-height: var(--akn-heading-leading, 0.88);
+  letter-spacing: var(--akn-heading-tracking, -0.068em);
+}
+
+.akn-heading__line {
+  display: block;
+}
+
+.akn-word {
+  --akn-word-lead: 0.3em;
+  --akn-word-tail: 0.4em;
+
+  position: relative;
+  display: inline-flex;
+  overflow: hidden;
+  vertical-align: bottom;
+  min-width: 5.1ch;
+  line-height: 1;
+  padding-top: var(--akn-word-lead);
+  padding-bottom: var(--akn-word-tail);
+  margin-top: calc(var(--akn-word-lead) * -1);
+  margin-bottom: calc(var(--akn-word-tail) * -1);
+}
+
+.akn-word__slot {
+  position: absolute;
+  inset-inline-start: 0;
+  /* Sits at the content edge, aligning with the ghost that sizes the box. */
+  top: var(--akn-word-lead);
+  line-height: 1;
+}
+
+.akn-word__ghost {
+  visibility: hidden;
+  line-height: 1;
+}
+
+.akn-body {
+  margin: 1.5rem 0 0;
+  max-width: 540px;
+  font-size: 1rem;
+  line-height: 1.75rem;
+
+  @media (min-width: 640px) {
+    font-size: 1.125rem;
+  }
+}
+
+.akn-actions {
+  margin-top: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.akn-btn {
+  display: inline-flex;
+  min-height: 3rem;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1.5rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: transform 0.3s ease;
+}
+
+.akn-btn:hover {
+  transform: translateY(-2px);
+}
+
+.akn-btn--primary {
+  box-shadow: 0 20px 60px rgba(246, 183, 60, 0.18);
+}
+
+.akn-btn--secondary {
+  padding: 0 1.25rem;
+  border: 1px solid;
+  backdrop-filter: blur(6px);
+}
+
+.akn-btn__icon {
+  display: inline-flex;
+  margin-inline-start: 0.5rem;
+}
+
+.akn-btn--secondary .akn-btn__icon {
+  margin-inline-start: 0;
+  margin-inline-end: 0.5rem;
+}
+
+.akn-features {
+  margin-top: 2.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  column-gap: 1.25rem;
+  row-gap: 0.75rem;
+  border-top: 1px solid;
+  padding-top: 1.25rem;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+}
+
+.akn-features__item {
+  display: contents;
+}
+
+.akn-features__dot {
+  display: inline-block;
+  height: 4px;
+  width: 4px;
+  border-radius: 9999px;
+}
+
+.akn-visual {
+  position: relative;
+  min-height: 560px;
+
+  @media (min-width: 1024px) {
+    min-height: 740px;
+  }
+}
+
+.akn-visual__stage {
+  position: relative;
+  margin: 0 auto;
+  display: flex;
+  height: 100%;
+  max-width: 720px;
+  align-items: center;
+  justify-content: center;
+}
+
+.akn-visual__panel {
+  position: absolute;
+  inset-inline: 7%;
+  top: 10%;
+  height: 78%;
+  border-radius: 42px;
+  border: 1px solid;
+  backdrop-filter: blur(6px);
+}
+
+.akn-ring {
+  position: absolute;
+  border-radius: 9999px;
+  border-width: 1px;
+  border-style: dashed solid;
+}
+
+/* The decorative rings and rangoli are dialled back on smaller screens so they
+   never compete with the media frame — matching the source design. */
+.akn-ring--outer {
+  inset: 6%;
+  border-style: dashed;
+  opacity: 0.22;
+
+  @media (min-width: 640px) and (max-width: 1023px) {
+    opacity: 0.32;
+  }
+
+  @media (min-width: 1024px) {
+    opacity: 1;
+  }
+}
+
+.akn-ring--middle {
+  inset: 16%;
+  border-style: solid;
+  opacity: 0.16;
+
+  @media (min-width: 640px) and (max-width: 1023px) {
+    opacity: 0.2;
+  }
+
+  @media (min-width: 1024px) {
+    opacity: 1;
+  }
+}
+
+.akn-ring--inner {
+  inset: 26%;
+  border-style: dashed;
+  opacity: 0.14;
+
+  @media (min-width: 640px) and (max-width: 1023px) {
+    opacity: 0.16;
+  }
+
+  @media (min-width: 1024px) {
+    opacity: 1;
+  }
+}
+
+.akn-rangoli {
+  position: absolute;
+  inset: 9%;
+  border-radius: 9999px;
+  opacity: 0.22;
+  mask-image: radial-gradient(circle at center, transparent 0 25%, black 26% 78%, transparent 79%);
+  -webkit-mask-image: radial-gradient(circle at center, transparent 0 25%, black 26% 78%, transparent 79%);
+
+  @media (min-width: 640px) and (max-width: 1023px) {
+    opacity: 0.28;
+  }
+
+  @media (min-width: 1024px) {
+    opacity: 0.6;
+  }
+}
+
+.akn-media-frame {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 440px;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border-radius: 36px;
+  border: 1px solid;
+  box-shadow: 0 35px 120px rgba(15, 0, 5, 0.42);
+
+  @media (min-width: 640px) and (max-width: 1023px) {
+    max-width: 480px;
+  }
+}
+
+.akn-media-frame__img {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+}
+
+.akn-media-frame__shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(25, 6, 12, 0.84), rgba(25, 6, 12, 0.18) 44%, rgba(25, 6, 12, 0.12));
+}
+
+.akn-media-frame__badges {
+  position: absolute;
+  inset-inline: 1.25rem;
+  top: 1.25rem;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+
+  @media (min-width: 640px) {
+    inset-inline: 1.5rem;
+    top: 1.5rem;
+  }
+}
+
+.akn-badge {
+  padding: 0.375rem 0.75rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(0, 0, 0, 0.18);
+  color: rgba(255, 255, 255, 0.82);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 10px;
+  backdrop-filter: blur(8px);
+}
+
+.akn-caption {
+  position: absolute;
+  inset-inline: 1.25rem;
+  bottom: 1.25rem;
+  z-index: 2;
+
+  @media (min-width: 640px) {
+    inset-inline: 1.5rem;
+    bottom: 1.5rem;
+  }
+}
+
+.akn-caption__label {
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 10px;
+}
+
+.akn-caption__text {
+  margin: 0.5rem 0 0;
+  max-width: 285px;
+  font-size: 29px;
+  line-height: 1.02;
+  letter-spacing: -0.045em;
+  font-weight: 600;
+
+  @media (min-width: 640px) and (max-width: 1023px) {
+    font-size: 35px;
+  }
+}
+
+/* Decorative layer ------------------------------------------------ */
+
+.akn-toran {
+  position: absolute;
+  inset-inline: 0;
+  top: 0;
+  z-index: 20;
+  height: 6rem;
+  overflow: hidden;
+}
+
+.akn-toran__line {
+  position: absolute;
+  inset-inline: 0;
+  top: 0;
+  height: 1px;
+}
+
+.akn-toran__track {
+  display: flex;
+  height: 100%;
+  min-width: 720px;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.25rem 2rem 0;
+
+  @media (max-width: 639px) {
+    min-width: 680px;
+    transform: scale(0.78);
+    transform-origin: top center;
+  }
+
+  @media (min-width: 640px) and (max-width: 1023px) {
+    transform: scale(0.92);
+    transform-origin: top center;
+  }
+}
+
+.akn-toran__item {
+  position: relative;
+  height: 5rem;
+  width: 1.5rem;
+  flex-shrink: 0;
+}
+
+.akn-toran__bead {
+  margin: 0 auto;
+  height: 0.75rem;
+  width: 0.75rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: #ffd98a;
+}
+
+.akn-toran__flag {
+  position: absolute;
+  inset-inline-start: 50%;
+  top: 0.75rem;
+  height: 3rem;
+  width: 1.25rem;
+  transform: translateX(-50%);
+  clip-path: polygon(50% 100%, 0 0, 100% 0);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+}
+
+.akn-toran__thread {
+  position: absolute;
+  inset-inline-start: 50%;
+  top: 3.375rem;
+  height: 1rem;
+  width: 1px;
+  transform: translateX(-50%);
+  background: rgba(255, 217, 138, 0.7);
+}
+
+.akn-hero__decor {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.akn-hero__decor-slot {
+  position: absolute;
+}
+
+.akn-hero__decor-slot--lantern-1 {
+  display: none;
+  top: 0;
+  inset-inline-start: 8%;
+
+  @media (min-width: 1024px) {
+    display: block;
+  }
+}
+
+.akn-hero__decor-slot--lantern-2 {
+  display: none;
+  top: 0;
+  inset-inline-start: 22%;
+
+  @media (min-width: 1280px) {
+    display: block;
+  }
+}
+
+.akn-hero__decor-slot--lantern-3 {
+  display: none;
+  top: 0;
+  inset-inline-end: 10%;
+
+  @media (min-width: 1024px) {
+    display: block;
+  }
+}
+
+.akn-hero__decor-slot--medallion-1 {
+  display: none;
+  top: 35%;
+  inset-inline-start: 3%;
+
+  @media (min-width: 1024px) {
+    display: block;
+  }
+}
+
+.akn-hero__decor-slot--medallion-2 {
+  display: none;
+  top: 48%;
+  inset-inline-end: 4%;
+
+  @media (min-width: 1280px) {
+    display: block;
+  }
+}
+
+.akn-hero__decor-slot--dandiya-start,
+.akn-hero__decor-slot--dandiya-end,
+.akn-hero__decor-slot--dandiya-bottom-start,
+.akn-hero__decor-slot--dandiya-bottom-end {
+  transform: scale(0.72);
+  transform-origin: center;
+
+  @media (min-width: 640px) and (max-width: 1023px) {
+    transform: scale(0.86);
+  }
+
+  @media (min-width: 1024px) {
+    transform: scale(1);
+  }
+}
+
+.akn-hero__decor-slot--dandiya-start {
+  top: 35%;
+  inset-inline-start: 4%;
+
+  @media (min-width: 640px) and (max-width: 1023px) {
+    top: 31%;
+    inset-inline-start: 5%;
+  }
+
+  @media (min-width: 1024px) {
+    top: 30%;
+    inset-inline-start: 3%;
+  }
+}
+
+.akn-hero__decor-slot--dandiya-end {
+  top: 29%;
+  inset-inline-end: 4%;
+
+  @media (min-width: 640px) and (max-width: 1023px) {
+    top: 25%;
+    inset-inline-end: 5%;
+  }
+
+  @media (min-width: 1024px) {
+    top: 24%;
+    inset-inline-end: 5%;
+  }
+}
+
+.akn-hero__decor-slot--dandiya-bottom-start {
+  bottom: 5%;
+  inset-inline-start: 3%;
+
+  @media (min-width: 640px) and (max-width: 1023px) {
+    bottom: 6%;
+    inset-inline-start: 7%;
+  }
+
+  @media (min-width: 1024px) {
+    bottom: 7%;
+    inset-inline-start: 11%;
+  }
+}
+
+.akn-hero__decor-slot--dandiya-bottom-end {
+  bottom: 5%;
+  inset-inline-end: 3%;
+
+  @media (min-width: 640px) and (max-width: 1023px) {
+    bottom: 5%;
+    inset-inline-end: 7%;
+  }
+
+  @media (min-width: 1024px) {
+    bottom: 4%;
+    inset-inline-end: 11%;
+  }
+}
+
+.akn-dandiya {
+  position: relative;
+  height: 0.75rem;
+  width: 10rem;
+  border-radius: 9999px;
+  border: 1px solid;
+  box-shadow: 0 20px 40px rgba(46, 13, 26, 0.18);
+}
+
+.akn-dandiya__band {
+  position: absolute;
+  inset-block: 0;
+  width: 1.25rem;
+  border-radius: 9999px;
+}
+
+.akn-dandiya__sheen {
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.3), transparent);
+}
+
+.akn-lantern {
+  transform-origin: top center;
+}
+
+.akn-lantern__thread-top,
+.akn-lantern__thread-bottom {
+  margin: 0 auto;
+  width: 1px;
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.akn-lantern__thread-top {
+  height: 3rem;
+}
+
+.akn-lantern__thread-bottom {
+  height: 1.25rem;
+}
+
+.akn-lantern__body {
+  position: relative;
+  height: 3.5rem;
+  width: 3rem;
+  border-radius: 9999px 9999px 0 0;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 10px 30px rgba(230, 121, 43, 0.32);
+}
+
+.akn-lantern__cap {
+  position: absolute;
+  inset-inline: 0.25rem;
+  top: 0.5rem;
+  height: 0.5rem;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.akn-lantern__window {
+  position: absolute;
+  inset-inline: 0.5rem;
+  bottom: 0.5rem;
+  height: 1.5rem;
+  border-radius: 9999px;
+  background: rgba(122, 23, 55, 0.16);
+}
+
+.akn-lantern__tassels {
+  display: flex;
+  width: 1.25rem;
+  margin: 0 auto;
+  justify-content: center;
+  gap: 0.25rem;
+}
+
+.akn-lantern__tassels span {
+  width: 1px;
+  border-radius: 9999px;
+}
+
+.akn-lantern__tassels span:nth-child(1) {
+  height: 1rem;
+}
+
+.akn-lantern__tassels span:nth-child(2) {
+  height: 1.25rem;
+}
+
+.akn-lantern__tassels span:nth-child(3) {
+  height: 1rem;
+}
+
+.akn-medallion {
+  height: 6rem;
+  width: 6rem;
+}
+
+.akn-medallion__outer {
+  display: grid;
+  place-items: center;
+  height: 100%;
+  width: 100%;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(4px);
+}
+
+.akn-medallion__mid {
+  display: grid;
+  place-items: center;
+  height: 4rem;
+  width: 4rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.akn-medallion__inner {
+  height: 2rem;
+  width: 2rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.2);
+}
+
+@keyframes akn-rise {
+  from {
+    opacity: 0;
+    transform: translateY(var(--akn-rise-y, 16px));
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes akn-fade {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes akn-scale {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes akn-dandiya {
+
+  0%,
+  100% {
+    transform: translateY(0) rotate(var(--akn-dandiya-rotate, 0deg));
+  }
+
+  50% {
+    transform: translateY(-8px) rotate(calc(var(--akn-dandiya-rotate, 0deg) + 2deg));
+  }
+}
+
+@keyframes akn-lantern {
+
+  0%,
+  100% {
+    transform: rotate(-2deg);
+  }
+
+  50% {
+    transform: rotate(2deg);
+  }
+}
+
+@keyframes akn-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes akn-spin-reverse {
+  from {
+    transform: rotate(360deg);
+  }
+
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+/* 150% rather than 110% so a word starts and ends fully outside the mask's
+   ascender/descender padding instead of peeking into it. */
+@keyframes akn-word-in {
+  from {
+    transform: translateY(150%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes akn-word-out {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  to {
+    transform: translateY(-150%);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .akn-dandiya,
+  .akn-lantern,
+  .akn-medallion,
+  .akn-rangoli,
+  .akn-ring {
+    animation: none !important;
+  }
+}

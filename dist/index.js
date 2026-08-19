@@ -104,6 +104,7 @@ __export(index_exports, {
   NSP_TYPING_SECONDARY_BUTTON_TEXT_DEFAULT: () => NSP_TYPING_SECONDARY_BUTTON_TEXT_DEFAULT,
   NSP_TYPING_STATIC_HEADING_DEFAULT: () => NSP_TYPING_STATIC_HEADING_DEFAULT,
   NSP_TYPING_WORD_DEFAULT: () => NSP_TYPING_WORD_DEFAULT,
+  NavratriDandiyaHero: () => NavratriDandiyaHero,
   PRODUCT_CARD_DESCRIPTION_DEFAULT: () => PRODUCT_CARD_DESCRIPTION_DEFAULT,
   PRODUCT_CARD_SUBTITLE_DEFAULT: () => PRODUCT_CARD_SUBTITLE_DEFAULT,
   PRODUCT_CARD_TITLE_DEFAULT: () => PRODUCT_CARD_TITLE_DEFAULT,
@@ -11762,14 +11763,359 @@ function RakhiGiftFestival({ section, theme }) {
   );
 }
 
+// src/sections/festival/NavratriDandiyaHero.tsx
+var import_react36 = __toESM(require("react"));
+var WORD_BLOCK_TYPE = "navratri_word";
+var FEATURE_BLOCK_TYPE = "navratri_feature";
+var BADGE_BLOCK_TYPE = "navratri_badge";
+var COLOR_FALLBACKS2 = {
+  sectionBackgroundColor: "#250A15",
+  sectionBackgroundGradient: "linear-gradient(135deg,#250A15 0%,#4B0F26 26%,#6F1635 60%,#2B0915 100%)",
+  primaryColor: "#F6B73C",
+  onPrimaryColor: "#3A1020",
+  secondaryColor: "#D94A67",
+  accentColor: "#228457",
+  onAccentColor: "#F0AE34",
+  tertiaryColor: "#4D3CB5",
+  highlightColor: "#7A1737",
+  surfaceColor: "#57152A",
+  textColor: "#FFFFFF",
+  mutedTextColor: "rgba(255,255,255,0.72)",
+  borderColor: "rgba(255,255,255,0.14)",
+  glowColor: "#FFD98A",
+  mediaOverlayColor: "rgba(25,6,12,0.84)"
+};
+var TEXT_DEFAULTS2 = {
+  eyebrowText: { color: "rgba(255,255,255,0.78)", fontWeight: "500" },
+  headingLineOne: { color: "#FFFFFF", fontWeight: "500" },
+  headingConnector: { color: "#FFFFFF", fontWeight: "500" },
+  headingLineThree: { color: "rgba(255,255,255,0.88)", fontWeight: "500" },
+  bodyText: { color: "rgba(255,255,255,0.72)", fontWeight: "400" },
+  primaryButtonText: { color: "#3A1020", fontWeight: "600" },
+  secondaryButtonText: { color: "#FFFFFF", fontWeight: "600" },
+  mediaCaptionLabel: { color: "rgba(255,255,255,0.56)", fontWeight: "500" },
+  mediaCaptionText: { color: "#FFFFFF", fontWeight: "600" }
+};
+var CONTENT_FALLBACKS2 = {
+  eyebrowText: "Navratri-inspired hero experience",
+  headingLineOne: "Build with",
+  headingConnector: "more",
+  headingLineThree: "this Navratri.",
+  bodyText: "A premium festive hero blending Garba spirit, Dandiya motion, rich colour and modern storytelling into one memorable first impression.",
+  primaryButtonText: "Start your project",
+  secondaryButtonText: "Watch festive story",
+  mediaAlt: "People celebrating Navratri with Garba and Dandiya",
+  mediaCaptionLabel: "Festival atmosphere",
+  mediaCaptionText: "Where craft, celebration and movement meet."
+};
+var DEFAULT_WORDS = ["Rhythm", "Colour", "Celebration", "Energy"];
+var DEFAULT_FEATURES = [
+  "Garba-inspired mood",
+  "Mirror-work details",
+  "Dandiya energy",
+  "Premium storytelling"
+];
+var DEFAULT_BADGES = ["Navratri 2026", "01 \u2014 09 Nights"];
+var EASE = "cubic-bezier(0.22, 1, 0.36, 1)";
+var HEADING_DENSITY = {
+  tight: { leading: "0.88", tracking: "-0.068em" },
+  balanced: { leading: "0.98", tracking: "-0.03em" },
+  relaxed: { leading: "1.08", tracking: "0em" }
+};
+var DEFAULT_HEADING_DENSITY = "tight";
+function safeText18(value) {
+  return String(value != null ? value : "").trim();
+}
+function riseStyle(delay, duration, travel = 16) {
+  return {
+    ["--akn-rise-y"]: `${travel}px`,
+    animation: `akn-rise ${duration}s ${EASE} ${delay}s both`
+  };
+}
+function fadeStyle(delay, duration) {
+  return { animation: `akn-fade ${duration}s ${EASE} ${delay}s both` };
+}
+function scaleStyle(delay, duration) {
+  return { animation: `akn-scale ${duration}s ${EASE} ${delay}s both` };
+}
+function useReducedMotionPreference() {
+  const [reduced, setReduced] = (0, import_react36.useState)(false);
+  (0, import_react36.useEffect)(() => {
+    var _a;
+    if (typeof window === "undefined" || !window.matchMedia) return void 0;
+    const media = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const sync = () => setReduced(media.matches);
+    sync();
+    (_a = media.addEventListener) == null ? void 0 : _a.call(media, "change", sync);
+    return () => {
+      var _a2;
+      return (_a2 = media.removeEventListener) == null ? void 0 : _a2.call(media, "change", sync);
+    };
+  }, []);
+  return reduced;
+}
+function readBlockText2(block) {
+  var _a;
+  return safeText18((_a = block == null ? void 0 : block.props) == null ? void 0 : _a.text);
+}
+function ArrowUpRightIcon2() {
+  return /* @__PURE__ */ import_react36.default.createElement("svg", { "aria-hidden": "true", width: 15, height: 15, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round" }, /* @__PURE__ */ import_react36.default.createElement("path", { d: "M7 17 17 7" }), /* @__PURE__ */ import_react36.default.createElement("path", { d: "M7 7h10v10" }));
+}
+function MusicIcon() {
+  return /* @__PURE__ */ import_react36.default.createElement("svg", { "aria-hidden": "true", width: 13, height: 13, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round" }, /* @__PURE__ */ import_react36.default.createElement("path", { d: "M9 18V5l12-2v13" }), /* @__PURE__ */ import_react36.default.createElement("circle", { cx: "6", cy: "18", r: "3" }), /* @__PURE__ */ import_react36.default.createElement("circle", { cx: "18", cy: "16", r: "3" }));
+}
+function Toran({ palette }) {
+  const colors = [palette.primary, palette.secondary, palette.accent, palette.tertiary];
+  return /* @__PURE__ */ import_react36.default.createElement("div", { "aria-hidden": "true", className: "akn-toran" }, /* @__PURE__ */ import_react36.default.createElement("div", { className: "akn-toran__line", style: { background: `linear-gradient(to right,transparent,${palette.primary},transparent)` } }), /* @__PURE__ */ import_react36.default.createElement("div", { className: "akn-toran__track" }, Array.from({ length: 23 }).map((_, index) => /* @__PURE__ */ import_react36.default.createElement("div", { key: index, className: "akn-toran__item", style: { transform: `translateY(${index % 2 === 0 ? 0 : 6}px)` } }, /* @__PURE__ */ import_react36.default.createElement("div", { className: "akn-toran__bead" }), /* @__PURE__ */ import_react36.default.createElement("div", { className: "akn-toran__flag", style: { background: colors[index % colors.length] } }), /* @__PURE__ */ import_react36.default.createElement("div", { className: "akn-toran__thread" })))));
+}
+function Dandiya({ className = "", rotate: rotate4 = 0, delay = 0, palette, reduced }) {
+  const bands = [palette.highlight, palette.tertiary, palette.accent, palette.secondary];
+  return /* @__PURE__ */ import_react36.default.createElement(
+    "div",
+    {
+      "aria-hidden": "true",
+      className: `akn-dandiya ${className}`,
+      style: {
+        ["--akn-dandiya-rotate"]: `${rotate4}deg`,
+        borderColor: `color-mix(in srgb, ${palette.onPrimary} 12%, transparent)`,
+        background: palette.onAccent,
+        animation: reduced ? "none" : `akn-dandiya 4.6s ease-in-out ${delay}s infinite`,
+        transform: `rotate(${rotate4}deg)`
+      }
+    },
+    /* @__PURE__ */ import_react36.default.createElement("span", { className: "akn-dandiya__band", style: { insetInlineStart: 16, background: bands[0] } }),
+    /* @__PURE__ */ import_react36.default.createElement("span", { className: "akn-dandiya__band", style: { insetInlineStart: 48, background: bands[1] } }),
+    /* @__PURE__ */ import_react36.default.createElement("span", { className: "akn-dandiya__band", style: { insetInlineEnd: 48, background: bands[2] } }),
+    /* @__PURE__ */ import_react36.default.createElement("span", { className: "akn-dandiya__band", style: { insetInlineEnd: 16, background: bands[3] } }),
+    /* @__PURE__ */ import_react36.default.createElement("span", { className: "akn-dandiya__sheen" })
+  );
+}
+function HangingLantern({ className = "", delay = 0, palette, reduced }) {
+  return /* @__PURE__ */ import_react36.default.createElement("div", { "aria-hidden": "true", className: `akn-lantern ${className}`, style: { animation: reduced ? "none" : `akn-lantern 5.2s ease-in-out ${delay}s infinite` } }, /* @__PURE__ */ import_react36.default.createElement("div", { className: "akn-lantern__thread-top" }), /* @__PURE__ */ import_react36.default.createElement("div", { className: "akn-lantern__body", style: { background: `linear-gradient(to bottom,${palette.primary},${palette.onAccent})` } }, /* @__PURE__ */ import_react36.default.createElement("div", { className: "akn-lantern__cap" }), /* @__PURE__ */ import_react36.default.createElement("div", { className: "akn-lantern__window" })), /* @__PURE__ */ import_react36.default.createElement("div", { className: "akn-lantern__thread-bottom" }), /* @__PURE__ */ import_react36.default.createElement("div", { className: "akn-lantern__tassels" }, /* @__PURE__ */ import_react36.default.createElement("span", { style: { background: palette.primary } }), /* @__PURE__ */ import_react36.default.createElement("span", { style: { background: palette.secondary } }), /* @__PURE__ */ import_react36.default.createElement("span", { style: { background: palette.accent } })));
+}
+function MirrorMedallion({ className = "", color, reduced }) {
+  return /* @__PURE__ */ import_react36.default.createElement("div", { "aria-hidden": "true", className: `akn-medallion ${className}`, style: { animation: reduced ? "none" : "akn-spin 28s linear infinite" } }, /* @__PURE__ */ import_react36.default.createElement(
+    "div",
+    {
+      className: "akn-medallion__outer",
+      style: {
+        background: `radial-gradient(circle at center, color-mix(in srgb,#fff 16%,transparent), color-mix(in srgb,${color} 13%,transparent) 58%, transparent 72%)`
+      }
+    },
+    /* @__PURE__ */ import_react36.default.createElement("div", { className: "akn-medallion__mid" }, /* @__PURE__ */ import_react36.default.createElement("div", { className: "akn-medallion__inner" }))
+  ));
+}
+function RangoliAura({ primary, reduced }) {
+  return /* @__PURE__ */ import_react36.default.createElement(
+    "div",
+    {
+      "aria-hidden": "true",
+      className: "akn-rangoli",
+      style: {
+        animation: reduced ? "none" : "akn-spin 54s linear infinite",
+        background: `radial-gradient(circle at center, color-mix(in srgb,${primary} 10%,transparent) 0%, color-mix(in srgb,${primary} 4%,transparent) 20%, transparent 20%), repeating-conic-gradient(from 0deg, color-mix(in srgb,#fff 8%,transparent) 0deg 4deg, transparent 4deg 14deg)`
+      }
+    }
+  );
+}
+function DynamicWord({
+  words,
+  reduced,
+  style
+}) {
+  const [index, setIndex] = (0, import_react36.useState)(0);
+  const [previous, setPrevious] = (0, import_react36.useState)(null);
+  (0, import_react36.useEffect)(() => {
+    if (reduced || words.length < 2) return void 0;
+    let clear;
+    const interval = window.setInterval(() => {
+      setIndex((value) => {
+        setPrevious(value);
+        return (value + 1) % words.length;
+      });
+      window.clearTimeout(clear);
+      clear = window.setTimeout(() => setPrevious(null), 560);
+    }, 2300);
+    return () => {
+      window.clearInterval(interval);
+      window.clearTimeout(clear);
+    };
+  }, [reduced, words.length]);
+  const safeIndex = index % words.length;
+  const longest = words.reduce((winner, item) => item.length > winner.length ? item : winner, "");
+  return /* @__PURE__ */ import_react36.default.createElement("span", { className: "akn-word", style }, previous !== null && !reduced ? /* @__PURE__ */ import_react36.default.createElement("span", { key: `prev-${previous}-${safeIndex}`, className: "akn-word__slot", style: { animation: "akn-word-out .55s cubic-bezier(0.22,1,0.36,1) both" } }, words[previous % words.length]) : null, /* @__PURE__ */ import_react36.default.createElement("span", { key: `cur-${safeIndex}`, className: "akn-word__slot", style: { animation: reduced ? "none" : "akn-word-in .55s cubic-bezier(0.22,1,0.36,1) both" } }, words[safeIndex]), /* @__PURE__ */ import_react36.default.createElement("span", { className: "akn-word__ghost" }, longest));
+}
+function NavratriDandiyaHero({ section, theme }) {
+  var _a, _b, _c, _d;
+  const props = (_b = (_a = section == null ? void 0 : section.settings) == null ? void 0 : _a.props) != null ? _b : {};
+  const rawBlocks = Array.isArray((_c = section == null ? void 0 : section.settings) == null ? void 0 : _c.blocks) ? section.settings.blocks : [];
+  const reduced = useReducedMotionPreference();
+  const bodyFont = resolveStorefrontFontFamily(resolveThemeFontKey("body", theme));
+  const headingFont = resolveStorefrontFontFamily(resolveThemeFontKey("heading", theme));
+  const color = (key) => {
+    const v = safeText18(props[key]);
+    return v || COLOR_FALLBACKS2[key];
+  };
+  const content = (key) => {
+    const v = props[key];
+    return v === null || v === void 0 ? CONTENT_FALLBACKS2[key] : String(v);
+  };
+  const flag = (key, fallback = true) => props[key] === void 0 ? fallback : props[key] !== false;
+  const textStyle = (fieldId, role) => {
+    const resolved = resolvedTextStyleToInlineStyle(
+      resolveTextStyle({ section, theme, fieldId, role, defaultStyle: TEXT_DEFAULTS2[fieldId] })
+    );
+    const { fontSize: _fontSize, ...rest } = resolved;
+    return role === "heading" ? { ...rest, fontFamily: headingFont } : rest;
+  };
+  const words = (0, import_react36.useMemo)(() => {
+    const list = rawBlocks.filter((b) => safeText18(b == null ? void 0 : b.type) === WORD_BLOCK_TYPE).map(readBlockText2).filter(Boolean);
+    return list.length > 0 ? list : DEFAULT_WORDS;
+  }, [rawBlocks]);
+  const features = (0, import_react36.useMemo)(() => {
+    const list = rawBlocks.filter((b) => safeText18(b == null ? void 0 : b.type) === FEATURE_BLOCK_TYPE).map(readBlockText2).filter(Boolean);
+    return list.length > 0 ? list : DEFAULT_FEATURES;
+  }, [rawBlocks]);
+  const badges = (0, import_react36.useMemo)(() => {
+    const list = rawBlocks.filter((b) => safeText18(b == null ? void 0 : b.type) === BADGE_BLOCK_TYPE).map(readBlockText2).filter(Boolean);
+    return list.length > 0 ? list : DEFAULT_BADGES;
+  }, [rawBlocks]);
+  const decorPalette = (0, import_react36.useMemo)(
+    () => ({
+      primary: color("primaryColor"),
+      secondary: color("secondaryColor"),
+      accent: color("accentColor"),
+      tertiary: color("tertiaryColor"),
+      highlight: color("highlightColor"),
+      onAccent: color("onAccentColor"),
+      onPrimary: color("onPrimaryColor")
+    }),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [
+      props.primaryColor,
+      props.secondaryColor,
+      props.accentColor,
+      props.tertiaryColor,
+      props.highlightColor,
+      props.onAccentColor,
+      props.onPrimaryColor
+    ]
+  );
+  const headingDensity = (_d = HEADING_DENSITY[safeText18(props.headingDensity)]) != null ? _d : HEADING_DENSITY[DEFAULT_HEADING_DENSITY];
+  const media = resolveBlockImageUrl(props.mediaImage);
+  const mediaAlt = content("mediaAlt");
+  if ((section == null ? void 0 : section.enabled) === false) return null;
+  const primaryHref = safeText18(props.primaryButtonLink) || "#";
+  const secondaryHref = safeText18(props.secondaryButtonLink) || "#";
+  return /* @__PURE__ */ import_react36.default.createElement(
+    "section",
+    {
+      className: "akn-hero",
+      "data-ak-section": "festival",
+      style: {
+        ["--akn-heading-leading"]: headingDensity.leading,
+        ["--akn-heading-tracking"]: headingDensity.tracking,
+        fontFamily: bodyFont,
+        color: color("textColor"),
+        background: color("sectionBackgroundColor")
+      }
+    },
+    /* @__PURE__ */ import_react36.default.createElement("div", { className: "akn-hero__gradient", style: { background: color("sectionBackgroundGradient") } }),
+    /* @__PURE__ */ import_react36.default.createElement(
+      "div",
+      {
+        className: "akn-hero__glow",
+        style: {
+          background: `radial-gradient(circle at 15% 20%, color-mix(in srgb, ${color("primaryColor")} 18%, transparent), transparent 24%), radial-gradient(circle at 78% 18%, color-mix(in srgb, ${color("secondaryColor")} 24%, transparent), transparent 26%), radial-gradient(circle at 50% 65%, color-mix(in srgb, ${color("secondaryColor")} 20%, transparent), transparent 30%), radial-gradient(circle at 82% 72%, color-mix(in srgb, ${color("primaryColor")} 12%, transparent), transparent 20%)`
+        }
+      }
+    ),
+    /* @__PURE__ */ import_react36.default.createElement("div", { className: "akn-hero__sparkle" }),
+    media ? /* @__PURE__ */ import_react36.default.createElement("div", { className: "akn-hero__bg", style: { backgroundImage: `url('${media}')` } }) : null,
+    /* @__PURE__ */ import_react36.default.createElement(
+      "div",
+      {
+        className: "akn-hero__bg-overlay",
+        style: {
+          background: `linear-gradient(90deg, ${color("mediaOverlayColor")} 0%, color-mix(in srgb, ${color("mediaOverlayColor")} 55%, transparent) 35%, color-mix(in srgb, ${color("mediaOverlayColor")} 26%, transparent) 58%, color-mix(in srgb, ${color("mediaOverlayColor")} 72%, transparent) 100%)`
+        }
+      }
+    ),
+    /* @__PURE__ */ import_react36.default.createElement("div", { className: "akn-hero__vignette" }),
+    flag("showToran") ? /* @__PURE__ */ import_react36.default.createElement(Toran, { palette: decorPalette }) : null,
+    /* @__PURE__ */ import_react36.default.createElement("div", { className: "akn-hero__decor", "aria-hidden": "true" }, flag("showLanterns") ? /* @__PURE__ */ import_react36.default.createElement(import_react36.default.Fragment, null, /* @__PURE__ */ import_react36.default.createElement("div", { className: "akn-hero__decor-slot akn-hero__decor-slot--lantern-1" }, /* @__PURE__ */ import_react36.default.createElement(HangingLantern, { palette: decorPalette, reduced })), /* @__PURE__ */ import_react36.default.createElement("div", { className: "akn-hero__decor-slot akn-hero__decor-slot--lantern-2" }, /* @__PURE__ */ import_react36.default.createElement(HangingLantern, { delay: 0.45, palette: decorPalette, reduced })), /* @__PURE__ */ import_react36.default.createElement("div", { className: "akn-hero__decor-slot akn-hero__decor-slot--lantern-3" }, /* @__PURE__ */ import_react36.default.createElement(HangingLantern, { delay: 0.25, palette: decorPalette, reduced }))) : null, flag("showMirrorMedallions") ? /* @__PURE__ */ import_react36.default.createElement(import_react36.default.Fragment, null, /* @__PURE__ */ import_react36.default.createElement("div", { className: "akn-hero__decor-slot akn-hero__decor-slot--medallion-1" }, /* @__PURE__ */ import_react36.default.createElement(MirrorMedallion, { color: color("primaryColor"), reduced })), /* @__PURE__ */ import_react36.default.createElement("div", { className: "akn-hero__decor-slot akn-hero__decor-slot--medallion-2" }, /* @__PURE__ */ import_react36.default.createElement(MirrorMedallion, { color: color("secondaryColor"), reduced }))) : null, flag("showDandiyaSticks") ? /* @__PURE__ */ import_react36.default.createElement(import_react36.default.Fragment, null, /* @__PURE__ */ import_react36.default.createElement("div", { className: "akn-hero__decor-slot akn-hero__decor-slot--dandiya-start" }, /* @__PURE__ */ import_react36.default.createElement(Dandiya, { rotate: -28, palette: decorPalette, reduced })), /* @__PURE__ */ import_react36.default.createElement("div", { className: "akn-hero__decor-slot akn-hero__decor-slot--dandiya-end" }, /* @__PURE__ */ import_react36.default.createElement(Dandiya, { rotate: 30, delay: 0.5, palette: decorPalette, reduced }))) : null),
+    /* @__PURE__ */ import_react36.default.createElement("div", { className: "akn-hero__inner" }, /* @__PURE__ */ import_react36.default.createElement("div", { className: "akn-grid" }, /* @__PURE__ */ import_react36.default.createElement("div", { className: "akn-copy" }, flag("showEyebrow") && content("eyebrowText") ? /* @__PURE__ */ import_react36.default.createElement(
+      "div",
+      {
+        className: "akn-eyebrow",
+        style: {
+          ...riseStyle(0, 0.65),
+          borderColor: color("borderColor"),
+          background: `color-mix(in srgb, ${color("textColor")} 8%, transparent)`
+        }
+      },
+      /* @__PURE__ */ import_react36.default.createElement("span", { style: { color: color("primaryColor") } }, /* @__PURE__ */ import_react36.default.createElement(MusicIcon, null)),
+      /* @__PURE__ */ import_react36.default.createElement("span", { style: textStyle("eyebrowText", "body") }, content("eyebrowText"))
+    ) : null, /* @__PURE__ */ import_react36.default.createElement("h2", { className: "akn-heading", style: { ...riseStyle(0.06, 0.82, 20), fontFamily: headingFont } }, /* @__PURE__ */ import_react36.default.createElement("span", { className: "akn-heading__line", style: textStyle("headingLineOne", "heading") }, content("headingLineOne")), /* @__PURE__ */ import_react36.default.createElement("span", { className: "akn-heading__line" }, /* @__PURE__ */ import_react36.default.createElement("span", { style: textStyle("headingConnector", "heading") }, content("headingConnector")), " ", /* @__PURE__ */ import_react36.default.createElement(DynamicWord, { words, reduced, style: { color: color("primaryColor") } })), /* @__PURE__ */ import_react36.default.createElement("span", { className: "akn-heading__line", style: textStyle("headingLineThree", "heading") }, content("headingLineThree"))), content("bodyText") ? /* @__PURE__ */ import_react36.default.createElement("p", { className: "akn-body", style: { ...riseStyle(0.16, 0.72, 18), ...textStyle("bodyText", "body") } }, content("bodyText")) : null, /* @__PURE__ */ import_react36.default.createElement("div", { className: "akn-actions", style: riseStyle(0.22, 0.72, 18) }, content("primaryButtonText") ? /* @__PURE__ */ import_react36.default.createElement(
+      "a",
+      {
+        href: primaryHref,
+        className: "akn-btn akn-btn--primary",
+        style: { background: color("primaryColor"), ...textStyle("primaryButtonText", "body") }
+      },
+      content("primaryButtonText"),
+      /* @__PURE__ */ import_react36.default.createElement("span", { className: "akn-btn__icon" }, /* @__PURE__ */ import_react36.default.createElement(ArrowUpRightIcon2, null))
+    ) : null, flag("showSecondaryButton") && content("secondaryButtonText") ? /* @__PURE__ */ import_react36.default.createElement(
+      "a",
+      {
+        href: secondaryHref,
+        className: "akn-btn akn-btn--secondary",
+        style: {
+          borderColor: color("borderColor"),
+          background: `color-mix(in srgb, ${color("textColor")} 8%, transparent)`,
+          ...textStyle("secondaryButtonText", "body")
+        }
+      },
+      content("secondaryButtonText")
+    ) : null), flag("showFeatures") && features.length > 0 ? /* @__PURE__ */ import_react36.default.createElement(
+      "div",
+      {
+        className: "akn-features",
+        style: {
+          ...fadeStyle(0.34, 0.8),
+          borderColor: color("borderColor"),
+          color: `color-mix(in srgb, ${color("textColor")} 48%, transparent)`
+        }
+      },
+      features.map((feature, index) => /* @__PURE__ */ import_react36.default.createElement("div", { key: `${feature}-${index}`, className: "akn-features__item" }, /* @__PURE__ */ import_react36.default.createElement("span", null, feature), index < features.length - 1 ? /* @__PURE__ */ import_react36.default.createElement(
+        "span",
+        {
+          className: "akn-features__dot",
+          style: { background: [color("primaryColor"), color("secondaryColor"), color("accentColor")][index % 3] }
+        }
+      ) : null))
+    ) : null), /* @__PURE__ */ import_react36.default.createElement("div", { className: "akn-visual" }, /* @__PURE__ */ import_react36.default.createElement("div", { className: "akn-visual__stage", style: scaleStyle(0.12, 0.85) }, /* @__PURE__ */ import_react36.default.createElement("div", { className: "akn-visual__panel", style: { borderColor: color("borderColor"), background: `color-mix(in srgb, ${color("textColor")} 6%, transparent)` } }), /* @__PURE__ */ import_react36.default.createElement("div", { className: "akn-ring akn-ring--outer", style: { borderColor: `color-mix(in srgb, ${color("primaryColor")} 20%, transparent)`, animation: reduced ? "none" : "akn-spin 42s linear infinite" } }), /* @__PURE__ */ import_react36.default.createElement("div", { className: "akn-ring akn-ring--middle", style: { borderColor: `color-mix(in srgb, ${color("textColor")} 12%, transparent)`, animation: reduced ? "none" : "akn-spin-reverse 30s linear infinite" } }), /* @__PURE__ */ import_react36.default.createElement("div", { className: "akn-ring akn-ring--inner", style: { borderColor: `color-mix(in srgb, ${color("secondaryColor")} 22%, transparent)`, animation: reduced ? "none" : "akn-spin 24s linear infinite" } }), flag("showRangoliAura") ? /* @__PURE__ */ import_react36.default.createElement(RangoliAura, { primary: color("primaryColor"), reduced }) : null, /* @__PURE__ */ import_react36.default.createElement(
+      "div",
+      {
+        className: "akn-media-frame",
+        style: { borderColor: color("borderColor"), background: color("surfaceColor") }
+      },
+      media ? /* @__PURE__ */ import_react36.default.createElement("div", { role: "img", "aria-label": mediaAlt, className: "akn-media-frame__img", style: { backgroundImage: `url('${media}')` } }) : null,
+      /* @__PURE__ */ import_react36.default.createElement("div", { className: "akn-media-frame__shade" }),
+      flag("showMediaBadges") && badges.length > 0 ? /* @__PURE__ */ import_react36.default.createElement("div", { className: "akn-media-frame__badges" }, badges.map((badge, index) => /* @__PURE__ */ import_react36.default.createElement("span", { key: `${badge}-${index}`, className: "akn-badge" }, badge))) : null,
+      flag("showMediaCaption") && (content("mediaCaptionLabel") || content("mediaCaptionText")) ? /* @__PURE__ */ import_react36.default.createElement("div", { className: "akn-caption" }, content("mediaCaptionLabel") ? /* @__PURE__ */ import_react36.default.createElement("p", { className: "akn-caption__label", style: textStyle("mediaCaptionLabel", "body") }, content("mediaCaptionLabel")) : null, content("mediaCaptionText") ? /* @__PURE__ */ import_react36.default.createElement("p", { className: "akn-caption__text", style: { ...textStyle("mediaCaptionText", "heading"), fontFamily: headingFont } }, content("mediaCaptionText")) : null) : null
+    ), flag("showDandiyaSticks") ? /* @__PURE__ */ import_react36.default.createElement(import_react36.default.Fragment, null, /* @__PURE__ */ import_react36.default.createElement("div", { className: "akn-hero__decor-slot akn-hero__decor-slot--dandiya-bottom-start" }, /* @__PURE__ */ import_react36.default.createElement(Dandiya, { rotate: -36, delay: 0.3, palette: decorPalette, reduced })), /* @__PURE__ */ import_react36.default.createElement("div", { className: "akn-hero__decor-slot akn-hero__decor-slot--dandiya-bottom-end" }, /* @__PURE__ */ import_react36.default.createElement(Dandiya, { rotate: 38, delay: 0.7, palette: decorPalette, reduced }))) : null))))
+  );
+}
+
 // src/components/LeadFormSection/ServiceInquiryForm.tsx
-var import_react39 = __toESM(require("react"));
+var import_react40 = __toESM(require("react"));
 var import_framer_motion11 = require("framer-motion");
 
 // src/shared/formBuilder/useDynamicFormBuilderState.ts
-var import_react36 = require("react");
+var import_react37 = require("react");
 var MOBILE_TYPE = "MOBILE_WITH_COUNTRY_CODE";
-function safeText18(value) {
+function safeText19(value) {
   return String(value != null ? value : "").trim();
 }
 function emptyDynamicValue(field) {
@@ -11790,27 +12136,27 @@ function hasDynamicValue(field, value) {
   if (field.dataType === "MULTISELECT") return Array.isArray(value) && value.length > 0;
   if (field.dataType === MOBILE_TYPE) {
     const mv = value;
-    return Boolean(mv) && safeText18(mv.number) !== "";
+    return Boolean(mv) && safeText19(mv.number) !== "";
   }
-  return safeText18(value) !== "";
+  return safeText19(value) !== "";
 }
 function useDynamicFormBuilderState({
   schema,
   enableSubmit,
   onSubmitDynamicForm
 }) {
-  const orderedFields = (0, import_react36.useMemo)(
+  const orderedFields = (0, import_react37.useMemo)(
     () => {
       var _a;
       return ((_a = schema == null ? void 0 : schema.fields) != null ? _a : []).slice().sort((a, b) => (a.sortOrder || 0) - (b.sortOrder || 0));
     },
     [schema]
   );
-  const [values, setValues] = (0, import_react36.useState)({});
-  const [hp, setHp] = (0, import_react36.useState)("");
-  const [submitState, setSubmitState] = (0, import_react36.useState)("idle");
-  const [formError, setFormError] = (0, import_react36.useState)("");
-  const [resetKey, setResetKey] = (0, import_react36.useState)(0);
+  const [values, setValues] = (0, import_react37.useState)({});
+  const [hp, setHp] = (0, import_react37.useState)("");
+  const [submitState, setSubmitState] = (0, import_react37.useState)("idle");
+  const [formError, setFormError] = (0, import_react37.useState)("");
+  const [resetKey, setResetKey] = (0, import_react37.useState)(0);
   const resetValues = () => {
     const init = {};
     orderedFields.forEach((field) => {
@@ -11820,7 +12166,7 @@ function useDynamicFormBuilderState({
     setHp("");
     setResetKey((k) => k + 1);
   };
-  (0, import_react36.useEffect)(() => {
+  (0, import_react37.useEffect)(() => {
     resetValues();
     setSubmitState("idle");
     setFormError("");
@@ -11842,7 +12188,7 @@ function useDynamicFormBuilderState({
         const mv = v;
         data[field.fieldKey] = {
           countryCode: mv.countryCode || "+91",
-          number: safeText18(mv.number)
+          number: safeText19(mv.number)
         };
       } else if (field.dataType === "NUMBER" || field.dataType === "DECIMAL") {
         data[field.fieldKey] = Number(v);
@@ -11851,7 +12197,7 @@ function useDynamicFormBuilderState({
       } else if (field.dataType === "MULTISELECT") {
         data[field.fieldKey] = v;
       } else {
-        data[field.fieldKey] = safeText18(v);
+        data[field.fieldKey] = safeText19(v);
       }
     });
     return data;
@@ -11871,7 +12217,7 @@ function useDynamicFormBuilderState({
     setSubmitState("loading");
     try {
       const result = await onSubmitDynamicForm({ data: buildData(), hp });
-      const redirect = safeText18(
+      const redirect = safeText19(
         result == null ? void 0 : result.redirectUrl
       );
       if (/^https?:\/\//i.test(redirect) && typeof window !== "undefined") {
@@ -11903,11 +12249,11 @@ function useDynamicFormBuilderState({
 }
 
 // src/components/LeadFormSection/variants/StandardFieldsLayout.tsx
-var import_react38 = __toESM(require("react"));
+var import_react39 = __toESM(require("react"));
 var import_framer_motion10 = require("framer-motion");
 
 // src/components/LeadFormSection/fieldPrimitives.tsx
-var import_react37 = __toESM(require("react"));
+var import_react38 = __toESM(require("react"));
 function Icon({ name, className = "" }) {
   const common = {
     className,
@@ -11921,14 +12267,14 @@ function Icon({ name, className = "" }) {
     strokeLinejoin: "round"
   };
   const icons = {
-    user: /* @__PURE__ */ import_react37.default.createElement("svg", { ...common }, /* @__PURE__ */ import_react37.default.createElement("path", { d: "M20 21a8 8 0 0 0-16 0" }), /* @__PURE__ */ import_react37.default.createElement("circle", { cx: "12", cy: "7", r: "4" })),
-    phone: /* @__PURE__ */ import_react37.default.createElement("svg", { ...common }, /* @__PURE__ */ import_react37.default.createElement("path", { d: "M22 16.92v3a2 2 0 0 1-2.18 2A19.8 19.8 0 0 1 3.08 5.18 2 2 0 0 1 5.06 3h3a2 2 0 0 1 2 1.72c.12.9.33 1.77.63 2.6a2 2 0 0 1-.45 2.11L9 10.67a16 16 0 0 0 4.33 4.33l1.24-1.24a2 2 0 0 1 2.11-.45c.83.3 1.7.51 2.6.63A2 2 0 0 1 22 16.92z" })),
-    mail: /* @__PURE__ */ import_react37.default.createElement("svg", { ...common }, /* @__PURE__ */ import_react37.default.createElement("rect", { x: "3", y: "5", width: "18", height: "14", rx: "2" }), /* @__PURE__ */ import_react37.default.createElement("path", { d: "m3 7 9 6 9-6" })),
-    message: /* @__PURE__ */ import_react37.default.createElement("svg", { ...common }, /* @__PURE__ */ import_react37.default.createElement("path", { d: "M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z" })),
-    layers: /* @__PURE__ */ import_react37.default.createElement("svg", { ...common }, /* @__PURE__ */ import_react37.default.createElement("path", { d: "m12 2 9 5-9 5-9-5 9-5Z" }), /* @__PURE__ */ import_react37.default.createElement("path", { d: "m3 12 9 5 9-5" }), /* @__PURE__ */ import_react37.default.createElement("path", { d: "m3 17 9 5 9-5" })),
-    calendar: /* @__PURE__ */ import_react37.default.createElement("svg", { ...common }, /* @__PURE__ */ import_react37.default.createElement("rect", { x: "3", y: "4", width: "18", height: "18", rx: "2" }), /* @__PURE__ */ import_react37.default.createElement("path", { d: "M16 2v4M8 2v4M3 10h18" })),
-    arrowRight: /* @__PURE__ */ import_react37.default.createElement("svg", { ...common }, /* @__PURE__ */ import_react37.default.createElement("path", { d: "M5 12h14" }), /* @__PURE__ */ import_react37.default.createElement("path", { d: "m12 5 7 7-7 7" })),
-    chevronDown: /* @__PURE__ */ import_react37.default.createElement("svg", { ...common }, /* @__PURE__ */ import_react37.default.createElement("path", { d: "m6 9 6 6 6-6" }))
+    user: /* @__PURE__ */ import_react38.default.createElement("svg", { ...common }, /* @__PURE__ */ import_react38.default.createElement("path", { d: "M20 21a8 8 0 0 0-16 0" }), /* @__PURE__ */ import_react38.default.createElement("circle", { cx: "12", cy: "7", r: "4" })),
+    phone: /* @__PURE__ */ import_react38.default.createElement("svg", { ...common }, /* @__PURE__ */ import_react38.default.createElement("path", { d: "M22 16.92v3a2 2 0 0 1-2.18 2A19.8 19.8 0 0 1 3.08 5.18 2 2 0 0 1 5.06 3h3a2 2 0 0 1 2 1.72c.12.9.33 1.77.63 2.6a2 2 0 0 1-.45 2.11L9 10.67a16 16 0 0 0 4.33 4.33l1.24-1.24a2 2 0 0 1 2.11-.45c.83.3 1.7.51 2.6.63A2 2 0 0 1 22 16.92z" })),
+    mail: /* @__PURE__ */ import_react38.default.createElement("svg", { ...common }, /* @__PURE__ */ import_react38.default.createElement("rect", { x: "3", y: "5", width: "18", height: "14", rx: "2" }), /* @__PURE__ */ import_react38.default.createElement("path", { d: "m3 7 9 6 9-6" })),
+    message: /* @__PURE__ */ import_react38.default.createElement("svg", { ...common }, /* @__PURE__ */ import_react38.default.createElement("path", { d: "M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z" })),
+    layers: /* @__PURE__ */ import_react38.default.createElement("svg", { ...common }, /* @__PURE__ */ import_react38.default.createElement("path", { d: "m12 2 9 5-9 5-9-5 9-5Z" }), /* @__PURE__ */ import_react38.default.createElement("path", { d: "m3 12 9 5 9-5" }), /* @__PURE__ */ import_react38.default.createElement("path", { d: "m3 17 9 5 9-5" })),
+    calendar: /* @__PURE__ */ import_react38.default.createElement("svg", { ...common }, /* @__PURE__ */ import_react38.default.createElement("rect", { x: "3", y: "4", width: "18", height: "18", rx: "2" }), /* @__PURE__ */ import_react38.default.createElement("path", { d: "M16 2v4M8 2v4M3 10h18" })),
+    arrowRight: /* @__PURE__ */ import_react38.default.createElement("svg", { ...common }, /* @__PURE__ */ import_react38.default.createElement("path", { d: "M5 12h14" }), /* @__PURE__ */ import_react38.default.createElement("path", { d: "m12 5 7 7-7 7" })),
+    chevronDown: /* @__PURE__ */ import_react38.default.createElement("svg", { ...common }, /* @__PURE__ */ import_react38.default.createElement("path", { d: "m6 9 6 6 6-6" }))
   };
   return icons[name] || icons.user;
 }
@@ -11958,12 +12304,12 @@ function fieldIconFor(dataType) {
   }
 }
 function FieldShell({ iconName, compactMobile, children }) {
-  return /* @__PURE__ */ import_react37.default.createElement(
+  return /* @__PURE__ */ import_react38.default.createElement(
     "div",
     {
       className: `ak-lead-form__field${compactMobile ? " ak-lead-form__field--compact" : ""}`
     },
-    /* @__PURE__ */ import_react37.default.createElement("div", { className: "ak-lead-form__field-icon" }, /* @__PURE__ */ import_react37.default.createElement(Icon, { name: iconName, className: "ak-lead-form__field-icon-svg" })),
+    /* @__PURE__ */ import_react38.default.createElement("div", { className: "ak-lead-form__field-icon" }, /* @__PURE__ */ import_react38.default.createElement(Icon, { name: iconName, className: "ak-lead-form__field-icon-svg" })),
     children
   );
 }
@@ -11972,13 +12318,13 @@ function InputField({
   compactMobile,
   ...props
 }) {
-  return /* @__PURE__ */ import_react37.default.createElement(FieldShell, { iconName, compactMobile }, /* @__PURE__ */ import_react37.default.createElement("input", { ...props, className: "ak-lead-form__input" }));
+  return /* @__PURE__ */ import_react38.default.createElement(FieldShell, { iconName, compactMobile }, /* @__PURE__ */ import_react38.default.createElement("input", { ...props, className: "ak-lead-form__input" }));
 }
 function TextareaField({
   iconName,
   ...props
 }) {
-  return /* @__PURE__ */ import_react37.default.createElement("div", { className: "ak-lead-form__field ak-lead-form__field--textarea" }, /* @__PURE__ */ import_react37.default.createElement("div", { className: "ak-lead-form__field-icon ak-lead-form__field-icon--top" }, /* @__PURE__ */ import_react37.default.createElement(Icon, { name: iconName, className: "ak-lead-form__field-icon-svg" })), /* @__PURE__ */ import_react37.default.createElement("textarea", { ...props, className: "ak-lead-form__input" }));
+  return /* @__PURE__ */ import_react38.default.createElement("div", { className: "ak-lead-form__field ak-lead-form__field--textarea" }, /* @__PURE__ */ import_react38.default.createElement("div", { className: "ak-lead-form__field-icon ak-lead-form__field-icon--top" }, /* @__PURE__ */ import_react38.default.createElement(Icon, { name: iconName, className: "ak-lead-form__field-icon-svg" })), /* @__PURE__ */ import_react38.default.createElement("textarea", { ...props, className: "ak-lead-form__input" }));
 }
 function SelectField({
   iconName,
@@ -11988,15 +12334,15 @@ function SelectField({
   options,
   placeholder
 }) {
-  return /* @__PURE__ */ import_react37.default.createElement(FieldShell, { iconName, compactMobile }, /* @__PURE__ */ import_react37.default.createElement("div", { className: "ak-lead-form__field-chevron" }, /* @__PURE__ */ import_react37.default.createElement(Icon, { name: "chevronDown", className: "ak-lead-form__field-icon-svg" })), /* @__PURE__ */ import_react37.default.createElement(
+  return /* @__PURE__ */ import_react38.default.createElement(FieldShell, { iconName, compactMobile }, /* @__PURE__ */ import_react38.default.createElement("div", { className: "ak-lead-form__field-chevron" }, /* @__PURE__ */ import_react38.default.createElement(Icon, { name: "chevronDown", className: "ak-lead-form__field-icon-svg" })), /* @__PURE__ */ import_react38.default.createElement(
     "select",
     {
       value,
       onChange,
       className: "ak-lead-form__input ak-lead-form__input--select"
     },
-    placeholder ? /* @__PURE__ */ import_react37.default.createElement("option", { value: "" }, placeholder) : null,
-    options.map((option, index) => /* @__PURE__ */ import_react37.default.createElement("option", { key: `${option.value}-${index}`, value: option.value }, option.label))
+    placeholder ? /* @__PURE__ */ import_react38.default.createElement("option", { value: "" }, placeholder) : null,
+    options.map((option, index) => /* @__PURE__ */ import_react38.default.createElement("option", { key: `${option.value}-${index}`, value: option.value }, option.label))
   ));
 }
 
@@ -12019,9 +12365,9 @@ function AppointmentSlotField({
   onFetchFormSlots
 }) {
   const config = field.config || {};
-  const [date, setDate] = (0, import_react38.useState)("");
-  const [slotState, setSlotState] = (0, import_react38.useState)({ options: [], loading: false });
-  const [weekdayError, setWeekdayError] = (0, import_react38.useState)("");
+  const [date, setDate] = (0, import_react39.useState)("");
+  const [slotState, setSlotState] = (0, import_react39.useState)({ options: [], loading: false });
+  const [weekdayError, setWeekdayError] = (0, import_react39.useState)("");
   const today = /* @__PURE__ */ new Date();
   const minDate = addDays(today, 0);
   const maxAdvanceDays = Number(config.maxAdvanceDays);
@@ -12054,7 +12400,7 @@ function AppointmentSlotField({
       setSlotState({ options: [], loading: false });
     }
   };
-  return /* @__PURE__ */ import_react38.default.createElement("div", { className: "ak-lead-form__slot" }, /* @__PURE__ */ import_react38.default.createElement(
+  return /* @__PURE__ */ import_react39.default.createElement("div", { className: "ak-lead-form__slot" }, /* @__PURE__ */ import_react39.default.createElement(
     InputField,
     {
       iconName: "calendar",
@@ -12064,7 +12410,7 @@ function AppointmentSlotField({
       value: date,
       onChange: (e) => handleDateChange(e.target.value)
     }
-  ), weekdayError ? /* @__PURE__ */ import_react38.default.createElement("div", { className: "ak-lead-form__slot-note" }, weekdayError) : !date ? null : slotState.loading ? /* @__PURE__ */ import_react38.default.createElement("div", { className: "ak-lead-form__slot-note" }, "Loading times\u2026") : slotState.options.length === 0 ? /* @__PURE__ */ import_react38.default.createElement("div", { className: "ak-lead-form__slot-note" }, "No times available on this day.") : /* @__PURE__ */ import_react38.default.createElement("div", { className: "ak-lead-form__slot-grid" }, slotState.options.map((opt) => /* @__PURE__ */ import_react38.default.createElement(
+  ), weekdayError ? /* @__PURE__ */ import_react39.default.createElement("div", { className: "ak-lead-form__slot-note" }, weekdayError) : !date ? null : slotState.loading ? /* @__PURE__ */ import_react39.default.createElement("div", { className: "ak-lead-form__slot-note" }, "Loading times\u2026") : slotState.options.length === 0 ? /* @__PURE__ */ import_react39.default.createElement("div", { className: "ak-lead-form__slot-note" }, "No times available on this day.") : /* @__PURE__ */ import_react39.default.createElement("div", { className: "ak-lead-form__slot-grid" }, slotState.options.map((opt) => /* @__PURE__ */ import_react39.default.createElement(
     "button",
     {
       type: "button",
@@ -12109,7 +12455,7 @@ function StandardFieldsLayout({
     const dt = field.dataType;
     const iconName = fieldIconFor(dt);
     if (dt === "TEXTAREA") {
-      return /* @__PURE__ */ import_react38.default.createElement(
+      return /* @__PURE__ */ import_react39.default.createElement(
         TextareaField,
         {
           iconName,
@@ -12121,17 +12467,17 @@ function StandardFieldsLayout({
       );
     }
     if (dt === "BOOLEAN") {
-      return /* @__PURE__ */ import_react38.default.createElement("label", { className: "ak-lead-form__checkbox" }, /* @__PURE__ */ import_react38.default.createElement(
+      return /* @__PURE__ */ import_react39.default.createElement("label", { className: "ak-lead-form__checkbox" }, /* @__PURE__ */ import_react39.default.createElement(
         "input",
         {
           type: "checkbox",
           checked: Boolean(v),
           onChange: (e) => setValue(key, e.target.checked)
         }
-      ), /* @__PURE__ */ import_react38.default.createElement("span", null, field.placeholder || field.label || "Yes"));
+      ), /* @__PURE__ */ import_react39.default.createElement("span", null, field.placeholder || field.label || "Yes"));
     }
     if (dt === "DROPDOWN" || dt === "COUNTRY_CODE") {
-      return /* @__PURE__ */ import_react38.default.createElement(
+      return /* @__PURE__ */ import_react39.default.createElement(
         SelectField,
         {
           iconName,
@@ -12144,18 +12490,18 @@ function StandardFieldsLayout({
     }
     if (dt === "MULTISELECT") {
       const arr = Array.isArray(v) ? v : [];
-      return /* @__PURE__ */ import_react38.default.createElement("div", { className: "ak-lead-form__multi" }, options.map((option) => /* @__PURE__ */ import_react38.default.createElement("label", { key: option, className: "ak-lead-form__checkbox" }, /* @__PURE__ */ import_react38.default.createElement(
+      return /* @__PURE__ */ import_react39.default.createElement("div", { className: "ak-lead-form__multi" }, options.map((option) => /* @__PURE__ */ import_react39.default.createElement("label", { key: option, className: "ak-lead-form__checkbox" }, /* @__PURE__ */ import_react39.default.createElement(
         "input",
         {
           type: "checkbox",
           checked: arr.includes(option),
           onChange: (e) => toggleMulti(key, option, e.target.checked)
         }
-      ), /* @__PURE__ */ import_react38.default.createElement("span", null, option))));
+      ), /* @__PURE__ */ import_react39.default.createElement("span", null, option))));
     }
     if (dt === MOBILE_TYPE3) {
       const mv = v || { countryCode: "+91", number: "" };
-      return /* @__PURE__ */ import_react38.default.createElement("div", { className: "ak-lead-form__phone-row" }, /* @__PURE__ */ import_react38.default.createElement(
+      return /* @__PURE__ */ import_react39.default.createElement("div", { className: "ak-lead-form__phone-row" }, /* @__PURE__ */ import_react39.default.createElement(
         InputField,
         {
           iconName: "phone",
@@ -12164,7 +12510,7 @@ function StandardFieldsLayout({
           placeholder: "+91",
           onChange: (e) => setValue(key, { ...mv, countryCode: e.target.value })
         }
-      ), /* @__PURE__ */ import_react38.default.createElement(
+      ), /* @__PURE__ */ import_react39.default.createElement(
         InputField,
         {
           iconName: "phone",
@@ -12177,7 +12523,7 @@ function StandardFieldsLayout({
       ));
     }
     if (dt === APPOINTMENT_TYPE2) {
-      return /* @__PURE__ */ import_react38.default.createElement(
+      return /* @__PURE__ */ import_react39.default.createElement(
         AppointmentSlotField,
         {
           field,
@@ -12198,7 +12544,7 @@ function StandardFieldsLayout({
       DECIMAL: "number"
     };
     const step = dt === "DECIMAL" ? "any" : dt === "TIME" || dt === "DATETIME" ? "1" : void 0;
-    return /* @__PURE__ */ import_react38.default.createElement(
+    return /* @__PURE__ */ import_react39.default.createElement(
       InputField,
       {
         iconName,
@@ -12211,15 +12557,15 @@ function StandardFieldsLayout({
     );
   };
   if (loading) {
-    return /* @__PURE__ */ import_react38.default.createElement("div", { className: "ak-lead-form__form-state" }, "Loading form\u2026");
+    return /* @__PURE__ */ import_react39.default.createElement("div", { className: "ak-lead-form__form-state" }, "Loading form\u2026");
   }
   if (loadError) {
-    return /* @__PURE__ */ import_react38.default.createElement("div", { className: "ak-lead-form__form-state" }, loadError);
+    return /* @__PURE__ */ import_react39.default.createElement("div", { className: "ak-lead-form__form-state" }, loadError);
   }
   if (!schema) {
-    return /* @__PURE__ */ import_react38.default.createElement("div", { className: "ak-lead-form__form-state" }, "No form selected yet. Choose a Form Builder form in the section editor.");
+    return /* @__PURE__ */ import_react39.default.createElement("div", { className: "ak-lead-form__form-state" }, "No form selected yet. Choose a Form Builder form in the section editor.");
   }
-  return /* @__PURE__ */ import_react38.default.createElement(
+  return /* @__PURE__ */ import_react39.default.createElement(
     import_framer_motion10.motion.form,
     {
       onSubmit: handleSubmit,
@@ -12229,9 +12575,9 @@ function StandardFieldsLayout({
       transition: { duration: 0.6 },
       className: "ak-lead-form__form"
     },
-    orderedFields.map((field) => /* @__PURE__ */ import_react38.default.createElement("div", { key: `${field.fieldKey}-${resetKey}` }, renderControl(field))),
-    /* @__PURE__ */ import_react38.default.createElement("div", { className: "ak-lead-form__honeypot", "aria-hidden": "true" }, /* @__PURE__ */ import_react38.default.createElement("label", null, "Leave this field empty", /* @__PURE__ */ import_react38.default.createElement("input", { tabIndex: -1, autoComplete: "off", value: hp, onChange: (e) => setHp(e.target.value) }))),
-    /* @__PURE__ */ import_react38.default.createElement(
+    orderedFields.map((field) => /* @__PURE__ */ import_react39.default.createElement("div", { key: `${field.fieldKey}-${resetKey}` }, renderControl(field))),
+    /* @__PURE__ */ import_react39.default.createElement("div", { className: "ak-lead-form__honeypot", "aria-hidden": "true" }, /* @__PURE__ */ import_react39.default.createElement("label", null, "Leave this field empty", /* @__PURE__ */ import_react39.default.createElement("input", { tabIndex: -1, autoComplete: "off", value: hp, onChange: (e) => setHp(e.target.value) }))),
+    /* @__PURE__ */ import_react39.default.createElement(
       "button",
       {
         type: "submit",
@@ -12239,20 +12585,20 @@ function StandardFieldsLayout({
         className: "ak-lead-form__submit"
       },
       submitState === "loading" ? loadingButtonText : submitButtonText,
-      /* @__PURE__ */ import_react38.default.createElement(Icon, { name: "arrowRight", className: "ak-lead-form__submit-icon" })
+      /* @__PURE__ */ import_react39.default.createElement(Icon, { name: "arrowRight", className: "ak-lead-form__submit-icon" })
     ),
-    showSubmitMessage && submitState === "success" ? /* @__PURE__ */ import_react38.default.createElement("p", { className: "ak-lead-form__message ak-lead-form__message--success" }, successMessage || ((_a = schema.thankYouMessage) != null ? _a : "").trim() || "Thank you!") : null,
-    showSubmitMessage && submitState === "error" ? /* @__PURE__ */ import_react38.default.createElement("p", { className: "ak-lead-form__message ak-lead-form__message--error" }, formError || errorMessage) : null
+    showSubmitMessage && submitState === "success" ? /* @__PURE__ */ import_react39.default.createElement("p", { className: "ak-lead-form__message ak-lead-form__message--success" }, successMessage || ((_a = schema.thankYouMessage) != null ? _a : "").trim() || "Thank you!") : null,
+    showSubmitMessage && submitState === "error" ? /* @__PURE__ */ import_react39.default.createElement("p", { className: "ak-lead-form__message ak-lead-form__message--error" }, formError || errorMessage) : null
   );
 }
 
 // src/components/LeadFormSection/ServiceInquiryForm.tsx
-function safeText19(value) {
+function safeText20(value) {
   return String(value != null ? value : "").trim();
 }
 function usePrefersReducedMotion3() {
-  const [reduced, setReduced] = (0, import_react39.useState)(false);
-  (0, import_react39.useEffect)(() => {
+  const [reduced, setReduced] = (0, import_react40.useState)(false);
+  (0, import_react40.useEffect)(() => {
     if (typeof window === "undefined" || !window.matchMedia) return void 0;
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
     const update = () => setReduced(mq.matches);
@@ -12263,7 +12609,7 @@ function usePrefersReducedMotion3() {
   return reduced;
 }
 function paddingClass7(value) {
-  const raw = safeText19(value).toLowerCase();
+  const raw = safeText20(value).toLowerCase();
   if (raw === "small") return "ak-lead-form--pad-sm";
   if (raw === "medium") return "ak-lead-form--pad-md";
   return "ak-lead-form--pad-lg";
@@ -12293,49 +12639,49 @@ function ServiceInquiryForm({
   var _a, _b, _c, _d;
   const reduceMotion = usePrefersReducedMotion3();
   const props = (_b = (_a = section == null ? void 0 : section.settings) == null ? void 0 : _a.props) != null ? _b : {};
-  const eyebrow = safeText19(props.eyebrow);
-  const heading = safeText19(props.heading);
-  const subheading = safeText19(props.subheading);
+  const eyebrow = safeText20(props.eyebrow);
+  const heading = safeText20(props.heading);
+  const subheading = safeText20(props.subheading);
   const showEyebrow = props.showEyebrow !== false;
   const showSubheading = props.showSubheading !== false;
-  const showcaseEyebrow = safeText19(props.showcaseEyebrow);
+  const showcaseEyebrow = safeText20(props.showcaseEyebrow);
   const showShowcaseCardPref = props.showShowcaseCard !== false;
   const autoRotateShowcase = !reduceMotion && props.autoRotateShowcase !== false;
   const rotationDuration = clampRotationDuration(props.showcaseRotationDuration);
-  const submitButtonText = safeText19(props.formSubmitButtonText) || "Submit";
-  const loadingButtonText = safeText19(props.loadingButtonText) || "Submitting...";
-  const successMessage = safeText19(props.successMessage);
-  const errorMessage = safeText19(props.errorMessage);
+  const submitButtonText = safeText20(props.formSubmitButtonText) || "Submit";
+  const loadingButtonText = safeText20(props.loadingButtonText) || "Submitting...";
+  const successMessage = safeText20(props.successMessage);
+  const errorMessage = safeText20(props.errorMessage);
   const enableSubmit = props.enableSubmit !== false;
   const showSubmitMessage = props.showSubmitMessage !== false;
-  const blocks = (0, import_react39.useMemo)(
+  const blocks = (0, import_react40.useMemo)(
     () => {
       var _a2;
       return Array.isArray((_a2 = section == null ? void 0 : section.settings) == null ? void 0 : _a2.blocks) ? section.settings.blocks : [];
     },
     [(_c = section == null ? void 0 : section.settings) == null ? void 0 : _c.blocks]
   );
-  const showcaseItems = (0, import_react39.useMemo)(
+  const showcaseItems = (0, import_react40.useMemo)(
     () => blocks.filter((block) => (block == null ? void 0 : block.type) === "showcase_item").map((block) => {
       var _a2;
       return (_a2 = block == null ? void 0 : block.props) != null ? _a2 : {};
-    }).filter((item) => safeText19(item.title) || safeText19(item.image)),
+    }).filter((item) => safeText20(item.title) || safeText20(item.image)),
     [blocks]
   );
   const showShowcaseCard = showShowcaseCardPref && showcaseItems.length > 0;
-  const [activeIndex, setActiveIndex] = (0, import_react39.useState)(0);
+  const [activeIndex, setActiveIndex] = (0, import_react40.useState)(0);
   const activeItem = (_d = showcaseItems[activeIndex]) != null ? _d : showcaseItems[0];
-  (0, import_react39.useEffect)(() => {
+  (0, import_react40.useEffect)(() => {
     setActiveIndex(0);
   }, [showcaseItems.length]);
-  (0, import_react39.useEffect)(() => {
+  (0, import_react40.useEffect)(() => {
     if (!autoRotateShowcase || showcaseItems.length <= 1) return void 0;
     const timer = window.setInterval(() => {
       setActiveIndex((current) => (current + 1) % showcaseItems.length);
     }, rotationDuration);
     return () => window.clearInterval(timer);
   }, [autoRotateShowcase, rotationDuration, showcaseItems.length]);
-  const eyebrowStyle = (0, import_react39.useMemo)(
+  const eyebrowStyle = (0, import_react40.useMemo)(
     () => textColorStyle(
       resolvedTextStyleToInlineStyle(
         resolveTextStyle({
@@ -12349,7 +12695,7 @@ function ServiceInquiryForm({
     ),
     [section, theme]
   );
-  const headingStyle = (0, import_react39.useMemo)(
+  const headingStyle = (0, import_react40.useMemo)(
     () => textColorStyle(
       resolvedTextStyleToInlineStyle(
         resolveTextStyle({
@@ -12363,7 +12709,7 @@ function ServiceInquiryForm({
     ),
     [section, theme]
   );
-  const subheadingStyle = (0, import_react39.useMemo)(
+  const subheadingStyle = (0, import_react40.useMemo)(
     () => textColorStyle(
       resolvedTextStyleToInlineStyle(
         resolveTextStyle({
@@ -12377,7 +12723,7 @@ function ServiceInquiryForm({
     ),
     [section, theme]
   );
-  const showcaseEyebrowStyle = (0, import_react39.useMemo)(
+  const showcaseEyebrowStyle = (0, import_react40.useMemo)(
     () => textColorStyle(
       resolvedTextStyleToInlineStyle(
         resolveTextStyle({
@@ -12396,28 +12742,28 @@ function ServiceInquiryForm({
     enableSubmit,
     onSubmitDynamicForm
   });
-  const formLayoutStyle = safeText19(props.formLayoutStyle) || "standard";
+  const formLayoutStyle = safeText20(props.formLayoutStyle) || "standard";
   const FieldsLayout = resolveFieldsLayoutComponent(formLayoutStyle);
-  return /* @__PURE__ */ import_react39.default.createElement(
+  return /* @__PURE__ */ import_react40.default.createElement(
     "section",
     {
       className: `ak-lead-form ${paddingClass7(props.sectionPadding)}`,
       style: sectionAppearanceStyle(appearance),
       "aria-label": heading || eyebrow || "Contact form"
     },
-    /* @__PURE__ */ import_react39.default.createElement("div", { className: "ak-lead-form__wrap" }, showEyebrow && eyebrow || heading || showSubheading && subheading ? /* @__PURE__ */ import_react39.default.createElement("div", { className: "ak-lead-form__header" }, showEyebrow && eyebrow ? /* @__PURE__ */ import_react39.default.createElement("span", { className: "ak-lead-form__eyebrow", style: eyebrowStyle }, eyebrow) : null, heading ? /* @__PURE__ */ import_react39.default.createElement("h2", { className: "ak-lead-form__heading", style: headingStyle }, heading) : null, showSubheading && subheading ? /* @__PURE__ */ import_react39.default.createElement("p", { className: "ak-lead-form__subheading", style: subheadingStyle }, subheading) : null) : null, /* @__PURE__ */ import_react39.default.createElement(
+    /* @__PURE__ */ import_react40.default.createElement("div", { className: "ak-lead-form__wrap" }, showEyebrow && eyebrow || heading || showSubheading && subheading ? /* @__PURE__ */ import_react40.default.createElement("div", { className: "ak-lead-form__header" }, showEyebrow && eyebrow ? /* @__PURE__ */ import_react40.default.createElement("span", { className: "ak-lead-form__eyebrow", style: eyebrowStyle }, eyebrow) : null, heading ? /* @__PURE__ */ import_react40.default.createElement("h2", { className: "ak-lead-form__heading", style: headingStyle }, heading) : null, showSubheading && subheading ? /* @__PURE__ */ import_react40.default.createElement("p", { className: "ak-lead-form__subheading", style: subheadingStyle }, subheading) : null) : null, /* @__PURE__ */ import_react40.default.createElement(
       "div",
       {
         className: `ak-lead-form__grid${showShowcaseCard ? "" : " ak-lead-form__grid--single"}`
       },
-      showShowcaseCard && activeItem ? /* @__PURE__ */ import_react39.default.createElement("div", { className: "ak-lead-form__showcase" }, showcaseEyebrow ? /* @__PURE__ */ import_react39.default.createElement(
+      showShowcaseCard && activeItem ? /* @__PURE__ */ import_react40.default.createElement("div", { className: "ak-lead-form__showcase" }, showcaseEyebrow ? /* @__PURE__ */ import_react40.default.createElement(
         "span",
         {
           className: "ak-lead-form__showcase-eyebrow",
           style: showcaseEyebrowStyle
         },
         showcaseEyebrow
-      ) : null, /* @__PURE__ */ import_react39.default.createElement("div", { className: "ak-lead-form__showcase-card" }, /* @__PURE__ */ import_react39.default.createElement("div", { className: "ak-lead-form__showcase-title-wrap" }, /* @__PURE__ */ import_react39.default.createElement(import_framer_motion11.AnimatePresence, { exitBeforeEnter: true }, /* @__PURE__ */ import_react39.default.createElement(
+      ) : null, /* @__PURE__ */ import_react40.default.createElement("div", { className: "ak-lead-form__showcase-card" }, /* @__PURE__ */ import_react40.default.createElement("div", { className: "ak-lead-form__showcase-title-wrap" }, /* @__PURE__ */ import_react40.default.createElement(import_framer_motion11.AnimatePresence, { exitBeforeEnter: true }, /* @__PURE__ */ import_react40.default.createElement(
         import_framer_motion11.motion.h3,
         {
           key: activeItem.title,
@@ -12427,8 +12773,8 @@ function ServiceInquiryForm({
           exit: { opacity: 0, y: -8 },
           transition: { duration: 0.35 }
         },
-        safeText19(activeItem.title)
-      ))), /* @__PURE__ */ import_react39.default.createElement("div", { className: "ak-lead-form__showcase-image-wrap" }, /* @__PURE__ */ import_react39.default.createElement(import_framer_motion11.AnimatePresence, { exitBeforeEnter: true }, /* @__PURE__ */ import_react39.default.createElement(
+        safeText20(activeItem.title)
+      ))), /* @__PURE__ */ import_react40.default.createElement("div", { className: "ak-lead-form__showcase-image-wrap" }, /* @__PURE__ */ import_react40.default.createElement(import_framer_motion11.AnimatePresence, { exitBeforeEnter: true }, /* @__PURE__ */ import_react40.default.createElement(
         import_framer_motion11.motion.div,
         {
           key: activeItem.image || activeItem.title,
@@ -12438,17 +12784,17 @@ function ServiceInquiryForm({
           exit: { opacity: 0, scale: 0.98 },
           transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] }
         },
-        /* @__PURE__ */ import_react39.default.createElement(
+        /* @__PURE__ */ import_react40.default.createElement(
           StorefrontImage,
           {
-            desktopSrc: safeText19(activeItem.image),
-            alt: safeText19(activeItem.altText) || safeText19(activeItem.title),
+            desktopSrc: safeText20(activeItem.image),
+            alt: safeText20(activeItem.altText) || safeText20(activeItem.title),
             className: "ak-lead-form__showcase-image-el",
-            fallback: /* @__PURE__ */ import_react39.default.createElement("div", { className: "ak-lead-form__showcase-image-fallback" })
+            fallback: /* @__PURE__ */ import_react40.default.createElement("div", { className: "ak-lead-form__showcase-image-fallback" })
           }
         )
       ))))) : null,
-      /* @__PURE__ */ import_react39.default.createElement("div", { className: "ak-lead-form__form-card" }, /* @__PURE__ */ import_react39.default.createElement(
+      /* @__PURE__ */ import_react40.default.createElement("div", { className: "ak-lead-form__form-card" }, /* @__PURE__ */ import_react40.default.createElement(
         FieldsLayout,
         {
           ...formState,
@@ -12469,17 +12815,17 @@ function ServiceInquiryForm({
 }
 
 // src/components/LeadFormSection/variants/JourneySplitLeadForm.tsx
-var import_react40 = __toESM(require("react"));
+var import_react41 = __toESM(require("react"));
 var import_framer_motion12 = require("framer-motion");
-function safeText20(value) {
+function safeText21(value) {
   return String(value != null ? value : "").trim();
 }
 function inputValue2(value) {
   return String(value != null ? value : "");
 }
 function usePrefersReducedMotion4() {
-  const [reduced, setReduced] = (0, import_react40.useState)(false);
-  (0, import_react40.useEffect)(() => {
+  const [reduced, setReduced] = (0, import_react41.useState)(false);
+  (0, import_react41.useEffect)(() => {
     if (typeof window === "undefined" || !window.matchMedia) return void 0;
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
     const update = () => setReduced(mq.matches);
@@ -12494,7 +12840,7 @@ function textColorStyle2(resolved) {
   return { fontFamily, color, fontWeight };
 }
 function paddingClass8(value) {
-  const raw = safeText20(value).toLowerCase();
+  const raw = safeText21(value).toLowerCase();
   if (raw === "small") return "ak-lead-form-journey--pad-sm";
   if (raw === "medium") return "ak-lead-form-journey--pad-md";
   return "ak-lead-form-journey--pad-lg";
@@ -12520,9 +12866,9 @@ function Icon2({ name, className = "" }) {
     strokeLinejoin: "round"
   };
   const icons = {
-    arrowRight: /* @__PURE__ */ import_react40.default.createElement("svg", { ...common, viewBox: "0 0 16 16", width: 16, height: 16 }, /* @__PURE__ */ import_react40.default.createElement("path", { d: "M6 12L10 8L6 4" })),
-    chevronDown: /* @__PURE__ */ import_react40.default.createElement("svg", { ...common }, /* @__PURE__ */ import_react40.default.createElement("path", { d: "m6 9 6 6 6-6" })),
-    calendar: /* @__PURE__ */ import_react40.default.createElement("svg", { ...common }, /* @__PURE__ */ import_react40.default.createElement("rect", { x: "3", y: "4", width: "18", height: "18", rx: "2" }), /* @__PURE__ */ import_react40.default.createElement("path", { d: "M16 2v4M8 2v4M3 10h18" }))
+    arrowRight: /* @__PURE__ */ import_react41.default.createElement("svg", { ...common, viewBox: "0 0 16 16", width: 16, height: 16 }, /* @__PURE__ */ import_react41.default.createElement("path", { d: "M6 12L10 8L6 4" })),
+    chevronDown: /* @__PURE__ */ import_react41.default.createElement("svg", { ...common }, /* @__PURE__ */ import_react41.default.createElement("path", { d: "m6 9 6 6 6-6" })),
+    calendar: /* @__PURE__ */ import_react41.default.createElement("svg", { ...common }, /* @__PURE__ */ import_react41.default.createElement("rect", { x: "3", y: "4", width: "18", height: "18", rx: "2" }), /* @__PURE__ */ import_react41.default.createElement("path", { d: "M16 2v4M8 2v4M3 10h18" }))
   };
   return icons[name] || null;
 }
@@ -12539,20 +12885,20 @@ function ChecklistIcon({ type }) {
     strokeLinejoin: "round"
   };
   if (type === "sparkle") {
-    return /* @__PURE__ */ import_react40.default.createElement("svg", { ...common }, /* @__PURE__ */ import_react40.default.createElement("path", { d: "M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3Z" }));
+    return /* @__PURE__ */ import_react41.default.createElement("svg", { ...common }, /* @__PURE__ */ import_react41.default.createElement("path", { d: "M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3Z" }));
   }
   if (type === "shield") {
-    return /* @__PURE__ */ import_react40.default.createElement("svg", { ...common }, /* @__PURE__ */ import_react40.default.createElement("path", { d: "M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3Z" }));
+    return /* @__PURE__ */ import_react41.default.createElement("svg", { ...common }, /* @__PURE__ */ import_react41.default.createElement("path", { d: "M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3Z" }));
   }
-  return /* @__PURE__ */ import_react40.default.createElement("svg", { ...common }, /* @__PURE__ */ import_react40.default.createElement("path", { d: "M20 6 9 17l-5-5" }));
+  return /* @__PURE__ */ import_react41.default.createElement("svg", { ...common }, /* @__PURE__ */ import_react41.default.createElement("path", { d: "M20 6 9 17l-5-5" }));
 }
 function FieldShell2({ iconName, compactMobile, children }) {
-  return /* @__PURE__ */ import_react40.default.createElement(
+  return /* @__PURE__ */ import_react41.default.createElement(
     "div",
     {
       className: `ak-lead-form-journey__field${compactMobile ? " ak-lead-form-journey__field--compact" : ""}`
     },
-    iconName ? /* @__PURE__ */ import_react40.default.createElement("div", { className: "ak-lead-form-journey__field-icon" }, /* @__PURE__ */ import_react40.default.createElement(Icon2, { name: iconName, className: "ak-lead-form-journey__field-icon-svg" })) : null,
+    iconName ? /* @__PURE__ */ import_react41.default.createElement("div", { className: "ak-lead-form-journey__field-icon" }, /* @__PURE__ */ import_react41.default.createElement(Icon2, { name: iconName, className: "ak-lead-form-journey__field-icon-svg" })) : null,
     children
   );
 }
@@ -12561,13 +12907,13 @@ function JInputField({
   compactMobile,
   ...props
 }) {
-  return /* @__PURE__ */ import_react40.default.createElement(FieldShell2, { iconName, compactMobile }, /* @__PURE__ */ import_react40.default.createElement("input", { ...props, className: "ak-lead-form-journey__input" }));
+  return /* @__PURE__ */ import_react41.default.createElement(FieldShell2, { iconName, compactMobile }, /* @__PURE__ */ import_react41.default.createElement("input", { ...props, className: "ak-lead-form-journey__input" }));
 }
 function JTextareaField({
   iconName,
   ...props
 }) {
-  return /* @__PURE__ */ import_react40.default.createElement(FieldShell2, { iconName }, /* @__PURE__ */ import_react40.default.createElement("textarea", { ...props, className: "ak-lead-form-journey__input ak-lead-form-journey__input--textarea" }));
+  return /* @__PURE__ */ import_react41.default.createElement(FieldShell2, { iconName }, /* @__PURE__ */ import_react41.default.createElement("textarea", { ...props, className: "ak-lead-form-journey__input ak-lead-form-journey__input--textarea" }));
 }
 function JSelectField({
   iconName,
@@ -12577,15 +12923,15 @@ function JSelectField({
   options,
   placeholder
 }) {
-  return /* @__PURE__ */ import_react40.default.createElement(FieldShell2, { iconName, compactMobile }, /* @__PURE__ */ import_react40.default.createElement("div", { className: "ak-lead-form-journey__field-chevron" }, /* @__PURE__ */ import_react40.default.createElement(Icon2, { name: "chevronDown", className: "ak-lead-form-journey__field-icon-svg" })), /* @__PURE__ */ import_react40.default.createElement(
+  return /* @__PURE__ */ import_react41.default.createElement(FieldShell2, { iconName, compactMobile }, /* @__PURE__ */ import_react41.default.createElement("div", { className: "ak-lead-form-journey__field-chevron" }, /* @__PURE__ */ import_react41.default.createElement(Icon2, { name: "chevronDown", className: "ak-lead-form-journey__field-icon-svg" })), /* @__PURE__ */ import_react41.default.createElement(
     "select",
     {
       value,
       onChange,
       className: "ak-lead-form-journey__input ak-lead-form-journey__input--select"
     },
-    placeholder ? /* @__PURE__ */ import_react40.default.createElement("option", { value: "" }, placeholder) : null,
-    options.map((option, index) => /* @__PURE__ */ import_react40.default.createElement("option", { key: `${option.value}-${index}`, value: option.value }, option.label))
+    placeholder ? /* @__PURE__ */ import_react41.default.createElement("option", { value: "" }, placeholder) : null,
+    options.map((option, index) => /* @__PURE__ */ import_react41.default.createElement("option", { key: `${option.value}-${index}`, value: option.value }, option.label))
   ));
 }
 function AppointmentSlotField2({
@@ -12595,12 +12941,12 @@ function AppointmentSlotField2({
   onFetchFormSlots
 }) {
   const config = field.config || {};
-  const [date, setDate] = (0, import_react40.useState)("");
-  const [slotState, setSlotState] = (0, import_react40.useState)({
+  const [date, setDate] = (0, import_react41.useState)("");
+  const [slotState, setSlotState] = (0, import_react41.useState)({
     options: [],
     loading: false
   });
-  const [weekdayError, setWeekdayError] = (0, import_react40.useState)("");
+  const [weekdayError, setWeekdayError] = (0, import_react41.useState)("");
   const today = /* @__PURE__ */ new Date();
   const minDate = addDays2(today, 0);
   const maxAdvanceDays = Number(config.maxAdvanceDays);
@@ -12633,7 +12979,7 @@ function AppointmentSlotField2({
       setSlotState({ options: [], loading: false });
     }
   };
-  return /* @__PURE__ */ import_react40.default.createElement("div", { className: "ak-lead-form-journey__slot" }, /* @__PURE__ */ import_react40.default.createElement(
+  return /* @__PURE__ */ import_react41.default.createElement("div", { className: "ak-lead-form-journey__slot" }, /* @__PURE__ */ import_react41.default.createElement(
     JInputField,
     {
       iconName: "calendar",
@@ -12643,7 +12989,7 @@ function AppointmentSlotField2({
       value: date,
       onChange: (e) => handleDateChange(e.target.value)
     }
-  ), weekdayError ? /* @__PURE__ */ import_react40.default.createElement("div", { className: "ak-lead-form-journey__slot-note" }, weekdayError) : !date ? null : slotState.loading ? /* @__PURE__ */ import_react40.default.createElement("div", { className: "ak-lead-form-journey__slot-note" }, "Loading times\u2026") : slotState.options.length === 0 ? /* @__PURE__ */ import_react40.default.createElement("div", { className: "ak-lead-form-journey__slot-note" }, "No times available on this day.") : /* @__PURE__ */ import_react40.default.createElement("div", { className: "ak-lead-form-journey__slot-grid" }, slotState.options.map((opt) => /* @__PURE__ */ import_react40.default.createElement(
+  ), weekdayError ? /* @__PURE__ */ import_react41.default.createElement("div", { className: "ak-lead-form-journey__slot-note" }, weekdayError) : !date ? null : slotState.loading ? /* @__PURE__ */ import_react41.default.createElement("div", { className: "ak-lead-form-journey__slot-note" }, "Loading times\u2026") : slotState.options.length === 0 ? /* @__PURE__ */ import_react41.default.createElement("div", { className: "ak-lead-form-journey__slot-note" }, "No times available on this day.") : /* @__PURE__ */ import_react41.default.createElement("div", { className: "ak-lead-form-journey__slot-grid" }, slotState.options.map((opt) => /* @__PURE__ */ import_react41.default.createElement(
     "button",
     {
       type: "button",
@@ -12683,7 +13029,7 @@ function JourneyFieldsForm({
     const options = field.options || [];
     const dt = field.dataType;
     if (dt === "TEXTAREA") {
-      return /* @__PURE__ */ import_react40.default.createElement(
+      return /* @__PURE__ */ import_react41.default.createElement(
         JTextareaField,
         {
           iconName: "",
@@ -12695,17 +13041,17 @@ function JourneyFieldsForm({
       );
     }
     if (dt === "BOOLEAN") {
-      return /* @__PURE__ */ import_react40.default.createElement("label", { className: "ak-lead-form-journey__checkbox" }, /* @__PURE__ */ import_react40.default.createElement(
+      return /* @__PURE__ */ import_react41.default.createElement("label", { className: "ak-lead-form-journey__checkbox" }, /* @__PURE__ */ import_react41.default.createElement(
         "input",
         {
           type: "checkbox",
           checked: Boolean(v),
           onChange: (e) => setValue(key, e.target.checked)
         }
-      ), /* @__PURE__ */ import_react40.default.createElement("span", null, field.placeholder || field.label || "Yes"));
+      ), /* @__PURE__ */ import_react41.default.createElement("span", null, field.placeholder || field.label || "Yes"));
     }
     if (dt === "DROPDOWN" || dt === "COUNTRY_CODE") {
-      return /* @__PURE__ */ import_react40.default.createElement(
+      return /* @__PURE__ */ import_react41.default.createElement(
         JSelectField,
         {
           iconName: "",
@@ -12718,18 +13064,18 @@ function JourneyFieldsForm({
     }
     if (dt === "MULTISELECT") {
       const arr = Array.isArray(v) ? v : [];
-      return /* @__PURE__ */ import_react40.default.createElement("div", { className: "ak-lead-form-journey__multi" }, options.map((option) => /* @__PURE__ */ import_react40.default.createElement("label", { key: option, className: "ak-lead-form-journey__checkbox" }, /* @__PURE__ */ import_react40.default.createElement(
+      return /* @__PURE__ */ import_react41.default.createElement("div", { className: "ak-lead-form-journey__multi" }, options.map((option) => /* @__PURE__ */ import_react41.default.createElement("label", { key: option, className: "ak-lead-form-journey__checkbox" }, /* @__PURE__ */ import_react41.default.createElement(
         "input",
         {
           type: "checkbox",
           checked: arr.includes(option),
           onChange: (e) => toggleMulti(key, option, e.target.checked)
         }
-      ), /* @__PURE__ */ import_react40.default.createElement("span", null, option))));
+      ), /* @__PURE__ */ import_react41.default.createElement("span", null, option))));
     }
     if (dt === MOBILE_TYPE4) {
       const mv = v || { countryCode: "+91", number: "" };
-      return /* @__PURE__ */ import_react40.default.createElement("div", { className: "ak-lead-form-journey__phone-row" }, /* @__PURE__ */ import_react40.default.createElement(
+      return /* @__PURE__ */ import_react41.default.createElement("div", { className: "ak-lead-form-journey__phone-row" }, /* @__PURE__ */ import_react41.default.createElement(
         JInputField,
         {
           iconName: "",
@@ -12738,7 +13084,7 @@ function JourneyFieldsForm({
           placeholder: "+91",
           onChange: (e) => setValue(key, { ...mv, countryCode: e.target.value })
         }
-      ), /* @__PURE__ */ import_react40.default.createElement(
+      ), /* @__PURE__ */ import_react41.default.createElement(
         JInputField,
         {
           iconName: "",
@@ -12751,7 +13097,7 @@ function JourneyFieldsForm({
       ));
     }
     if (dt === APPOINTMENT_TYPE3) {
-      return /* @__PURE__ */ import_react40.default.createElement(
+      return /* @__PURE__ */ import_react41.default.createElement(
         AppointmentSlotField2,
         {
           field,
@@ -12772,7 +13118,7 @@ function JourneyFieldsForm({
       DECIMAL: "number"
     };
     const step = dt === "DECIMAL" ? "any" : dt === "TIME" || dt === "DATETIME" ? "1" : void 0;
-    return /* @__PURE__ */ import_react40.default.createElement(
+    return /* @__PURE__ */ import_react41.default.createElement(
       JInputField,
       {
         iconName: "",
@@ -12785,24 +13131,24 @@ function JourneyFieldsForm({
     );
   };
   if (loading) {
-    return /* @__PURE__ */ import_react40.default.createElement("div", { className: "ak-lead-form-journey__form-state" }, "Loading form\u2026");
+    return /* @__PURE__ */ import_react41.default.createElement("div", { className: "ak-lead-form-journey__form-state" }, "Loading form\u2026");
   }
   if (loadError) {
-    return /* @__PURE__ */ import_react40.default.createElement("div", { className: "ak-lead-form-journey__form-state" }, loadError);
+    return /* @__PURE__ */ import_react41.default.createElement("div", { className: "ak-lead-form-journey__form-state" }, loadError);
   }
   if (!schema) {
-    return /* @__PURE__ */ import_react40.default.createElement("div", { className: "ak-lead-form-journey__form-state" }, "Select a Form Builder form to display this form.");
+    return /* @__PURE__ */ import_react41.default.createElement("div", { className: "ak-lead-form-journey__form-state" }, "Select a Form Builder form to display this form.");
   }
-  return /* @__PURE__ */ import_react40.default.createElement("form", { onSubmit: handleSubmit, className: "ak-lead-form-journey__form" }, orderedFields.map((field) => /* @__PURE__ */ import_react40.default.createElement("div", { key: field.fieldKey }, /* @__PURE__ */ import_react40.default.createElement("label", { className: "ak-lead-form-journey__label" }, field.label || field.fieldKey), renderControl(field))), /* @__PURE__ */ import_react40.default.createElement("div", { className: "ak-lead-form-journey__honeypot", "aria-hidden": "true" }, /* @__PURE__ */ import_react40.default.createElement("label", null, "Leave this field empty", /* @__PURE__ */ import_react40.default.createElement("input", { tabIndex: -1, autoComplete: "off", value: hp, onChange: (e) => setHp(e.target.value) }))), submitState === "success" ? /* @__PURE__ */ import_react40.default.createElement("p", { className: "ak-lead-form-journey__message ak-lead-form-journey__message--success" }, successMessage || "Thank you!") : null, submitState === "error" ? /* @__PURE__ */ import_react40.default.createElement("p", { className: "ak-lead-form-journey__message ak-lead-form-journey__message--error" }, formError || errorMessage) : null, /* @__PURE__ */ import_react40.default.createElement(
+  return /* @__PURE__ */ import_react41.default.createElement("form", { onSubmit: handleSubmit, className: "ak-lead-form-journey__form" }, orderedFields.map((field) => /* @__PURE__ */ import_react41.default.createElement("div", { key: field.fieldKey }, /* @__PURE__ */ import_react41.default.createElement("label", { className: "ak-lead-form-journey__label" }, field.label || field.fieldKey), renderControl(field))), /* @__PURE__ */ import_react41.default.createElement("div", { className: "ak-lead-form-journey__honeypot", "aria-hidden": "true" }, /* @__PURE__ */ import_react41.default.createElement("label", null, "Leave this field empty", /* @__PURE__ */ import_react41.default.createElement("input", { tabIndex: -1, autoComplete: "off", value: hp, onChange: (e) => setHp(e.target.value) }))), submitState === "success" ? /* @__PURE__ */ import_react41.default.createElement("p", { className: "ak-lead-form-journey__message ak-lead-form-journey__message--success" }, successMessage || "Thank you!") : null, submitState === "error" ? /* @__PURE__ */ import_react41.default.createElement("p", { className: "ak-lead-form-journey__message ak-lead-form-journey__message--error" }, formError || errorMessage) : null, /* @__PURE__ */ import_react41.default.createElement(
     "button",
     {
       type: "submit",
       disabled: submitState === "loading",
       className: "ak-lead-form-journey__submit"
     },
-    /* @__PURE__ */ import_react40.default.createElement("span", { className: "ak-lead-form-journey__submit-bg" }),
-    /* @__PURE__ */ import_react40.default.createElement("span", { className: "ak-lead-form-journey__submit-shine" }),
-    /* @__PURE__ */ import_react40.default.createElement("span", { className: "ak-lead-form-journey__submit-content" }, submitState === "loading" ? /* @__PURE__ */ import_react40.default.createElement(import_react40.default.Fragment, null, /* @__PURE__ */ import_react40.default.createElement("span", { className: "ak-lead-form-journey__spinner" }), loadingButtonText) : /* @__PURE__ */ import_react40.default.createElement(import_react40.default.Fragment, null, submitButtonText, /* @__PURE__ */ import_react40.default.createElement(Icon2, { name: "arrowRight", className: "ak-lead-form-journey__submit-icon" })))
+    /* @__PURE__ */ import_react41.default.createElement("span", { className: "ak-lead-form-journey__submit-bg" }),
+    /* @__PURE__ */ import_react41.default.createElement("span", { className: "ak-lead-form-journey__submit-shine" }),
+    /* @__PURE__ */ import_react41.default.createElement("span", { className: "ak-lead-form-journey__submit-content" }, submitState === "loading" ? /* @__PURE__ */ import_react41.default.createElement(import_react41.default.Fragment, null, /* @__PURE__ */ import_react41.default.createElement("span", { className: "ak-lead-form-journey__spinner" }), loadingButtonText) : /* @__PURE__ */ import_react41.default.createElement(import_react41.default.Fragment, null, submitButtonText, /* @__PURE__ */ import_react41.default.createElement(Icon2, { name: "arrowRight", className: "ak-lead-form-journey__submit-icon" })))
   ));
 }
 function JourneySplitLeadForm({
@@ -12819,28 +13165,28 @@ function JourneySplitLeadForm({
   const reduceMotion = usePrefersReducedMotion4();
   const props = (_b = (_a = section == null ? void 0 : section.settings) == null ? void 0 : _a.props) != null ? _b : {};
   const enableMotion = props.enableMotion !== false && !reduceMotion;
-  const eyebrow = safeText20(props.eyebrow);
-  const heading = safeText20(props.heading) || "Let's Start Your Journey Today";
-  const subheading = safeText20(props.subheading);
+  const eyebrow = safeText21(props.eyebrow);
+  const heading = safeText21(props.heading) || "Let's Start Your Journey Today";
+  const subheading = safeText21(props.subheading);
   const showEyebrow = props.showEyebrow === true;
   const showSubheading = props.showSubheading !== false;
   const showChecklist = props.showChecklist !== false;
-  const checklistTitle = safeText20(props.checklistTitle);
-  const formTitle = safeText20(props.formTitle);
+  const checklistTitle = safeText21(props.checklistTitle);
+  const formTitle = safeText21(props.formTitle);
   const showFormTitle = props.showFormTitle === true;
-  const submitButtonText = safeText20(props.submitButtonText) || "Submit Request";
-  const loadingButtonText = safeText20(props.loadingButtonText) || "Submitting...";
-  const successMessage = safeText20(props.successMessage);
-  const errorMessage = safeText20(props.errorMessage);
-  const blocks = (0, import_react40.useMemo)(
+  const submitButtonText = safeText21(props.submitButtonText) || "Submit Request";
+  const loadingButtonText = safeText21(props.loadingButtonText) || "Submitting...";
+  const successMessage = safeText21(props.successMessage);
+  const errorMessage = safeText21(props.errorMessage);
+  const blocks = (0, import_react41.useMemo)(
     () => {
       var _a2;
       return Array.isArray((_a2 = section == null ? void 0 : section.settings) == null ? void 0 : _a2.blocks) ? section.settings.blocks : [];
     },
     [(_c = section == null ? void 0 : section.settings) == null ? void 0 : _c.blocks]
   );
-  const checklistItems = (0, import_react40.useMemo)(
-    () => blocks.filter((block) => (block == null ? void 0 : block.type) === "checklist_item").filter((block) => safeText20(block.text)),
+  const checklistItems = (0, import_react41.useMemo)(
+    () => blocks.filter((block) => (block == null ? void 0 : block.type) === "checklist_item").filter((block) => safeText21(block.text)),
     [blocks]
   );
   const formState = useDynamicFormBuilderState({
@@ -12848,7 +13194,7 @@ function JourneySplitLeadForm({
     enableSubmit: true,
     onSubmitDynamicForm
   });
-  const eyebrowStyle = (0, import_react40.useMemo)(
+  const eyebrowStyle = (0, import_react41.useMemo)(
     () => textColorStyle2(
       resolvedTextStyleToInlineStyle(
         resolveTextStyle({
@@ -12862,7 +13208,7 @@ function JourneySplitLeadForm({
     ),
     [section, theme]
   );
-  const headingStyle = (0, import_react40.useMemo)(
+  const headingStyle = (0, import_react41.useMemo)(
     () => textColorStyle2(
       resolvedTextStyleToInlineStyle(
         resolveTextStyle({
@@ -12876,7 +13222,7 @@ function JourneySplitLeadForm({
     ),
     [section, theme]
   );
-  const subheadingStyle = (0, import_react40.useMemo)(
+  const subheadingStyle = (0, import_react41.useMemo)(
     () => textColorStyle2(
       resolvedTextStyleToInlineStyle(
         resolveTextStyle({
@@ -12890,7 +13236,7 @@ function JourneySplitLeadForm({
     ),
     [section, theme]
   );
-  const checklistTitleStyle = (0, import_react40.useMemo)(
+  const checklistTitleStyle = (0, import_react41.useMemo)(
     () => textColorStyle2(
       resolvedTextStyleToInlineStyle(
         resolveTextStyle({
@@ -12904,7 +13250,7 @@ function JourneySplitLeadForm({
     ),
     [section, theme]
   );
-  const checklistItemStyle = (0, import_react40.useMemo)(
+  const checklistItemStyle = (0, import_react41.useMemo)(
     () => textColorStyle2(
       resolvedTextStyleToInlineStyle(
         resolveTextStyle({
@@ -12918,7 +13264,7 @@ function JourneySplitLeadForm({
     ),
     [section, theme]
   );
-  const formTitleStyle = (0, import_react40.useMemo)(
+  const formTitleStyle = (0, import_react41.useMemo)(
     () => textColorStyle2(
       resolvedTextStyleToInlineStyle(
         resolveTextStyle({
@@ -12944,17 +13290,17 @@ function JourneySplitLeadForm({
     viewport: { once: true },
     transition: { duration: 0.8, delay: 0.2 }
   } : {};
-  return /* @__PURE__ */ import_react40.default.createElement(
+  return /* @__PURE__ */ import_react41.default.createElement(
     "section",
     {
       className: `ak-lead-form-journey ${paddingClass8(props.sectionPadding)}`,
       style: sectionAppearanceStyle(appearance),
       "aria-label": heading
     },
-    /* @__PURE__ */ import_react40.default.createElement("div", { className: "ak-lead-form-journey__wrap" }, /* @__PURE__ */ import_react40.default.createElement("div", { className: "ak-lead-form-journey__grid" }, /* @__PURE__ */ import_react40.default.createElement(import_framer_motion12.motion.div, { className: "ak-lead-form-journey__content", ...headlineMotion }, showEyebrow && eyebrow ? /* @__PURE__ */ import_react40.default.createElement("span", { className: "ak-lead-form-journey__eyebrow", style: eyebrowStyle }, eyebrow) : null, /* @__PURE__ */ import_react40.default.createElement("h2", { className: "ak-lead-form-journey__heading", style: headingStyle }, heading), showSubheading && subheading ? /* @__PURE__ */ import_react40.default.createElement("p", { className: "ak-lead-form-journey__subheading", style: subheadingStyle }, subheading) : null, showChecklist && checklistItems.length > 0 ? /* @__PURE__ */ import_react40.default.createElement("div", { className: "ak-lead-form-journey__checklist" }, checklistTitle ? /* @__PURE__ */ import_react40.default.createElement("p", { className: "ak-lead-form-journey__checklist-title", style: checklistTitleStyle }, checklistTitle) : null, checklistItems.map((item, index) => {
+    /* @__PURE__ */ import_react41.default.createElement("div", { className: "ak-lead-form-journey__wrap" }, /* @__PURE__ */ import_react41.default.createElement("div", { className: "ak-lead-form-journey__grid" }, /* @__PURE__ */ import_react41.default.createElement(import_framer_motion12.motion.div, { className: "ak-lead-form-journey__content", ...headlineMotion }, showEyebrow && eyebrow ? /* @__PURE__ */ import_react41.default.createElement("span", { className: "ak-lead-form-journey__eyebrow", style: eyebrowStyle }, eyebrow) : null, /* @__PURE__ */ import_react41.default.createElement("h2", { className: "ak-lead-form-journey__heading", style: headingStyle }, heading), showSubheading && subheading ? /* @__PURE__ */ import_react41.default.createElement("p", { className: "ak-lead-form-journey__subheading", style: subheadingStyle }, subheading) : null, showChecklist && checklistItems.length > 0 ? /* @__PURE__ */ import_react41.default.createElement("div", { className: "ak-lead-form-journey__checklist" }, checklistTitle ? /* @__PURE__ */ import_react41.default.createElement("p", { className: "ak-lead-form-journey__checklist-title", style: checklistTitleStyle }, checklistTitle) : null, checklistItems.map((item, index) => {
       var _a2;
       const itemProps = item;
-      return /* @__PURE__ */ import_react40.default.createElement(
+      return /* @__PURE__ */ import_react41.default.createElement(
         import_framer_motion12.motion.p,
         {
           key: (_a2 = itemProps.id) != null ? _a2 : index,
@@ -12965,10 +13311,10 @@ function JourneySplitLeadForm({
           viewport: { once: true },
           transition: { duration: 0.5, delay: index * 0.15, ease: [0.22, 1, 0.36, 1] }
         },
-        /* @__PURE__ */ import_react40.default.createElement(ChecklistIcon, { type: itemProps.iconType }),
-        /* @__PURE__ */ import_react40.default.createElement("span", null, safeText20(itemProps.text))
+        /* @__PURE__ */ import_react41.default.createElement(ChecklistIcon, { type: itemProps.iconType }),
+        /* @__PURE__ */ import_react41.default.createElement("span", null, safeText21(itemProps.text))
       );
-    })) : null), /* @__PURE__ */ import_react40.default.createElement(import_framer_motion12.motion.div, { className: "ak-lead-form-journey__form-wrap", ...formMotion }, /* @__PURE__ */ import_react40.default.createElement("div", { className: "ak-lead-form-journey__card" }, showFormTitle && formTitle ? /* @__PURE__ */ import_react40.default.createElement("h3", { className: "ak-lead-form-journey__form-title", style: formTitleStyle }, formTitle) : null, /* @__PURE__ */ import_react40.default.createElement(
+    })) : null), /* @__PURE__ */ import_react41.default.createElement(import_framer_motion12.motion.div, { className: "ak-lead-form-journey__form-wrap", ...formMotion }, /* @__PURE__ */ import_react41.default.createElement("div", { className: "ak-lead-form-journey__card" }, showFormTitle && formTitle ? /* @__PURE__ */ import_react41.default.createElement("h3", { className: "ak-lead-form-journey__form-title", style: formTitleStyle }, formTitle) : null, /* @__PURE__ */ import_react41.default.createElement(
       JourneyFieldsForm,
       {
         schema: formBuilderSchema,
@@ -12986,7 +13332,7 @@ function JourneySplitLeadForm({
 }
 
 // src/shared/StorefrontFontLoader.tsx
-var import_react41 = require("react");
+var import_react42 = require("react");
 var GOOGLE_FONTS_MARKER = "data-storefront-fonts";
 function ensureGooglePreconnect() {
   const head = window.document.head;
@@ -13009,7 +13355,7 @@ function StorefrontFontLoader({
   fontIds,
   document: document2
 }) {
-  const ids = (0, import_react41.useMemo)(() => {
+  const ids = (0, import_react42.useMemo)(() => {
     const fromDoc = document2 ? collectStorefrontFontIdsFromDocument(document2) : [];
     const merged = /* @__PURE__ */ new Set([
       DEFAULT_STOREFRONT_FONT_ID,
@@ -13021,8 +13367,8 @@ function StorefrontFontLoader({
     merged.delete("system");
     return Array.from(merged);
   }, [document2, fontIds, themeFontId]);
-  const googleHref = (0, import_react41.useMemo)(() => buildGoogleFontLink(ids), [ids]);
-  (0, import_react41.useEffect)(() => {
+  const googleHref = (0, import_react42.useMemo)(() => buildGoogleFontLink(ids), [ids]);
+  (0, import_react42.useEffect)(() => {
     if (!googleHref) return void 0;
     ensureGooglePreconnect();
     const head = window.document.head;
@@ -13114,6 +13460,7 @@ function StorefrontFontLoader({
   NSP_TYPING_SECONDARY_BUTTON_TEXT_DEFAULT,
   NSP_TYPING_STATIC_HEADING_DEFAULT,
   NSP_TYPING_WORD_DEFAULT,
+  NavratriDandiyaHero,
   PRODUCT_CARD_DESCRIPTION_DEFAULT,
   PRODUCT_CARD_SUBTITLE_DEFAULT,
   PRODUCT_CARD_TITLE_DEFAULT,
