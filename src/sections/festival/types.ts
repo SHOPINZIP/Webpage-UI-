@@ -90,3 +90,74 @@ export type RakhiGiftFestivalProps = {
 };
 
 export type FestivalSectionAppearance = SectionAppearance;
+
+/* ─────────────── Navratri Dandiya Hero (festival variant) ─────────────── */
+
+export type NavratriWordBlock = {
+  id?: string;
+  type?: "navratri_word" | string;
+  props?: { text?: string };
+};
+
+export type NavratriFeatureBlock = {
+  id?: string;
+  type?: "navratri_feature" | string;
+  props?: { text?: string };
+};
+
+export type NavratriBadgeBlock = {
+  id?: string;
+  type?: "navratri_badge" | string;
+  props?: { text?: string };
+};
+
+export type NavratriBlock = NavratriWordBlock | NavratriFeatureBlock | NavratriBadgeBlock;
+
+export type NavratriSectionControls = {
+  eyebrowText?: string;
+  headingLineOne?: string;
+  headingConnector?: string;
+  headingLineThree?: string;
+  bodyText?: string;
+  primaryButtonText?: string;
+  primaryButtonLink?: string;
+  secondaryButtonText?: string;
+  secondaryButtonLink?: string;
+  mediaImage?: string;
+  mediaAlt?: string;
+  mediaCaptionLabel?: string;
+  mediaCaptionText?: string;
+  showEyebrow?: boolean;
+  showFeatures?: boolean;
+  showMediaBadges?: boolean;
+  showMediaCaption?: boolean;
+  showSecondaryButton?: boolean;
+  showToran?: boolean;
+  showLanterns?: boolean;
+  showMirrorMedallions?: boolean;
+  showRangoliAura?: boolean;
+  showDandiyaSticks?: boolean;
+  headingDensity?: "tight" | "balanced" | "relaxed" | string;
+  sectionPadding?: FestivalSectionPadding | string;
+  appearance?: SectionAppearance;
+  [colorProp: string]: unknown;
+};
+
+export type NavratriSectionSettings = {
+  props?: NavratriSectionControls;
+  blocks?: NavratriBlock[];
+};
+
+export type NavratriSectionDoc = {
+  id: string;
+  type: "festival";
+  variant?: string;
+  enabled?: boolean;
+  settings: NavratriSectionSettings;
+};
+
+export type NavratriDandiyaHeroProps = {
+  section: NavratriSectionDoc;
+  appearance?: ResolvedSectionAppearance | null;
+  theme?: StorefrontTheme | null;
+};

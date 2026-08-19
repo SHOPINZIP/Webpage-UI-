@@ -1,4 +1,5 @@
 export { default as RakhiGiftFestival } from "./RakhiGiftFestival";
+export { default as NavratriDandiyaHero } from "./NavratriDandiyaHero";
 export type {
   RakhiGiftFestivalProps,
   FestivalSectionDoc,
@@ -9,4 +10,12 @@ export type {
   FestivalBlock,
   FestivalCardBlock,
   FestivalPetalBlock,
+  NavratriDandiyaHeroProps,
+  NavratriSectionDoc,
+  NavratriSectionSettings,
+  NavratriSectionControls,
+  NavratriBlock,
+  NavratriWordBlock,
+  NavratriFeatureBlock,
+  NavratriBadgeBlock,
 } from "./types";
