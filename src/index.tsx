@@ -29,6 +29,8 @@ export { MediaPresenceVideoHero, LightMediaPresencePremium } from "./sections/vi
 export { FannedPhoneReels } from "./sections/reels-section";
 export { RakhiGiftFestival } from "./sections/festival";
 export { NavratriDandiyaHero } from "./sections/festival";
+export { DiwaliCorporateHero } from "./sections/festival";
+export { DiwaliEventsHero } from "./sections/festival";
 export { default as ServiceInquiryForm } from "./components/LeadFormSection";
 export { JourneySplitLeadForm } from "./components/LeadFormSection";
 export type { HeroScrollableSlideProps } from "./components/HeroSection/HeroScrollableSlide";
@@ -191,6 +193,20 @@ export type {
   NavratriWordBlock,
   NavratriFeatureBlock,
   NavratriBadgeBlock,
+  DiwaliCorporateHeroProps,
+  DiwaliCorporateSectionDoc,
+  DiwaliCorporateSettings,
+  DiwaliCorporateControls,
+  DiwaliCorporateBlock,
+  DiwaliCorporateStatBlock,
+  DiwaliCorporateOfferBlock,
+  DiwaliEventsHeroProps,
+  DiwaliEventsSectionDoc,
+  DiwaliEventsSettings,
+  DiwaliEventsControls,
+  DiwaliEventsBlock,
+  DiwaliEventsServiceBlock,
+  DiwaliEventsStatBlock,
 } from "./sections/festival";
 export type {
   ServiceInquiryFormProps,

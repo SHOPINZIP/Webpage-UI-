@@ -1,0 +1,663 @@
+/* Diwali Corporate Hero — festival variant.
+   Prefix: akdc- (AreaKart Diwali Corporate). */
+
+.akdc-hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-width: 100%;
+  --akdc-space: 4rem;
+  --akdc-border: #e6dccf;
+}
+
+/* ───────────────────────── decor ───────────────────────── */
+
+.akdc-toran {
+  display: block;
+  position: absolute;
+  inset-inline: 0;
+  top: 0;
+  z-index: 3;
+  width: 100%;
+  height: 96px;
+  pointer-events: none;
+
+  @media (min-width: 768px) {
+    height: 127px;
+  }
+
+  @media (min-width: 1280px) {
+    height: 155px;
+  }
+}
+
+.akdc-toran__g {
+  transform: scale(0.62);
+
+  @media (min-width: 768px) {
+    transform: scale(0.82);
+  }
+
+  @media (min-width: 1280px) {
+    transform: none;
+  }
+}
+
+.akdc-lanterns {
+  display: none;
+  position: absolute;
+  inset-inline: 0;
+  top: 0;
+  z-index: 3;
+  height: 0;
+  pointer-events: none;
+
+  @media (min-width: 1024px) {
+    display: block;
+  }
+}
+
+.akdc-lantern {
+  position: absolute;
+  top: 0;
+}
+
+.akdc-diyas {
+  position: absolute;
+  bottom: 5%;
+  inset-inline-end: 5%;
+  display: flex;
+  align-items: flex-end;
+  gap: 0.75rem;
+  pointer-events: none;
+}
+
+/* ───────────────────────── layout ───────────────────────── */
+
+.akdc-hero__body {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1440px;
+  margin-inline: auto;
+
+  @media (min-width: 1024px) {
+    flex-direction: row;
+    min-height: min(88svh, calc(44rem + var(--akdc-space) * 2));
+  }
+}
+
+.akdc-hero__copy {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: var(--akdc-space) 1.25rem;
+
+  @media (min-width: 640px) {
+    padding-inline: 2.5rem;
+  }
+
+  @media (min-width: 1024px) {
+    width: 48%;
+    padding-inline: 4rem 1rem;
+  }
+}
+
+/* The garland occupies the top of the section, so the copy starts below it. */
+.akdc-hero__copy--toran {
+  padding-top: calc(6rem + var(--akdc-space) * 0.5);
+
+  @media (min-width: 768px) {
+    padding-top: calc(8rem + var(--akdc-space) * 0.5);
+  }
+
+  @media (min-width: 1280px) {
+    padding-top: calc(9.75rem + var(--akdc-space) * 0.5);
+  }
+}
+
+.akdc-hero__media {
+  position: relative;
+  min-height: 24rem;
+
+  @media (min-width: 1024px) {
+    position: absolute;
+    inset-block: 0;
+    inset-inline-end: 0;
+    width: 57%;
+    min-height: 0;
+  }
+}
+
+.akdc-hero__photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  mask-image: linear-gradient(to bottom, transparent, black 20%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent, black 20%);
+
+  @media (min-width: 1024px) {
+    mask-image: linear-gradient(to right, transparent, black 26%);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 26%);
+  }
+}
+
+/* ───────────────────────── copy ───────────────────────── */
+
+.akdc-eyebrow {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+}
+
+.akdc-eyebrow__text {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.akdc-heading {
+  margin: 0;
+  font-size: clamp(2.6rem, 3.6vw + 1rem, 5rem);
+  font-weight: 700;
+  line-height: 1.04;
+  letter-spacing: -0.02em;
+  overflow-wrap: break-word;
+}
+
+.akdc-heading__line {
+  display: block;
+}
+
+.akdc-body {
+  margin: 0;
+  max-width: 46ch;
+  font-size: clamp(1.05rem, 0.4vw + 1rem, 1.25rem);
+  line-height: 1.55;
+  overflow-wrap: break-word;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.akdc-ctas {
+  margin-top: 0.25rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.akdc-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-height: 3.4rem;
+  padding-inline: 2rem;
+  border-radius: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease, background 0.3s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+
+  &:hover .akdc-btn__arrow {
+    transform: translateX(3px);
+  }
+
+  &:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 4px;
+  }
+}
+
+.akdc-btn--ghost {
+  border: 1px solid currentColor;
+  background: transparent;
+}
+
+.akdc-btn__arrow {
+  display: inline-flex;
+  transition: transform 0.3s ease;
+}
+
+/* ───────────────────────── stats ───────────────────────── */
+
+.akdc-stats {
+  list-style: none;
+  margin: 0.75rem 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+
+  @media (min-width: 640px) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0;
+  }
+}
+
+.akdc-stats__item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-width: 0;
+
+  @media (min-width: 640px) {
+    padding-inline: 1rem;
+
+    &:first-child {
+      padding-inline-start: 0;
+    }
+  }
+}
+
+.akdc-stats__item--div {
+  @media (min-width: 640px) {
+    border-inline-start: 1px solid var(--akdc-border);
+  }
+}
+
+.akdc-stats__icon {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 999px;
+}
+
+.akdc-stats__text {
+  display: grid;
+  min-width: 0;
+}
+
+.akdc-stats__value {
+  font-size: 1.1rem;
+  font-weight: 700;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.akdc-stats__label {
+  font-size: 0.875rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ───────────────────────── offerings band ───────────────────────── */
+
+.akdc-band {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.akdc-band__mandala {
+  position: absolute;
+  z-index: -1;
+  width: 18rem;
+  pointer-events: none;
+}
+
+.akdc-band__mandala--start {
+  bottom: -6rem;
+  inset-inline-start: -6rem;
+}
+
+.akdc-band__mandala--end {
+  top: -6rem;
+  inset-inline-end: -6rem;
+}
+
+.akdc-band__list {
+  list-style: none;
+  margin: 0;
+  display: grid;
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 1440px;
+  margin-inline: auto;
+  padding: calc(var(--akdc-space) * 0.5) 1.25rem;
+
+  @media (min-width: 640px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    padding-inline: 2.5rem;
+  }
+
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    padding-inline: 4rem;
+  }
+}
+
+.akdc-band__item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  min-width: 0;
+}
+
+.akdc-band__item--div {
+  @media (min-width: 1024px) {
+    border-inline-start: 1px solid rgba(255, 255, 255, 0.2);
+    padding-inline-start: 1.5rem;
+  }
+}
+
+.akdc-band__icon {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 4rem;
+  height: 4rem;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+}
+
+.akdc-band__text {
+  display: grid;
+  gap: 0.25rem;
+  min-width: 0;
+}
+
+.akdc-band__title {
+  font-size: 1.1rem;
+  line-height: 1.2;
+}
+
+.akdc-band__body {
+  font-size: 0.875rem;
+  opacity: 0.8;
+}
+
+/* ───────────────────────── fallback scene ───────────────────────── */
+
+.akdc-scene {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+
+  @media (min-width: 1024px) {
+    padding-inline-start: 12%;
+    padding-top: 8%;
+  }
+}
+
+.akdc-scene__inner {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  width: min(78%, 34rem);
+}
+
+.akdc-scene__glow {
+  position: absolute;
+  inset: -12%;
+  border-radius: 999px;
+  background: radial-gradient(closest-side, hsl(43 96% 56% / 0.42), hsl(328 82% 46% / 0.12) 62%, transparent);
+}
+
+.akdc-scene__mandala-lg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.akdc-scene__mandala-sm {
+  position: absolute;
+  inset: 16%;
+  width: 68%;
+  height: 68%;
+}
+
+.akdc-scene__rangoli {
+  position: absolute;
+  inset: 27%;
+  width: 46%;
+  height: 46%;
+}
+
+/* ───────────────────────── petals ───────────────────────── */
+
+.akdc-petals {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.akdc-petals__item {
+  position: absolute;
+  top: 0;
+  display: block;
+  width: 0.625rem;
+  height: 0.75rem;
+  border-radius: 60% 60% 60% 10%;
+  opacity: 0;
+  animation-name: akdc-fall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.akdc-petals__item--sm {
+  width: 0.5rem;
+  height: 0.625rem;
+}
+
+/* ───────────────────────── motion ───────────────────────── */
+
+@keyframes akdc-sway {
+  0%,
+  100% {
+    transform: rotate(-2.2deg);
+  }
+  50% {
+    transform: rotate(2.2deg);
+  }
+}
+
+@keyframes akdc-swing {
+  0%,
+  100% {
+    transform: rotate(-3deg);
+  }
+  50% {
+    transform: rotate(3deg);
+  }
+}
+
+@keyframes akdc-flicker {
+  0%,
+  100% {
+    transform: scale(1, 1) skewX(0);
+  }
+  25% {
+    transform: scale(0.93, 1.07) skewX(2deg);
+  }
+  50% {
+    transform: scale(1.05, 0.95) skewX(-2deg);
+  }
+  75% {
+    transform: scale(0.97, 1.04) skewX(1deg);
+  }
+}
+
+@keyframes akdc-twinkle {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+
+@keyframes akdc-fall {
+  0% {
+    transform: translate3d(0, -8vh, 0) rotate(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translate3d(7vw, 105vh, 0) rotate(540deg);
+    opacity: 0;
+  }
+}
+
+@keyframes akdc-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes akdc-pulse {
+  0%,
+  100% {
+    opacity: 0.75;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes akdc-breathe {
+  0%,
+  100% {
+    opacity: 0.6;
+    transform: scale(0.94);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes akdc-rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.akdc-sway {
+  transform-box: fill-box;
+  transform-origin: 50% 0;
+  animation: akdc-sway 5s ease-in-out infinite;
+}
+
+.akdc-swing {
+  animation: akdc-swing 6s ease-in-out infinite;
+}
+
+.akdc-flicker {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  animation: akdc-flicker 1.6s ease-in-out infinite;
+}
+
+.akdc-twinkle {
+  animation: akdc-twinkle 2.6s ease-in-out infinite;
+}
+
+.akdc-spin {
+  animation: akdc-spin 120s linear infinite;
+}
+
+.akdc-pulse {
+  animation: akdc-pulse 5s ease-in-out infinite;
+}
+
+.akdc-breathe {
+  transform-box: fill-box;
+  transform-origin: 50% 50%;
+  animation: akdc-breathe 5.5s ease-in-out infinite;
+}
+
+.akdc-rise {
+  animation: akdc-rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both;
+}
+
+.akdc-rise--1 {
+  animation-delay: 0.18s;
+}
+.akdc-rise--2 {
+  animation-delay: 0.26s;
+}
+.akdc-rise--3 {
+  animation-delay: 0.34s;
+}
+.akdc-rise--4 {
+  animation-delay: 0.42s;
+}
+
+/* Reduced motion: both the media query (OS preference) and the JS-set
+   modifier class, since the petal layer is removed from the DOM in JS. */
+.akdc-hero--still {
+  .akdc-sway,
+  .akdc-swing,
+  .akdc-flicker,
+  .akdc-twinkle,
+  .akdc-spin,
+  .akdc-pulse,
+  .akdc-breathe,
+  .akdc-rise {
+    animation: none;
+  }
+
+  .akdc-btn,
+  .akdc-btn__arrow {
+    transition: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .akdc-sway,
+  .akdc-swing,
+  .akdc-flicker,
+  .akdc-twinkle,
+  .akdc-spin,
+  .akdc-pulse,
+  .akdc-breathe,
+  .akdc-rise {
+    animation: none;
+  }
+
+  .akdc-petals {
+    display: none;
+  }
+
+  .akdc-btn,
+  .akdc-btn__arrow {
+    transition: none;
+  }
+}

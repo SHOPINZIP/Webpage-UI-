@@ -1,5 +1,7 @@
 export { default as RakhiGiftFestival } from "./RakhiGiftFestival";
 export { default as NavratriDandiyaHero } from "./NavratriDandiyaHero";
+export { default as DiwaliCorporateHero } from "./DiwaliCorporateHero";
+export { default as DiwaliEventsHero } from "./DiwaliEventsHero";
 export type {
   RakhiGiftFestivalProps,
   FestivalSectionDoc,
@@ -18,4 +20,18 @@ export type {
   NavratriWordBlock,
   NavratriFeatureBlock,
   NavratriBadgeBlock,
+  DiwaliCorporateHeroProps,
+  DiwaliCorporateSectionDoc,
+  DiwaliCorporateSettings,
+  DiwaliCorporateControls,
+  DiwaliCorporateBlock,
+  DiwaliCorporateStatBlock,
+  DiwaliCorporateOfferBlock,
+  DiwaliEventsHeroProps,
+  DiwaliEventsSectionDoc,
+  DiwaliEventsSettings,
+  DiwaliEventsControls,
+  DiwaliEventsBlock,
+  DiwaliEventsServiceBlock,
+  DiwaliEventsStatBlock,
 } from "./types";

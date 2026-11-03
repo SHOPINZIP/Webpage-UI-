@@ -1,0 +1,425 @@
+/* Diwali Events Hero — festival variant.
+   Prefix: akde- (AreaKart Diwali Events). */
+
+.akde-hero {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-height: 100svh;
+  min-width: 100%;
+  --akde-space: 4rem;
+}
+
+/* ───────────────────────── backdrop ───────────────────────── */
+
+.akde-hero__photo {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.akde-hero__scrim {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+
+.akde-lights {
+  position: absolute;
+  inset-inline: 0;
+  z-index: -1;
+  width: 100%;
+  pointer-events: none;
+}
+
+.akde-lights--front {
+  top: 0;
+  height: clamp(4rem, 7vw, 7rem);
+}
+
+.akde-lights--back {
+  top: 3%;
+  height: clamp(5rem, 9vw, 9rem);
+  opacity: 0.8;
+}
+
+.akde-lanterns {
+  position: absolute;
+  inset-inline: 0;
+  top: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+.akde-lantern {
+  position: absolute;
+  top: 0;
+}
+
+/* ───────────────────────── copy ───────────────────────── */
+
+.akde-hero__body {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  width: 100%;
+  max-width: 1440px;
+  margin-inline: auto;
+  padding: clamp(6rem, 14vh, 9rem) 1.25rem var(--akde-space);
+
+  @media (min-width: 640px) {
+    padding-inline: 2.5rem;
+  }
+
+  @media (min-width: 1024px) {
+    padding-inline: 4rem;
+  }
+}
+
+.akde-hero__copy {
+  display: grid;
+  gap: 1.25rem;
+  max-width: 44rem;
+}
+
+.akde-eyebrow {
+  margin: 0;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.36em;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.akde-heading {
+  margin: 0;
+  font-size: clamp(2.5rem, 3.8vw + 1rem, 5.2rem);
+  font-weight: 700;
+  line-height: 1.06;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+  overflow-wrap: break-word;
+}
+
+.akde-body {
+  margin: 0;
+  max-width: 46ch;
+  font-size: clamp(1.05rem, 0.4vw + 1rem, 1.25rem);
+  line-height: 1.55;
+  overflow-wrap: break-word;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.akde-ctas {
+  margin-top: 0.25rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.akde-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-height: 3.4rem;
+  padding-inline: 2rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease, background 0.3s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+
+  &:hover .akde-btn__arrow {
+    transform: translateX(3px);
+  }
+
+  &:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 4px;
+  }
+}
+
+.akde-btn--ghost {
+  border: 1px solid currentColor;
+  background: transparent;
+  padding-inline: 1.75rem;
+}
+
+.akde-btn__arrow {
+  display: inline-flex;
+  transition: transform 0.3s ease;
+}
+
+/* ───────────────────────── service icons ───────────────────────── */
+
+.akde-services {
+  list-style: none;
+  margin: 0.75rem 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  row-gap: 1.25rem;
+
+  @media (min-width: 640px) {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.akde-services__item {
+  display: grid;
+  gap: 0.5rem;
+  min-width: 0;
+
+  @media (min-width: 640px) {
+    padding-inline: 1.25rem;
+
+    &:first-child {
+      padding-inline-start: 0;
+    }
+  }
+}
+
+.akde-services__item--div {
+  @media (min-width: 640px) {
+    border-inline-start: 1px solid color-mix(in srgb, currentColor 25%, transparent);
+  }
+}
+
+.akde-services__label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.25;
+}
+
+/* ───────────────────────── stats band ───────────────────────── */
+
+.akde-band {
+  position: relative;
+}
+
+.akde-band__rule {
+  display: block;
+  width: 100%;
+  height: 2rem;
+}
+
+.akde-band__grid {
+  position: relative;
+  display: grid;
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 1440px;
+  margin-inline: auto;
+  padding: 0.75rem 1.25rem var(--akde-space);
+
+  @media (min-width: 640px) {
+    padding-inline: 2.5rem;
+  }
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    text-align: center;
+  }
+
+  @media (min-width: 1024px) {
+    padding-inline: 4rem;
+  }
+}
+
+.akde-band__stat {
+  margin: 0;
+  display: grid;
+  gap: 0.25rem;
+  min-width: 0;
+}
+
+.akde-band__value {
+  font-size: clamp(1.8rem, 2vw + 1rem, 2.6rem);
+  line-height: 1;
+  overflow-wrap: anywhere;
+}
+
+.akde-band__label {
+  font-size: 0.875rem;
+  opacity: 0.85;
+}
+
+.akde-band__mandala {
+  display: none;
+
+  @media (min-width: 768px) {
+    display: grid;
+    place-items: center;
+  }
+
+  svg {
+    width: 4rem;
+  }
+}
+
+.akde-band__note {
+  margin: 0;
+  white-space: pre-line;
+  font-size: clamp(1.1rem, 1vw + 0.8rem, 1.5rem);
+  font-style: italic;
+  line-height: 1.2;
+
+  @media (min-width: 768px) {
+    grid-column: 1 / -1;
+    text-align: end;
+  }
+}
+
+/* ───────────────────────── petals ───────────────────────── */
+
+.akde-petals {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.akde-petals__item {
+  position: absolute;
+  top: 0;
+  display: block;
+  width: 0.5rem;
+  height: 0.625rem;
+  border-radius: 60% 60% 60% 10%;
+  opacity: 0;
+  animation-name: akde-fall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+/* ───────────────────────── motion ───────────────────────── */
+
+@keyframes akde-swing {
+  0%,
+  100% {
+    transform: rotate(-3deg);
+  }
+  50% {
+    transform: rotate(3deg);
+  }
+}
+
+@keyframes akde-twinkle {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+
+@keyframes akde-pulse {
+  0%,
+  100% {
+    opacity: 0.75;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes akde-fall {
+  0% {
+    transform: translate3d(0, -8vh, 0) rotate(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translate3d(7vw, 105vh, 0) rotate(540deg);
+    opacity: 0;
+  }
+}
+
+@keyframes akde-rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.akde-swing {
+  animation: akde-swing 6s ease-in-out infinite;
+}
+
+.akde-twinkle {
+  animation: akde-twinkle 2.6s ease-in-out infinite;
+}
+
+.akde-pulse {
+  animation: akde-pulse 5s ease-in-out infinite;
+}
+
+.akde-rise {
+  animation: akde-rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both;
+}
+
+.akde-rise--1 {
+  animation-delay: 0.18s;
+}
+.akde-rise--2 {
+  animation-delay: 0.26s;
+}
+.akde-rise--3 {
+  animation-delay: 0.34s;
+}
+.akde-rise--4 {
+  animation-delay: 0.42s;
+}
+
+.akde-hero--still {
+  .akde-swing,
+  .akde-twinkle,
+  .akde-pulse,
+  .akde-rise {
+    animation: none;
+  }
+
+  .akde-btn,
+  .akde-btn__arrow {
+    transition: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .akde-swing,
+  .akde-twinkle,
+  .akde-pulse,
+  .akde-rise {
+    animation: none;
+  }
+
+  .akde-petals {
+    display: none;
+  }
+
+  .akde-btn,
+  .akde-btn__arrow {
+    transition: none;
+  }
+}
