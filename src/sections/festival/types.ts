@@ -161,3 +161,129 @@ export type NavratriDandiyaHeroProps = {
   appearance?: ResolvedSectionAppearance | null;
   theme?: StorefrontTheme | null;
 };
+
+/* ─────────────── Diwali Corporate Hero (festival variant) ─────────────── */
+
+export type DiwaliCorporateStatBlock = {
+  id?: string;
+  type?: "diwali_corp_stat" | string;
+  props?: { icon?: string; title?: string; body?: string };
+};
+
+export type DiwaliCorporateOfferBlock = {
+  id?: string;
+  type?: "diwali_corp_offer" | string;
+  props?: { icon?: string; title?: string; body?: string };
+};
+
+export type DiwaliCorporateBlock = DiwaliCorporateStatBlock | DiwaliCorporateOfferBlock;
+
+export type DiwaliCorporateControls = {
+  eyebrowText?: string;
+  headingLineOne?: string;
+  headingLineTwo?: string;
+  headingLineThree?: string;
+  headingLevel?: "h1" | "h2" | "h3" | string;
+  bodyText?: string;
+  primaryButtonText?: string;
+  primaryButtonLink?: string;
+  secondaryButtonText?: string;
+  secondaryButtonLink?: string;
+  showSecondaryButton?: boolean;
+  mediaImage?: string;
+  mediaAlt?: string;
+  anchorId?: string;
+  showEyebrow?: boolean;
+  showStats?: boolean;
+  showOfferings?: boolean;
+  showToran?: boolean;
+  showLanterns?: boolean;
+  showPetals?: boolean;
+  showDiyas?: boolean;
+  showMandala?: boolean;
+  sectionPadding?: FestivalSectionPadding | string;
+  appearance?: SectionAppearance;
+  [colorProp: string]: unknown;
+};
+
+export type DiwaliCorporateSettings = {
+  props?: DiwaliCorporateControls;
+  blocks?: DiwaliCorporateBlock[];
+};
+
+export type DiwaliCorporateSectionDoc = {
+  id: string;
+  type: "festival";
+  variant?: string;
+  enabled?: boolean;
+  settings: DiwaliCorporateSettings;
+};
+
+export type DiwaliCorporateHeroProps = {
+  section: DiwaliCorporateSectionDoc;
+  appearance?: ResolvedSectionAppearance | null;
+  theme?: StorefrontTheme | null;
+};
+
+/* ─────────────── Diwali Events Hero (festival variant) ─────────────── */
+
+export type DiwaliEventsServiceBlock = {
+  id?: string;
+  type?: "diwali_event_service" | string;
+  props?: { icon?: string; title?: string };
+};
+
+export type DiwaliEventsStatBlock = {
+  id?: string;
+  type?: "diwali_event_stat" | string;
+  props?: { title?: string; body?: string };
+};
+
+export type DiwaliEventsBlock = DiwaliEventsServiceBlock | DiwaliEventsStatBlock;
+
+export type DiwaliEventsControls = {
+  eyebrowText?: string;
+  headingStart?: string;
+  headingAccent?: string;
+  headingEnd?: string;
+  headingLevel?: "h1" | "h2" | "h3" | string;
+  bodyText?: string;
+  primaryButtonText?: string;
+  primaryButtonLink?: string;
+  secondaryButtonText?: string;
+  secondaryButtonLink?: string;
+  showSecondaryButton?: boolean;
+  mediaImage?: string;
+  mediaAlt?: string;
+  scriptNote?: string;
+  anchorId?: string;
+  showEyebrow?: boolean;
+  showServices?: boolean;
+  showStatsBand?: boolean;
+  showScriptNote?: boolean;
+  showLights?: boolean;
+  showLanterns?: boolean;
+  showPetals?: boolean;
+  sectionPadding?: FestivalSectionPadding | string;
+  appearance?: SectionAppearance;
+  [colorProp: string]: unknown;
+};
+
+export type DiwaliEventsSettings = {
+  props?: DiwaliEventsControls;
+  blocks?: DiwaliEventsBlock[];
+};
+
+export type DiwaliEventsSectionDoc = {
+  id: string;
+  type: "festival";
+  variant?: string;
+  enabled?: boolean;
+  settings: DiwaliEventsSettings;
+};
+
+export type DiwaliEventsHeroProps = {
+  section: DiwaliEventsSectionDoc;
+  appearance?: ResolvedSectionAppearance | null;
+  theme?: StorefrontTheme | null;
+};
